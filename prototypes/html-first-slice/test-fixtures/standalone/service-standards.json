@@ -1,0 +1,311 @@
+{
+  "route": "/service-standards",
+  "source": "pages-v2/ServiceStandardsPageV2.tsx",
+  "sourceSha256": "cbc117209fb46d303ff478d9f49c8fd2b161bddf7a79c974150f3407e086a5ad",
+  "capturedAt": "2026-09-16T12:23:05.856Z",
+  "head": {
+    "title": "Our Service Standards and Helpdesk Performance | Fresh Tech",
+    "description": "See our helpdesk report for average call wait, response times and customer feedback. Read how we report performance and browse selected customer reviews.",
+    "canonical": "https://fresh-tech.uk/service-standards",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": [
+          "LocalBusiness",
+          "ProfessionalService"
+        ],
+        "@id": "https://fresh-tech.uk/#localbusiness",
+        "name": "Fresh Tech IT Support",
+        "description": "Managed IT Support and Cybersecurity services for businesses in Shropshire, Herefordshire, and the West Midlands.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/",
+        "telephone": "+441584517234",
+        "email": "hello@fresh-tech.uk",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.368,
+          "longitude": -2.717
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          },
+          {
+            "@type": "City",
+            "name": "Ludlow"
+          },
+          {
+            "@type": "City",
+            "name": "Shrewsbury"
+          },
+          {
+            "@type": "City",
+            "name": "Hereford"
+          },
+          {
+            "@type": "City",
+            "name": "Telford"
+          },
+          {
+            "@type": "City",
+            "name": "Worcester"
+          },
+          {
+            "@type": "City",
+            "name": "Leominster"
+          },
+          {
+            "@type": "City",
+            "name": "Ross-on-Wye"
+          },
+          {
+            "@type": "City",
+            "name": "Bridgnorth"
+          },
+          {
+            "@type": "City",
+            "name": "Malvern"
+          },
+          {
+            "@type": "City",
+            "name": "Ledbury"
+          },
+          {
+            "@type": "City",
+            "name": "Oswestry"
+          },
+          {
+            "@type": "City",
+            "name": "Welshpool"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.368,
+            "longitude": -2.717
+          },
+          "geoRadius": "55000"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed IT Support",
+              "url": "https://fresh-tech.uk/services/managed-it-support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Security",
+              "url": "https://fresh-tech.uk/services/cybersecurity"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Essentials Certification Support",
+              "url": "https://fresh-tech.uk/services/cyber-essentials"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microsoft 365 & Cloud Solutions",
+              "url": "https://fresh-tech.uk/services/cloud-solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud Backup & Disaster Recovery",
+              "url": "https://fresh-tech.uk/services/backup-disaster-recovery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Phone Systems",
+              "url": "https://fresh-tech.uk/services/cloud-phone-systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Procurement",
+              "url": "https://fresh-tech.uk/services/hardware-procurement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic IT Projects",
+              "url": "https://fresh-tech.uk/services/strategic-projects"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed Print",
+              "url": "https://fresh-tech.uk/services/managed-print"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Service Standards",
+            "item": "https://fresh-tech.uk/service-standards"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "See how our helpdesk is performing."
+      ],
+      [
+        2,
+        "Helpdesk performance"
+      ],
+      [
+        2,
+        "Where the figures come from."
+      ],
+      [
+        2,
+        "Behind the numbers"
+      ],
+      [
+        2,
+        "Put us to the test"
+      ]
+    ],
+    "links": [
+      [
+        "/why-trust-us",
+        "why businesses trust us"
+      ],
+      [
+        "/contact",
+        "Book a 20-min call →"
+      ]
+    ],
+    "images": [],
+    "text": "Helpdesk performance See how our helpdesk is performing. The report below comes from our helpdesk system. It shows average response and call wait times when the source is available. Helpdesk performance Average response, last 30 days Loading… Average call wait Loading… Loading helpdesk report… How these numbers work Where the figures come from. Average response time covers the last 30 days. Average call wait is supplied by the same helpdesk report. The retrieval time shows when this page fetched the report, not when the source data last changed. If the report cannot be loaded, we show that it is unavailable. These averages describe past service and are not a guaranteed response time for an individual request. What you actually get Behind the numbers Unlimited support No per-ticket charges and no clock-watching. Your team calls as often as they need, and the price doesn’t change. Real people, locally You speak to named engineers who know your setup, not a different stranger reading a script every time. Customer reviews Our public review rating reflects how this feels in practice: fast, friendly and genuinely helpful. Want the full story on how we earn that trust? See why businesses trust us. See it for yourself Put us to the test A 20-minute call, an honest assessment of where you are, and numbers we’re happy to be measured against. Book a 20-min call → Last reviewed May 2026 · Sam James"
+  }
+}

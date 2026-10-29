@@ -1,0 +1,159 @@
+{
+  "route": "/privacy-policy",
+  "source": "pages-v2/PrivacyPolicyPageV2.tsx",
+  "sourceSha256": "d10e0c7d320c084adb9b364f16f89d90c58f422add781c9894f4901d2e2565fd",
+  "capturedAt": "2026-09-16T12:23:01.270Z",
+  "head": {
+    "title": "Privacy Policy | Fresh Tech IT Support",
+    "description": "How Fresh Tech protects your data. GDPR and data protection information.",
+    "canonical": "https://fresh-tech.uk/privacy-policy",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "article",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Privacy Policy",
+        "description": "How Fresh Tech protects your data. GDPR and data protection information.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/privacy-policy",
+        "author": {
+          "@id": "https://fresh-tech.uk/#organization"
+        },
+        "publisher": {
+          "@id": "https://fresh-tech.uk/#organization"
+        },
+        "mainEntityOfPage": "https://fresh-tech.uk/privacy-policy"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Privacy Policy",
+            "item": "https://fresh-tech.uk/privacy-policy"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "Your data, protected."
+      ],
+      [
+        2,
+        "1. Who we are"
+      ],
+      [
+        2,
+        "2. Data we collect"
+      ],
+      [
+        2,
+        "3. How we use your data"
+      ],
+      [
+        2,
+        "4. Security"
+      ],
+      [
+        2,
+        "5. Cookies"
+      ],
+      [
+        2,
+        "6. Controlling your personal information"
+      ],
+      [
+        2,
+        "Any questions?"
+      ]
+    ],
+    "links": [
+      [
+        "/cookie-policy",
+        "cookie policy"
+      ],
+      [
+        "mailto:hello@fresh-tech.uk",
+        "hello@fresh-tech.uk"
+      ],
+      [
+        "mailto:hello@fresh-tech.uk",
+        "hello@fresh-tech.uk"
+      ],
+      [
+        "tel:+441584517234",
+        "01584 517 234"
+      ],
+      [
+        "/contact",
+        "Get in touch →"
+      ]
+    ],
+    "images": [],
+    "text": "Privacy Your data, protected. Last updated: September 2026 1. Who we are We are FRESH PCS CONSULTANCY LTD trading as Fresh Tech (\"we\", \"us\", \"our\"). Our company registration number is 09296207 and our ICO registration is ZA136732. Our registered address is 28 Livesey Avenue, Ludlow, SY8 1HN. 2. Data we collect We may collect the following information: Name and job title. Contact information including email address and telephone number. Demographic information such as postcode, preferences and interests. Technical data including IP addresses and browser type when you visit our website. 3. How we use your data We need this information to understand your needs and provide a better service, specifically for: Internal record keeping. Improving our products and services. Sending promotional emails about new services or special offers (opt-out any time). Responding to your enquiries submitted via our contact forms. 4. Security We are committed to ensuring your information is secure. To prevent unauthorised access or disclosure, we have put in place suitable physical, electronic and managerial procedures to safeguard and secure the information we collect online. As an IT security company, we practice what we preach. 5. Cookies A cookie is a small file stored in your browser. The only non-essential cookies we use are anonymous analytics, and they do not load unless you opt in via our cookie banner. We use this information purely for statistical analysis to improve the website, never for advertising, and we never sell your data. For the full breakdown and to change your choice at any time, see our cookie policy. 6. Controlling your personal information You may choose to restrict the collection or use of your personal information. If you have previously agreed to us using your data for direct marketing, you may change your mind at any time by writing to or emailing us at hello@fresh-tech.uk. We will not sell, distribute or lease your personal information to third parties unless we have your permission or are required by law to do so. Questions about your data? Email hello@fresh-tech.uk or call 01584 517 234. Any questions? Get in touch →"
+  }
+}

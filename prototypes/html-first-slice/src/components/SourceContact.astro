@@ -1,0 +1,72 @@
+---
+// Shared contact block mirroring components/Contact.tsx. Reused by the guide,
+// technology and problem templates so the copy lives in one place. Heading,
+// both descriptive sentences, the inherited trust statement, the onboarding
+// link text, the three labels and the phone/email values are the source's,
+// unchanged (parity, not reworded). Rendered once per page with id="contact".
+//
+// Preview differences: the source's ContactForm (Netlify form) and the
+// CalendlyModal are disabled preview integrations, so the booking button is a
+// /contact link with the original label and the existing ContactForm component
+// is reused in disabled mode (its approved preview notice, no fields). No
+// inputs, scripts, storage, requests or Calendly load. Heading ids differ from
+// ContactForm's "message-heading" so the page has no duplicate ids.
+//
+// Styles: source-contact.css is imported as a Vite ?inline string (minified)
+// and emitted by the <style> below only when this component renders. A
+// side-effect import would be hoisted onto every page whose template imports
+// this component, including service-location pages that never render it.
+import ContactForm from './ContactForm.astro';
+import sourceContactCss from '../styles/source-contact.css?inline';
+---
+
+<style is:inline set:html={sourceContactCss}></style>
+<section id="contact" class="source-contact" aria-labelledby="source-contact-heading">
+  <div class="source-contact-card">
+    <div class="source-contact-info">
+      <h2 id="source-contact-heading" class="source-contact-heading">Signal for Help</h2>
+      <p class="source-contact-lead">
+        Ready to banish tech headaches? Fill out the form or book a chat directly.
+        Tell us what you need help with and how best to reach you.
+      </p>
+      <p class="source-contact-trust"><span aria-hidden="true">✓ </span>Trusted by local businesses for over 10 years</p>
+      <p class="source-contact-switch">
+        <a href="/onboarding">Thinking of switching providers? See how easy it is <span aria-hidden="true">→</span></a>
+      </p>
+
+      <ul class="source-contact-list">
+        <li class="source-contact-item">
+          <span class="source-contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.8 2.1z" /></svg>
+          </span>
+          <span class="source-contact-item-body">
+            <span class="source-contact-label">Call The Batphone</span>
+            <a class="source-contact-value source-contact-value-large" href="tel:01584517234">01584 517 234</a>
+          </span>
+        </li>
+        <li class="source-contact-item">
+          <span class="source-contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" /><path d="m22 7-10 7L2 7" /></svg>
+          </span>
+          <span class="source-contact-item-body">
+            <span class="source-contact-label">Email HQ</span>
+            <a class="source-contact-value" href="mailto:hello@fresh-tech.uk">hello@fresh-tech.uk</a>
+          </span>
+        </li>
+        <li class="source-contact-item">
+          <span class="source-contact-icon source-contact-icon-highlight" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8z" /><path d="M4 6h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" /></svg>
+          </span>
+          <span class="source-contact-item-body">
+            <span class="source-contact-label">Face-to-Face</span>
+            <a class="source-contact-value" href="/contact">Book an Intro Call with Sam</a>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="source-contact-aside">
+      <ContactForm submissionMode="disabled" />
+    </div>
+  </div>
+</section>

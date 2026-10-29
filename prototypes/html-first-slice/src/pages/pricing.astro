@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import PricingPage from '../components/PricingPage.astro';
+import { pricingHead } from '../lib/pricing-seo.mjs';
+import '../styles/pricing.css';
+import PrototypeBanner from '../components/PrototypeBanner.astro';
+const head = pricingHead();
+---
+
+<BaseLayout title={head.title} description={head.description} canonical={head.canonical} schemas={head.schemas}>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <PrototypeBanner text="Local Astro parity prototype. Not published." />
+  <SiteNav activePage="Pricing" />
+  <PricingPage />
+  <SiteFooter />
+  <CookieConsent />
+</BaseLayout>
+
+<script src="../scripts/enhance.ts"></script>

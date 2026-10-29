@@ -1,0 +1,350 @@
+{
+  "route": "/about",
+  "source": "pages-v2/AboutPageV2.tsx",
+  "sourceSha256": "2f2042bf7ddcd3f5d677c0cc08462870ee2b51184a0aca5bcc1f64f61d52762c",
+  "capturedAt": "2026-09-16T12:23:12.044Z",
+  "head": {
+    "title": "About Us: Locally-Owned IT Support in Ludlow | Fresh Tech",
+    "description": "Locally-owned IT support in Ludlow since 2014. No call centres, no ticket queues, just real engineers who know your business. Serving Shropshire and Herefordshire.",
+    "canonical": "https://fresh-tech.uk/about",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "profile",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "About Us: Locally-Owned IT Support in Ludlow",
+        "description": "Locally-owned IT support in Ludlow since 2014. No call centres, no ticket queues, just real engineers who know your business. Serving Shropshire and Herefordshire.",
+        "url": "https://fresh-tech.uk/about",
+        "mainEntity": {
+          "@id": "https://fresh-tech.uk/#localbusiness"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": [
+          "LocalBusiness",
+          "ProfessionalService"
+        ],
+        "@id": "https://fresh-tech.uk/#localbusiness",
+        "name": "Fresh Tech IT Support",
+        "description": "Managed IT Support and Cybersecurity services for businesses in Shropshire, Herefordshire, and the West Midlands.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/",
+        "telephone": "+441584517234",
+        "email": "hello@fresh-tech.uk",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.368,
+          "longitude": -2.717
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          },
+          {
+            "@type": "City",
+            "name": "Ludlow"
+          },
+          {
+            "@type": "City",
+            "name": "Shrewsbury"
+          },
+          {
+            "@type": "City",
+            "name": "Hereford"
+          },
+          {
+            "@type": "City",
+            "name": "Telford"
+          },
+          {
+            "@type": "City",
+            "name": "Worcester"
+          },
+          {
+            "@type": "City",
+            "name": "Leominster"
+          },
+          {
+            "@type": "City",
+            "name": "Ross-on-Wye"
+          },
+          {
+            "@type": "City",
+            "name": "Bridgnorth"
+          },
+          {
+            "@type": "City",
+            "name": "Malvern"
+          },
+          {
+            "@type": "City",
+            "name": "Ledbury"
+          },
+          {
+            "@type": "City",
+            "name": "Oswestry"
+          },
+          {
+            "@type": "City",
+            "name": "Welshpool"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.368,
+            "longitude": -2.717
+          },
+          "geoRadius": "55000"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed IT Support",
+              "url": "https://fresh-tech.uk/services/managed-it-support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Security",
+              "url": "https://fresh-tech.uk/services/cybersecurity"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Essentials Certification Support",
+              "url": "https://fresh-tech.uk/services/cyber-essentials"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microsoft 365 & Cloud Solutions",
+              "url": "https://fresh-tech.uk/services/cloud-solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud Backup & Disaster Recovery",
+              "url": "https://fresh-tech.uk/services/backup-disaster-recovery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Phone Systems",
+              "url": "https://fresh-tech.uk/services/cloud-phone-systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Procurement",
+              "url": "https://fresh-tech.uk/services/hardware-procurement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic IT Projects",
+              "url": "https://fresh-tech.uk/services/strategic-projects"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed Print",
+              "url": "https://fresh-tech.uk/services/managed-print"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About Us",
+            "item": "https://fresh-tech.uk/about"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "The IT team you wish you'd hired five years ago."
+      ],
+      [
+        2,
+        "Why we exist"
+      ],
+      [
+        2,
+        "Behind the mask"
+      ],
+      [
+        2,
+        "How we got here"
+      ],
+      [
+        2,
+        "Giving some of it back"
+      ],
+      [
+        2,
+        "Ready to talk?"
+      ]
+    ],
+    "links": [
+      [
+        "/contact",
+        "Book a 20-min call →"
+      ],
+      [
+        "/contact",
+        "Book a 20-min call →"
+      ],
+      [
+        "tel:+441584517234",
+        "01584 517 234"
+      ]
+    ],
+    "images": [
+      [
+        "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto,w_900/v1778511802/team-photo-1.jpg",
+        "Sam James and Matthew Morgan, Fresh Tech engineers, Ludlow"
+      ],
+      [
+        "https://res.cloudinary.com/djkmeg5se/image/upload/w_500,f_auto,q_auto:good/f_auto,q_auto/sam-superhero-masked.png?v=2",
+        "Sam James, masked"
+      ],
+      [
+        "https://res.cloudinary.com/djkmeg5se/image/upload/w_500,f_auto,q_auto:good/f_auto,q_auto/sam-superhero-unmasked.png?v=2",
+        "Sam James"
+      ],
+      [
+        "https://res.cloudinary.com/djkmeg5se/image/upload/w_500,f_auto,q_auto:good/f_auto,q_auto/matt-superhero-masked.png?v=2",
+        "Matthew Morgan, masked"
+      ],
+      [
+        "https://res.cloudinary.com/djkmeg5se/image/upload/w_500,f_auto,q_auto:good/f_auto,q_auto/matt-superhero-unmasked.png?v=2",
+        "Matthew Morgan"
+      ]
+    ],
+    "text": "Est. November 2014 The IT team you wish you'd hired five years ago. We're a small team of engineers based in Ludlow, Shropshire. Locally owned, employee-led, no call centres. We fix things fast, explain things plainly, and answer the phone ourselves. Book a 20-min call → The Fresh Tech Team Ludlow, SY8 We answer By name. Not a bot. We respond Under 15 minutes. We're local Ludlow, since 2014. We're certified Cyber Essentials + MS Partner. Our mission Why we exist Traditional IT support is usually slow, impersonal, or confusing. You raise a ticket, it goes into a queue, someone in a call centre picks it up eventually. Meanwhile your staff can't work. We built Fresh Tech to do the opposite. Local engineers who know your setup, a phone that gets answered, pricing that doesn't have a \"call us for a quote\" footnote. Our sweet spot is businesses with 5–50 staff in Shropshire, Herefordshire and the Welsh Borders. Big enough to need proper IT. Small enough to want a human relationship. The team Behind the mask Hover a card to reveal the real people behind the IT. We're engineers first, but we enjoy a good pun. Sam James Founder & Director Uptime Avenger Matthew Morgan Senior Engineer Network Whisperer The origin story How we got here 2014 Founded in Ludlow Sam started Fresh Tech after watching local businesses get ignored by national IT firms with slow response times and no local knowledge. Initially break-fix support, turning up when things broke. 2017 Moved to managed services Switched from break-fix to a subscription model: better for clients (predictable costs, things prevented not just fixed), better for us (we could plan ahead). 2020 Remote-first pivot Within two weeks of the first lockdown, every client was securely working from home. Not one lost a working day. 2022 Cyber Essentials certified Became certified practitioners and started helping clients achieve the accreditation, now a core part of what we offer. 2026 Twelve years in Still locally owned, still based in Ludlow, still answering the phone ourselves. We're proud of that. \" We built Fresh Tech to be the IT company we would want to hire. One that answers the phone, speaks plainly, and doesn't disappear when something goes wrong. 👤 Sam James Founder, Fresh Tech · Ludlow, 2014 🛡️ Cyber Essentials Certified NCSC-approved scheme 🔷 Microsoft Partner Cloud & productivity solutions ⭐ Customer reviews Read feedback on Google 📅 Since November 2014 12 years serving Shropshire In the community Giving some of it back We designed and built a new website for Triffid Explorer Scout Unit in Ludlow, and gave it to them. No invoice: what changed hands was our time rather than anyone's money. We should be straight about the connection: Sam is one of the unit's leaders, so this was not a cold approach. It did mean we knew exactly what the unit needed, which is usually the hard part of a project like this. It is already doing its job. Young people have signed up to the unit after finding it through the new site, which is the only measure of success that counts here. Next step Ready to talk? A 20-minute call is enough to tell you whether we're a good fit, and we'll tell you honestly if we're not. Book a 20-min call →01584 517 234 No commitment. No sales script. Mon–Fri, 9am–5pm."
+  }
+}

@@ -1,0 +1,311 @@
+{
+  "generatedAt": "2026-10-29T17:33:48.973Z",
+  "distDir": "dist",
+  "dataFile": "src/generated/guides-data.mjs",
+  "guides": [
+    "engineering",
+    "legal",
+    "healthcare",
+    "manufacturing",
+    "veterinary",
+    "renewable-energy",
+    "retail-distribution"
+  ],
+  "guideCount": 7,
+  "sectionTotal": 28,
+  "checkTotal": 139,
+  "inventory": "Derived from the validated generated data; no expected count is hardcoded, so a new source guide enters this sweep automatically.",
+  "assertions": 410,
+  "failures": [],
+  "unexpectedRequests": [],
+  "contrast": {
+    "normal": {
+      "priorityCritical": {
+        "state": "normal",
+        "selector": ".guide-check[data-priority=\"critical\"] .guide-priority",
+        "count": 7,
+        "min": 7.04
+      },
+      "priorityHigh": {
+        "state": "normal",
+        "selector": ".guide-check[data-priority=\"high\"] .guide-priority",
+        "count": 8,
+        "min": 6.45
+      },
+      "priorityMedium": {
+        "state": "normal",
+        "selector": ".guide-check[data-priority=\"medium\"] .guide-priority",
+        "count": 4,
+        "min": 6.13
+      },
+      "tip": {
+        "state": "normal",
+        "selector": ".guide-tip",
+        "count": 3,
+        "min": 6.46
+      },
+      "tipLabel": {
+        "state": "normal",
+        "selector": ".guide-tip span",
+        "count": 3,
+        "min": 6.38
+      },
+      "contactValue": {
+        "state": "normal",
+        "selector": ".source-contact-value",
+        "count": 3,
+        "min": 17.74
+      },
+      "contactSwitch": {
+        "state": "normal",
+        "selector": ".source-contact-switch a",
+        "count": 1,
+        "min": 7.08
+      },
+      "contactLabel": {
+        "state": "normal",
+        "selector": ".source-contact-label",
+        "count": 3,
+        "min": 6.46
+      },
+      "contactDisabledLinks": {
+        "state": "normal",
+        "selector": "[data-contact-disabled] a",
+        "count": 2,
+        "min": 14.81
+      },
+      "checkLabel": {
+        "state": "normal",
+        "selector": ".guide-check-body label",
+        "count": 19,
+        "min": 17.74
+      },
+      "content": {
+        "state": "normal",
+        "selector": ".guide-content p, .guide-content li",
+        "count": 49,
+        "min": 8.95
+      },
+      "tocLink": {
+        "state": "normal",
+        "selector": ".guide-toc a",
+        "count": 4,
+        "min": 17.74
+      },
+      "heroCopy": {
+        "state": "normal",
+        "selector": ".guide-hero-copy",
+        "count": 1,
+        "min": 11.9
+      },
+      "eyebrow": {
+        "state": "normal",
+        "selector": ".guide-eyebrow-light",
+        "count": 1,
+        "min": 10.86
+      },
+      "breadcrumb": {
+        "state": "normal",
+        "selector": ".guide-breadcrumb a",
+        "count": 3,
+        "min": 11.9
+      },
+      "secondaryButton": {
+        "state": "normal",
+        "selector": ".guide-secondary-button",
+        "count": 2,
+        "min": 16.47
+      },
+      "progressText": {
+        "state": "normal",
+        "selector": ".guide-progress-text",
+        "count": 2,
+        "min": 9.64
+      },
+      "relatedLink": {
+        "state": "normal",
+        "selector": ".guide-related-grid a",
+        "count": 3,
+        "min": 17.74
+      }
+    },
+    "hover": {
+      "tocLink": {
+        "selector": ".guide-toc a",
+        "count": 1,
+        "text": 7.08
+      },
+      "contactValue": {
+        "selector": ".source-contact-value",
+        "count": 1,
+        "text": 7.08
+      },
+      "contactSwitch": {
+        "selector": ".source-contact-switch a",
+        "count": 1,
+        "text": 7.08
+      },
+      "relatedLink": {
+        "selector": ".guide-related-grid a",
+        "count": 1,
+        "text": 7.08
+      },
+      "checkCard": {
+        "selector": ".guide-check",
+        "count": 1,
+        "text": 17.74
+      },
+      "toggle": {
+        "selector": "[data-guide-toggle]",
+        "count": 1,
+        "text": 14.58
+      },
+      "breadcrumb": {
+        "selector": ".guide-breadcrumb a",
+        "count": 1,
+        "text": 17.74
+      },
+      "secondaryButton": {
+        "selector": ".guide-secondary-button",
+        "count": 1,
+        "text": 16.47
+      }
+    },
+    "focus": {
+      "contactValue": {
+        "selector": ".source-contact-value",
+        "focusVisible": true,
+        "text": 17.74,
+        "outline": 3.89,
+        "outlineWidth": 3
+      },
+      "contactSwitch": {
+        "selector": ".source-contact-switch a",
+        "focusVisible": true,
+        "text": 7.08,
+        "outline": 3.89,
+        "outlineWidth": 3
+      },
+      "tocLink": {
+        "selector": ".guide-toc a",
+        "focusVisible": true,
+        "text": 17.74,
+        "outline": 3.89,
+        "outlineWidth": 3
+      },
+      "checkbox": {
+        "selector": "[data-guide-check]",
+        "focusVisible": true,
+        "text": 17.74,
+        "outline": 3.89,
+        "outlineWidth": 3
+      },
+      "toggle": {
+        "selector": "[data-guide-toggle]",
+        "focusVisible": true,
+        "text": 17.74,
+        "outline": 3.89,
+        "outlineWidth": 3
+      }
+    },
+    "method": "Computed color over blended ancestor backgrounds (alpha-composited); outline colour against the same background. Gradients and images are not sampled; the guide surfaces measured are flat colours."
+  },
+  "artifacts": [
+    "engineering-desktop-top.png",
+    "engineering-desktop-legacy-hash.png",
+    "engineering-phone-nojs-top.png",
+    "engineering-phone-top.png",
+    "engineering-narrow-top.png",
+    "engineering-narrow-200.png",
+    "engineering-narrow-200-checklist.png",
+    "engineering-print-media.png",
+    "engineering-print.pdf"
+  ],
+  "consent": {
+    "route": "engineering",
+    "bannerShown": true,
+    "loaderDelayWaitedMs": 3500,
+    "vendorRequests": []
+  },
+  "landings": [
+    {
+      "label": "desktop/engineering interactions: TOC",
+      "settled": true,
+      "waitedMs": 316,
+      "geometry": {
+        "top": 230.890625,
+        "bottom": 261.6875,
+        "headerBottom": 103.296875,
+        "viewport": 1000,
+        "scrollY": 4413,
+        "focused": true,
+        "hash": "#guide-section-compliance"
+      }
+    },
+    {
+      "label": "desktop/engineering legacy hash: initial",
+      "settled": true,
+      "waitedMs": 696,
+      "geometry": {
+        "top": 230.890625,
+        "bottom": 261.6875,
+        "headerBottom": 103.296875,
+        "viewport": 1000,
+        "scrollY": 4413,
+        "focused": true,
+        "hash": "#compliance"
+      }
+    },
+    {
+      "label": "desktop/engineering legacy hash: hashchange",
+      "settled": true,
+      "waitedMs": 850,
+      "geometry": {
+        "top": 231.046875,
+        "bottom": 261.84375,
+        "headerBottom": 103.296875,
+        "viewport": 1000,
+        "scrollY": 2206,
+        "focused": true,
+        "hash": "#network"
+      }
+    }
+  ],
+  "toggleDiagnostics": {
+    "desktop/engineering interactions": {
+      "beforeEnter": {
+        "ariaExpanded": "true",
+        "bodyHidden": false,
+        "bodyDisplay": "block",
+        "labelText": "Hide",
+        "renderedLabelText": "HIDE",
+        "textTransform": "uppercase",
+        "toggleFocused": true
+      },
+      "afterEnter": {
+        "ariaExpanded": "false",
+        "bodyHidden": true,
+        "bodyDisplay": "none",
+        "labelText": "Show",
+        "renderedLabelText": "SHOW",
+        "textTransform": "uppercase",
+        "toggleFocused": true,
+        "waitedMs": 0
+      },
+      "afterSpace": {
+        "ariaExpanded": "true",
+        "bodyHidden": false,
+        "bodyDisplay": "block",
+        "labelText": "Hide",
+        "renderedLabelText": "HIDE",
+        "textTransform": "uppercase",
+        "toggleFocused": true,
+        "waitedMs": 1
+      }
+    }
+  },
+  "pdfVisualReview": {
+    "status": "pending",
+    "note": "The PDF artifact was produced with page.pdf (A4, preferCSSPageSize). Its pagination (one section per sheet, footer placement, no split checklist cards) is confirmed by rendering the pages on the PC packet; the print-media screenshot proves visibility and hidden chrome only."
+  }
+}

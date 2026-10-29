@@ -1,0 +1,142 @@
+---
+// Shared testimonials + partner logos block mirroring components/Testimonials.tsx
+// and components/LogoCarousel.tsx. Prop-driven: the consumer supplies the
+// review list, the category map and the logo list, so this template never
+// touches customer data itself. Headings, the lead line, the category labels
+// and counts, the literal-quoted review text, the five decorative stars, the
+// dots and the "Powering Businesses Like" caption are the source's.
+//
+// No-JS baseline: every review in source order and every logo are visible.
+// The filter tabs, dots and pause button are enhancement-only controls and
+// stay hidden until src/scripts/testimonials.ts marks the section enhanced.
+// That script is not imported here; src/scripts/enhance.ts loads it on demand
+// when a [data-testimonials] section is present.
+//
+// testimonialsFixture is a required boolean from the generated export. It is
+// true only for the test fixture extraction; the real source extraction sets
+// it false. When true the section carries the reserved
+// data-testimonials-fixture="true" attribute; when false the attribute is
+// omitted entirely (a "false" value is never emitted).
+//
+// Styles are family-local: the stylesheet is read as raw text and emitted as
+// an inline <style> next to the markup instead of a side-effect import, so it
+// cannot hoist onto unrelated dispatcher branches.
+import { categoryTabs, logoImages } from '../lib/testimonial-display.mjs';
+import css from '../styles/source-testimonials.css?inline';
+
+interface Testimonial { quote: string; name: string; company: string; category: string }
+interface PartnerLogo { src: string; alt: string }
+interface Props {
+  testimonials: Testimonial[];
+  testimonialCategories: Record<string, string>;
+  partnerLogos: PartnerLogo[];
+  testimonialsFixture: boolean;
+}
+
+const { testimonials, testimonialCategories, partnerLogos, testimonialsFixture } = Astro.props;
+
+if (typeof testimonialsFixture !== 'boolean') {
+  throw new Error(`SourceTestimonials requires a boolean testimonialsFixture prop, received ${testimonialsFixture === undefined ? 'nothing' : typeof testimonialsFixture}`);
+}
+const fixtureAttribute = testimonialsFixture ? 'true' : undefined;
+
+for (const item of testimonials) {
+  if (!Object.hasOwn(testimonialCategories, item.category)) throw new Error(`Unknown testimonial category "${item.category}"`);
+}
+
+const tabs = categoryTabs(testimonials, testimonialCategories);
+const logos = logoImages(partnerLogos);
+
+// categoryIcons in Testimonials.tsx (lucide star/clock/shield/zap/trending-up)
+// as constant, trusted path data. Never built from props.
+const ICON_PATHS: Record<string, string> = {
+  star: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />',
+  clock: '<circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />',
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />',
+  zap: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />',
+  'trending-up': '<polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" />',
+};
+const STAR_PATH = ICON_PATHS.star;
+const QUOTE_PATH = '<path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" /><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />';
+---
+
+<section class="source-testimonials" data-testimonials data-testimonials-fixture={fixtureAttribute} aria-labelledby="source-testimonials-heading">
+  <div class="source-testimonials-inner">
+    <div class="source-testimonials-intro">
+      <h2 id="source-testimonials-heading" class="source-testimonials-heading">Trusted By Local Heroes</h2>
+      <p class="source-testimonials-lead">Don't just take our word for it.</p>
+
+      <div class="source-testimonials-filters" data-testimonials-filters role="group" aria-label="Filter reviews by category" hidden>
+        {tabs.map(tab => (
+          <button type="button" class="source-testimonials-filter" data-testimonials-filter={tab.key} aria-pressed={tab.active ? 'true' : 'false'}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={ICON_PATHS[tab.icon] ?? STAR_PATH} />
+            <span>{tab.label}</span>
+            <span class="source-testimonials-count">{tab.count}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="source-testimonials-card" data-testimonials-card>
+      <div class="source-testimonials-quote-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={QUOTE_PATH} />
+      </div>
+
+      <div class="source-testimonials-stars" aria-hidden="true">
+        {[0, 1, 2, 3, 4].map(() => (
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" set:html={STAR_PATH} />
+        ))}
+      </div>
+
+      {/* aria-live starts off so automatic rotation is never announced; the
+          controller raises it to polite only while rotation is paused/manual. */}
+      <div class="source-testimonials-stack" data-testimonials-stack role="region" aria-label="Customer testimonials" aria-live="off" aria-atomic="true">
+        {testimonials.map((item, index) => (
+          <figure class="source-testimonials-item" data-testimonials-item data-category={item.category} data-index={index}>
+            <blockquote class="source-testimonials-blockquote">
+              <p class="source-testimonials-quote">"{item.quote}"</p>
+            </blockquote>
+            <figcaption>
+              <p class="source-testimonials-name">{item.name}</p>
+              <p class="source-testimonials-company">{item.company}</p>
+            </figcaption>
+          </figure>
+        ))}
+        <p class="source-testimonials-empty" data-testimonials-empty hidden>No reviews in this category yet.</p>
+      </div>
+
+      <div class="source-testimonials-controls" data-testimonials-controls hidden>
+        <div class="source-testimonials-dots" data-testimonials-dots role="group" aria-label="Choose a testimonial">
+          {testimonials.map((_, index) => (
+            <button type="button" class="source-testimonials-dot" data-testimonials-dot data-index={index} aria-label={`Go to testimonial ${index + 1} of ${testimonials.length}`}>
+              <span aria-hidden="true"></span>
+            </button>
+          ))}
+        </div>
+        <button type="button" class="source-testimonials-pause" data-testimonials-pause>Pause rotation</button>
+      </div>
+    </div>
+
+    <div class="source-testimonials-logos-block">
+      <p class="source-testimonials-logos-title">Powering Businesses Like</p>
+      <ul class="source-testimonials-logos" data-testimonials-logos>
+        {logos.map(logo => (
+          <li class="source-testimonials-logo">
+            <img
+              src={logo.src}
+              srcset={logo.srcSet}
+              alt={logo.alt}
+              width={logo.width}
+              height={logo.height}
+              loading={logo.loading}
+              decoding={logo.decoding}
+              data-testimonials-logo
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style is:inline set:html={css}></style>

@@ -1,0 +1,154 @@
+---
+import SourceContact from './SourceContact.astro';
+import TechRichText from './TechRichText.astro';
+import { explainerCopy, faqSubheading, heroImageSources, otherTechPages } from '../lib/technology-display.mjs';
+
+// pages/TechExplainerPage.tsx rendered natively. Section order, headings and
+// copy follow the React page. The decorative hero image sits in its own frame
+// below the hero text rather than behind it, so the text keeps its solid
+// background. FAQs are native details/summary and work without JavaScript.
+// The page ends with the shared <Contact /> section as React does:
+// SourceContact.astro is the root-owned port of components/Contact.tsx whose
+// informational side (Signal for Help, trust line, onboarding, tel and email
+// links) is preserved; the form and Calendly modal are disabled separately
+// (ContactForm submissionMode=disabled notice, booking redirects to /contact).
+interface Card { title: string; desc: string }
+interface Faq { q: string; a: string }
+interface Related { slug: string; title: string }
+interface Explainer {
+  slug: string; title: string; metaDesc: string; h1: string; intro: string; whatItIs: string; howWeDoIt: string;
+  heroImage: string | null; benefits: Card[]; risks: Card[]; faqs: Faq[]; related: Related[];
+}
+interface Props { explainer: Explainer; directory: { slug: string; title: string }[] }
+const { explainer, directory } = Astro.props;
+const more = otherTechPages(directory, explainer.slug);
+const hero = heroImageSources(explainer.heroImage);
+---
+
+<main id="main-content" class="tech-page tech-explainer-page" data-technology-explainer={explainer.slug} tabindex="-1">
+  <section class="tech-hero">
+    <div class="tech-container tech-hero-text">
+      <nav class="tech-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">{explainerCopy.breadcrumbHome}</a></li>
+          <li><a href="/technology">{explainerCopy.breadcrumbListing}</a></li>
+          <li aria-current="page">{explainer.h1}</li>
+        </ol>
+      </nav>
+      <p class="tech-eyebrow tech-eyebrow-light">{explainerCopy.eyebrow}</p>
+      <h1>{explainer.h1}</h1>
+      <p class="tech-hero-copy">{explainer.intro}</p>
+      <div class="tech-actions">
+        <a class="tech-primary-button" href={explainerCopy.heroPrimary.href}>{explainerCopy.heroPrimary.label}</a>
+        <a class="tech-secondary-button" href={explainerCopy.heroPhone.href}>{explainerCopy.heroPhone.label}</a>
+      </div>
+    </div>
+    {explainer.heroImage && (
+      <div class="tech-container tech-hero-media">
+        <img src={hero.src} srcset={hero.srcset} sizes={hero.sizes} alt="" width="1200" height="600" loading="eager" decoding="async" fetchpriority="high" />
+      </div>
+    )}
+  </section>
+
+  <section class="tech-section tech-what">
+    <div class="tech-container tech-narrow">
+      <h2>{explainerCopy.whatHeading}</h2>
+      <div class="tech-prose"><TechRichText text={explainer.whatItIs} /></div>
+    </div>
+  </section>
+
+  <section class="tech-section tech-benefits">
+    <div class="tech-container">
+      <header class="tech-section-heading tech-section-heading-centre">
+        <h2>{explainerCopy.benefitsHeading}</h2>
+      </header>
+      <div class="tech-card-grid tech-card-grid-two">
+        {explainer.benefits.map(card => (
+          <article class="tech-card tech-benefit-card">
+            <h3>{card.title}</h3>
+            <p>{card.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="tech-section tech-risks">
+    <div class="tech-container">
+      <header class="tech-section-heading tech-section-heading-centre">
+        <h2>{explainerCopy.risksHeading}</h2>
+      </header>
+      <div class="tech-card-grid tech-card-grid-two">
+        {explainer.risks.map(card => (
+          <article class="tech-card tech-risk-card">
+            <h3>{card.title}</h3>
+            <p>{card.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="tech-section tech-how">
+    <div class="tech-container tech-narrow">
+      <h2>{explainerCopy.howHeading}</h2>
+      <div class="tech-prose tech-how-panel"><TechRichText text={explainer.howWeDoIt} /></div>
+    </div>
+  </section>
+
+  <section class="tech-section tech-faq">
+    <div class="tech-container tech-narrow">
+      <header class="tech-section-heading tech-section-heading-centre">
+        <h2>{explainerCopy.faqHeading}</h2>
+        <p>{faqSubheading(explainer.h1)}</p>
+      </header>
+      <div class="tech-faq-list">
+        {explainer.faqs.map(faq => (
+          <details>
+            <summary><span>{faq.q}</span><b aria-hidden="true">+</b></summary>
+            <div class="tech-prose"><TechRichText text={faq.a} /></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {explainer.related.length > 0 && (
+    <section class="tech-section tech-related">
+      <div class="tech-container tech-narrow">
+        <h2>{explainerCopy.relatedHeading}</h2>
+        <ul class="tech-related-links">
+          {explainer.related.map(service => (
+            <li><a href={`/services/${service.slug}`}>{service.title} <span aria-hidden="true">→</span></a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="tech-section tech-more">
+    <div class="tech-container">
+      <header class="tech-section-heading tech-section-heading-centre">
+        <h2>{explainerCopy.moreHeading}</h2>
+        <p>{explainerCopy.moreSub}</p>
+      </header>
+      <ul class="tech-more-grid">
+        {more.map(page => (
+          <li><a class="tech-more-card" href={`/technology/${page.slug}`}>{page.title}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="tech-section tech-cta">
+    <div class="tech-container tech-narrow tech-cta-inner">
+      <h2>{explainerCopy.ctaHeading}</h2>
+      <p>{explainerCopy.ctaBody}</p>
+      <div class="tech-actions">
+        <a class="tech-primary-button" href={explainerCopy.ctaPrimary.href}>{explainerCopy.ctaPrimary.label}</a>
+        <a class="tech-secondary-button" href={explainerCopy.ctaSecondary.href}>{explainerCopy.ctaSecondary.label}</a>
+      </div>
+    </div>
+  </section>
+  <SourceContact />
+</main>

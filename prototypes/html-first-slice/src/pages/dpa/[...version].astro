@@ -1,0 +1,28 @@
+---
+// Port of pages-v2/LegalDocumentPageV2.tsx for slug="dpa" (App.tsx route
+// "/dpa/:version?"). See terms-of-business/[...version].astro for the shared
+// route-generation approach.
+import LegalDocument from '../../components/LegalDocument.astro';
+import StandaloneShell from '../../layouts/StandaloneShell.astro';
+import { legalRoutes } from '../../generated/legal-data.mjs';
+
+export function getStaticPaths() {
+  return legalRoutes
+    .filter(route => route.slug === 'dpa')
+    .map(route => ({ params: { version: route.versionPath ?? undefined }, props: { route } }));
+}
+
+const { route } = Astro.props;
+const path = route.versionPath ? `/dpa/${route.versionPath}` : '/dpa';
+const name = route.versionPath ? `dpa/${route.versionPath}` : 'dpa';
+const breadcrumbs = [
+  { name: 'Home', item: '/' },
+  { name: route.title, item: '/dpa' },
+  ...(route.versionPath ? [{ name: `Version ${route.version}`, item: path }] : []),
+];
+const seo = { path, title: route.title, description: route.summary, type: 'article', breadcrumbs };
+---
+
+<StandaloneShell name={name} seo={seo}>
+  <LegalDocument route={route} path={path} />
+</StandaloneShell>

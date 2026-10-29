@@ -1,0 +1,15 @@
+---
+// Block port of components/RichText.tsx: paragraphs (with <br> for single line
+// breaks), bullet lists and numbered lists, each line through RichInline.
+import RichInline from './RichInline.astro';
+import { richTextBlocks } from '../lib/rich-text.mjs';
+
+interface Props { text: string }
+const blocks = richTextBlocks(Astro.props.text);
+---
+
+{blocks.map(block => {
+  if (block.type === 'ul') return <ul>{block.items.map(item => <li><RichInline tokens={item} /></li>)}</ul>;
+  if (block.type === 'ol') return <ol>{block.items.map(item => <li><RichInline tokens={item} /></li>)}</ol>;
+  return <p>{block.lines.map((line, index) => <Fragment>{index > 0 && <br />}<RichInline tokens={line} /></Fragment>)}</p>;
+})}

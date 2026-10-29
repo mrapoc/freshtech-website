@@ -1,0 +1,31 @@
+---
+// Shared shell for native standalone pages (src/pages/<route>.astro). Pages pass
+// the props their React component gives <SEO> (see src/lib/standalone-seo.mjs)
+// and the route name; content goes in the default slot inside the single
+// <main data-standalone-page>, which scripts/standalone-output-check.mjs compares
+// with the captured production page. Robots stays at the preview noindex default.
+import BaseLayout from './BaseLayout.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteNav from '../components/SiteNav.astro';
+import { standaloneSeo } from '../lib/standalone-seo.mjs';
+import '../styles/standalone.css';
+import PrototypeBanner from '../components/PrototypeBanner.astro';
+
+interface Props { name: string; seo: Parameters<typeof standaloneSeo>[0]; activePage?: string }
+const { name, seo: seoProps, activePage = '' } = Astro.props;
+const seo = standaloneSeo(seoProps);
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonical={seo.canonical} image={seo.image} ogType={seo.ogType} schemas={seo.schemas} preloadFonts={['/fonts/bungee-latin.woff2']} pageFamily="standalone">
+  <PrototypeBanner />
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <SiteNav activePage={activePage} />
+  <main id="main-content" class="sa-page" data-standalone-page={name} tabindex="-1">
+    <slot />
+  </main>
+  <SiteFooter showSalesCta={!['careers', 'recruitment-privacy'].includes(name)} />
+  <CookieConsent />
+</BaseLayout>
+
+<script src="../scripts/enhance.ts"></script>

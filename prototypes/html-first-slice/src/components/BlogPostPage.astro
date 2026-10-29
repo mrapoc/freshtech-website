@@ -1,0 +1,91 @@
+---
+// Copy and structure mirror pages-v2/BlogPostPageV2.tsx. Article Markdown is
+// rendered through BlogMarkdown (tokens to elements, never set:html).
+// Hero media sits in a .blog-media-frame whose box is reserved by CSS
+// aspect-ratio, so a late image, poster or video cannot move the article. The
+// hero img also carries presentation width/height (1200x675) for the shared
+// emitted-HTML gate; CSS width/height 100% + object-fit: contain override them.
+import BlogMarkdown from './BlogMarkdown.astro';
+import { ARTICLE_IMAGE_SIZES, articleImageSrcset } from '../lib/blog-display.mjs';
+
+interface Video { src: string; poster: string; title?: string; caption?: string; duration?: string; maxWidth?: number }
+interface Post {
+  slug: string; title: string; excerpt: string; content: string; date: string; readTime: string;
+  authorName: string; authorInitials: string; tags: string[]; image?: string; imageAlt?: string; video?: Video;
+}
+interface Related { slug: string; title: string; excerpt: string; tags: string[] }
+interface Props { post: Post; related: Related[] }
+const { post, related } = Astro.props;
+const video = post.video;
+---
+
+<main id="main-content" class="blog-page blog-post" data-blog-post={post.slug} tabindex="-1">
+  <section class="blog-hero blog-post-hero">
+    <div class="blog-post-container">
+      <p class="blog-back"><a href="/blog"><span aria-hidden="true">←</span> Blog</a></p>
+      {post.tags.length > 0 && (
+        <div class="blog-post-tags">{post.tags.slice(0, 3).map(tag => <span class="blog-badge blog-badge-primary">{tag}</span>)}</div>
+      )}
+      <h1>{post.title}</h1>
+      <p class="blog-author-chip blog-author-chip-light"><span class="blog-initials" aria-hidden="true">{post.authorInitials}</span><span class="blog-meta">{post.authorName} · {post.date} · {post.readTime}</span></p>
+    </div>
+  </section>
+
+  {video ? (
+    <section class="blog-media-section">
+      <div class="blog-post-container" style={video.maxWidth ? `max-width:${video.maxWidth}px` : undefined}>
+        <div class="blog-media-frame blog-media-frame-video">
+          <video controls preload="none" playsinline poster={video.poster}>
+            <source src={video.src} type="video/mp4" />
+            Your browser can't play this video. The full transcript is below.
+          </video>
+        </div>
+        {video.caption && <p class="blog-media-caption">{video.caption}</p>}
+      </div>
+    </section>
+  ) : post.image && (
+    <section class="blog-media-section">
+      <div class="blog-post-container">
+        <div class="blog-media-frame blog-media-frame-image">
+          {/* width/height are the 16:9 fallback box, not claimed intrinsic dimensions;
+              the frame's CSS aspect-ratio and object-fit: contain govern layout. */}
+          <img src={post.image} srcset={articleImageSrcset(post.image)} sizes={articleImageSrcset(post.image) && ARTICLE_IMAGE_SIZES} alt={post.imageAlt || post.title} width="1200" height="675" decoding="async" fetchpriority="high" />
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="blog-content-section">
+    <div class="blog-article-container">
+      <p class="blog-excerpt">{post.excerpt}</p>
+      <article class="blog-article"><BlogMarkdown content={post.content} /></article>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="blog-section blog-related" aria-labelledby="related-heading">
+      <div class="blog-container">
+        <p class="blog-eyebrow">More reading</p>
+        <h2 id="related-heading">Related articles</h2>
+        <div class="blog-related-grid">
+          {related.map(item => (
+            <a class="blog-related-card" href={`/blog/${item.slug}`} data-slug={item.slug}>
+              {item.tags[0] && <span class="blog-badge blog-badge-primary">{item.tags[0]}</span>}
+              <h3>{item.title}</h3>
+              <p>{item.excerpt}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="blog-cta">
+    <div class="blog-cta-inner">
+      <p class="blog-eyebrow blog-eyebrow-light">Got an IT question?</p>
+      <h2>Call us. We pick up.</h2>
+      <p>20 minutes. No sales pitch. Just a straight answer to your IT question.</p>
+      <a class="blog-button-accent" href="/contact">Book a 20-min call <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+</main>

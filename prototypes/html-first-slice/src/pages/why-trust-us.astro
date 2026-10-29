@@ -1,0 +1,266 @@
+---
+import WebsiteProof from '../components/WebsiteProof.astro';
+import CyberEssentialsBadge from '../components/CyberEssentialsBadge.astro';
+// Public evidence uses the reviewed projection contract.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+
+const seo = {
+  path: '/why-trust-us',
+  title: 'Why Trust Fresh Tech: Guarantees, Stats & Real Clients',
+  description: 'Helpdesk performance, 30-day money-back guarantee, Cyber Essentials accreditation and real client stories. Locally-owned IT support in Ludlow since 2014.',
+  type: 'profile',
+};
+
+const badges = ['Cyber Essentials Certified', 'Microsoft Partner', 'Dell Premier Partner', 'Huntress SOC Partner', 'Customer reviews'];
+
+const guarantees = [
+  { icon: '🛡️', sticker: 'In writing', title: '30-day money-back guarantee', body: "If we're not the right fit in your first 30 days, you pay nothing. No questions, no argument. We'll even help you transition away if needed." },
+  { icon: '🔄', title: 'Zero downtime switching', body: 'We run both IT systems in parallel during handover. Your team keeps working. Most clients never notice the change happened. They just start getting faster responses.' },
+  { icon: '⚡', title: 'Measured response times', body: 'When available, the figures show historic support queue wait and answer rates. Contact us to discuss the response commitments for your business.' },
+  { icon: '📋', title: 'No lock-in tricks', body: "12-month terms so we can invest in setting you up properly. But if it's not working, we'll part ways fairly. We keep clients by being good at the job, not by trapping them." },
+];
+
+const managed = ['Email & Microsoft 365', 'Servers & networks', 'Printers & peripherals', 'Backups & disaster recovery', 'Antivirus & endpoint security', 'Domain names & DNS', 'Internet & phone lines', 'Software licences & renewals', 'Staff onboarding & offboarding', 'Vendor management (we deal with BT)'];
+
+const tools = [
+  { name: 'Microsoft 365 Business', desc: 'Email, Teams, SharePoint, OneDrive, fully managed' },
+  { name: 'Cyber Essentials Certified', desc: 'NCSC-backed security standard: we hold it and help you get it' },
+  { name: '24/7 Remote Monitoring', desc: 'Proactive alerts: we catch problems before you notice' },
+  { name: 'Encrypted cloud backup', desc: 'Automatic, tested, off-site, with restores verified quarterly' },
+  { name: 'Advanced endpoint protection', desc: 'Next-gen AV on every device, managed centrally' },
+  { name: 'Unlimited helpdesk', desc: 'Phone, email, remote: no caps, no per-issue fees' },
+];
+
+const steps = [
+  { day: 'Day 1', title: 'Discovery call', desc: '30 minutes. We listen to your situation, ask about your pain points, and tell you honestly whether we can help. No sales script.' },
+  { day: 'Days 2–5', title: 'Technical audit', desc: 'We scan your network, devices, security posture, and licences. You get a plain-English report of every risk we find, yours to keep regardless of whether you proceed.' },
+  { day: 'Days 6–7', title: 'Proposal & agreement', desc: 'Clear, itemised quote with fixed monthly pricing. You know exactly what you get before you sign. No hidden costs, no surprises on the first invoice.' },
+  { day: 'Days 8–14', title: 'Credential handover', desc: "We liaise with your current provider to transfer admin access and licences. If they're awkward about it, we've dealt with that before, and we can work around them." },
+  { day: 'Days 15–21', title: 'Setup & parallel running', desc: 'Monitoring, backups, security tools deployed to every device. Both systems run side-by-side so your team experiences zero downtime during the switch.' },
+  { day: 'Day 22+', title: 'Go live', desc: 'Your team gets a quick intro: how to reach us, what to expect. From here we handle everything in the background and you get on with running your business.' },
+];
+
+const testimonials = [
+  { quote: "In healthcare, downtime isn't an option. Fresh Tech ensures our care management systems run 24/7. We've had zero unplanned outages since switching.", name: 'Vince Burmingham', company: 'Hendra Healthcare' },
+  { quote: 'When our server failed unexpectedly, they had us back online within 2 hours. That kind of response saves us thousands in lost productivity.', name: 'Stephen Jaques', company: 'Jaques Int' },
+  { quote: 'We have been working with Sam and the Fresh Tech team for over 5 years. The response time and service we receive is excellent.', name: 'Helen Graham', company: 'The Ludlow Nut Company' },
+  { quote: "Fresh Tech typically responds in under 15 minutes. It's like having my own IT department, but at a fraction of the cost.", name: 'Iain Urquhart', company: 'Advanced Pest Management' },
+];
+
+const comparison = [
+  { label: 'Who answers your call', them: 'Call centre. Ticket queue.', us: 'Sam. Or Matt. By name.' },
+  { label: 'Pricing model', them: 'Hours + callouts + extras', us: 'Flat per-user fee (onsite billed separately)' },
+  { label: 'Onboarding cost', them: '£1,500–5,000 setup fee', us: 'No setup fee' },
+  { label: 'New user setup', them: '£150–300 per user', us: 'Included' },
+  { label: 'Security training', them: '£500+/year extra', us: 'Included' },
+  { label: 'Leaving', them: 'Export fee, awkward handover', us: '30-day notice, clean exit' },
+];
+---
+
+<StandaloneShell name="why-trust-us" seo={seo} activePage="Why Trust Us">
+  <section class="sa-hero">
+    <div class="sa-wrap sa-wtu-hero">
+      <div>
+        <p class="sa-eyebrow sa-eyebrow-light">Why trust us?</p>
+        <h1 class="sa-display sa-display-light" style="--sa-size: 42px; --sa-size-mobile: 30px; margin-bottom: 20px; line-height: 1">We prove it. We don't just say it.</h1>
+        <p class="sa-lead">Below you'll find our contractual guarantees, service figures when verified data is available, and the exact timeline of what your first month looks like.</p>
+        <p class="sa-lead sa-lead-soft">If something doesn't add up, call me on <a href="tel:+441584517234">01584 517 234</a> and ask me directly. <strong>Sam, Founder</strong></p>
+        <div class="sa-btn-row-left">
+          <a class="sa-button" href="/contact">Book a call →</a>
+          <a class="sa-button sa-button-outline" href="#guarantees">See guarantees ↓</a>
+        </div>
+      </div>
+      <div class="sa-founder-card">
+        <div class="sa-avatar" aria-hidden="true">👤</div>
+        <div>
+          <div class="sa-founder-name">Sam James</div>
+          <div class="sa-founder-role">Founder &amp; Director · Est. 2014</div>
+          <p class="sa-founder-bio">I started Fresh Tech because I was tired of seeing local businesses get let down by IT companies that didn't call back, charged by the ticket, and spoke in jargon. After a decade supporting businesses across Shropshire, Herefordshire and the Welsh Marches, I know what makes people hesitate: <em>will this one actually be different?</em></p>
+          <div class="sa-badge-row">{badges.map(b => <div>{b}</div>)}</div>
+          <CyberEssentialsBadge theme="white" class="sa-ce-badge" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="proof-container"><WebsiteProof id="why-trust-us-proof" contact /></div>
+
+  <section class="sa-section sa-paper" id="guarantees">
+    <div class="sa-wrap">
+      <p class="sa-eyebrow">Guarantees</p>
+      <h2 class="sa-h2">Four promises. In writing.</h2>
+      <p class="sa-sub2" style="margin-bottom: 32px">Not marketing copy: these are contractual commitments in every client agreement.</p>
+      <div class="sa-grid-2">
+        {guarantees.map(g => (
+          <div class="sa-guarantee">
+            {g.sticker && <span class="sa-sticker">{g.sticker}</span>}
+            <div class="sa-guarantee-icon">{g.icon}</div>
+            <div class="sa-guarantee-title">{g.title}</div>
+            <p>{g.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white sa-rule">
+    <div class="sa-wrap sa-plate">
+      <div>
+        <p class="sa-eyebrow">Scope of service</p>
+        <h2 class="sa-h2">Everything off your plate</h2>
+        <p class="sa-sub2" style="margin-bottom: 26px">One flat monthly fee covers all of this. No per-ticket charges, no "that's out of scope" emails, no invoices you didn't see coming.</p>
+        <div class="sa-managed-grid">{managed.map(m => <div class="sa-managed-item"><span aria-hidden="true">✓</span>{m}</div>)}</div>
+      </div>
+      <div class="sa-tools-box">
+        <p class="sa-tools-label">Standards &amp; tools</p>
+        {tools.map(t => <div class="sa-tool"><div class="sa-tool-name">{t.name}</div><div class="sa-tool-desc">{t.desc}</div></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap sa-onboarding">
+      <div>
+        <p class="sa-eyebrow">Onboarding</p>
+        <h2 class="sa-h2">Your first 30 days</h2>
+        <p class="sa-sub2">Switching IT providers feels risky. We've done it dozens of times for businesses just like yours. Here's exactly what happens, step by step, no surprises.</p>
+        <div class="sa-difficult-box">
+          <p class="sa-difficult-title">The "difficult previous IT" problem</p>
+          <p>If your current provider is being awkward about handing over admin credentials or licences, we've handled that before. We can work around uncooperative providers. It's never stopped an onboarding yet.</p>
+        </div>
+      </div>
+      <div class="sa-timeline">
+        {steps.map(s => (
+          <div class="sa-timeline-item">
+            <span class="sa-timeline-day">{s.day}</span>
+            <div class="sa-timeline-title">{s.title}</div>
+            <div class="sa-timeline-desc">{s.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-ink">
+    <div class="sa-wrap">
+      <div class="sa-center" style="margin-bottom: 40px">
+        <p class="sa-eyebrow sa-eyebrow-light">What clients say</p>
+        <h2 class="sa-h2 sa-h2-light" style="margin-bottom: 8px">From businesses we support</h2>
+        <p class="sa-testimonial-note">Our average client relationship is over 5 years.</p>
+      </div>
+      <div class="sa-grid-2">
+        {testimonials.map(t => (
+          <div class="sa-testimonial"><div class="sa-stars">★★★★★</div><p>"{t.quote}"</p><div class="sa-testimonial-attr"><div class="sa-testimonial-name">{t.name}</div><div class="sa-testimonial-company">{t.company}</div></div></div>
+        ))}
+      </div>
+      <div class="sa-center" style="margin-top: 32px"><a class="sa-more-link" href="/case-studies">Read full case studies →</a></div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white sa-rule">
+    <div class="sa-wrap">
+      <p class="sa-eyebrow">The comparison</p>
+      <h2 class="sa-h2" style="margin-bottom: 8px">Fresh Tech vs typical IT support</h2>
+      <p class="sa-compare-note">Not "us vs a named competitor", just the differences that actually matter in a support relationship.</p>
+      <div class="sa-compare-table">
+        <div class="sa-compare-head"><div>What matters</div><div>Typical IT firm</div><div class="sa-compare-head-us">Fresh Tech</div></div>
+        {comparison.map(c => (
+          <div class="sa-compare-row"><div>{c.label}</div><div class="sa-compare-them"><span>✕</span>{c.them}</div><div class="sa-compare-us"><span>✓</span>{c.us}</div></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <p class="sa-eyebrow">Ready?</p>
+      <h2 class="sa-h2">Book a call with Sam</h2>
+      <p class="sa-lg sa-center-lead">20 minutes. No sales pitch, no obligation. Just an honest conversation about your IT and whether we're the right fit.</p>
+      <div class="sa-btn-row">
+        <a class="sa-button" href="/contact">Book a 20-min call →</a>
+        <a class="sa-button sa-button-outline" href="/pricing">See pricing</a>
+      </div>
+      <div class="sa-fine">30-day money-back guarantee · 01584 517 234 · Mon–Fri 9am–5pm</div>
+    </div>
+  </section>
+</StandaloneShell>
+
+<style>
+  .sa-wtu-hero { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center; }
+  @media (min-width: 768px) { .sa-wtu-hero { grid-template-columns: 1fr 1fr; gap: 72px; } }
+  .sa-lead { color: rgba(255,255,255,0.75); font-size: 18px; line-height: 1.65; margin: 0 0 24px; max-width: 46ch; }
+  .sa-lead-soft { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 28px; }
+  .sa-lead-soft a { color: var(--primary); }
+  .sa-lead-soft strong { color: var(--paper); }
+  .sa-btn-row-left { display: flex; gap: 12px; flex-wrap: wrap; }
+  .sa-button-outline { background: transparent; color: var(--paper); border-color: rgba(255,255,255,0.35); box-shadow: none; }
+  .sa-paper .sa-button-outline { color: var(--ink); border-color: var(--ink); }
+  .sa-founder-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); padding: 30px; display: flex; gap: 20px; flex-direction: column; }
+  @media (min-width: 480px) { .sa-founder-card { flex-direction: row; } }
+  .sa-avatar { width: 68px; height: 68px; flex-shrink: 0; background: var(--paper-deep); border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; }
+  .sa-founder-name { font: 400 19px 'SA Bungee', sans-serif; color: var(--paper); margin-bottom: 4px; }
+  .sa-founder-role { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-weight: 700; margin-bottom: 12px; }
+  .sa-founder-bio { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.65; margin: 0 0 14px; }
+  .sa-badge-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  :global(.sa-ce-badge) { margin-top: 16px; }
+  .sa-badge-row span { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); padding: 4px 10px; font-size: 11px; color: rgba(255,255,255,0.6); font-weight: 600; }
+  .sa-livestats { background: var(--primary-dark); padding: 26px 20px; }
+  .sa-live-label { display: flex; align-items: center; gap: 8px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: #d9dee2; font-weight: 700; margin-bottom: 18px; }
+  .sa-live-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; }
+  .sa-live-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; text-align: center; }
+  @media (min-width: 768px) { .sa-live-grid { grid-template-columns: repeat(3, 1fr); } }
+  .sa-live-grid > div { display: flex; flex-direction: column; gap: 3px; }
+  .sa-live-num { font: 400 32px 'SA Bungee', sans-serif; color: var(--yellow); }
+  .sa-live-grid > div > div:not(.sa-live-num):not(.sa-live-sub) { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; color: #d9dee2; }
+  .sa-live-sub { text-transform: none !important; letter-spacing: normal !important; font-size: 10px !important; color: #d9dee2 !important; font-weight: 400 !important; }
+  .sa-h2 { color: var(--ink); font: 400 32px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; margin: 0 0 12px; }
+  .sa-h2-light { color: var(--paper); }
+  .sa-sub2 { color: rgba(15,25,35,0.62); font-size: 16px; max-width: 52ch; margin: 0; line-height: 1.6; }
+  .sa-grid-2 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 768px) { .sa-grid-2 { grid-template-columns: 1fr 1fr; } }
+  .sa-guarantee { position: relative; background: var(--white); border: 2px solid var(--ink); padding: 30px; box-shadow: 4px 4px 0 0 var(--ink); }
+  .sa-sticker { position: absolute; top: -14px; right: 16px; background: var(--yellow); border: 2px solid var(--ink); padding: 4px 12px; font: 400 11px 'SA Bungee', sans-serif; }
+  .sa-guarantee-icon { font-size: 30px; margin-bottom: 12px; }
+  .sa-guarantee-title { font: 400 19px 'SA Bungee', sans-serif; margin-bottom: 10px; }
+  .sa-guarantee p { font-size: 14px; color: rgba(15,25,35,0.62); line-height: 1.65; margin: 0; }
+  .sa-plate { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; }
+  @media (min-width: 768px) { .sa-plate { grid-template-columns: 1fr 1fr; gap: 64px; } }
+  .sa-managed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sa-managed-item { display: flex; gap: 8px; font-size: 14px; color: var(--ink); }
+  .sa-managed-item span { color: #2f8f5b; font-weight: 700; flex-shrink: 0; }
+  .sa-tools-box { background: var(--paper-deep); border: 1px solid var(--hairline); padding: 30px; }
+  .sa-tools-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #46545f; font-weight: 700; margin: 0 0 18px; }
+  .sa-tool { padding: 12px 0; border-bottom: 1px solid var(--hairline); }
+  .sa-tool:last-child { border-bottom: none; }
+  .sa-tool-name { font-weight: 700; font-size: 14px; }
+  .sa-tool-desc { font-size: 12px; color: rgba(15,25,35,0.62); }
+  .sa-onboarding { display: grid; grid-template-columns: 1fr; gap: 32px; }
+  @media (min-width: 768px) { .sa-onboarding { grid-template-columns: 1fr 1fr; gap: 64px; } }
+  .sa-difficult-box { margin-top: 24px; background: var(--ink); color: var(--paper); padding: 20px 24px; }
+  .sa-difficult-title { font: 400 17px 'SA Bungee', sans-serif; color: var(--yellow); margin: 0 0 8px; }
+  .sa-difficult-box p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; margin: 0; }
+  .sa-timeline { position: relative; padding-left: 26px; border-left: 3px solid var(--primary); display: flex; flex-direction: column; gap: 24px; }
+  .sa-timeline-day { display: inline-block; background: var(--accent); color: var(--ink); padding: 2px 10px; font: 400 11px 'SA Bungee', sans-serif; margin-bottom: 6px; }
+  .sa-timeline-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .sa-timeline-desc { color: rgba(15,25,35,0.62); font-size: 13px; line-height: 1.6; }
+  .sa-testimonial-note { color: rgba(255,255,255,0.5); font-size: 15px; margin: 0; }
+  .sa-testimonial { background: var(--white); border: 1px solid var(--hairline); padding: 28px; }
+  .sa-stars { color: #8a6a00; font-size: 14px; letter-spacing: 3px; margin-bottom: 14px; }
+  .sa-testimonial p { font-size: 15px; color: var(--ink); line-height: 1.7; font-style: italic; margin: 0 0 18px; }
+  .sa-testimonial-attr { border-top: 1px solid var(--hairline); padding-top: 14px; }
+  .sa-testimonial-name { font-weight: 700; font-size: 14px; color: var(--ink); }
+  .sa-testimonial-company { font-size: 12px; color: #46545f; margin-top: 2px; }
+  .sa-more-link { color: var(--primary); font-size: 14px; font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--primary); }
+  .sa-compare-note { color: rgba(15,25,35,0.62); font-size: 15px; margin: 0 0 32px; }
+  .sa-compare-table { border: 1px solid var(--hairline); }
+  .sa-compare-head { display: none; background: var(--ink); padding: 14px 24px; gap: 16px; color: #c7cdd2; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+  .sa-compare-head-us { color: var(--yellow); font-family: 'SA Bungee', sans-serif; font-size: 13px; text-transform: none; }
+  @media (min-width: 768px) { .sa-compare-head, .sa-compare-row { display: grid; grid-template-columns: 1fr 240px 240px; } .sa-compare-head { display: grid; } }
+  .sa-compare-row { padding: 14px 24px; border-top: 1px solid var(--hairline); display: flex; flex-direction: column; gap: 6px; }
+  .sa-compare-row:nth-child(odd) { background: var(--paper); }
+  .sa-compare-them { color: #b5342a; font-size: 13px; display: flex; gap: 6px; align-items: center; }
+  .sa-compare-us { color: #226b46; font-size: 13px; font-weight: 700; display: flex; gap: 6px; align-items: center; }
+  .sa-center-lead { margin-left: auto; margin-right: auto; }
+  .sa-btn-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-bottom: 16px; }
+  .sa-fine { font-size: 13px; color: #46545f; }
+</style>

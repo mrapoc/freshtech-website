@@ -1,0 +1,139 @@
+{
+  "route": "/support-upgrade",
+  "source": "pages-v2/SupportUpgradePageV2.tsx",
+  "sourceSha256": "ff7ce1f5274738d21a8c705ce0e413236387f7b266b815561367c88aa4e94b9b",
+  "capturedAt": "2026-09-16T12:23:03.481Z",
+  "head": {
+    "title": "Our support emails have a new look | Fresh Tech IT Support",
+    "description": "What changed when Fresh Tech upgraded its support system, and what didn't. Same team, same phone number, same email address.",
+    "canonical": "https://fresh-tech.uk/support-upgrade",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "article",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Our support emails have a new look",
+        "description": "What changed when Fresh Tech upgraded its support system, and what didn't. Same team, same phone number, same email address.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/support-upgrade",
+        "author": {
+          "@id": "https://fresh-tech.uk/#organization"
+        },
+        "publisher": {
+          "@id": "https://fresh-tech.uk/#organization"
+        },
+        "mainEntityOfPage": "https://fresh-tech.uk/support-upgrade"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Support Upgrade",
+            "item": "https://fresh-tech.uk/support-upgrade"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "Our support emails have a new look."
+      ],
+      [
+        2,
+        "What's changed"
+      ],
+      [
+        2,
+        "What hasn't changed"
+      ],
+      [
+        2,
+        "\"Is this email really from you?\""
+      ]
+    ],
+    "links": [
+      [
+        "https://my.fresh-tech.uk",
+        "my.fresh-tech.uk"
+      ],
+      [
+        "mailto:support@fresh-tech.uk",
+        "support@fresh-tech.uk"
+      ],
+      [
+        "tel:+441584517234",
+        "01584 517 234"
+      ],
+      [
+        "tel:+441584517234",
+        "01584 517 234"
+      ]
+    ],
+    "images": [],
+    "text": "A note for our clients Our support emails have a new look. We've upgraded the system behind our support desk. If our emails look a little different, that's why. Here's the short version: same team, same contact details, sharper tools. What's changed Our emails are now deliberately plain. No heavy images, no marketing footers, no tracking. Plain emails get through spam filters reliably, load instantly on any device, and are easier to read with assistive tech. For a support email, that beats looking flashy. You also get a better portal at my.fresh-tech.uk: raise a ticket, see exactly where it's up to, add screenshots, and browse your history any time. Signing in for the first time is with your work email address. Your ticket references may look different from the old ones. If you had a ticket open with us during the switch, you'll have received a note on it with the new reference. Just reply as normal. What hasn't changed How you reach us: support@fresh-tech.uk or 01584 517 234, Mon–Fri 9–5. Same people, same response targets, same service. \"Is this email really from you?\" Good instinct: always worth checking. Genuine Fresh Tech support emails only ever come from support@fresh-tech.uk, and only ever link to fresh-tech.uk or my.fresh-tech.uk. If anything feels off, don't click. Call us on 01584 517 234 and we'll confirm. When in doubt, phone us. We'd rather take the call. Fresh PCS Consultancy Ltd (t/a Fresh Tech) · Company No. 09296207 · VAT GB199976510"
+  }
+}

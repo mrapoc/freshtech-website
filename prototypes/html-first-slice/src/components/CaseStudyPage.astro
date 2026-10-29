@@ -1,0 +1,118 @@
+---
+import { cloudinarySrcset } from '../lib/cloudinary-image.mjs';
+const CASE_STUDY_IMAGE_WIDTHS = [480, 720, 1100, 1600];
+// Structure and copy mirror pages-v2/CaseStudyDetailPageV2.tsx. The React page
+// passes outcome, challenge, solution and related outcomes through its small
+// inline Markdown renderer. InlineMarkdown preserves that escaped contract.
+import InlineMarkdown from './InlineMarkdown.astro';
+import { relatedStudies, resultHeading, sectorColour, sectorTextColour, victoryOf } from '../lib/case-study-display.mjs';
+
+interface CaseStudy {
+  id: string; slug: string; client: string; industry: string; title: string;
+  challenge: string; solution: string; result: string; outcome: string;
+  testimonial?: string; contactName?: string; image?: string; techStack?: string[];
+  shortStats?: { risk: string; strategy: string; victory: string };
+}
+interface Props { study: CaseStudy; studies: CaseStudy[] }
+const { study, studies } = Astro.props;
+const related = relatedStudies(studies, study.slug);
+const metrics = study.shortStats ? [
+  { label: 'Risk', value: study.shortStats.risk, tone: 'risk' },
+  { label: 'Strategy', value: study.shortStats.strategy, tone: 'strategy' },
+  { label: 'Victory', value: study.shortStats.victory, tone: 'victory' },
+] : [];
+---
+
+<main id="main-content" tabindex="-1" class="case-study-page">
+  <section class="service-hero cs-detail-hero">
+    <div class="cs-container">
+      <p class="cs-back"><a href="/case-studies"><span aria-hidden="true">←</span> All case studies</a></p>
+      <div class="cs-detail-grid">
+        <div>
+          <div class="cs-detail-meta">
+            <span class="sector-badge" style={`background:${sectorColour(study.industry)};color:${sectorTextColour(study.industry)}`}>{study.industry}</span>
+            <span class="cs-detail-client">{study.client}</span>
+          </div>
+          <h1>{study.title}</h1>
+          <p class="cs-outcome"><InlineMarkdown text={study.outcome} /></p>
+        </div>
+        <div class="cs-outcome-box">
+          <span class="cs-box-label">Outcome</span>
+          <strong>{victoryOf(study)}</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {study.image && (
+    <section class="content-section cs-image-section">
+      <div class="cs-container"><img src={study.image} srcset={cloudinarySrcset(study.image, CASE_STUDY_IMAGE_WIDTHS)} sizes={cloudinarySrcset(study.image, CASE_STUDY_IMAGE_WIDTHS) && '(min-width: 1100px) 1100px, 100vw'} alt={study.title} width="1200" height="675" decoding="async" fetchpriority="high" /></div>
+    </section>
+  )}
+
+  <section class="content-section cs-story-section">
+    <div class="two-column">
+      <div>
+        <p class="eyebrow">The challenge</p>
+        <h2>What they were dealing with</h2>
+        <p class="cs-body"><InlineMarkdown text={study.challenge} /></p>
+        {study.shortStats?.risk && <p class="cs-risk">Risk: {study.shortStats.risk}</p>}
+      </div>
+      <div>
+        <p class="eyebrow">What we did</p>
+        <h2>The solution</h2>
+        <p class="cs-body"><InlineMarkdown text={study.solution} /></p>
+        {study.techStack && study.techStack.length > 0 && (
+          <ul class="cs-stack" aria-label="Technology used">{study.techStack.map(item => <li>{item}</li>)}</ul>
+        )}
+      </div>
+    </div>
+  </section>
+
+  {study.shortStats && (
+    <section class="content-section cs-result-section">
+      <div class="cs-container">
+        <div class="cs-result-heading">
+          <p class="eyebrow">The result</p>
+          <h2>{resultHeading(study)}</h2>
+        </div>
+        <div class="cs-metrics">
+          {metrics.map(({ label, value, tone }) => <div class="cs-metric" data-tone={tone}><span>{label}</span><strong>{value}</strong></div>)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {study.testimonial && (
+    <section class="content-section cs-testimonial-section">
+      <blockquote class="cs-testimonial">
+        <span class="cs-quote-mark" aria-hidden="true">"</span>
+        <p>{study.testimonial}</p>
+        <footer>{study.contactName} · {study.client}</footer>
+      </blockquote>
+    </section>
+  )}
+
+  <section class="content-section cs-related-section">
+    <div class="cs-container">
+      <p class="eyebrow">More stories</p>
+      <h2>Other clients we've helped</h2>
+      <div class="cs-related-grid">
+        {related.map(item => (
+          <a class="cs-related-card" href={`/case-studies/${item.slug}`} data-slug={item.slug}>
+            <span class="cs-related-industry">{item.industry}</span>
+            <strong>{item.title}</strong>
+            <span class="cs-related-outcome"><InlineMarkdown text={item.outcome} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="closing-section cs-cta-section">
+    <p class="eyebrow">Sounds like you?</p>
+    <h2>Let's talk about your setup</h2>
+    <p>We'll tell you honestly if we can help, and what it would look like.</p>
+    <div class="closing-actions"><a class="primary-button" href="/contact">Book a 20-min call <span aria-hidden="true">→</span></a></div>
+  </section>
+</main>

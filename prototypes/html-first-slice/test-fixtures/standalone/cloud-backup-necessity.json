@@ -1,0 +1,386 @@
+{
+  "route": "/cloud-backup-necessity",
+  "source": "pages/CloudBackupNecessityPage.tsx",
+  "sourceSha256": "57a55be85c4d0a5905ad770a95d884ce71b02bf4284801be9c643e9daaf44375",
+  "capturedAt": "2026-09-16T12:23:16.339Z",
+  "head": {
+    "title": "Why Microsoft 365 & Google Workspace Need Backing Up | The Cloud Backup Myth",
+    "description": "Microsoft and Google explicitly state they're not responsible for your data loss. Learn why cloud services need independent backup, with real examples and expert guidance.",
+    "canonical": "https://fresh-tech.uk/cloud-backup-necessity",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Why Microsoft 365 and Google Workspace Need Backing Up",
+        "description": "The cloud doesn't back up your data. Microsoft and Google's own terms of service make this clear. Learn why independent backup is essential for business continuity.",
+        "author": {
+          "@type": "Organization",
+          "name": "Fresh Tech",
+          "url": "https://fresh-tech.uk"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Fresh Tech",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png"
+          }
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Isn't my data already backed up because it's 'in the cloud'?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No -and this is the most dangerous assumption businesses make. Cloud services like Microsoft 365 and Google Workspace provide high availability (your data is replicated across data centres so the service stays online), but this is not backup. If you delete a file, that deletion is replicated everywhere. If ransomware encrypts your files via sync, the encrypted versions replace the originals. The cloud protects against *their* hardware failures, not *your* data loss."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What's the difference between OneDrive sync and OneDrive backup?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "OneDrive Sync mirrors files between your computer and the cloud -changes go both ways instantly. OneDrive Backup (Known Folder Move) redirects your Desktop, Documents, and Pictures folders to OneDrive. Both are sync technologies, not backup. A true backup is a separate, protected copy of your data that can be restored to a point in time -even if the original is deleted, corrupted, or encrypted."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is Known Folder Move (KFM) and should we use it?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "KFM is a Microsoft feature that redirects your Desktop, Documents, and Pictures folders to OneDrive. You absolutely should use it -it means files aren't trapped on individual laptops and are accessible from anywhere. But it's protection against *device loss*, not data loss. If a file is deleted from OneDrive, it's deleted everywhere. KFM + independent backup = comprehensive protection."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does Microsoft keep deleted files?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It varies by service: OneDrive/SharePoint keeps deleted items in the recycle bin for 93 days, then they're permanently deleted. Exchange Online keeps deleted emails for 14-30 days depending on configuration. Teams messages follow complex retention rules. After these windows close, Microsoft cannot recover your data -even if you pay them. These retention periods are also not guaranteed and can change."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What about Google Workspace -is it the same problem?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Google's Terms of Service contain nearly identical disclaimers. Google Drive's trash empties after 30 days. Gmail deleted items last 30 days. Google explicitly states they are not responsible for data loss. The 'it's in the cloud' false sense of security applies equally to Google Workspace users."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does proper cloud backup cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Typically £2-4 per user per month for comprehensive Microsoft 365 or Google Workspace backup. Compare this to the cost of losing your data: the average cost of a ransomware attack for SMBs is £115,000. For a 20-person company, that's roughly £50/month for insurance against potentially business-ending data loss."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can't I just export my data regularly instead?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Manual exports are better than nothing, but they're not practical at scale. They require someone to remember, they're incomplete (you rarely get everything), they're not easily restorable, and they're typically stored somewhere that's also vulnerable to the same threats. Automated, managed backup with tested restores is the only reliable approach."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "We have Microsoft 365 E5 -doesn't that include backup?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Even the most expensive Microsoft 365 licence does not include true backup. E5 includes advanced compliance features like extended retention and litigation hold, but these are not the same as backup. Retention policies keep data longer before deletion -but if data is corrupted or encrypted, that corrupted version is what's retained. Microsoft is now offering 'Microsoft 365 Backup' as an additional paid product, acknowledging that backup was never included."
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Resources",
+            "item": "https://fresh-tech.uk/resources"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Why Cloud Backup is Essential",
+            "item": "https://fresh-tech.uk/cloud-backup-necessity"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "The Cloud Doesn't Back Up Your Data"
+      ],
+      [
+        2,
+        "The Shared Responsibility Model"
+      ],
+      [
+        2,
+        "The Uncomfortable Truth"
+      ],
+      [
+        2,
+        "What Cloud Services Actually Provide"
+      ],
+      [
+        3,
+        "What They DO Provide"
+      ],
+      [
+        3,
+        "What They DON'T Provide"
+      ],
+      [
+        2,
+        "Understanding OneDrive \"Backup\""
+      ],
+      [
+        3,
+        "What is Known Folder Move (KFM)?"
+      ],
+      [
+        4,
+        "KFM is Excellent For:"
+      ],
+      [
+        4,
+        "KFM Does NOT Protect Against:"
+      ],
+      [
+        3,
+        "How We Enable This Automatically"
+      ],
+      [
+        4,
+        "Automatic Enrollment"
+      ],
+      [
+        4,
+        "Policy-Driven KFM"
+      ],
+      [
+        4,
+        "No More \"Local Only\" Files"
+      ],
+      [
+        2,
+        "Real-World Scenarios"
+      ],
+      [
+        2,
+        "The Real Cost Comparison"
+      ],
+      [
+        3,
+        "Without Independent Backup"
+      ],
+      [
+        3,
+        "With Independent Backup"
+      ],
+      [
+        2,
+        "The Complete Protection Stack"
+      ],
+      [
+        3,
+        "Known Folder Move"
+      ],
+      [
+        3,
+        "M365/Google Backup"
+      ],
+      [
+        3,
+        "Immutable Storage"
+      ],
+      [
+        3,
+        "Tested Restores"
+      ],
+      [
+        2,
+        "Frequently Asked Questions"
+      ],
+      [
+        2,
+        "Don't Wait for a Disaster to Discover You're Not Protected"
+      ],
+      [
+        2,
+        "Related Reading"
+      ],
+      [
+        3,
+        "The Backup Test 60% of Businesses Fail"
+      ],
+      [
+        3,
+        "Ransomware Recovery Guide"
+      ],
+      [
+        3,
+        "Our Backup Services"
+      ],
+      [
+        2,
+        "Signal for Help"
+      ],
+      [
+        3,
+        "Send a Signal"
+      ]
+    ],
+    "links": [
+      [
+        "/",
+        "Home"
+      ],
+      [
+        "/resources",
+        "Resources"
+      ],
+      [
+        "https://www.microsoft.com/en-us/servicesagreement",
+        "View current Microsoft Services Agreement →"
+      ],
+      [
+        "https://workspace.google.com/terms/user_features.html",
+        "View current Google Workspace Terms →"
+      ],
+      [
+        "/microsoft-business-premium",
+        "Microsoft 365 Business Premium"
+      ],
+      [
+        "/technology/intune-autopilot",
+        "Intune"
+      ],
+      [
+        "/technology/intune-autopilot",
+        "Learn about Intune & Autopilot"
+      ],
+      [
+        "/microsoft-business-premium",
+        "Why Business Premium?"
+      ],
+      [
+        "/services/backup-disaster-recovery",
+        "Learn About Our Backup Services"
+      ],
+      [
+        "/contact",
+        "Request a Backup Audit"
+      ],
+      [
+        "/it-health-check",
+        "Take Our IT Health Check"
+      ],
+      [
+        "/blog/backup-test-most-businesses-fail",
+        "The Backup Test 60% of Businesses Fail Common backup mistakes and how to avoid them."
+      ],
+      [
+        "/ransomware-recovery",
+        "Ransomware Recovery Guide What to do if your business is hit by ransomware."
+      ],
+      [
+        "/services/backup-disaster-recovery",
+        "Our Backup Services How we protect businesses with comprehensive backup solutions."
+      ],
+      [
+        "/resources",
+        "Browse all resources"
+      ],
+      [
+        "/onboarding",
+        "Thinking of switching providers? See how easy it is"
+      ],
+      [
+        "tel:01584517234",
+        "01584 517 234"
+      ],
+      [
+        "mailto:support@fresh-tech.uk",
+        "support@fresh-tech.uk"
+      ],
+      [
+        "tel:01584517234",
+        "01584 517 234"
+      ]
+    ],
+    "images": [
+      [
+        "https://placehold.co/600x400/2B7AB1/FFFFFF?text=Image+Missing",
+        "Cloud backup and data protection for Microsoft 365 and Google Workspace"
+      ]
+    ],
+    "text": "Back Up The Cloud Doesn't Back Up Your Data Microsoft and Google explicitly say so in their terms of service. Most businesses don't discover this until it's too late. Home Resources Why Cloud Backup is Essential Essential Guide The Shared Responsibility Model Microsoft and Google operate under a \"shared responsibility\" model. They protect the infrastructure -you protect your data. This guide explains what that means in practice and how to ensure your business data is truly protected. Microsoft 365 Google Workspace OneDrive KFM The Uncomfortable Truth Most businesses believe their data is safe because it's \"in the cloud\". Microsoft and Google's own legal terms tell a different story. \"We recommend that you regularly backup Your Content and Data that you store on the Services or store using Third-Party Apps and Services.\" \"We strive to keep the Services up and running; however, all online services suffer occasional disruptions and outages, and Microsoft is not liable for any disruption or loss you may suffer as a result.\" - Microsoft Services Agreement, Section 6(b) View current Microsoft Services Agreement → \"When permitted by law, Google, and Google's suppliers and distributors, will not be responsible for lost profits, revenues, or data, financial losses or indirect, special, consequential, exemplary, or punitive damages.\" \"Google does not make any commitments about the content within the services, the specific functions of the services, or their reliability, availability, or ability to meet your needs.\" - Google Workspace Terms of Service View current Google Workspace Terms → In plain English: if your data is lost, corrupted, or deleted -that's your problem, not theirs. What Cloud Services Actually Provide Understanding the difference between high availability and backup is critical. What They DO Provide High Availability Data replicated across multiple data centres so the service stays online Infrastructure Redundancy Protection against their hardware failures, power outages, and natural disasters at their facilities Limited Retention Recycle bin and version history for a limited window (typically 30-93 days) Physical Security Data centres are secure, climate-controlled, and access-restricted What They DON'T Provide Protection from User Deletion If you or your staff delete files (accidentally or deliberately), that's replicated everywhere Ransomware Protection Encrypted files sync to the cloud as fast as healthy ones -your \"backup\" becomes encrypted too Long-Term Retention Once retention windows close (30-93 days), data is permanently unrecoverable Point-in-Time Recovery You can't restore your entire tenant to how it was 6 months ago Understanding OneDrive \"Backup\" What is Known Folder Move (KFM)? When you enable \"Backup\" in OneDrive settings, you're actually enabling Known Folder Move. This redirects your Desktop, Documents, and Pictures folders so they sync to OneDrive instead of staying on your local hard drive. KFM is Excellent For: • Protecting against laptop loss or theft • Accessing files from any device • Preventing files being \"trapped\" on one computer • Making device replacement painless • Ensuring remote workers' files are centralised KFM Does NOT Protect Against: • Accidental or malicious file deletion • Ransomware encrypting synced files • Data corruption replicating to the cloud • Account compromise and data destruction • Retention windows expiring Key Insight: KFM is sync, not backup. It replicates changes in both directions -including deletions and corruptions. You should absolutely use KFM, but you also need independent backup. How We Enable This Automatically For businesses using Microsoft 365 Business Premium, we configure Intune to automatically enable Known Folder Move on every enrolled device. No manual setup required -it just works. Automatic Enrollment New devices automatically join Intune when users sign in with their work account Policy-Driven KFM Intune policies silently enable KFM -users don't need to do anything No More \"Local Only\" Files Eliminates files scattered across individual laptops that never get backed up Learn about Intune & Autopilot Why Business Premium? Real-World Scenarios These situations happen every day. The difference between disaster and minor inconvenience is backup. The Accidental Deletion The Disgruntled Leaver The Ransomware Sync The Retention Gap The Account Compromise The Real Cost Comparison Without Independent Backup Average ransomware cost for SMBs: £115,000 Average downtime after data loss: 21 days 60% of SMBs close within 6 months of major data loss Regulatory fines for losing customer data Reputational damage and lost client trust Staff productivity loss rebuilding lost work With Independent Backup Typical cost: £2-4 per user/month Recovery time measured in hours, not weeks Point-in-time restore to any date Immutable backups ransomware can't touch Compliance with data retention requirements Peace of mind that data is truly protected For a 20-person company, comprehensive cloud backup costs roughly £50-80/month. That's the price of one team lunch to protect against potentially business-ending data loss. The Complete Protection Stack True data protection requires multiple layers working together. Here's what we implement for our clients. Known Folder Move Files sync to OneDrive automatically -no files trapped on laptops Via Intune Policy M365/Google Backup Independent backup of all cloud data with long-term retention 3rd Party Solution Immutable Storage Backups that can't be modified or deleted -ransomware-proof Write-Once Technology Tested Restores Regular restore tests prove backups actually work Quarterly Verification Learn About Our Backup Services Frequently Asked Questions Common questions about cloud backup and data protection Isn't my data already backed up because it's 'in the cloud'? What's the difference between OneDrive sync and OneDrive backup? What is Known Folder Move (KFM) and should we use it? How long does Microsoft keep deleted files? What about Google Workspace -is it the same problem? How much does proper cloud backup cost? Can't I just export my data regularly instead? We have Microsoft 365 E5 -doesn't that include backup? Don't Wait for a Disaster to Discover You're Not Protected Let us audit your current backup situation. We'll show you exactly what's protected, what isn't, and what it would take to close the gaps. Request a Backup AuditTake Our IT Health Check Related Reading The Backup Test 60% of Businesses Fail Common backup mistakes and how to avoid them. Ransomware Recovery Guide What to do if your business is hit by ransomware. Our Backup Services How we protect businesses with comprehensive backup solutions. Browse all resources Signal for Help Ready to banish tech headaches? Fill out the form or book a chat directly. We respond faster than a speeding bullet (usually under 15 minutes). ✓ Trusted by local businesses for over 10 years Thinking of switching providers? See how easy it is Call The Batphone 01584 517 234 Email HQ hello@fresh-tech.uk Face-to-Face Book an Intro Call with Sam Send a Signal Step 1 of 3 Name Email Phone (optional) How can we help? We typically respond within 15 minutes during business hours (Mon-Fri, 9am-5pm). Send Message Existing Client? Email support@fresh-tech.uk or call 01584 517 234 for urgent help."
+  }
+}

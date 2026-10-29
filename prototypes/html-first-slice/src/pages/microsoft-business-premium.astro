@@ -1,0 +1,185 @@
+---
+// Port of pages-v2/MicrosoftPremiumPageV2.tsx. Captured at the desktop
+// breakpoint (no "Standard:"/"Premium:" mobile row prefixes), so the native
+// table matches that column layout at every width via horizontal scroll.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+
+const seo = {
+  path: '/microsoft-business-premium',
+  title: 'Microsoft 365 Business Premium: Is It Worth Upgrading?',
+  description: "Business Standard is rising 12%, Premium isn't. The upgrade gap is now ~£6.56/user/month for Defender, Intune and data protection. Honest comparison.",
+  type: 'service',
+};
+
+const UPGRADES = [
+  { icon: '🛡️', title: 'Microsoft Defender for Business', desc: 'Next-gen endpoint protection across PC, Mac and mobile. Real ransomware defence, not just AV.' },
+  { icon: '📱', title: 'Microsoft Intune', desc: 'Manage every device from one console. Zero-touch deploy, remote wipe, policy enforcement.' },
+  { icon: '🔐', title: 'Azure AD Premium P1', desc: 'Conditional Access, MFA enforced everywhere, self-service password reset.' },
+  { icon: '📧', title: 'Proper anti-phishing layer', desc: 'Microsoft Defender for Office 365 (Plan 1): safe links, safe attachments, real-time scanning of inbound mail. Much better than the Business Standard baseline.' },
+  { icon: '🔒', title: 'Information Protection', desc: 'Label sensitive documents, encrypt automatically, prevent forwarding outside your org.' },
+  { icon: '💾', title: 'Data Loss Prevention', desc: 'Stop sensitive data leaving by accident. Block uploads of card numbers, NI numbers, client lists.' },
+];
+
+const COMPARISON = [
+  ['Cost per user / month', '£11.54 (was £10.30, +12%)', '£18.10 (unchanged)'],
+  ['Office apps + email', '✓', '✓'],
+  ['Teams + SharePoint', '✓', '✓'],
+  ['Endpoint protection', 'Built-in basic', 'Defender for Business: full EDR'],
+  ['Device management', 'None', 'Microsoft Intune included'],
+  ['Conditional Access + MFA', 'Limited', 'Azure AD P1: full policy engine'],
+  ['Phishing + safe-links', 'Basic', 'Defender for O365 Plan 1'],
+  ['Information protection', 'No', 'Yes (labels + encryption)'],
+  ['Data Loss Prevention', 'No', 'Yes'],
+  ['Cyber Essentials ready', 'Not without add-ons', 'Yes, out of the box'],
+];
+---
+
+<StandaloneShell name="microsoft-business-premium" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap mp-hero-grid" style="--sa-max: 1100px">
+      <div>
+        <div class="mp-stickers"><span class="mp-sticker mp-sticker-primary">Microsoft 365</span><span class="mp-sticker">Business Premium</span><span class="mp-sticker mp-sticker-yellow">Standard +12% · Premium unchanged</span></div>
+        <h1 class="sa-display sa-display-light" style="--sa-size: 48px; --sa-size-mobile: 36px; margin-bottom: 20px">The upgrade most small businesses actually need.</h1>
+        <p class="sa-lead" style="max-width: 50ch; margin-bottom: 24px">Business Standard is fine for the basics. Business Premium adds the security and device-management features you actually need to be Cyber Essentials-ready and to actually defend against modern threats.</p>
+        <p class="mp-sub">We'll tell you honestly whether the upgrade is worth it for your business, and if it's not, we'll say so.</p>
+        <div class="mp-cta-row"><a class="sa-button" href="/contact">Book a licence audit →</a><a class="sa-button mp-btn-outline" href="#compare">See the comparison ↓</a></div>
+      </div>
+      <div class="mp-price-panel">
+        <p class="mp-price-label">Business Premium</p>
+        <div class="mp-price">£18.10</div>
+        <div class="mp-price-unit">per user / month · price unchanged</div>
+        <div class="mp-price-note"><strong class="mp-yellow">Standard is going up 12%, Premium isn't.</strong> The upgrade gap is now just <strong class="mp-white">£6.56/user/month</strong> instead of £7.80. Best time to upgrade is right now.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper sa-rule">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <p class="sa-eyebrow">What you get</p>
+      <h2 class="sa-display" style="--sa-size: 36px; margin-bottom: 12px">Six big upgrades over Standard</h2>
+      <p class="mp-intro">Each one would cost more as a separate add-on. Bundled together they're cheaper and they actually integrate properly.</p>
+      <div class="mp-upgrades">
+        {UPGRADES.map(u => (
+          <div class="mp-upgrade">
+            <div class="mp-upgrade-icon">{u.icon}</div>
+            <div class="mp-upgrade-h">{u.title}</div>
+            <p class="mp-upgrade-p">{u.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="compare" class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <p class="sa-eyebrow">Standard vs Premium</p>
+      <h2 class="sa-display" style="--sa-size: 36px; margin-bottom: 40px">The line-by-line comparison</h2>
+      <div class="mp-table-wrap">
+        <table class="mp-table">
+          <thead>
+            <tr><th class="mp-th-feature">Feature</th><th>Business Standard</th><th class="mp-th-premium">Business Premium</th></tr>
+          </thead>
+          <tbody>
+            {COMPARISON.map(([label, std, prem]) => (
+              <tr>
+                <td class="mp-feature">{label}</td>
+                <td class="mp-std">{std}</td>
+                <td class="mp-prem">{prem}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mp-reality"><strong class="mp-yellow">Reality check:</strong> With Standard going up 12% and Premium holding firm, the upgrade gap is shrinking to ~£6.56/user/month. And if you're buying Business Standard plus AV plus a separate MDM tool, you're already paying more than Premium would cost, for worse integration.</p>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white sa-rule">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <p class="sa-eyebrow">Honest take</p>
+      <h2 class="sa-display" style="--sa-size: 36px; margin-bottom: 40px">When it's worth it, and when it isn't</h2>
+      <div class="mp-split">
+        <div class="mp-panel mp-panel-green">
+          <p class="mp-panel-tag mp-tag-green">Upgrade if</p>
+          <ul>
+            <li>You handle sensitive client data (legal, healthcare, finance)</li>
+            <li>You need Cyber Essentials certification</li>
+            <li>Staff use personal devices for work email</li>
+            <li>You'd struggle if a stolen laptop wasn't wiped within the hour</li>
+            <li>You currently pay for a separate AV / MDM / DLP tool</li>
+          </ul>
+        </div>
+        <div class="mp-panel mp-panel-red">
+          <p class="mp-panel-tag mp-tag-red">Maybe skip if</p>
+          <ul>
+            <li>Under 3 staff and all work-issued devices</li>
+            <li>You have no client data and no compliance obligations</li>
+            <li>You already have full-stack security elsewhere</li>
+            <li>Cost is genuinely the blocker: Standard + good practice is OK</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-ink sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <p class="sa-eyebrow sa-eyebrow-light">Need a licence audit?</p>
+      <h2 class="sa-display sa-display-light" style="--sa-size: 40px; margin-bottom: 16px">We'll show you what you actually need</h2>
+      <p class="sa-lead mp-cta-lead">20 minutes. We'll review your current setup, tell you whether Premium is worth the upgrade, and how to roll it out cleanly.</p>
+      <a class="sa-button" href="/contact">Book a licence audit →</a>
+    </div>
+    <p class="mp-reviewed">Last reviewed May 2026 · Sam James</p>
+  </section>
+</StandaloneShell>
+
+<style>
+  .mp-hero-grid { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center; }
+  @media (min-width: 768px) { .mp-hero-grid { grid-template-columns: 1.2fr 0.8fr; gap: 64px; } }
+  .mp-stickers { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .mp-sticker { display: inline-block; background: var(--yellow); color: var(--ink); border: 2.5px solid var(--ink); box-shadow: 3px 3px 0 0 var(--ink); padding: 5px 11px; font: 800 11px/1 'SA Archivo', sans-serif; letter-spacing: .08em; text-transform: uppercase; transform: rotate(-4deg); white-space: normal; max-width: 100%; }
+  .mp-sticker-primary { background: var(--primary-dark); color: var(--white); transform: rotate(-3deg); }
+  .mp-sticker-yellow { transform: rotate(-2deg); }
+  .mp-sub { color: #9ba3aa; font-size: 15px; line-height: 1.65; margin: 0 0 28px; max-width: 50ch; }
+  .mp-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .mp-btn-outline { background: transparent; color: var(--paper); border: 2px solid rgba(255,255,255,0.3); box-shadow: none; }
+  .mp-btn-outline:hover { background: rgba(255,255,255,0.08); }
+  .mp-price-panel { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); padding: 28px 32px; text-align: center; }
+  .mp-price-label { font: 700 11px/1 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .12em; color: #8a929a; margin: 0 0 12px; }
+  .mp-price { font: 400 56px/1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--yellow); }
+  .mp-price-unit { font-size: 13px; color: #9ba3aa; margin-top: 4px; }
+  .mp-price-note { margin-top: 18px; padding: 10px 14px; background: rgba(46,125,91,0.22); border: 1px solid rgba(46,125,91,0.45); font-size: 12px; color: rgba(255,255,255,0.85); line-height: 1.5; text-align: left; }
+  .mp-yellow { color: var(--yellow); }
+  .mp-white { color: var(--paper); }
+  .mp-intro { color: var(--ink); opacity: 0.62; font-size: 16px; margin: 0 0 40px; max-width: 52ch; line-height: 1.6; }
+  .mp-upgrades { display: grid; grid-template-columns: 1fr; gap: 18px; }
+  @media (min-width: 640px) { .mp-upgrades { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .mp-upgrades { grid-template-columns: repeat(3, 1fr); } }
+  .mp-upgrade { background: var(--white); border: 1px solid var(--hairline); padding: 24px; box-shadow: 0 4px 16px rgba(15,25,35,0.06); }
+  .mp-upgrade-icon { font-size: 28px; margin-bottom: 12px; }
+  .mp-upgrade-h { font: 400 17px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; margin-bottom: 10px; }
+  .mp-upgrade-p { font-size: 14px; color: var(--ink); opacity: 0.62; line-height: 1.6; margin: 0; }
+  .mp-table-wrap { overflow-x: auto; border: 1px solid var(--hairline); background: var(--white); }
+  .mp-table { border-collapse: collapse; width: 100%; min-width: 560px; }
+  .mp-table thead tr { background: var(--ink); }
+  .mp-table th { padding: 16px 24px; text-align: center; font: 700 11px/1.2 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .12em; color: rgba(255,255,255,0.65); }
+  .mp-th-feature { text-align: left; }
+  .mp-th-premium { font: 400 13px 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--yellow); text-transform: none; letter-spacing: normal; }
+  .mp-table tbody tr:nth-child(even) { background: var(--paper); }
+  .mp-table tbody tr:not(:last-child) { border-bottom: 1px solid var(--hairline); }
+  .mp-feature { padding: 14px 24px; font-size: 14px; font-weight: 600; color: var(--ink); }
+  .mp-std { padding: 14px 24px; font-size: 13px; color: var(--ink); opacity: 0.75; text-align: center; }
+  .mp-prem { padding: 14px 24px; font-size: 13px; color: var(--ink); font-weight: 700; text-align: center; }
+  .mp-reality { margin-top: 16px; padding: 12px 16px; background: var(--ink); color: var(--paper); font-size: 13px; line-height: 1.6; }
+  .mp-split { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 768px) { .mp-split { grid-template-columns: 1fr 1fr; } }
+  .mp-panel { background: var(--paper); padding: 28px; border: 2px solid; }
+  .mp-panel-green { border-color: #2E7D5B; box-shadow: 4px 4px 0 0 #2E7D5B; }
+  .mp-panel-red { border-color: #C8443A; box-shadow: 4px 4px 0 0 #C8443A; }
+  .mp-panel-tag { font: 700 11px/1 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .14em; margin: 0 0 12px; }
+  .mp-tag-green { color: #256B4E; }
+  .mp-tag-red { color: #C03F35; }
+  .mp-panel ul { padding-left: 18px; margin: 0; color: var(--ink); line-height: 1.7; font-size: 15px; }
+  .mp-cta-lead { max-width: 46ch; margin-inline: auto; margin-bottom: 28px; color: #b9c0c6; }
+  .mp-reviewed { text-align: center; padding: 20px 16px 24px; font: 700 11px/1.3 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .14em; color: #c7cdd2; margin: 0; }
+</style>

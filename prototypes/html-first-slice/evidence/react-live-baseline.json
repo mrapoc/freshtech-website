@@ -1,0 +1,70 @@
+{
+  "measuredAt": "2026-09-15T08:09:05.340Z",
+  "route": "https://fresh-tech.uk/services/managed-it-support",
+  "finalUrl": "https://fresh-tech.uk/services/managed-it-support",
+  "status": 200,
+  "method": "Cold browser context, network idle plus 1 second; unique script response bodies and executable inline scripts; JSON-LD excluded.",
+  "limitation": "The live deployment is a point-in-time baseline and may not match the local source revision exactly.",
+  "vendorRequestsBeforeConsent": [],
+  "externalScripts": [
+    {
+      "url": "https://fresh-tech.uk/assets/react-vendor-CtKblTWE.js",
+      "bytes": 184064,
+      "gzipBytes": 57592,
+      "brotliBytes": 49720
+    },
+    {
+      "url": "https://fresh-tech.uk/assets/icons-CinBL6Zi.js",
+      "bytes": 59184,
+      "gzipBytes": 13710,
+      "brotliBytes": 11451
+    },
+    {
+      "url": "https://fresh-tech.uk/assets/index-CKnWwcf7.js",
+      "bytes": 181220,
+      "gzipBytes": 50695,
+      "brotliBytes": 40921
+    },
+    {
+      "url": "https://fresh-tech.uk/assets/_fresh-tech-content_services-DRt5RYSU.js",
+      "bytes": 2475,
+      "gzipBytes": 1243,
+      "brotliBytes": 991
+    },
+    {
+      "url": "https://fresh-tech.uk/assets/LastReviewed-CBYYSPvt.js",
+      "bytes": 399,
+      "gzipBytes": 329,
+      "brotliBytes": 266
+    },
+    {
+      "url": "https://fresh-tech.uk/assets/ServiceDetailPageV2-CH1p598J.js",
+      "bytes": 39478,
+      "gzipBytes": 13464,
+      "brotliBytes": 11412
+    },
+    {
+      "url": "https://fresh-tech.uk/assets/router-DtNhtcaV.js",
+      "bytes": 35890,
+      "gzipBytes": 13029,
+      "brotliBytes": 11684
+    }
+  ],
+  "inlineScripts": {
+    "count": 3,
+    "bytes": 4350,
+    "gzipBytes": 1604,
+    "brotliBytes": 1335
+  },
+  "liveTotals": {
+    "bytes": 507060,
+    "gzipBytes": 151666,
+    "brotliBytes": 127780
+  },
+  "prototypeTotals": {
+    "bytes": 3572,
+    "gzipBytes": 1385,
+    "brotliBytes": 1151
+  },
+  "firstLoadGzipReductionPercent": 99.1
+}

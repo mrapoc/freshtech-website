@@ -1,0 +1,119 @@
+---
+interface Props {
+  service: {
+    page: { title: string; slug: string; desc: string };
+    content: {
+      tagline: string;
+      heroStat: { num: string; label: string };
+      priceFrom: number | null;
+      priceNote: string;
+      includes: string[];
+      howItWorks: { step: string; title: string; desc: string }[];
+      outcomes: { stat: string; label: string }[];
+      faqs: [string, string][];
+    };
+    related: { title: string; slug: string; desc: string }[];
+  };
+}
+const { page, content, related } = Astro.props.service;
+---
+
+<main id="main-content" tabindex="-1" class="service-page">
+  <section class="service-hero">
+    <div class="service-hero-grid">
+      <div>
+        <p class="eyebrow">Service</p>
+        <h1>{page.title}</h1>
+        <p class="tagline">{content.tagline}</p>
+        <p class="service-desc">{page.desc}</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="/contact">Book a 20-min call</a>
+          <a class="secondary-button" href="#includes">What's included</a>
+        </div>
+      </div>
+      <div class="hero-facts">
+        <div class="hero-stat"><strong>{content.heroStat.num}</strong><span>{content.heroStat.label}</span></div>
+        {content.priceFrom != null ? (
+          <div class="hero-price">
+            <span class="price-label">From</span>
+            <strong>£{content.priceFrom}</strong>
+            <span>{content.priceNote}</span>
+            <a href="/pricing">See full pricing</a>
+          </div>
+        ) : (
+          <div class="hero-quote">
+            <span class="quote-label">How it's priced</span>
+            <span>{content.priceNote}</span>
+            <a href="/contact">Get a quote</a>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section id="includes" class="content-section included-section">
+    <div class="two-column">
+      <div>
+        <p class="eyebrow">What's included</p>
+        <h2>Everything in the price</h2>
+        <p class="section-intro">No extras, no "that's not in your contract". One monthly fee covers all of this. Onsite visits, when an issue cannot be fixed remotely, are billed separately.</p>
+        <ul class="tick-list">
+          {content.includes.map(item => <li><span aria-hidden="true">✓</span>{item}</li>)}
+        </ul>
+      </div>
+      <div class="outcomes">
+        {content.outcomes.map(({ stat, label }, index) => (
+          <article class:list={{ featured: index === 0 }}><strong>{stat}</strong><span>{label}</span></article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section process-section">
+    <div class="section-heading">
+      <p class="eyebrow">How it works</p>
+      <h2>What you're actually buying</h2>
+      <p>Plain English. What happens, in what order, and what you experience on the ground.</p>
+    </div>
+    <div class="process-grid">
+      {content.howItWorks.map(({ step, title, desc }) => (
+        <article><span class="step-number">{step}</span><h3>{title}</h3><p>{desc}</p></article>
+      ))}
+    </div>
+  </section>
+
+  <section class="content-section questions-section">
+    <div class="questions-grid">
+      <div>
+        <p class="eyebrow">Questions</p>
+        <h2>Common questions about this service</h2>
+        <div class="faq-list">
+          {content.faqs.map(([question, answer]) => (
+            <details><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>
+          ))}
+        </div>
+      </div>
+      <aside>
+        <p class="related-label">Related services</p>
+        <div class="related-links">
+          {related.map(item => <a href={`/services/${item.slug}`}>{item.title}<span aria-hidden="true">→</span></a>)}
+          <a class="all-services" href="/services">View all services <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="question-card">
+          <h3>Got a question about this service?</h3>
+          <p>Call us. 20 minutes. We'll tell you honestly.</p>
+          <a href="/contact">Book a call</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="closing-section">
+    <p class="eyebrow">Next step</p>
+    <h2>Ready to talk?</h2>
+    <p>A 20-minute call is all it takes to find out if we're a good fit, and we'll tell you honestly if we're not.</p>
+    <div class="closing-actions"><a class="primary-button" href="/contact">Book a 20-min call</a><a href="/pricing">See pricing</a></div>
+    <small>30-day money-back guarantee · 01584 517 234 · Mon–Fri 9am–5pm</small>
+    <p class="last-reviewed">Last reviewed May 2026 · Sam James</p>
+  </section>
+</main>

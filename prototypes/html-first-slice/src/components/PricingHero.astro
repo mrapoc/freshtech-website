@@ -1,0 +1,62 @@
+---
+// Hero and quick-estimate calculator, ported from the HERO section of
+// pages-v2/PricingPageV2.tsx. Copy is verbatim; rates and the minimum come from
+// the extracted pricing data so the source stays the single origin of prices.
+import { pricing } from '../generated/pricing-data.mjs';
+import { PRICING_H1 } from '../lib/pricing-seo.mjs';
+const rates = pricing.rates;
+const tierNames = ['Standard', 'Plus', 'Premium'] as const;
+const defaultUsers = 10;
+const defaultTier = 'Plus';
+const defaultRawMonthly = defaultUsers * rates[defaultTier];
+const defaultMonthly = defaultTier === 'Premium' ? defaultRawMonthly : Math.max(pricing.minimumMonthly, defaultRawMonthly);
+const formatMoney = (value: number) => value.toLocaleString('en-GB');
+---
+
+<section class="hero" data-section="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Pricing</p>
+      <h1>{PRICING_H1}</h1>
+      <p class="lede">Remote IT support for a fixed monthly fee. Choose the cover your business needs. If we cannot fix an issue remotely, we can arrange an onsite visit, billed separately.</p>
+      <div class="hero-actions">
+        <a class="primary-button" href="#tiers">See the plans <span aria-hidden="true">↓</span></a>
+        <a class="secondary-button" href="/contact">Talk to us <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <aside class="estimate" aria-labelledby="estimate-title" data-calculator data-rates={JSON.stringify(rates)} data-minimum={pricing.minimumMonthly}>
+      <h2 id="estimate-title">Quick estimate</h2>
+      <p class="static-fallback"><strong>Example: {defaultUsers} people on {defaultTier} is £{formatMoney(defaultMonthly)} per month (£{formatMoney(defaultMonthly * 12)}/year, indicative).</strong> Standard is £{rates.Standard}, Plus £{rates.Plus} and Premium £{rates.Premium} per user per month. Standard and Plus have a £{formatMoney(pricing.minimumMonthly)}/month minimum; Premium has no minimum. Enable JavaScript to change the estimate, or <a href="/contact">get a precise quote</a>.</p>
+
+      <div class="interactive-only">
+        <label for="people">How many people use IT in your business?</label>
+        <div class="range-row">
+          <input id="people" name="people" type="range" min="3" max="100" value={defaultUsers} />
+          <output for="people" data-users>{defaultUsers}</output>
+        </div>
+
+        <fieldset>
+          <legend>Choose a support plan</legend>
+          <div class="tier-options">
+            {tierNames.map(name => (
+              <label>
+                <input type="radio" name="tier" value={name} checked={name === defaultTier} />
+                <span>{name} £{rates[name]}<span class="visually-hidden"> per user per month</span></span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <div class="total" aria-live="polite" aria-atomic="true">
+          <p><span data-tier>{defaultTier}</span> plan (£<span data-rate>{rates[defaultTier]}</span>/user)</p>
+          <div><strong>£<span data-monthly>{formatMoney(defaultMonthly)}</span></strong> <span>per month</span></div>
+          <p>= £<span data-yearly>{formatMoney(defaultMonthly * 12)}</span>/year · indicative</p>
+          <p class="minimum-message" data-minimum-message hidden></p>
+        </div>
+        <a class="quote-link" href="/contact">Get a precise quote <span aria-hidden="true">→</span></a>
+        <p class="fine-print">No commitment. Exact price confirmed on a 20-min call.</p>
+      </div>
+    </aside>
+  </div>
+</section>

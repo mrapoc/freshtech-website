@@ -1,0 +1,29 @@
+---
+// Article body: block tokens from src/lib/blog-markdown.mjs rendered as native
+// elements. The Markdown string itself is never passed to set:html.
+import BlogInline from './BlogInline.astro';
+import { SMALL_HEADING, SMALL_HEADING_CLASS, blockTokens } from '../lib/blog-markdown.mjs';
+
+interface Props { content: string }
+const blocks = blockTokens(Astro.props.content);
+---
+
+{blocks.map(block => {
+  // Orphan ### headings arrive as h2 with a presentation marker: the level is
+  // corrected for the document outline, the class keeps the h3 visual style.
+  if (block.type === 'h2') return block.presentation === SMALL_HEADING
+    ? <h2 class={SMALL_HEADING_CLASS}><BlogInline tokens={block.children} /></h2>
+    : <h2><BlogInline tokens={block.children} /></h2>;
+  if (block.type === 'h3') return <h3><BlogInline tokens={block.children} /></h3>;
+  if (block.type === 'table') return (
+    <div class="blog-table-wrap" role="region" aria-label="Table" tabindex="0">
+      <table>
+        <thead><tr>{block.header.map(cell => <th scope="col"><BlogInline tokens={cell} /></th>)}</tr></thead>
+        <tbody>{block.rows.map(row => <tr>{row.map(cell => <td><BlogInline tokens={cell} /></td>)}</tr>)}</tbody>
+      </table>
+    </div>
+  );
+  if (block.type === 'ul') return <ul>{block.items.map(item => <li><BlogInline tokens={item} /></li>)}</ul>;
+  if (block.type === 'ol') return <ol>{block.items.map(item => <li><BlogInline tokens={item} /></li>)}</ol>;
+  return <p><BlogInline tokens={block.children} /></p>;
+})}

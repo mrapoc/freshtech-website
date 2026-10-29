@@ -1,0 +1,331 @@
+{
+  "route": "/compare",
+  "source": "pages-v2/ComparePageV2.tsx",
+  "sourceSha256": "e0187ce5b93d6b4940dbfe0b315bac819d4825727b3adf020da7cfd987975599",
+  "capturedAt": "2026-09-16T12:23:13.787Z",
+  "head": {
+    "title": "Compare: What We Include That £30 IT Providers Don't | Fresh Tech",
+    "description": "Honest comparison: Fresh Tech Standard at £40/user vs a typical national IT provider at £30/user vs DIY in-house IT. Twelve rows of what's actually in the price.",
+    "canonical": "https://fresh-tech.uk/compare",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Compare: What We Include That £30 IT Providers Don't",
+        "description": "Honest comparison: Fresh Tech Standard at £40/user vs a typical national IT provider at £30/user vs DIY in-house IT. Twelve rows of what's actually in the price.",
+        "url": "https://fresh-tech.uk/compare",
+        "provider": {
+          "@id": "https://fresh-tech.uk/#localbusiness"
+        },
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": [
+          "LocalBusiness",
+          "ProfessionalService"
+        ],
+        "@id": "https://fresh-tech.uk/#localbusiness",
+        "name": "Fresh Tech IT Support",
+        "description": "Managed IT Support and Cybersecurity services for businesses in Shropshire, Herefordshire, and the West Midlands.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/",
+        "telephone": "+441584517234",
+        "email": "hello@fresh-tech.uk",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.368,
+          "longitude": -2.717
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          },
+          {
+            "@type": "City",
+            "name": "Ludlow"
+          },
+          {
+            "@type": "City",
+            "name": "Shrewsbury"
+          },
+          {
+            "@type": "City",
+            "name": "Hereford"
+          },
+          {
+            "@type": "City",
+            "name": "Telford"
+          },
+          {
+            "@type": "City",
+            "name": "Worcester"
+          },
+          {
+            "@type": "City",
+            "name": "Leominster"
+          },
+          {
+            "@type": "City",
+            "name": "Ross-on-Wye"
+          },
+          {
+            "@type": "City",
+            "name": "Bridgnorth"
+          },
+          {
+            "@type": "City",
+            "name": "Malvern"
+          },
+          {
+            "@type": "City",
+            "name": "Ledbury"
+          },
+          {
+            "@type": "City",
+            "name": "Oswestry"
+          },
+          {
+            "@type": "City",
+            "name": "Welshpool"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.368,
+            "longitude": -2.717
+          },
+          "geoRadius": "55000"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed IT Support",
+              "url": "https://fresh-tech.uk/services/managed-it-support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Security",
+              "url": "https://fresh-tech.uk/services/cybersecurity"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Essentials Certification Support",
+              "url": "https://fresh-tech.uk/services/cyber-essentials"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microsoft 365 & Cloud Solutions",
+              "url": "https://fresh-tech.uk/services/cloud-solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud Backup & Disaster Recovery",
+              "url": "https://fresh-tech.uk/services/backup-disaster-recovery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Phone Systems",
+              "url": "https://fresh-tech.uk/services/cloud-phone-systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Procurement",
+              "url": "https://fresh-tech.uk/services/hardware-procurement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic IT Projects",
+              "url": "https://fresh-tech.uk/services/strategic-projects"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed Print",
+              "url": "https://fresh-tech.uk/services/managed-print"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast remote response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Compare",
+            "item": "https://fresh-tech.uk/compare"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "What we include that £30 IT providers don't."
+      ],
+      [
+        2,
+        "£10 buys you peace of mind, not paperwork."
+      ],
+      [
+        2,
+        "Send us your IT invoice"
+      ]
+    ],
+    "links": [
+      [
+        "/contact",
+        "Book one →"
+      ],
+      [
+        "/contact?ref=spend-review",
+        "Request a free review →"
+      ]
+    ],
+    "images": [],
+    "text": "Honest comparison What we include that £30 IT providers don't. We're not the cheapest. We're not pretending to be. This page is a no-spin comparison of what's actually in the price: Fresh Tech Standard versus a typical national IT provider at £30/user, versus doing it yourself in-house. Tick = fully included. Half-tick = partially / sometimes / extra-cost. Cross = not included or has to be done another way. Feature Fresh Tech Standard · £40/user National IT provider Typical · £30/user DIY in-house You / your team Huntress managed EDR + identity threat detection Included on every tier, Standard included Usually £6–10/user/month extra You'd need to buy + manage it yourself Microsoft 365 backup (mail, OneDrive, SharePoint, Teams) Independent third-party backup, included Often £4–8/user/month extra Most assume Microsoft \"has it covered\", but they don't DMARC policy management Configured and monitored Typically a project, often not done at all Specialist skill, rarely done in-house Cloudflare DNS management We hold DNS so third parties can't break your email Often pointed at a registrar nobody owns Usually whoever set up the website years ago Cyber Essentials maintenance + evidence pack Year-round; ready for annual assessment Often a paid project, redone yearly Multi-week internal project + assessor cost Basic shared webhosting Included if you need a simple business site Separate hosting bill, usually £15–30/month GoDaddy / 123-reg retail rates Domain renewal absorbed (standard TLDs) .co.uk, .com, .uk, .org, .net etc, at our cost You pay registrar retail (~£25–40/year) Retail rates from your registrar Onsite support Remote-first on every tier; onsite only when remote cannot fix it, billed separately Often \"billable on top\" once you're past 20 miles You're the onsite Named engineer who knows your business Two engineers, you talk to one of us, directly A ticket queue, rotating helpdesk One person, and if they're ill, no cover Response time on critical issues P1 within 30 minutes on every tier Best-efforts, often 1–4 hours Whenever they get to it / are in the office Holiday & sickness cover Two of us means continuous cover Helpdesk model handles cover by design If your IT person is off, nothing happens Indicative monthly cost (20-user business) Standard £800/mo · Plus £1,200/mo · Premium £1,800/mo £600/mo headline + ~£300/mo of \"extras\" usually billed on top £3,500–4,000/mo (salary loaded for 1 FTE) \"Typical national IT provider\" figures are based on published price lists and procurement quotes we've seen from clients switching to us in 2025–2026. Your mileage may vary, every provider differs. The point is that £10/month/user buys a lot more than people think once you account for the line items above. Why we're not the cheapest £10 buys you peace of mind, not paperwork. Most clients who quote-shop discover the £30 headline becomes £45–55 after the add-ons that should have been included. Worse, the bits they didn't think to ask about, such as DMARC, M365 backup, identity threat detection, usually aren't there at all. They find out when the breach happens. Fresh Tech's pricing is indicative: we'll quote you exactly during a 20-minute discovery call once we know your user count, sites, and devices. Book one → Want a side-by-side on your current provider? Send us your IT invoice We'll do a free, honest breakdown of what you're paying for vs what's actually in the bill, even if our answer is \"stay where you are.\" PDF invoices only · Handled securely · No sales calls Request a free review → Last reviewed May 2026 · Sam James"
+  }
+}

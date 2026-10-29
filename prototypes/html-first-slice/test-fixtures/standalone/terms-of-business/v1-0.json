@@ -1,0 +1,201 @@
+{
+  "route": "/terms-of-business/v1-0",
+  "source": "pages-v2/LegalDocumentPageV2.tsx",
+  "sourceSha256": "c572f3ca3c42e1be10e29b23ec320004aae4715ac0930d0c16c26d524e8fbaee",
+  "capturedAt": "2026-09-16T15:21:33.211Z",
+  "head": {
+    "title": "Terms of Business | Fresh Tech IT Support",
+    "description": "The terms that apply to every piece of work Fresh Tech does for you, contracted or ad hoc.",
+    "canonical": "https://fresh-tech.uk/terms-of-business/v1-0",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "article",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Terms of Business",
+        "description": "The terms that apply to every piece of work Fresh Tech does for you, contracted or ad hoc.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/terms-of-business/v1-0",
+        "author": {
+          "@id": "https://fresh-tech.uk/#organization"
+        },
+        "publisher": {
+          "@id": "https://fresh-tech.uk/#organization"
+        },
+        "mainEntityOfPage": "https://fresh-tech.uk/terms-of-business/v1-0"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Terms of Business",
+            "item": "https://fresh-tech.uk/terms-of-business"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Version 1.0",
+            "item": "https://fresh-tech.uk/terms-of-business/v1-0"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "The legal bit."
+      ],
+      [
+        2,
+        "1. Who we are and how these terms apply"
+      ],
+      [
+        2,
+        "2. Definitions"
+      ],
+      [
+        2,
+        "3. Services"
+      ],
+      [
+        2,
+        "4. Fees and payment"
+      ],
+      [
+        2,
+        "5. Your responsibilities"
+      ],
+      [
+        2,
+        "6. Administrative access"
+      ],
+      [
+        2,
+        "7. Third Party Products"
+      ],
+      [
+        2,
+        "8. Data protection"
+      ],
+      [
+        2,
+        "9. Confidentiality"
+      ],
+      [
+        2,
+        "10. Intellectual property"
+      ],
+      [
+        2,
+        "11. Warranties and liability"
+      ],
+      [
+        2,
+        "12. Term and termination"
+      ],
+      [
+        2,
+        "13. Non-solicitation"
+      ],
+      [
+        2,
+        "14. General"
+      ],
+      [
+        2,
+        "Version history"
+      ]
+    ],
+    "links": [
+      [
+        "/dpa",
+        "Data Processing Terms"
+      ],
+      [
+        "/dpa",
+        "Data Processing Terms"
+      ],
+      [
+        "/sub-processors",
+        "authorised sub-processors"
+      ],
+      [
+        "/privacy-policy",
+        "privacy policy"
+      ],
+      [
+        "mailto:hello@fresh-tech.uk",
+        "hello@fresh-tech.uk"
+      ],
+      [
+        "/terms-of-business/v1-0",
+        "1.0"
+      ]
+    ],
+    "images": [],
+    "text": "Terms of Business The legal bit. Version 1.0 Effective date 14 September 2026 Version 1.0. Effective 14 September 2026. 1. Who we are and how these terms apply 1.1 We are FRESH PCS CONSULTANCY LTD, trading as Fresh Tech, a company registered in England and Wales under company number 09296207, registered office 28 Livesey Avenue, Ludlow, Shropshire, SY8 1HN. VAT number GB199976510. ICO registration ZA136732. In these terms \"we\", \"us\" and \"Fresh Tech\" mean that company, and \"you\" means the business we are providing services to. 1.2 These terms apply to every service we provide to you, whether under a signed Proposal, a quote, or a request made by email, telephone or through our service desk. They apply to ad hoc work in the same way as to contracted work, so that once you have accepted them we do not need a separate agreement for each job. 1.3 You accept these terms by doing any of the following: signing a Proposal that refers to them; accepting a quote or onboarding request that refers to them; or asking us to carry out work after we have referred you to them. Once accepted, they remain in force for all subsequent work until replaced. 1.4 Our Data Processing Terms form part of these terms and govern how we handle personal data on your behalf. 1.5 If a signed Proposal conflicts with these terms, the Proposal prevails for the services it covers. Otherwise these terms prevail over any terms you seek to impose, including any printed on a purchase order. 1.6 We may update these terms by giving you at least 30 days' notice by email. The version in force for any work is the version published when that work was requested. If you do not accept a change you may end the affected services on written notice before the change takes effect. 2. Definitions 2.1 \"Proposal\" means a written proposal, quote or order form issued by us and accepted by you, describing services and prices. 2.2 \"Managed Services\" means the recurring support services described in a Proposal, charged per user or per device per month. 2.3 \"Ad Hoc Work\" means any work you ask us to do that is not covered by Managed Services or a Proposal, charged at our Standard Rates. 2.4 \"Standard Rates\" means our published hourly and day rates in force at the time the work is requested, currently set out in clause 4. 2.5 \"Third Party Products\" means hardware, software, licences and subscriptions supplied by others that we procure or manage for you, including Microsoft 365. 3. Services 3.1 We will provide the services with reasonable skill and care, in line with good industry practice, and in accordance with any service levels set out in a Proposal. 3.2 Managed Services are provided on the basis described in your Proposal. Unless the Proposal says otherwise, Managed Services run on a 30 day rolling basis and either party may end them on 30 days' written notice. If you end Managed Services within the first 30 days we will refund the first month's fee. 3.3 Ad Hoc Work is carried out on request. We will tell you before starting if we expect a job to exceed 4 hours or to require Third Party Products, and we will not proceed until you confirm. For smaller jobs we will proceed on your request and invoice the time taken. 3.4 Project work is carried out under a Proposal describing scope, price and timescales. Work outside that scope is Ad Hoc Work unless a revised Proposal is agreed. 3.5 We may decline any request for work, and we may suspend services if your account is overdue by more than 14 days after we have given you written notice. 3.6 Timescales are estimates unless a Proposal states that a date is guaranteed. We are not responsible for delay caused by you, by a third party, or by circumstances outside our reasonable control. 4. Fees and payment 4.1 Managed Services are charged monthly in advance at the per user or per device rate in your Proposal. User and device counts are reconciled each month and the invoice adjusted accordingly. 4.2 Ad Hoc Work is charged at Standard Rates in 15 minute increments, with a minimum charge of 30 minutes per job. Current Standard Rates: reactive support £85 per hour; project work £100 per hour or £700 per day; out of hours work £150 per hour. Managed Services clients receive project work at £85 per hour or £600 per day. Travel to sites more than 25 miles from Ludlow is charged as time at Standard Rates. 4.3 Third Party Products are charged at the price quoted. Hardware and non-refundable licences are invoiced when ordered and are payable before we place the order. 4.4 All prices exclude VAT, which is charged at the applicable rate. 4.5 Invoices are payable within 7 days of the invoice date by bank transfer or direct debit. Managed Services invoices are payable by direct debit unless we agree otherwise. 4.6 If you dispute an invoice you must tell us within 7 days of receiving it, giving reasons, and pay the undisputed part on time. 4.7 We may charge interest on late payment at 8% per year above the Bank of England base rate under the Late Payment of Commercial Debts (Interest) Act 1998, together with the fixed recovery costs that Act allows. 4.8 We may change Standard Rates and Managed Services fees on 30 days' written notice. Fees fixed in a Proposal will not change during any fixed term stated in it. Where a Third Party Product supplier changes its price to us, we may pass that change on with as much notice as the supplier gives us. 5. Your responsibilities 5.1 You will give us accurate information, timely decisions and the access we need, including to premises, systems and third party accounts. 5.2 You will nominate a primary contact with authority to instruct us, and tell us of any change. We may act on instructions from anyone we reasonably believe to be authorised by you. 5.3 You are responsible for your own compliance with the licence terms of software you use, for the legality of the data and content on your systems, and for your own obligations under data protection law as controller. 5.4 You will keep your own credentials and multi-factor authentication methods secure, and will not share administrative access we provide. 5.5 Unless your Proposal includes a backup service, you are responsible for backing up your data. Before we carry out any work that could affect data, you should confirm that a current backup exists. 5.6 Where a job depends on something you must do, and it is not done, we may invoice for time spent and reschedule. 6. Administrative access 6.1 To deliver the services we will hold administrative access to your systems, including a Fresh Tech administrator account in your Microsoft 365 tenant and a partner relationship between your tenant and ours. Some tasks require this access and cannot be carried out through the partner relationship alone. 6.2 You will retain your own administrator account at all times. We will never leave you without administrative access to your own systems. 6.3 We will use administrative access only to deliver the services, in accordance with our Data Processing Terms. Administrative activity in your Microsoft 365 tenant is recorded in the Microsoft audit log, which you can inspect. 6.4 On termination we will remove our administrative accounts and partner relationships within 5 working days, and hand over any credentials we hold on your behalf. 6.5 We recommend that you keep at least one emergency administrator account under your own control, with credentials stored securely offline, and we will help you set this up. 7. Third Party Products 7.1 Third Party Products are supplied under their own manufacturer or vendor terms, which you accept when we procure them for you. This includes the Microsoft Customer Agreement for Microsoft subscriptions. 7.2 We will pass on the benefit of any manufacturer warranty but give no warranty of our own for Third Party Products beyond that we have sourced them with reasonable care. 7.3 Some subscriptions, including Microsoft annual term licences, cannot be cancelled or reduced before the end of their term. We will tell you the term before you commit. You remain liable for the full term whether or not you continue to use the subscription or our services. 7.4 Where you have licences or services on our partner or billing relationship at termination, we will help transfer them to you or a new provider. Any subscription that cannot be transferred remains payable by you until it expires. 7.5 We are not responsible for the availability or performance of third party services, including cloud platforms and internet connectivity, but we will use reasonable efforts to help you when they fail. 8. Data protection 8.1 Where we process personal data on your behalf, we do so as your processor under our Data Processing Terms, which form part of these terms. They set out our obligations under Article 28 of the UK GDPR, our security measures, and our authorised sub-processors. 8.2 Where we process your business contact and billing details for our own purposes, we do so as a controller under our privacy policy. 9. Confidentiality 9.1 Each party will keep the other's confidential information confidential, use it only for the purposes of these terms, and disclose it only to those who need it and are bound to keep it confidential. This does not apply to information that is public, already known to the recipient, independently developed, or required to be disclosed by law. 9.2 This obligation continues for 3 years after our relationship ends, and indefinitely for personal data and security information. 10. Intellectual property 10.1 Your data, and anything you already owned, remains yours. 10.2 Scripts, tooling, documentation templates, configurations and know-how that we develop remain ours, including where we develop or improve them in the course of working for you. We grant you a non-exclusive licence to use anything we install in your environment for as long as you use it, and on termination you may continue to use configurations and documentation already delivered to you. 10.3 Where a Proposal states that deliverables are created specifically for you and are yours to own, that statement prevails. 11. Warranties and liability 11.1 We warrant that we will provide the services with reasonable skill and care. If we fail to do so, we will re-perform the affected services at no charge, which is your main remedy for that failure. 11.2 We do not warrant that your systems will be free of faults, that services will be uninterrupted, or that any security measure will prevent every incident. No IT provider can, and we will not say otherwise. 11.3 We are not liable for loss caused by: your failure to follow our reasonable advice; changes made by you or by others to systems we manage; Third Party Products or services; pre-existing faults or vulnerabilities; or your failure to maintain backups where backup is not a service we provide. 11.4 Nothing in these terms limits liability for death or personal injury caused by negligence, for fraud, or for anything that cannot lawfully be limited. 11.5 Subject to clause 11.4, we are not liable for loss of profit, revenue, business, goodwill or data, or for any indirect or consequential loss, however arising. 11.6 Subject to clause 11.4, our total liability to you under or in connection with these terms in any 12 month period, whether in contract, tort, negligence or otherwise, is limited to the greater of: the fees you have paid us in the 12 months before the claim arose; and £5,000. 11.7 You must tell us in writing of any claim within 6 months of becoming aware of the circumstances giving rise to it. 12. Term and termination 12.1 These terms apply from the date you first accept them and continue until all services have ended. 12.2 Managed Services end as described in clause 3.2 or in your Proposal. Ad Hoc Work ends when the job is complete. 12.3 Either party may end all services immediately by written notice if the other commits a material breach that is not remedied within 14 days of notice, or becomes insolvent. 12.4 On termination you will pay for all work carried out and Third Party Products ordered up to the termination date. Fees paid in advance for Managed Services are not refundable except as stated in clause 3.2. 12.5 We will provide reasonable assistance to transition to a new provider or to your own management, charged at Standard Rates, provided your account is up to date. Clause 6.4 and our Data Processing Terms govern the removal of our access and the return or deletion of data. 13. Non-solicitation 13.1 During our relationship and for 12 months afterwards, you will not, without our written consent, employ or engage any member of our staff who has worked on your account. If you do, you will pay us a recruitment fee of 25% of that person's annual salary with us, which reflects our genuine cost of replacing them. 14. General 14.1 Neither party is liable for failure to perform caused by events outside its reasonable control, provided it tells the other promptly and uses reasonable efforts to resume. 14.2 These terms, your Proposal and our Data Processing Terms are the whole agreement between us for the services and replace any earlier discussions. 14.3 Neither party may assign these terms without the other's consent, except that we may assign to a company that acquires our business, on notice to you. 14.4 Notices must be in writing. Email to hello@fresh-tech.uk, or to the email address of your primary contact, is sufficient. 14.5 If any part of these terms is found unenforceable, the rest continues in force. 14.6 No one other than you and us may enforce these terms under the Contracts (Rights of Third Parties) Act 1999. 14.7 These terms are governed by the law of England and Wales, and the courts of England and Wales have exclusive jurisdiction. Version history Version Effective date Change 1.0 14 September 2026 First published version."
+  }
+}

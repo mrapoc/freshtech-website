@@ -1,0 +1,32 @@
+---
+import { blockTokens } from '../lib/tech-rich-text.mjs';
+
+// Native rendering of components/RichText.tsx output. Every token becomes an
+// element or escaped text; nothing here uses set:html. Paragraph lines are
+// separated by <br>, matching the React renderer, and list items carry the
+// same inline tokens as paragraph lines.
+interface Props { text: string }
+const groups = blockTokens(Astro.props.text).map(block => ({
+  tag: block.type,
+  rows: block.type === 'p' ? block.lines : block.items,
+}));
+---
+
+{groups.map(group => {
+  const rows = group.rows.map((tokens, index) => (
+    <>
+      {tokens.map(token => {
+        if (token.type === 'strong') return <strong>{token.value}</strong>;
+        if (token.type === 'em') return <em>{token.value}</em>;
+        if (token.type === 'link') return (
+          <a href={token.href} target={token.external ? '_blank' : undefined} rel={token.external ? 'noopener noreferrer' : undefined}>{token.label}</a>
+        );
+        return token.value;
+      })}
+      {group.tag === 'p' && index < group.rows.length - 1 ? <br /> : null}
+    </>
+  ));
+  if (group.tag === 'p') return <p>{rows}</p>;
+  if (group.tag === 'ul') return <ul>{rows.map(row => <li>{row}</li>)}</ul>;
+  return <ol>{rows.map(row => <li>{row}</li>)}</ol>;
+})}

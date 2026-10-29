@@ -1,0 +1,345 @@
+{
+  "route": "/why-trust-us",
+  "source": "pages-v2/WhyTrustUsPageV2.tsx",
+  "sourceSha256": "6c2f5c76fe76d2796657f3e5e33e059e24115b285b4fdbc0813a3a00a61db173",
+  "capturedAt": "2026-09-16T12:23:12.681Z",
+  "head": {
+    "title": "Why Trust Fresh Tech: Guarantees, Stats & Real Clients",
+    "description": "Helpdesk performance, 30-day money-back guarantee, Cyber Essentials accreditation and real client stories. Locally-owned IT support in Ludlow since 2014.",
+    "canonical": "https://fresh-tech.uk/why-trust-us",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "profile",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "Why Trust Fresh Tech: Guarantees, Stats & Real Clients",
+        "description": "Helpdesk performance, 30-day money-back guarantee, Cyber Essentials accreditation and real client stories. Locally-owned IT support in Ludlow since 2014.",
+        "url": "https://fresh-tech.uk/why-trust-us",
+        "mainEntity": {
+          "@id": "https://fresh-tech.uk/#localbusiness"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": [
+          "LocalBusiness",
+          "ProfessionalService"
+        ],
+        "@id": "https://fresh-tech.uk/#localbusiness",
+        "name": "Fresh Tech IT Support",
+        "description": "Managed IT Support and Cybersecurity services for businesses in Shropshire, Herefordshire, and the West Midlands.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/",
+        "telephone": "+441584517234",
+        "email": "hello@fresh-tech.uk",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.368,
+          "longitude": -2.717
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          },
+          {
+            "@type": "City",
+            "name": "Ludlow"
+          },
+          {
+            "@type": "City",
+            "name": "Shrewsbury"
+          },
+          {
+            "@type": "City",
+            "name": "Hereford"
+          },
+          {
+            "@type": "City",
+            "name": "Telford"
+          },
+          {
+            "@type": "City",
+            "name": "Worcester"
+          },
+          {
+            "@type": "City",
+            "name": "Leominster"
+          },
+          {
+            "@type": "City",
+            "name": "Ross-on-Wye"
+          },
+          {
+            "@type": "City",
+            "name": "Bridgnorth"
+          },
+          {
+            "@type": "City",
+            "name": "Malvern"
+          },
+          {
+            "@type": "City",
+            "name": "Ledbury"
+          },
+          {
+            "@type": "City",
+            "name": "Oswestry"
+          },
+          {
+            "@type": "City",
+            "name": "Welshpool"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.368,
+            "longitude": -2.717
+          },
+          "geoRadius": "55000"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed IT Support",
+              "url": "https://fresh-tech.uk/services/managed-it-support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Security",
+              "url": "https://fresh-tech.uk/services/cybersecurity"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Essentials Certification Support",
+              "url": "https://fresh-tech.uk/services/cyber-essentials"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microsoft 365 & Cloud Solutions",
+              "url": "https://fresh-tech.uk/services/cloud-solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud Backup & Disaster Recovery",
+              "url": "https://fresh-tech.uk/services/backup-disaster-recovery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Phone Systems",
+              "url": "https://fresh-tech.uk/services/cloud-phone-systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Procurement",
+              "url": "https://fresh-tech.uk/services/hardware-procurement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic IT Projects",
+              "url": "https://fresh-tech.uk/services/strategic-projects"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed Print",
+              "url": "https://fresh-tech.uk/services/managed-print"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast remote response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Why Trust Us",
+            "item": "https://fresh-tech.uk/why-trust-us"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "We prove it. We don't just say it."
+      ],
+      [
+        2,
+        "Four promises. In writing."
+      ],
+      [
+        2,
+        "Everything off your plate"
+      ],
+      [
+        2,
+        "Your first 30 days"
+      ],
+      [
+        2,
+        "From businesses we support"
+      ],
+      [
+        2,
+        "Fresh Tech vs typical IT support"
+      ],
+      [
+        2,
+        "Book a call with Sam"
+      ]
+    ],
+    "links": [
+      [
+        "tel:+441584517234",
+        "01584 517 234"
+      ],
+      [
+        "/contact",
+        "Book a call →"
+      ],
+      [
+        "#guarantees",
+        "See guarantees ↓"
+      ],
+      [
+        "/case-studies",
+        "Read full case studies →"
+      ],
+      [
+        "/contact",
+        "Book a 20-min call →"
+      ],
+      [
+        "/pricing",
+        "See pricing"
+      ]
+    ],
+    "images": [],
+    "text": "Why trust us? We prove it. We don't just say it. Below you'll find our contractual guarantees, live performance data from our helpdesk (not marketing numbers, real ones), and the exact timeline of what your first month looks like. If something doesn't add up, call me on 01584 517 234 and ask me directly. Sam, Founder Book a call →See guarantees ↓ 👤 Sam James Founder & Director · Est. 2014 I started Fresh Tech because I was tired of seeing local businesses get let down by IT companies that didn't call back, charged by the ticket, and spoke in jargon. After a decade supporting businesses across Shropshire, Herefordshire and the Welsh Marches, I know what makes people hesitate: will this one actually be different? Cyber Essentials Certified Microsoft Partner Dell Premier Partner Huntress SOC Partner Customer reviews Helpdesk report · Availability depends on the feed Loading… Avg first response Last 30 days Loading… Avg call wait Last 30 days Loading… Avg resolution Last 30 days Reviews Customer feedback Read selected reviews below Guarantees Four promises. In writing. Not marketing copy: these are contractual commitments in every client agreement. In writing 🛡️ 30-day money-back guarantee If we're not the right fit in your first 30 days, you pay nothing. No questions, no argument. We'll even help you transition away if needed. 🔄 Zero downtime switching We run both IT systems in parallel during handover. Your team keeps working. Most clients never notice the change happened. They just start getting faster responses. ⚡ Measured response times When available, the figures above come from our helpdesk report. Contact us to discuss the response commitments for your business. 📋 No lock-in tricks 12-month terms so we can invest in setting you up properly. But if it's not working, we'll part ways fairly. We keep clients by being good at the job, not by trapping them. Scope of service Everything off your plate One flat monthly fee covers all of this. No per-ticket charges, no \"that's out of scope\" emails, no invoices you didn't see coming. Email & Microsoft 365 Servers & networks Printers & peripherals Backups & disaster recovery Antivirus & endpoint security Domain names & DNS Internet & phone lines Software licences & renewals Staff onboarding & offboarding Vendor management (we deal with BT) Standards & tools Microsoft 365 Business Email, Teams, SharePoint, OneDrive, fully managed Cyber Essentials Certified NCSC-backed security standard: we hold it and help you get it 24/7 Remote Monitoring Proactive alerts: we catch problems before you notice Encrypted cloud backup Automatic, tested, off-site, with restores verified quarterly Advanced endpoint protection Next-gen AV on every device, managed centrally Unlimited helpdesk Phone, email, remote: no caps, no per-issue fees Onboarding Your first 30 days Switching IT providers feels risky. We've done it dozens of times for businesses just like yours. Here's exactly what happens, step by step, no surprises. The \"difficult previous IT\" problem If your current provider is being awkward about handing over admin credentials or licences, we've handled that before. We can work around uncooperative providers. It's never stopped an onboarding yet. Day 1 Discovery call 30 minutes. We listen to your situation, ask about your pain points, and tell you honestly whether we can help. No sales script. Days 2–5 Technical audit We scan your network, devices, security posture, and licences. You get a plain-English report of every risk we find, yours to keep regardless of whether you proceed. Days 6–7 Proposal & agreement Clear, itemised quote with fixed monthly pricing. You know exactly what you get before you sign. No hidden costs, no surprises on the first invoice. Days 8–14 Credential handover We liaise with your current provider to transfer admin access and licences. If they're awkward about it, we've dealt with that before, and we can work around them. Days 15–21 Setup & parallel running Monitoring, backups, security tools deployed to every device. Both systems run side-by-side so your team experiences zero downtime during the switch. Day 22+ Go live Your team gets a quick intro: how to reach us, what to expect. From here we handle everything in the background and you get on with running your business. What clients say From businesses we support Our average client relationship is over 5 years. ★★★★★ \"In healthcare, downtime isn't an option. Fresh Tech ensures our care management systems run 24/7. We've had zero unplanned outages since switching.\" Vince Burmingham Hendra Healthcare ★★★★★ \"When our server failed unexpectedly, they had us back online within 2 hours. That kind of response saves us thousands in lost productivity.\" Stephen Jaques Jaques Int ★★★★★ \"We have been working with Sam and the Fresh Tech team for over 5 years. The response time and service we receive is excellent.\" Helen Graham The Ludlow Nut Company ★★★★★ \"Fresh Tech typically responds in under 15 minutes. It's like having my own IT department, but at a fraction of the cost.\" Iain Urquhart Advanced Pest Management Read full case studies → The comparison Fresh Tech vs typical IT support Not \"us vs a named competitor\", just the differences that actually matter in a support relationship. What matters Typical IT firm Fresh Tech Who answers your call ✕Call centre. Ticket queue. ✓Sam. Or Matt. By name. Response time ✕Best efforts (usually hours) ✓Under 15 minutes, measured Pricing model ✕Hours + callouts + extras ✓Flat per-user fee (onsite billed separately) Onboarding cost ✕£1,500–5,000 setup fee ✓No setup fee New user setup ✕£150–300 per user ✓Included Security training ✕£500+/year extra ✓Included Leaving ✕Export fee, awkward handover ✓30-day notice, clean exit Ready? Book a call with Sam 20 minutes. No sales pitch, no obligation. Just an honest conversation about your IT and whether we're the right fit. Book a 20-min call →See pricing 30-day money-back guarantee · 01584 517 234 · Mon–Fri 9am–5pm"
+  }
+}

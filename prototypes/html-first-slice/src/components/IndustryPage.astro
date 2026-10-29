@@ -1,0 +1,99 @@
+---
+import InlineMarkdown from './InlineMarkdown.astro';
+
+interface Card { title: string; desc: string }
+interface Faq { q: string; a: string }
+interface Industry {
+  slug: string; name: string; desc: string; title: string; metaDesc: string; h1: string; intro: string;
+  challenges: Card[]; solutions: Card[]; faqs: Faq[]; minStaff: number | null;
+}
+interface Props { industry: Industry; related: Pick<Industry, 'slug' | 'name'>[] }
+const { industry, related } = Astro.props;
+const sector = industry.name.toLowerCase();
+---
+
+<main id="main-content" class="industry-page" data-industry-page={industry.slug} tabindex="-1">
+  <section class="industry-hero">
+    <div class="industry-container industry-hero-grid industry-hero-grid-detail">
+      <div>
+        <p class="industry-eyebrow industry-eyebrow-light">We work with {sector}</p>
+        <h1>{industry.h1}</h1>
+        <p class="industry-hero-copy"><InlineMarkdown text={industry.intro} /></p>
+        <div class="industry-actions">
+          <a class="industry-primary-button" href="/contact">Book a 20-min call <span aria-hidden="true">→</span></a>
+          <a class="industry-secondary-button" href="#challenges">How we help <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <aside class="industry-stat-panel" aria-label="Typical client size">
+        <strong>{industry.minStaff ?? 5}+</strong>
+        <span>Staff: typical client size in {sector}</span>
+      </aside>
+    </div>
+  </section>
+
+  <section id="challenges" class="industry-section industry-challenges">
+    <div class="industry-container">
+      <header class="industry-section-heading">
+        <p class="industry-eyebrow">What {sector} deal with</p>
+        <h2>We know your problems</h2>
+        <p>These aren't hypothetical; they're the issues we fix every week.</p>
+      </header>
+      <div class="industry-card-grid">
+        {industry.challenges.map(card => (
+          <article class="industry-card">
+            <h3>{card.title}</h3>
+            <p><InlineMarkdown text={card.desc} /></p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="industry-section industry-solutions">
+    <div class="industry-container">
+      <header class="industry-section-heading">
+        <p class="industry-eyebrow">What we do for you</p>
+        <h2>How we solve them</h2>
+      </header>
+      <div class="industry-card-grid">
+        {industry.solutions.map(card => (
+          <article class="industry-card industry-solution-card">
+            <h3>{card.title}</h3>
+            <p><InlineMarkdown text={card.desc} /></p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="industry-section industry-questions">
+    <div class="industry-container industry-questions-grid">
+      <div>
+        <p class="industry-eyebrow">Questions from {sector}</p>
+        <h2>Specific to your sector</h2>
+        <div class="industry-faq-list">
+          {industry.faqs.map(faq => (
+            <details>
+              <summary><span><InlineMarkdown text={faq.q} /></span><b aria-hidden="true">+</b></summary>
+              <div><InlineMarkdown text={faq.a} /></div>
+            </details>
+          ))}
+        </div>
+      </div>
+      <aside aria-label="Other sectors">
+        <p class="industry-related-label">Other sectors we support</p>
+        <div class="industry-related-links">
+          {related.map(other => (
+            <a href={`/industries/${other.slug}`}>{other.name}<span aria-hidden="true">→</span></a>
+          ))}
+          <a class="industry-all-sectors" href="/industries">View all sectors <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="industry-question-card">
+          <h3>Not sure if we're right for your sector?</h3>
+          <p>Call us. 20 minutes. We'll tell you honestly.</p>
+          <a href="/contact">Book a call <span aria-hidden="true">→</span></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>

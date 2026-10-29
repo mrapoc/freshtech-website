@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import CaseStudiesListing from '../../components/CaseStudiesListing.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import CookieConsent from '../../components/CookieConsent.astro';
+import { listingSeo } from '../../lib/case-study-seo.mjs';
+import '../../styles/services.css';
+import '../../styles/case-studies.css';
+import PrototypeBanner from '../../components/PrototypeBanner.astro';
+
+const seo = listingSeo();
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonical={seo.canonical} image={seo.image} ogType={seo.ogType} schemas={seo.schemas} robots={seo.robots} preloadFonts={['/fonts/bungee-latin.woff2']} pageFamily="case-studies">
+  <PrototypeBanner />
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <SiteNav activePage="Case Studies" />
+  <CaseStudiesListing />
+  <SiteFooter />
+  <CookieConsent />
+</BaseLayout>
+
+<script src="../../scripts/enhance.ts"></script>
+<script src="../../scripts/case-study-filters.ts"></script>

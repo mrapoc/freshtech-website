@@ -1,0 +1,85 @@
+---
+import WebsiteProof from '../components/WebsiteProof.astro';
+// Public evidence uses the reviewed projection contract.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+
+const seo = {
+  path: '/service-standards',
+  title: 'Our Service Standards and Helpdesk Performance',
+  description: 'How we measure support queue wait and answer rates, with selected customer feedback when available. Discuss your support needs with our Ludlow team.',
+  type: 'website',
+};
+---
+
+<StandaloneShell name="service-standards" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <p class="sa-eyebrow sa-eyebrow-light">Helpdesk performance</p>
+      <h1 class="sa-display sa-display-light" style="--sa-size: 50px; --sa-size-mobile: 34px; margin-bottom: 20px; max-width: 18ch">See how our helpdesk is performing.</h1>
+      <p class="sa-lead" style="max-width: 60ch; margin-bottom: 12px">When verified figures are available, we show the measured queue wait together with the proportion of support calls answered by a person.</p>
+    </div>
+  </section>
+
+  <div class="proof-container"><WebsiteProof id="service-standards-proof" contact /></div>
+
+  <section class="sa-section sa-paper sa-rule">
+    <div class="sa-wrap sa-prose" style="--sa-max: 820px">
+      <p class="sa-eyebrow">How these numbers work</p>
+      <h2 class="sa-display" style="--sa-size: 32px; margin-bottom: 16px">Where the figures come from.</h2>
+      <p style="max-width: 64ch"><strong>Average queue wait</strong> measures the time from joining the support queue to a human answer, among answered calls. The answer rate includes missed and abandoned calls. The reporting period covers 28 completed UK calendar days and is shown with the figures.</p>
+      <p style="max-width: 64ch; margin-bottom: 0">Figures and selected feedback are shown only while valid and current. These are historic results, not response or resolution guarantees.</p>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <p class="sa-eyebrow">What you actually get</p>
+      <h2 class="sa-display" style="--sa-size: 32px; margin-bottom: 36px">Behind the numbers</h2>
+      <div class="ss-cards">
+        <div class="ss-card">
+          <div class="ss-card-h">Unlimited support</div>
+          <p>No per-ticket charges and no clock-watching. Your team calls as often as they need, and the price doesn’t change.</p>
+        </div>
+        <div class="ss-card">
+          <div class="ss-card-h">Real people, locally</div>
+          <p>You speak to named engineers who know your setup, not a different stranger reading a script every time.</p>
+        </div>
+        <div class="ss-card">
+          <div class="ss-card-h">Customer reviews</div>
+          <p>Read selected customer feedback when available, or explore our published customer stories.</p>
+        </div>
+      </div>
+      <p class="ss-more">Want the full story on how we earn that trust? See <a class="sa-link" href="/why-trust-us">why businesses trust us</a>.</p>
+    </div>
+  </section>
+
+  <section class="sa-section sa-ink sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <p class="sa-eyebrow sa-eyebrow-light">See it for yourself</p>
+      <h2 class="sa-display sa-display-light" style="--sa-size: 36px; margin-bottom: 16px">Put us to the test</h2>
+      <p class="sa-lead ss-cta-lead">A 20-minute call, an honest assessment of where you are, and numbers we’re happy to be measured against.</p>
+      <a class="sa-button" href="/contact">Book a 20-min call →</a>
+    </div>
+    <p class="ss-reviewed">Last reviewed May 2026 · Sam James</p>
+  </section>
+</StandaloneShell>
+
+<style>
+  .ss-metrics-wrap { padding: 0 0 48px; }
+  @media (min-width: 768px) { .ss-metrics-wrap { padding: 0 0 64px; } }
+  .ss-live { padding: 32px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05); }
+  .ss-live h2 { font: 400 24px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--paper); margin-bottom: 20px; }
+  .ss-live-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 0; }
+  @media (min-width: 640px) { .ss-live-grid { grid-template-columns: 1fr 1fr; } }
+  .ss-live-grid dt { font-size: 14px; color: #b9c0c6; margin: 0 0 6px; }
+  .ss-live-grid dd { font: 400 26px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--paper); margin: 0; }
+  .ss-live-status { margin: 20px 0 0; font-size: 14px; color: #b9c0c6; }
+  .ss-cards { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 768px) { .ss-cards { grid-template-columns: repeat(3, 1fr); } }
+  .ss-card { background: var(--white); border: 1px solid var(--hairline); padding: 26px; box-shadow: 0 4px 16px rgba(15,25,35,0.06); }
+  .ss-card-h { font: 400 17px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--primary-dark); margin-bottom: 10px; }
+  .ss-card p { font-size: 14px; color: rgba(15,25,35,.78); line-height: 1.65; margin: 0; }
+  .ss-more { font-size: 15px; color: rgba(15,25,35,.78); line-height: 1.65; max-width: 64ch; margin: 28px 0 0; }
+  .ss-cta-lead { max-width: 46ch; margin-inline: auto; margin-bottom: 28px; color: #b9c0c6; }
+  .ss-reviewed { text-align: center; padding: 20px 16px 24px; font: 700 11px/1.3 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .14em; color: #c7cdd2; margin: 0; }
+</style>

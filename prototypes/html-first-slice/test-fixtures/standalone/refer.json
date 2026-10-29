@@ -1,0 +1,290 @@
+{
+  "route": "/refer",
+  "source": "pages-v2/ReferralPageV2.tsx",
+  "sourceSha256": "2304021de6284f2badfe5bdd4dc849a2252f1339da0d9c2bf7aeb9ea944504d9",
+  "capturedAt": "2026-09-16T12:23:10.015Z",
+  "head": {
+    "title": "Refer a Business: Get a Month's Free Support | Fresh Tech",
+    "description": "Refer a business to Fresh Tech. We credit your account with one month of their service value, used against your support bills. No cap, no awkward calls.",
+    "canonical": "https://fresh-tech.uk/refer",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": [
+          "LocalBusiness",
+          "ProfessionalService"
+        ],
+        "@id": "https://fresh-tech.uk/#localbusiness",
+        "name": "Fresh Tech IT Support",
+        "description": "Managed IT Support and Cybersecurity services for businesses in Shropshire, Herefordshire, and the West Midlands.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/",
+        "telephone": "+441584517234",
+        "email": "hello@fresh-tech.uk",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.368,
+          "longitude": -2.717
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          },
+          {
+            "@type": "City",
+            "name": "Ludlow"
+          },
+          {
+            "@type": "City",
+            "name": "Shrewsbury"
+          },
+          {
+            "@type": "City",
+            "name": "Hereford"
+          },
+          {
+            "@type": "City",
+            "name": "Telford"
+          },
+          {
+            "@type": "City",
+            "name": "Worcester"
+          },
+          {
+            "@type": "City",
+            "name": "Leominster"
+          },
+          {
+            "@type": "City",
+            "name": "Ross-on-Wye"
+          },
+          {
+            "@type": "City",
+            "name": "Bridgnorth"
+          },
+          {
+            "@type": "City",
+            "name": "Malvern"
+          },
+          {
+            "@type": "City",
+            "name": "Ledbury"
+          },
+          {
+            "@type": "City",
+            "name": "Oswestry"
+          },
+          {
+            "@type": "City",
+            "name": "Welshpool"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.368,
+            "longitude": -2.717
+          },
+          "geoRadius": "55000"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed IT Support",
+              "url": "https://fresh-tech.uk/services/managed-it-support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Security",
+              "url": "https://fresh-tech.uk/services/cybersecurity"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Essentials Certification Support",
+              "url": "https://fresh-tech.uk/services/cyber-essentials"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microsoft 365 & Cloud Solutions",
+              "url": "https://fresh-tech.uk/services/cloud-solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud Backup & Disaster Recovery",
+              "url": "https://fresh-tech.uk/services/backup-disaster-recovery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Phone Systems",
+              "url": "https://fresh-tech.uk/services/cloud-phone-systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Procurement",
+              "url": "https://fresh-tech.uk/services/hardware-procurement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic IT Projects",
+              "url": "https://fresh-tech.uk/services/strategic-projects"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed Print",
+              "url": "https://fresh-tech.uk/services/managed-print"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Refer a Business",
+            "item": "https://fresh-tech.uk/refer"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "Know someone whose IT is driving them mad?"
+      ],
+      [
+        2,
+        "Tell us about them"
+      ]
+    ],
+    "links": [],
+    "images": [],
+    "text": "Refer a business Know someone whose IT is driving them mad? Introduce a business that joins Fresh Tech and we knock a full month of their service value off your support bill. Refer a bigger one, knock off more. No forms to chase. No awkward commission conversations. Just fill in the details below and we'll take it from there, discreetly. 5min To submit a referral 1 month Free support per referral No cap Refer bigger, knock off more 01 You fill in the form Tell us who to contact: name, business, phone number. That's it. 02 We reach out gently We contact them by their preferred method. No hard sell, no pestering, no cold-call energy. 03 They join, you get free support Once they've been with us 60 days, we credit your account with one full month of their service value, applied against your future support invoices until used up. The referral Tell us about them We only need the basics. We'll do the rest without making it weird. What happens with this information ✓We contact the business once by their preferred method, with no repeat calls without consent. ✓We mention your name only if you tell us to in the note below. ✓We never share referral details with third parties. ✓If they're not interested, we stop there. Simple. ✓Credit lands once the referred business has been with us 60 days. If they cancel before then, no credit, but no hard feelings either. Your reward: free support, in proportion After your referral has been with us 60 days, one full month of their recurring service fee is credited to your account. It comes off your support invoices until exhausted, so the bigger the business you refer, the longer your free support lasts. Service fee only: licenses and hardware pass through at supplier cost. Your details Your name Your email Your business (so we know which account to credit) Business you're referring Business name Contact name Their phone Anything useful for us to know? (optional) Submit referral → We'll send you a confirmation email once we've made contact."
+  }
+}

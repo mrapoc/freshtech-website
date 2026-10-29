@@ -1,0 +1,107 @@
+---
+// Port of pages-v2/ReferralPageV2.tsx. The form only fakes a "SENT!" success
+// message (FORM-01), so per the batch brief it is replaced with a short
+// truthful fallback (call, email or /contact); see
+// STANDALONE_DIFFERENCES['/refer'] for the resulting text/link differences.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+
+// BaseLayout validates PUBLIC_SITE_MODE for every page.
+const production = import.meta.env.PUBLIC_SITE_MODE === 'production';
+
+const seo = {
+  path: '/refer',
+  title: "Refer a Business: Get a Month's Free Support",
+  description: 'Refer a business to Fresh Tech. We credit your account with one month of their service value, used against your support bills. No cap, no awkward calls.',
+};
+
+const steps = [
+  { n: '01', title: 'You fill in the form', desc: "Tell us who to contact: name, business, phone number. That's it." },
+  { n: '02', title: 'We reach out gently', desc: 'We contact them by their preferred method. No hard sell, no pestering, no cold-call energy.' },
+  { n: '03', title: 'They join, you get free support', desc: "Once they've been with us 60 days, we credit your account with one full month of their service value, applied against your future support invoices until used up." },
+];
+
+const trustPoints = [
+  'We contact the business once by their preferred method, with no repeat calls without consent.',
+  'We mention your name only if you tell us to in the note below.',
+  'We never share referral details with third parties.',
+  "If they're not interested, we stop there. Simple.",
+  'Credit lands once the referred business has been with us 60 days. If they cancel before then, no credit, but no hard feelings either.',
+];
+---
+
+<StandaloneShell name="refer" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap sa-refer-hero">
+      <div>
+        <p class="sa-tag">Refer a business</p>
+        <h1 class="sa-display sa-display-light" style="--sa-size: 40px; --sa-size-mobile: 30px; margin-bottom: 20px; line-height: 1">Know someone whose IT is driving them mad?</h1>
+        <p class="sa-lead">Introduce a business that joins Fresh Tech and we knock a full month of their service value off your support bill. Refer a bigger one, knock off more.</p>
+        <p class="sa-lead sa-lead-soft">No forms to chase. No awkward commission conversations. Just fill in the details below and we'll take it from there, discreetly.</p>
+        <div class="sa-facts">
+          <div><div class="sa-fact-num">5min</div><div class="sa-fact-label">To submit a referral</div></div>
+          <div><div class="sa-fact-num">1 month</div><div class="sa-fact-label">Free support per referral</div></div>
+          <div><div class="sa-fact-num">No cap</div><div class="sa-fact-label">Refer bigger, knock off more</div></div>
+        </div>
+      </div>
+      <div class="sa-steps">
+        {steps.map(s => (
+          <div class="sa-step"><span class="sa-step-num">{s.n}</span><div><div class="sa-step-title">{s.title}</div><div class="sa-step-desc">{s.desc}</div></div></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper sa-rule">
+    <div class="sa-wrap sa-refer-form">
+      <div>
+        <p class="sa-eyebrow">The referral</p>
+        <h2 class="sa-h2">Tell us about them</h2>
+        <p class="sa-sub2">We only need the basics. We'll do the rest without making it weird.</p>
+        <div class="sa-trust-box">
+          <div class="sa-trust-title">What happens with this information</div>
+          {trustPoints.map(t => <div class="sa-trust-point"><span>✓</span>{t}</div>)}
+        </div>
+        <div class="sa-reward-box">
+          <div class="sa-reward-title">Your reward: free support, in proportion</div>
+          <p>After your referral has been with us 60 days, one full month of their recurring service fee is credited to your account. It comes off your support invoices until exhausted, so the bigger the business you refer, the longer your free support lasts. <em>Service fee only: licenses and hardware pass through at supplier cost.</em></p>
+        </div>
+      </div>
+
+      <div class="sa-fallback">
+        <p class="sa-fallback-title">Referring a business</p>
+        <p>{production ? 'Call' : 'This preview cannot submit referrals online. Call'} <a href="tel:+441584517234">01584 517 234</a>, email <a href="mailto:hello@fresh-tech.uk">hello@fresh-tech.uk</a> or use our <a href="/contact">contact page</a>, and let us know who you'd like to introduce.</p>
+      </div>
+    </div>
+  </section>
+</StandaloneShell>
+
+<style>
+  .sa-refer-hero { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center; }
+  @media (min-width: 768px) { .sa-refer-hero { grid-template-columns: 1fr 1fr; gap: 64px; } }
+  .sa-tag { display: inline-block; background: var(--yellow); color: var(--ink); border: 2px solid var(--paper); padding: 6px 16px; font: 400 12px 'SA Bungee', sans-serif; transform: rotate(-2deg); margin-bottom: 24px; }
+  .sa-lead { color: rgba(255,255,255,0.75); font-size: 17px; line-height: 1.65; margin: 0 0 12px; max-width: 46ch; }
+  .sa-lead-soft { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 28px; }
+  .sa-facts { display: flex; gap: 28px; flex-wrap: wrap; }
+  .sa-fact-num { font: 400 26px 'SA Bungee', sans-serif; color: var(--yellow); }
+  .sa-fact-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); font-weight: 700; margin-top: 4px; max-width: 12ch; line-height: 1.4; }
+  .sa-steps { display: flex; flex-direction: column; gap: 2px; }
+  .sa-step { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); padding: 18px 22px; display: flex; gap: 16px; }
+  .sa-step-num { font: 400 26px 'SA Bungee', sans-serif; color: rgba(255,255,255,0.15); flex-shrink: 0; }
+  .sa-step-title { font-weight: 700; color: var(--paper); font-size: 15px; margin-bottom: 4px; }
+  .sa-step-desc { color: rgba(255,255,255,0.5); font-size: 13px; line-height: 1.6; }
+  .sa-refer-form { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: start; }
+  @media (min-width: 768px) { .sa-refer-form { grid-template-columns: 1fr 1fr; gap: 64px; } }
+  .sa-h2 { color: var(--ink); font: 400 34px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; margin: 0 0 16px; }
+  .sa-sub2 { color: rgba(15,25,35,0.62); font-size: 16px; line-height: 1.65; max-width: 42ch; margin: 0 0 24px; }
+  .sa-trust-box { background: var(--paper-deep); border: 1px solid var(--hairline); padding: 22px; margin-bottom: 18px; }
+  .sa-trust-title { font-weight: 700; font-size: 15px; margin-bottom: 12px; }
+  .sa-trust-point { display: flex; gap: 10px; font-size: 14px; color: rgba(15,25,35,0.62); margin-bottom: 8px; }
+  .sa-trust-point span { color: #256b45; font-weight: 700; flex-shrink: 0; }
+  .sa-reward-box { background: var(--ink); color: var(--paper); padding: 20px 22px; }
+  .sa-reward-title { font: 400 13px 'SA Bungee', sans-serif; color: var(--yellow); margin-bottom: 6px; }
+  .sa-reward-box p { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; margin: 0; }
+  .sa-fallback { background: var(--white); border: 2px solid var(--ink); padding: 32px; box-shadow: 4px 4px 0 0 var(--ink); }
+  .sa-fallback-title { font: 400 18px 'SA Bungee', sans-serif; margin: 0 0 14px; }
+  .sa-fallback p { font-size: 15px; line-height: 1.7; color: rgba(15,25,35,0.7); margin: 0; }
+  .sa-fallback a { color: var(--primary-dark); font-weight: 700; }
+</style>

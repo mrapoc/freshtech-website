@@ -1,0 +1,72 @@
+{
+  "purpose": "Versioned copies of existing public image variants, served directly by the native site. No build-time image service dependency.",
+  "capturedAt": "2026-09-22",
+  "accept": "image/avif,image/webp,image/*,*/*;q=0.8",
+  "assets": [
+    {
+      "url": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto,w_480/v1778511802/team-photo-1.jpg",
+      "file": "prototypes/html-first-slice/public/images/home-team-v1778511802-480.webp",
+      "bytes": 19046,
+      "sha256": "0e85376a714a3fbbfec705cf2e7dee6c5b06835954649dfa81e527081e5c6662"
+    },
+    {
+      "url": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto,w_640/v1778511802/team-photo-1.jpg",
+      "file": "prototypes/html-first-slice/public/images/home-team-v1778511802-640.webp",
+      "bytes": 35342,
+      "sha256": "16dabb1ba695e83eadd539fdda0d7ddcf58472277de3e6289cef09e613e40efe"
+    },
+    {
+      "url": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto,w_720/v1778511802/team-photo-1.jpg",
+      "file": "prototypes/html-first-slice/public/images/home-team-v1778511802-720.webp",
+      "bytes": 43110,
+      "sha256": "fb6341bcb019fdcdd9cde1ce35e0f86c95c041b84c03a45a01722636b9aefec2"
+    },
+    {
+      "url": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto,w_900/v1778511802/team-photo-1.jpg",
+      "file": "prototypes/html-first-slice/public/images/home-team-v1778511802-900.jpg",
+      "bytes": 60933,
+      "sha256": "b6d382c5d1d1d7452535e88c04464fc4e4b338879c9dcc5b5a4e1d4a4d2f7362"
+    },
+    {
+      "url": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto,w_1280/v1778511802/team-photo-1.jpg",
+      "file": "prototypes/html-first-slice/public/images/home-team-v1778511802-1280.webp",
+      "bytes": 102328,
+      "sha256": "8478b27ecac302e9f50ee1335912d12d7df11bd496cbcf70e59cba7fd05aca56"
+    },
+    {
+      "url": "https://res.cloudinary.com/djkmeg5se/image/upload/v1/favicon.ico",
+      "file": "prototypes/html-first-slice/public/icons/favicon.ico",
+      "mime": "image/x-icon",
+      "bytes": 15406,
+      "sha256": "316b05cf65176dbe05221b33bcb837f69eee7f1922abc12093b880f62f321e37"
+    },
+    {
+      "url": "https://res.cloudinary.com/djkmeg5se/image/upload/w_32,h_32,c_scale,f_auto,q_auto/fresh-tech-logo.png",
+      "file": "prototypes/html-first-slice/public/icons/icon-32.webp",
+      "mime": "image/webp",
+      "bytes": 760,
+      "sha256": "0cadafdaae60b542a514728211a8fe72bb4174e88d368ef87184ffb72f9c4be4"
+    },
+    {
+      "url": "https://res.cloudinary.com/djkmeg5se/image/upload/w_180,h_180,c_scale,f_png/fresh-tech-logo.png",
+      "file": "prototypes/html-first-slice/public/icons/apple-touch-icon.png",
+      "mime": "image/png",
+      "bytes": 7656,
+      "sha256": "fcccc6087c2a06a425836454e9f16ff4bf8d3086434f46c35523d06870a23c61"
+    },
+    {
+      "url": "https://res.cloudinary.com/djkmeg5se/image/upload/w_192,h_192,c_scale,f_png/fresh-tech-logo.png",
+      "file": "prototypes/html-first-slice/public/icons/icon-192.png",
+      "mime": "image/png",
+      "bytes": 8376,
+      "sha256": "3287c8980a32362d53fcd81c579d47630abaf550b9b81d0f5ffff57e24ca9ac8"
+    },
+    {
+      "url": "https://res.cloudinary.com/djkmeg5se/image/upload/w_512,h_512,c_scale,f_png/fresh-tech-logo.png",
+      "file": "prototypes/html-first-slice/public/icons/icon-512.png",
+      "mime": "image/png",
+      "bytes": 33113,
+      "sha256": "3db5cab9f067a1c808fc9c49e0622fdb382deb44a97a164678683d8513fe5ab2"
+    }
+  ]
+}

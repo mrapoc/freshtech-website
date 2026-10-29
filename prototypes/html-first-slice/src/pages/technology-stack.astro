@@ -1,0 +1,89 @@
+---
+// Port of pages-v2/TechnologyStackPageV2.tsx. Static: no interactivity in the
+// source. useContentMax only widens the wrap above 1920px viewports; the
+// native page uses the base 1100px value throughout.
+// Difference: the "Why we chose it" label and LastReviewed timestamp use
+// solid/higher-opacity colours than the React 0.4/0.35-alpha whites, which
+// fall under 4.5:1 on their backgrounds.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+
+const seo = { path: '/technology-stack', title: 'Our Technology Stack: The Tools We Trust', description: 'The technology Fresh Tech builds on: Huntress 24/7 SOC, ThreatLocker zero-trust, Microsoft 365, Dell, Ubiquiti UniFi, Yealink and Cyber Essentials. Why we chose each, not just logos.', type: 'website' };
+
+const stack = [
+  { name: 'Huntress', cat: 'Managed Detection & Response', what: 'A 24/7 Security Operations Centre watching every endpoint. Real human threat hunters review suspicious activity and isolate compromised machines, even out of hours.', why: 'Most small businesses can’t staff a 24/7 SOC. Huntress gives our clients enterprise-grade detection and human response at SME scale, catching the foothold attacks that slip past antivirus.' },
+  { name: 'ThreatLocker', cat: 'Zero-Trust / Application Control', what: 'Allowlisting and ringfencing: only approved applications run, and they can only do what they’re meant to. Ransomware that lands simply can’t execute.', why: 'Antivirus blocks what it recognises; ThreatLocker blocks everything it hasn’t been told to trust. It’s the difference between detecting an attack and denying it a way in.' },
+  { name: 'Microsoft 365', cat: 'Productivity & Identity', what: 'Email, Teams, SharePoint and OneDrive, deployed, secured and managed properly, with Conditional Access and device management doing the heavy lifting on identity security.', why: 'We resell licences as a Microsoft Cloud Solution Provider (CSP) at cost, with no markup. You get the platform billed honestly, and configured the way it should be, not left on defaults.' },
+  { name: 'Dell', cat: 'Business Hardware', what: 'Dell Pro and Dell Pro Max (formerly Latitude and Precision) business machines, specced to the workload and backed by proper onsite warranties, supplied through our Dell Premier account.', why: 'Consumer laptops from a high street shop cost you in downtime and short lifespans. Business-grade hardware, specced correctly, is cheaper over its life and far less hassle.' },
+  { name: 'Ubiquiti UniFi', cat: 'Networking & Wi-Fi', what: 'Business-class switching, firewalls and Wi-Fi designed for real environments, from offices to warehouses and rural sites, managed centrally from a single dashboard.', why: 'Reliable connectivity is the foundation everything else sits on. UniFi gives us enterprise capability and proper segmentation without enterprise pricing or complexity.' },
+  { name: 'Yealink', cat: 'Business Telephony', what: 'Cloud phone systems and handsets that let your team make and take calls on the office number from anywhere: desk, mobile or laptop.', why: 'Proven, reliable hardware that integrates cleanly with cloud phone platforms, so your phones just work whether staff are in the office or remote.' },
+  { name: 'Cyber Essentials', cat: 'Certification', what: 'The UK government-backed security standard. We hold it ourselves, and we prepare and guide clients through certification.', why: 'It’s increasingly demanded by clients, insurers and supply chains. We practise what we deploy, and we get clients certified, not just “nearly there”.' },
+];
+---
+
+<StandaloneShell name="technology-stack" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <p class="sa-eyebrow sa-eyebrow-light">How we build</p>
+      <h1 class="sa-display sa-display-light" style="--sa-size: 52px; --sa-size-mobile: 34px; margin-bottom: 20px; line-height: 0.97; max-width: 16ch">The technology we trust. And why.</h1>
+      <p class="ts-hero-lead">Plenty of IT companies drop a wall of vendor logos on their site. We’d rather tell you exactly what we run, what it does for you, and why we chose it over the alternatives.</p>
+      <p class="ts-hero-sub">This is the same stack across every client. No cut corners on the small accounts, no upsells you don’t need.</p>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper sa-rule">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <div class="ts-grid">
+        {stack.map(item => (
+          <div class="ts-card">
+            <div class="ts-card-head">
+              <div class="ts-card-name">{item.name}</div>
+              <div class="ts-card-cat">{item.cat}</div>
+            </div>
+            <p class="ts-card-what">{item.what}</p>
+            <div class="ts-card-why">
+              <span class="ts-why-label">Why we chose it</span>
+              <p class="ts-why-text">{item.why}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap" style="--sa-max: 820px">
+      <p class="sa-eyebrow">No hidden margins</p>
+      <h2 class="sa-display" style="--sa-size: 32px; margin-bottom: 16px">We make our money on service, not resale</h2>
+      <p class="ts-note-p">Microsoft licences are resold at cost as a <a href="/services/cloud-solutions">CSP</a>, with no markup. Hardware is supplied at fair, transparent prices. The tools above are chosen because they work, not because they pay the best margin.</p>
+      <p class="ts-note-p">That’s the same principle behind our <a href="/pricing">transparent pricing</a> and no three-year tie-ins. You should know what you’re paying for, and why.</p>
+    </div>
+  </section>
+
+  <section class="sa-section sa-ink">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <p class="sa-eyebrow sa-eyebrow-light">Want this stack behind your business?</p>
+      <h2 class="sa-display sa-display-light" style="--sa-size: 36px; margin-bottom: 16px">Let’s talk about your setup</h2>
+      <p class="ts-cta-lead">A 20-minute call to understand what you run today and where the gaps are. Honest advice, no jargon, no hard sell.</p>
+      <a class="sa-button" href="/contact">Book a 20-min call →</a>
+    </div>
+    <p class="ts-reviewed">Last reviewed May 2026 · Sam James</p>
+  </section>
+</StandaloneShell>
+
+<style>
+  .ts-hero-lead { color: #b9c0c6; font-size: 18px; line-height: 1.65; margin: 0 0 12px; max-width: 60ch; }
+  .ts-hero-sub { color: #b9c0c6; font-size: 15px; line-height: 1.65; margin: 0; max-width: 60ch; }
+  .ts-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 768px) { .ts-grid { grid-template-columns: 1fr 1fr; } }
+  .ts-card { background: var(--white); border: 1px solid var(--hairline); padding: 28px; box-shadow: 0 4px 16px rgba(15, 25, 35, 0.06); display: flex; flex-direction: column; }
+  .ts-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .ts-card-name { font-family: 'SA Bungee', sans-serif; font-size: 20px; color: var(--ink); line-height: 1; }
+  .ts-card-cat { font-family: 'SA Archivo Narrow', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--primary-dark); font-weight: 700; }
+  .ts-card-what { font-size: 14px; color: var(--ink); line-height: 1.6; margin: 0 0 14px; }
+  .ts-card-why { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--hairline); }
+  .ts-why-label { font-family: 'SA Archivo Narrow', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--primary-dark); font-weight: 700; }
+  .ts-why-text { font-size: 14px; color: rgba(15, 25, 35, 0.7); line-height: 1.6; margin: 6px 0 0; }
+  .ts-note-p { font-size: 16px; color: rgba(15, 25, 35, 0.7); line-height: 1.7; margin: 0 0 16px; max-width: 64ch; }
+  .ts-cta-lead { color: #b9c0c6; font-size: 17px; line-height: 1.65; margin: 0 auto 28px; max-width: 46ch; }
+  .ts-reviewed { text-align: center; padding: 20px 16px 24px; font-family: 'SA Archivo Narrow', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #b9c0c6; font-weight: 700; margin: 0; }
+</style>

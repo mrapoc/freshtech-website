@@ -1,0 +1,95 @@
+---
+import InlineMarkdown from './InlineMarkdown.astro';
+
+interface Feature { title: string; desc: string }
+interface Faq { q: string; a: string }
+interface Location {
+  slug: string; city: string; heroTitle: string; metaDesc: string; heroDesc: string;
+  introTitle: string; introText: string; features: Feature[]; faqs: Faq[];
+}
+interface Props { location: Location }
+const { location } = Astro.props;
+---
+
+<main id="main-content" class="location-page" data-location-page={location.slug} tabindex="-1">
+  <section class="location-hero">
+    <div class="location-container location-hero-grid">
+      <div>
+        <p class="location-badge">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+            <circle cx="12" cy="10" r="2.5"></circle>
+          </svg>
+          {location.city}
+        </p>
+        <h1>{location.heroTitle}</h1>
+        <p class="location-hero-copy">{location.heroDesc}</p>
+        <div class="location-actions">
+          <a class="location-primary-button" href="/contact">Book a 20-min call <span aria-hidden="true">→</span></a>
+          <a class="location-secondary-button" href="tel:+441584517234">01584 517 234</a>
+        </div>
+      </div>
+      <aside class="location-review-panel" aria-label="Customer reviews">
+        <strong>Reviews</strong>
+        <span>Read customer feedback on Google</span>
+      </aside>
+    </div>
+  </section>
+
+  {location.introText && (
+    <section class="location-section location-intro">
+      <div class="location-copy-container">
+        <p class="location-eyebrow">About us locally</p>
+        {location.introTitle && <h2>{location.introTitle}</h2>}
+        <p><InlineMarkdown text={location.introText} /></p>
+      </div>
+    </section>
+  )}
+
+  {location.features.length > 0 && (
+    <section class="location-section location-features">
+      <div class="location-container">
+        <header class="location-section-heading">
+          <p class="location-eyebrow">What we bring to {location.city}</p>
+          <h2>Why local matters</h2>
+        </header>
+        <div class="location-feature-grid">
+          {location.features.map(feature => (
+            <article class="location-feature-card">
+              <h3>{feature.title}</h3>
+              <p><InlineMarkdown text={feature.desc} /></p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {location.faqs.length > 0 && (
+    <section class="location-section location-faqs">
+      <div class="location-faq-container">
+        <header class="location-section-heading">
+          <p class="location-eyebrow">Questions from {location.city} businesses</p>
+          <h2>Common questions</h2>
+        </header>
+        <div class="location-faq-list">
+          {location.faqs.map(faq => (
+            <details>
+              <summary><span>{faq.q}</span><b aria-hidden="true">+</b></summary>
+              <div><InlineMarkdown text={faq.a} /></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="location-section location-final">
+    <div class="location-faq-container">
+      <p class="location-eyebrow">Ready to talk?</p>
+      <h2>IT support for {location.city} businesses</h2>
+      <p>20 minutes. No sales pitch. We'll tell you honestly whether we can help.</p>
+      <a class="location-primary-button" href="/contact">Book a 20-min call <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+</main>

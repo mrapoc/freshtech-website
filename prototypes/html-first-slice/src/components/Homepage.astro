@@ -1,0 +1,164 @@
+---
+import '../styles/homepage.css';
+import HomepageIcon from './HomepageIcon.astro';
+import WebsiteProof from './WebsiteProof.astro';
+import CyberEssentialsBadge from './CyberEssentialsBadge.astro';
+import { caseStudies } from '../generated/case-studies-data.mjs';
+import { pricing } from '../generated/pricing-data.mjs';
+import { comparison, countyLinks, faqs, heroImage, industries, pricingTiers, processSteps, serviceAreas, services } from '../lib/homepage-data.mjs';
+import { countyShortLabel, featuredTestimonial, homepageCaseStudies, homepagePricing } from '../lib/homepage-display.mjs';
+
+const tiers = homepagePricing(pricingTiers, pricing);
+const studies = homepageCaseStudies(caseStudies);
+const testimonial = featuredTestimonial(caseStudies);
+const sectorTones = ['blue', 'orange', 'green', 'yellow', 'red', 'navy'];
+---
+
+<main id="main-content" tabindex="-1" class="homepage">
+  <section class="home-hero">
+    <div class="home-sunburst" aria-hidden="true"></div>
+    <div class="home-container home-hero-grid">
+      <div class="home-hero-copy">
+        <a class="home-google-rating" data-google-rating href="https://search.google.com/local/reviews?placeid=ChIJ6a1VcjVqcEgR2_jkYe5Em5A"><span class="home-google-attribution" translate="no">Google Maps</span><strong data-google-rating-label>Read our reviews</strong></a>
+        <h1>Business IT<br />that saves<br /><span>the day.</span></h1>
+        <p class="home-lede">Local IT support for businesses across Shropshire, Herefordshire and the Welsh Borders. <strong>From £40 per user, per month.</strong></p>
+        <div class="home-actions">
+          <a class="home-button home-button-primary" href="/contact"><strong>Discuss your support <span aria-hidden="true">→</span></strong></a>
+          <a class="home-call-link" href="tel:+441584517234">Call 01584 517 234</a>
+        </div>
+        <WebsiteProof id="home-hero-proof" compact feedback={false} />
+        <div class="home-trust-row">
+          <ul class="home-guarantees" aria-label="Service commitments">
+            <li><span>✓</span><strong>30-day money back</strong></li>
+            <li><span>✓</span>No 3-year lock-in</li>
+            <li><span>✓</span>Local engineers</li>
+          </ul>
+          <CyberEssentialsBadge />
+        </div>
+      </div>
+      <div class="home-photo-panel home-panel">
+        <div class="home-photo-label"><span>Sam James &amp; Matthew Morgan · Ludlow HQ</span><span>Meet your engineers</span></div>
+        <img {...heroImage} alt="Sam James and Matthew Morgan, Fresh Tech engineers, Ludlow" width="900" height="675" loading="lazy" fetchpriority="low" />
+<p class="home-photo-label">Based in Ludlow</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-reviews">
+    <div class="home-container">
+      <div class="home-review-head"><header class="home-section-title dark"><h2>Selected customer reviews</h2></header><div><a href="/why-trust-us">Read published customer stories <span aria-hidden="true">→</span></a></div></div>
+      {testimonial && <blockquote class="home-testimonial"><span aria-hidden="true">{testimonial.initials}</span><div><p>“{testimonial.quote}”</p><footer><a href={testimonial.href}>{testimonial.attribution}</a></footer></div></blockquote>}
+    </div>
+  </section>
+
+  <section class="home-section home-services">
+    <div class="home-container">
+      <header class="home-section-title"><p>What we do</p><h2>One team. One bill. Everything covered.</h2><div>No vendor ping-pong. No finger-pointing. One accountable team for everything that runs on a wire or talks to the cloud.</div></header>
+      <div class="home-service-grid">
+        {services.map((service, index) => (
+          <a class:list={['home-service-card', 'home-panel', { featured: service.featured }]} href={service.href}>
+            {service.featured ? (
+              <>
+                <span class="home-sticker home-sticker-orange">Managed IT support</span>
+                <h3>Managed<br />IT Support</h3>
+                <p>Unlimited helpdesk, proactive monitoring, hardware procurement and connectivity: your IT team on tap, on a flat per-user fee.</p>
+                <ul><li>Unlimited tickets &amp; calls</li><li>Proactive monitoring and patching</li><li>Dedicated engineer, not a queue</li><li>Quarterly business reviews</li></ul>
+                <strong class="home-price-chip">From £{tiers[0].rate}/user</strong>
+              </>
+            ) : (
+              <><span class="home-icon-box"><HomepageIcon name={service.icon} /></span><h3>{service.title}</h3><p>{service.desc}</p><strong class="home-card-link">See how it works <span aria-hidden="true">→</span></strong></>
+            )}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-comparison">
+    <div class="home-container home-narrow">
+      <header class="home-section-title"><p>Us vs the others</p><h2>Why owner-managers switch to us.</h2><div>Most businesses we win are leaving a national IT company. Here is what changes when you do.</div></header>
+      <div class="home-comparison-table home-panel">
+        <div class="home-comparison-head"><span></span><strong>Typical IT provider</strong><strong>Fresh Tech</strong></div>
+        {comparison.map(item => (
+          <div class="home-comparison-row">
+            <strong>{item.row}</strong>
+            <span><b aria-hidden="true">✕</b>{item.them}</span>
+            <span><b aria-hidden="true">✓</b>{item.href ? <a href={item.href}>{item.us}</a> : item.us}</span>
+          </div>
+        ))}
+      </div>
+      <div class="home-centred"><a class="home-button home-button-primary" href="/contact"><strong>See if we are a fit for you <span aria-hidden="true">→</span></strong><small>Free, no obligation, plain English</small></a></div>
+    </div>
+  </section>
+
+  <section class="home-section home-pricing">
+    <div class="home-container">
+      <header class="home-section-title"><p>Honest pricing</p><h2>Simple. Per user. Per month.</h2><div>No hidden setup fees, no time-and-materials creep. Onsite visits billed separately. Pick the cover that matches your risk.</div></header>
+      <div class="home-pricing-grid">
+        {tiers.map(tier => (
+          <article class:list={['home-tier', 'home-panel', { best: tier.best }]}>
+            {tier.best && <span class="home-sticker home-sticker-orange">Plus support</span>}
+            <h3>{tier.name}</h3><p>{tier.blurb}</p>
+            <p class="home-rate"><small>from</small><strong>£{tier.rate}</strong><span>/user/month</span></p>
+            <ul>{tier.includes.map(line => <li><span aria-hidden="true">✓</span>{line}</li>)}</ul>
+            <a class:list={['home-button', { 'home-button-primary': tier.best }]} href="/contact"><strong>{tier.best ? 'Book a chat' : 'Get a quote'}</strong><small>{tier.best ? '20 minute discovery call' : 'Get a tier-specific quote'}</small></a>
+          </article>
+        ))}
+      </div>
+      <p class="home-pricing-note"><strong>Need a custom quote?</strong> 50+ users, multiple sites, or a regulated sector? <a href="/contact">Talk to Sam <span aria-hidden="true">→</span></a></p>
+      <p class="home-foundation"><strong>Not ready for fully managed?</strong> Foundation Monitoring gives you 24/7 monitoring, Huntress EDR and patching, from £10/device. <a href="/foundation-monitoring">See Foundation <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <section class="home-section home-process">
+    <div class="home-container">
+      <header class="home-section-title dark"><p>How we work</p><h2>From “we should look at IT”<br />to fully onboarded, in 30 days.</h2><div>We do the heavy lifting and coordinate directly with your outgoing provider.</div></header>
+      <ol class="home-process-grid">{processSteps.map(step => <li><span>{step.n}</span><h3>{step.title}</h3><p>{step.desc}</p></li>)}</ol>
+      <p class="home-centred"><a href="/onboarding">Nervous about switching? Read our step-by-step guide <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <section class="home-section home-cases">
+    <div class="home-container">
+      <header class="home-section-title"><p>Proof, not promises</p><h2>Real businesses. Real results.</h2><div>Selected client stories from businesses across the region.</div></header>
+      <div class="home-case-grid">
+        {studies.map((study, index) => (
+          <a class="home-case-card home-panel" href={study.href}>
+            <div class:list={['home-case-top', `tone-${sectorTones[index]}`]}><span>{study.industry}</span><strong>{study.badge}</strong></div>
+            <div><small>{study.label}</small><h3>{study.title}</h3><p>{study.outcome}</p><strong>Read the mission <span aria-hidden="true">→</span></strong></div>
+          </a>
+        ))}
+      </div>
+      <p class="home-centred"><a href="/case-studies">View all case studies <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <section class="home-section home-sectors">
+    <div class="home-container">
+      <header class="home-section-title"><p>Sectors we know</p><h2>We probably know your software.</h2><div>Over a decade of getting the quirks right. We talk to your software vendors so you do not have to.</div></header>
+      <div class="home-sector-grid">{industries.map((industry, index) => <a class:list={['home-sector-card', 'home-panel', `tone-${sectorTones[index]}`]} href={industry.href}><span class="home-sticker">Sector guide</span><h3>{industry.name}</h3><p>{industry.desc}</p><strong>Explore <span aria-hidden="true">→</span></strong></a>)}</div>
+    </div>
+  </section>
+
+  <section class="home-section home-areas">
+    <div class="home-container home-area-layout">
+      <div><header class="home-section-title"><p>Where we work</p><h2>Local. Properly.</h2><div>We support businesses across the Welsh Borders and tell you plainly if a location is outside our practical coverage.</div></header><a class="home-button home-button-primary" href="/contact"><strong>Check your postcode <span aria-hidden="true">→</span></strong><small>See if your town is covered</small></a><p class="home-counties">Browse by county: {countyLinks.map(([label, href], index) => <>{index > 0 && ' · '}<a href={href}>{label}</a></>)}</p></div>
+      <div class="home-area-grid">{serviceAreas.map(area => <a href={area.href}><span><strong>{area.town}</strong><small>{countyShortLabel(area.county)}</small>{area.destination && <em>{area.destination}</em>}</span><b>{area.miles === '0' ? 'HQ' : `${area.miles} mi`} <span aria-hidden="true">→</span></b></a>)}</div>
+    </div>
+    <p class="home-area-note"><strong>Specialist sectors:</strong> ask us about UK-wide support for biogas, healthcare and legal compliance. <a href="/contact">Ask about your location <span aria-hidden="true">→</span></a></p>
+  </section>
+
+  <section class="home-section home-faq">
+    <div class="home-container home-faq-inner">
+      <header class="home-section-title"><p>Common questions</p><h2>The bit before you ring.</h2></header>
+      <div class="home-faq-list">{faqs.map(([question, answer], index) => <details open={index === 0}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}{question === 'Do we sign a long contract?' && <> <a href="/terms-of-business">Read the current terms of business.</a></>}</p></details>)}</div>
+    </div>
+  </section>
+
+  <section class="home-section home-final">
+    <div class="home-container home-final-grid">
+      <div><span class="home-sticker">Free 20-min call · No sales pitch</span><h2>Got an<br />IT headache?</h2><p>One call. We will tell you whether we can help, what it will cost, and how fast, in plain English. If we are not the right fit we will say so.</p><div class="home-actions"><a class="home-button home-button-primary" href="/contact"><strong>Book a discovery call</strong><small>20 minutes</small></a><a class="home-button" href="tel:+441584517234"><strong>Call 01584 517 234</strong><small>Mon–Fri 9–5</small></a></div></div>
+      <WebsiteProof id="home-proof" contact metrics={false} />
+    </div>
+  </section>
+</main>

@@ -1,0 +1,96 @@
+name: Static site quality
+
+# Manual only (Actions tab > Static site quality > Run workflow) since
+# 18 October 2026, to stay within the Actions budget. The same steps run on the
+# site owner's Mac before every deploy (scripts/quality-gate.mjs, called by
+# scripts/deploy-20i-local.mjs), so they still gate what goes live; keep the two
+# step lists in sync.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: static-site-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-22.04
+    # The full browser suite needs about 20 minutes on a normal runner (19m19s on
+    # 8 October before the proof browser check was added); 30 leaves room for a
+    # slow browser install without cutting the checks short.
+    timeout-minutes: 30
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+      PUBLIC_CONTACT_SUBMISSION_MODE: disabled
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            prototypes/html-first-slice/package-lock.json
+      - name: Install locked dependencies
+        run: |
+          npm ci --ignore-scripts
+          npm ci --ignore-scripts --prefix prototypes/html-first-slice
+      - name: Unit and output contracts
+        working-directory: prototypes/html-first-slice
+        run: |
+          npm test
+          node --test ../../scripts/deploy-20i.test.mjs
+          npm run test:consent
+          npm run test:pricing
+          npm run test:homepage-enhance
+          npm run test:contact
+          npm run test:guides-enhance
+          npm run test:problems
+          npm run test:standalone
+          php -n server/tests/website-proof-test.php
+          php -n server/tests/google-rating-test.php
+          php -n server/tests/send-email-test.php
+          npm run build
+      - name: Install sandboxed browser
+        run: |
+          npx playwright install --with-deps chromium
+          node --input-type=module -e 'import { chromium } from "playwright"; import { appendFileSync } from "node:fs"; appendFileSync(process.env.GITHUB_ENV, `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=${chromium.executablePath()}\n`);'
+          node -e 'require("node:fs").appendFileSync(process.env.GITHUB_ENV, `PLAYWRIGHT_MODULE=${require.resolve("playwright")}\n`);'
+      - name: All routes and interactive regressions
+        working-directory: prototypes/html-first-slice
+        run: |
+          npm run verify:blog-browser
+          npm run verify:service-locations-browser
+          npm run verify:technology-browser
+          npm run verify:guides-browser
+          npm run verify:team-browser
+          npm run verify:standalone-browser
+          npm run verify:industries-browser
+          npm run verify:locations-browser
+          node scripts/quality-browser-check.mjs
+          npm run verify:homepage-browser
+          PROOF_DIST=dist npm run verify:proof-browser
+          npm run verify:browser
+          npm run verify:pricing-browser
+          npm run verify:case-studies-browser
+          npm run verify:consent-ui
+          npm run verify:fonts
+      - name: Isolated contact failure and success journey
+        working-directory: prototypes/html-first-slice
+        run: |
+          PUBLIC_CONTACT_SUBMISSION_MODE=test node node_modules/astro/bin/astro.mjs build --outDir .artifacts/contact-ci
+          CONTACT_TEST_DIST=.artifacts/contact-ci npm run verify:contact-browser
+      - name: Isolated synthetic Problem and comparison fixture build and browser journeys
+        working-directory: prototypes/html-first-slice
+        run: |
+          mkdir -p ../../.artifacts
+          node scripts/stage-problem-fixture.mjs --out ../../.artifacts/problem-ci
+          npm ci --ignore-scripts --prefix ../../.artifacts/problem-ci
+          npm run build:fixture --prefix ../../.artifacts/problem-ci
+          PROBLEM_TEST_DIST=../../.artifacts/problem-ci/dist-synthetic npm run verify:problems-browser
+          COMPARISON_TEST_DIST=../../.artifacts/problem-ci/dist-synthetic npm run verify:comparisons-browser

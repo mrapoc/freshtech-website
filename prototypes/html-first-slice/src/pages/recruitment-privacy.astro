@@ -1,0 +1,126 @@
+---
+// Recruitment privacy notice for the /careers advert, effective 16 October
+// 2026. Bases, retention and access controls are those Sam adopted on that
+// date. Applications are
+// received through the dedicated recruitment mailbox; the notice covers any
+// personal information received meanwhile. The general /privacy-policy is
+// untouched; this notice is specific to candidates.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+import { RECRUITMENT } from '../lib/recruitment.mjs';
+
+const { roleTitle, hiringTeam, privacyContact, privacyEffectiveDate, retention } = RECRUITMENT;
+const seo = {
+  path: '/recruitment-privacy',
+  title: 'Recruitment Privacy Notice',
+  description: 'How Fresh Tech handles candidate information when recruiting an IT Support Engineer: what we collect, why, who sees it, the basic DBS check and how long we keep it.',
+  type: 'article',
+};
+
+const dataItems = [
+  'Your CV, application messages and screening answers, including where you are based, your notice period and your answers about driving and access to a suitable car.',
+  'Your name and the contact details you give us (email address, phone number and, if you include it, postal address).',
+  'Notes from the initial conversation and the practical session: what we asked, what you told us and our assessment against the role.',
+  'Reasonable adjustment requests, so we can arrange them.',
+  'If we make you a conditional offer: references, right-to-work evidence, driving licence and insurance details, and the outcome of a basic DBS check (see section 7).',
+];
+
+const notDone = [
+  'Sam receives your application and shares it with Matt in our restricted recruitment folder. We make every hiring decision ourselves. We do not use AI to score or rank candidates. Indeed may filter or sort applications by screening answers; we also review applications that do not meet those answers and make every decision ourselves.',
+  'We will not put your CV, your messages or our interview notes into AI tools, or enable optional AI ranking or summaries for this hiring. Microsoft and Indeed also process information through their services as explained in section 6.',
+  'We will not record, transcribe or use AI note-takers in conversations or the practical session, and we ask the same of you.',
+  'We will not use your details for marketing or add you to any mailing list.',
+  'We will not keep your CV in a talent pool for future roles. Any future arrangement would require a separate choice and stated retention period.',
+];
+
+const rights = [
+  'Ask for a copy of the personal information we hold about you.',
+  'Ask us to correct information that is wrong or incomplete.',
+  'Ask us to delete your information, or to stop using it, where we have no good reason to keep it.',
+  'Object to how we are using your information.',
+  'Complain to the Information Commissioner\'s Office if you are unhappy with how we have handled it.',
+];
+---
+
+<StandaloneShell name="recruitment-privacy" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap" style="--sa-max: 800px">
+      <p class="sa-eyebrow sa-eyebrow-light">Recruitment privacy</p>
+      <h1 class="sa-display sa-display-light" style="--sa-size: 44px; --sa-size-mobile: 34px; margin-bottom: 16px">How we handle your details when you apply.</h1>
+      <p class="sa-lead" style="margin: 0">Effective {privacyEffectiveDate}.</p>
+    </div>
+  </section>
+
+
+  <section class="sa-section sa-paper">
+    <div class="sa-wrap sa-prose" style="--sa-max: 760px">
+      <div class="sa-block">
+        <h2>1. Who we are</h2>
+        <p>We are FRESH PCS CONSULTANCY LTD trading as Fresh Tech ("we", "us", "our"). Our company registration number is 09296207 and our ICO registration is ZA136732. Our registered address is 28 Livesey Avenue, Ludlow, SY8 1HN. We are the data controller for the information described here.</p>
+        <p>This notice applies to personal information we receive about recruitment for the {roleTitle} role advertised on our <a href="/careers">careers page</a>. Our general <a href="/privacy-policy">privacy policy</a> covers website visitors and customers.</p>
+      </div>
+
+      <div class="sa-block">
+        <h2>2. What we collect</h2>
+        <p>Only what we need to decide whether to offer you the job. That is:</p>
+        <ul>{dataItems.map(item => <li>{item}</li>)}</ul>
+        <p>We will not ask for a photograph, your date of birth or anything else that is not needed at that stage. We will not ask about your health; if you choose to tell us about a condition so we can arrange an adjustment, we use that only for the adjustment (see section 3). If you include extra details in your CV we will not use them.</p>
+      </div>
+
+      <div class="sa-block">
+        <h2>3. Why we use it</h2>
+        <p>To run the recruitment: reading applications, arranging conversations, assessing you against the role, making an offer and completing the checks that offer depends on. Where you ask for a reasonable adjustment, we use that information only to arrange the adjustment, and we keep it confidential within the hiring team.</p>
+      </div>
+
+      <div class="sa-block">
+        <h2>4. Our lawful basis</h2>
+        <p>For reading your application, talking to you, running the practical session, taking references and checking your driving licence and insurance, we rely on our legitimate interests under UK GDPR Article 6(1)(f): filling this role fairly, with no less intrusive way to assess suitability. Right-to-work checks are a legal obligation (Article 6(1)(c)).</p>
+        <p>If you tell us about a health condition so we can make a reasonable adjustment, we rely on our legal obligation under the Equality Act 2010 together with Article 9(2)(b) and Schedule 1 paragraph 1 of the Data Protection Act 2018.</p>
+        <p>For viewing a basic DBS certificate and keeping the minimal decision record, we rely on legitimate interests (Article 6(1)(f)) together with the Article 10 condition in Schedule 1 paragraphs 10 and 36 of the Data Protection Act 2018 (preventing or detecting unlawful acts). The reason is specific to this role: the engineer independently holds privileged access to customers' systems, data and premises, and a basic check provides limited verification of relevant unspent criminal history. We do not rely on your consent for any of this, because you could not freely withdraw it without ending your application, and because the check is a condition of the offer rather than something you agree to separately.</p>
+      </div>
+
+      <div class="sa-block">
+        <h2>5. Who sees it</h2>
+        <p>Applications and assessment notes are restricted to the hiring team, {hiringTeam}, in a dedicated Microsoft 365 folder. Adjustment details and the DBS record are kept in a separate restricted folder that only Sam can open; Matt is told what adjustment to make, not why. Our Microsoft 365 administrators keep their ordinary administrative capability over the tenancy. Service providers supporting those systems, and advisers or authorities where necessary and lawful, may also process limited information. We will not share your application with customers.</p>
+      </div>
+
+      <div class="sa-block">
+        <h2>6. Services we use</h2>
+        <p>You can apply through our Indeed listing or email our dedicated Microsoft 365 recruitment mailbox, jobs@fresh-tech.uk. You do not need to use both routes. Only Sam has mailbox access. Sam saves applications in the restricted recruitment folder for Sam and Matt to assess. Our website provides the address and email link; it does not collect or store your CV. Applications sent directly to us are not sent to Indeed or LinkedIn. If you apply through Indeed, we receive the CV, answers and messages you submit there. Indeed processes information to deliver the application and also for its own purposes under its <a href="https://hrtechprivacy.com/brands/indeed#privacypolicy" rel="noopener">privacy policy</a>. Its policy explains its own use, retention and your rights. Sam saves the relevant application in our restricted recruitment folder. Conversations and the practical session use Microsoft Teams. Microsoft processes email and stored records for us under the <a href="https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA" rel="noopener">Microsoft Products and Services Data Protection Addendum</a>. We do not use a recruitment agency.</p>
+        <p>Microsoft and Indeed may process data outside the UK using the legal transfer arrangements described in their respective terms, including contractual safeguards where applicable. Email the privacy contact in section 10 if you would like more detail.</p>
+      </div>
+
+      <div class="sa-block">
+        <h2>7. Checks after a conditional offer</h2>
+        <p>Any offer will be subject to references, right-to-work and relevant driving checks, plus a basic DBS check paid for by Fresh Tech. We'll arrange the DBS check after a conditional offer and consider any findings individually in relation to the role.</p>
+        <p>A basic DBS check shows unspent convictions and conditional cautions only. We will not ask you about spent convictions and we are not asking for a clean record. The check is a condition of the offer because of the independent privileged access this role carries (section 4). You apply for your own certificate and show it to Sam; we record only the date it was seen, the certificate reference, whether anything on it was considered, and the decision. We never keep a copy, photo or scan of the certificate. If something is disclosed, Sam talks it through with you before any decision, and the decision is about relevance to this role, never an automatic rejection. References, right-to-work and driving details are recorded only to the extent needed to confirm them.</p>
+      </div>
+
+      <div class="sa-block">
+        <h2>8. What we will not do</h2>
+        <ul>{notDone.map(item => <li>{item}</li>)}</ul>
+      </div>
+
+      <div class="sa-block">
+        <h2>9. How long we keep it</h2>
+        <p>If your application is unsuccessful, we keep it for {retention} so we can answer any questions about the decision, then Sam deletes it. This includes application emails and attachments in the recruitment mailbox, saved documents, assessment notes and application records under our control in Indeed. Sam deletes those records or requests deletion through Indeed where necessary. This does not delete your Indeed account or information Indeed retains for its own purposes; its privacy policy explains that separately. The minimal DBS record and any adjustment detail are kept for the same period whether or not you join us, unless a specific, documented legal reason requires longer, and are then deleted. If you join us, only the employment records we need move into your staff file, which is covered by a separate staff privacy notice you will receive when you start; criminal record detail is not transferred to it as a matter of course.</p>
+      </div>
+
+      <div class="sa-block">
+        <h2>10. Your rights</h2>
+        <p>You have the right to:</p>
+        <ul>{rights.map(item => <li>{item}</li>)}</ul>
+        <p>To use any of these rights, or to ask a question about this notice, email <a href={`mailto:${privacyContact}`}>{privacyContact}</a>. Please do not email a DBS certificate or medical details to this general address. Ask for Sam to arrange a private way to discuss an adjustment or sensitive query. If you need an accessible alternative to either application route, ask us to arrange one. That address is for privacy and accessibility queries only; please apply through our Indeed listing or send applications to jobs@fresh-tech.uk instead. If a CV reaches the general inbox, we direct the sender to the recruitment mailbox and remove the general-inbox copy, unless a documented legal reason requires otherwise. You can contact the Information Commissioner's Office at <a href="https://ico.org.uk/make-a-complaint/" rel="noopener">ico.org.uk/make-a-complaint</a>.</p>
+      </div>
+
+      <div class="sa-note">This notice is effective from {privacyEffectiveDate}. If the process changes we will update it here and change the date.</div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <h2 class="sa-display" style="--sa-size: 32px; margin-bottom: 14px">Back to the role</h2>
+      <a class="sa-button" href="/careers">Read the advert →</a>
+    </div>
+  </section>
+</StandaloneShell>
+

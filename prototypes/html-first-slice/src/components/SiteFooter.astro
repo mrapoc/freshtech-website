@@ -1,0 +1,27 @@
+---
+import CyberEssentialsBadge from './CyberEssentialsBadge.astro';
+
+interface Props { showSalesCta?: boolean }
+const { showSalesCta = true } = Astro.props;
+const columns = [
+  ['Services', [['Managed IT Support','/services/managed-it-support'],['Cyber Security','/services/cybersecurity'],['Microsoft 365','/services/cloud-solutions'],['Cloud Backup','/services/backup-disaster-recovery'],['Phone Systems','/services/cloud-phone-systems'],['IT Health Check','/it-health-check'],['Email Security Check','/email-security-check'],['Foundation Monitoring','/foundation-monitoring'],['Compare plans','/compare'],['Co-Managed IT','/co-managed-it'],['All services','/services']]],
+  ['Sectors', [['Solicitors','/industries/solicitors'],['Accountants','/industries/accountants'],['Manufacturing','/industries/manufacturing'],['Healthcare','/industries/healthcare'],['Charities','/industries/charities'],['Agriculture','/industries/agriculture']]],
+  ['Company', [['About us','/about'],['Pricing','/pricing'],['Why trust us','/why-trust-us'],['Technology stack','/technology-stack'],['Service standards','/service-standards'],['Switching provider','/onboarding'],['Case Studies','/case-studies'],['Blog','/blog'],['Careers','/careers'],['Refer a business','/refer'],['Contact','/contact']]],
+  ['Coverage', [['IT Support Shropshire','/it-support-shropshire'],['IT Support Herefordshire','/it-support-herefordshire'],['IT Support Worcestershire','/it-support-worcestershire'],['IT Support Powys','/it-support-powys']]],
+] as const;
+---
+
+<footer class="site-footer">
+  {showSalesCta && <div class="footer-cta"><div><h2>Ready to make IT someone else's problem?</h2><p>A 20-min call is enough to know if we're a good fit. We'll tell you honestly if we're not.</p></div><div><a href="/contact">Book a 20-min call</a><a href="tel:+441584517234">01584 517 234</a></div></div>}
+  <div class="footer-main">
+    <div class="footer-brand">
+      <img src="/images/fresh-tech-logo-white.webp" alt="Fresh Tech" width="200" height="145" />
+      <p>Locally-owned managed IT support across Shropshire, Herefordshire and the Welsh Borders. Employee-led, no call centres, since 2014.</p>
+      <a href="tel:+441584517234">01584 517 234</a><a href="mailto:hello@fresh-tech.uk">hello@fresh-tech.uk</a>
+      <p>28 Livesey Avenue · Ludlow · SY8 1HN</p>
+      <CyberEssentialsBadge theme="white" class="footer-ce-badge" />
+    </div>
+    {columns.map(([heading, links]) => <nav aria-label={`${heading} footer links`}><h3>{heading}</h3><ul>{links.map(([label, href]) => <li><a href={href}>{label}</a></li>)}</ul></nav>)}
+    <div class="footer-legal">© 2026 Fresh Tech I.T. Specialists · FRESH PCS CONSULTANCY LTD · Co. No. 09296207 · VAT GB199976510 · ICO ZA136732 · <a href="/privacy-policy">Privacy</a> · <a href="/cookie-policy">Cookies</a> · <button type="button" data-cookie-settings>Cookie settings</button> · <a href="/terms-conditions">Terms</a> · <a href="/terms-of-business">Terms of Business</a> · <a href="/dpa">DPA</a> · <a href="/ai-acceptable-use-policy">AI Policy</a></div>
+  </div>
+</footer>

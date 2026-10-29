@@ -1,0 +1,93 @@
+---
+// Root-slug dispatcher. Three generated families share this segment: the
+// service-location pages (/it-support-shropshire, /cyber-essentials-telford, ...),
+// the problem pages (/slow-computers, /ransomware-recovery, ...) and the
+// comparison pages (/break-fix-vs-managed-it, ...). Static
+// routes such as /pricing and /contact take precedence over this dynamic
+// segment, and getStaticPaths only ever yields the extracted, App.tsx-matched
+// slugs of every family, failing the build on any slug claimed twice.
+//
+// Each family's authored stylesheet is imported as a string (Vite `?inline`,
+// which disables automatic injection) and the selected family's CSS is rendered
+// exactly once into the layout's head slot, so neither family's routes carry
+// another family's styles. The global stylesheet still comes from BaseLayout.
+//
+// Problem and comparison routes also render the shared SourceTestimonials (reviews plus the
+// partner logos) and SourceContact sections after the closing call to action,
+// as pages/ProblemPage.tsx and pages/ComparisonPage.tsx do. The review data comes from the generated
+// testimonials module by named export only; this file never inspects it.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ComparisonPage from '../components/ComparisonPage.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import ProblemPage from '../components/ProblemPage.astro';
+import ServiceLocationPage from '../components/ServiceLocationPage.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SourceContact from '../components/SourceContact.astro';
+import SourceTestimonials from '../components/SourceTestimonials.astro';
+import { comparisons } from '../generated/comparisons-data.mjs';
+import { problems } from '../generated/problems-data.mjs';
+import { serviceLocations, serviceLocationSlugs } from '../generated/service-locations-data.mjs';
+import { partnerLogos, testimonialCategories, testimonials, testimonialsFixture } from '../generated/testimonials-data.mjs';
+import { mergeRouteInventory, problemFontPreloads } from '../lib/problem-display.mjs';
+import { comparisonFontPreloads } from '../lib/comparison-display.mjs';
+import { comparisonSeo } from '../lib/comparison-seo.mjs';
+import { problemSeo } from '../lib/problem-seo.mjs';
+import { countyHubSlug } from '../lib/service-location-display.mjs';
+import { serviceLocationSeo } from '../lib/service-location-seo.mjs';
+import comparisonCss from '../styles/comparisons.css?inline';
+import problemCss from '../styles/problems.css?inline';
+import serviceLocationCss from '../styles/service-locations.css?inline';
+import PrototypeBanner from '../components/PrototypeBanner.astro';
+
+export function getStaticPaths() {
+  return mergeRouteInventory([
+    { family: 'service-location', pages: serviceLocations },
+    { family: 'problem', pages: problems },
+    { family: 'comparison', pages: comparisons },
+  ]).map(route => ({ params: { slug: route.slug }, props: { family: route.family, page: route.page } }));
+}
+
+const { family, page } = Astro.props;
+if (family !== 'service-location' && family !== 'problem' && family !== 'comparison') throw new Error(`Unknown root-slug family "${family}" for /${page?.slug}`);
+const isProblem = family === 'problem';
+const isComparison = family === 'comparison';
+const isServiceLocation = family === 'service-location';
+
+// Service-location branch, unchanged from the single-family dispatcher.
+const hubSlug = !isServiceLocation ? null : countyHubSlug(page, serviceLocationSlugs);
+const hub = hubSlug ? serviceLocations.find(other => other.slug === hubSlug) : null;
+const countyHub = hub ? { slug: hub.slug, location: hub.location } : null;
+
+const seo = isProblem ? problemSeo(page) : isComparison ? comparisonSeo(page) : serviceLocationSeo(page);
+const headingFontPreloads = isProblem
+  ? problemFontPreloads(page.h1)
+  : isComparison
+  ? comparisonFontPreloads(page.h1)
+  : (/[Ā-ỿⱠ-ꟿ]/u.test(page.h1) ? ['/fonts/bungee-latin.woff2', '/fonts/bungee-latin-ext.woff2'] : ['/fonts/bungee-latin.woff2']);
+const familyCss = isProblem ? problemCss : isComparison ? comparisonCss : serviceLocationCss;
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonical={seo.canonical} image={seo.image} ogType={seo.ogType} schemas={seo.schemas} robots={seo.robots} preloadFonts={headingFontPreloads} pageFamily={isProblem ? 'problems' : isComparison ? 'comparisons' : undefined}>
+  <style is:inline slot="head" set:html={familyCss}></style>
+  <PrototypeBanner />
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <SiteNav activePage="" />
+  {isProblem ? (
+    <ProblemPage page={page}>
+      <SourceTestimonials slot="testimonials" testimonials={testimonials} testimonialCategories={testimonialCategories} partnerLogos={partnerLogos} testimonialsFixture={testimonialsFixture} />
+      <SourceContact slot="contact" />
+    </ProblemPage>
+  ) : isComparison ? (
+    <ComparisonPage page={page}>
+      <SourceTestimonials slot="testimonials" testimonials={testimonials} testimonialCategories={testimonialCategories} partnerLogos={partnerLogos} testimonialsFixture={testimonialsFixture} />
+      <SourceContact slot="contact" />
+    </ComparisonPage>
+  ) : (
+    <ServiceLocationPage page={page} countyHub={countyHub} />
+  )}
+  <SiteFooter />
+  <CookieConsent />
+</BaseLayout>
+
+<script src="../scripts/enhance.ts"></script>

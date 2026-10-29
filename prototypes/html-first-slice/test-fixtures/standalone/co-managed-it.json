@@ -1,0 +1,351 @@
+{
+  "route": "/co-managed-it",
+  "source": "pages-v2/CoManagedITPageV2.tsx",
+  "sourceSha256": "1589c71d30416c0fbbe22c5340ce61da3d650a56b48991800487f185a9d54094",
+  "capturedAt": "2026-09-16T12:23:06.754Z",
+  "head": {
+    "title": "Co-Managed IT Support: Reinforce Your In-House IT | Fresh Tech",
+    "description": "Co-managed IT support for businesses with an in-house IT team. Escalation, holiday cover, project surge capacity and 24/7 security, alongside your people, not instead of them.",
+    "canonical": "https://fresh-tech.uk/co-managed-it",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Co-Managed IT Support: Reinforce Your In-House IT",
+        "description": "Co-managed IT support for businesses with an in-house IT team. Escalation, holiday cover, project surge capacity and 24/7 security, alongside your people, not instead of them.",
+        "url": "https://fresh-tech.uk/co-managed-it",
+        "provider": {
+          "@id": "https://fresh-tech.uk/#localbusiness"
+        },
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": [
+          "LocalBusiness",
+          "ProfessionalService"
+        ],
+        "@id": "https://fresh-tech.uk/#localbusiness",
+        "name": "Fresh Tech IT Support",
+        "description": "Managed IT Support and Cybersecurity services for businesses in Shropshire, Herefordshire, and the West Midlands.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/",
+        "telephone": "+441584517234",
+        "email": "hello@fresh-tech.uk",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.368,
+          "longitude": -2.717
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          },
+          {
+            "@type": "City",
+            "name": "Ludlow"
+          },
+          {
+            "@type": "City",
+            "name": "Shrewsbury"
+          },
+          {
+            "@type": "City",
+            "name": "Hereford"
+          },
+          {
+            "@type": "City",
+            "name": "Telford"
+          },
+          {
+            "@type": "City",
+            "name": "Worcester"
+          },
+          {
+            "@type": "City",
+            "name": "Leominster"
+          },
+          {
+            "@type": "City",
+            "name": "Ross-on-Wye"
+          },
+          {
+            "@type": "City",
+            "name": "Bridgnorth"
+          },
+          {
+            "@type": "City",
+            "name": "Malvern"
+          },
+          {
+            "@type": "City",
+            "name": "Ledbury"
+          },
+          {
+            "@type": "City",
+            "name": "Oswestry"
+          },
+          {
+            "@type": "City",
+            "name": "Welshpool"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.368,
+            "longitude": -2.717
+          },
+          "geoRadius": "55000"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed IT Support",
+              "url": "https://fresh-tech.uk/services/managed-it-support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Security",
+              "url": "https://fresh-tech.uk/services/cybersecurity"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Essentials Certification Support",
+              "url": "https://fresh-tech.uk/services/cyber-essentials"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microsoft 365 & Cloud Solutions",
+              "url": "https://fresh-tech.uk/services/cloud-solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud Backup & Disaster Recovery",
+              "url": "https://fresh-tech.uk/services/backup-disaster-recovery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Phone Systems",
+              "url": "https://fresh-tech.uk/services/cloud-phone-systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Procurement",
+              "url": "https://fresh-tech.uk/services/hardware-procurement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic IT Projects",
+              "url": "https://fresh-tech.uk/services/strategic-projects"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed Print",
+              "url": "https://fresh-tech.uk/services/managed-print"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Co Managed It",
+            "item": "https://fresh-tech.uk/co-managed-it"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "Your IT team, reinforced. Not replaced."
+      ],
+      [
+        2,
+        "Built for the in-house IT manager"
+      ],
+      [
+        2,
+        "Four ways we plug in"
+      ],
+      [
+        2,
+        "Who does what"
+      ],
+      [
+        2,
+        "You keep"
+      ],
+      [
+        2,
+        "We cover"
+      ],
+      [
+        2,
+        "Give your IT lead a senior bench"
+      ]
+    ],
+    "links": [
+      [
+        "/contact",
+        "Talk to us about co-managed IT →"
+      ],
+      [
+        "/technology-stack",
+        "See our technology stack →"
+      ],
+      [
+        "/contact",
+        "Book a 20-min call →"
+      ]
+    ],
+    "images": [],
+    "text": "For in-house IT teams Your IT team, reinforced. Not replaced. Co-managed IT gives your internal IT person, or team, a senior partner behind them. For escalation, holiday and sickness cover, project surge capacity, and the specialist work that is hard to justify hiring for. You keep control and the in-house relationship. We add the tools, the 24/7 security and the deep bench, so your IT lead stops being a single point of failure. Talk to us about co-managed IT →See our technology stack → One IT person shouldn’t be a single point of failure. When your in-house IT lead is off, overloaded, or out of their depth on a specialist problem, the business shouldn’t stop. Co-managed IT is the safety net behind them. Who it’s for Built for the in-house IT manager Co-managed IT suits growing businesses, typically 30 to 200 staff, that already have a capable internal IT person or small team, but feel the strain when one person has to cover everything. If your IT lead is brilliant on the day-to-day but stretched thin on security, cloud architecture and projects, and the whole function falls over the week they are on holiday, co-managed IT fills exactly those gaps, without you losing the internal relationship your staff rely on. Flexible by design Four ways we plug in Mix and match to suit your team. Most clients start with one and grow into others as the relationship builds. Escalation backstop Your team owns day-to-day support. We are the senior bench behind them for the genuinely hard problems: deep troubleshooting, security incidents, and the issues that would otherwise eat a whole afternoon. Holiday & sickness cover When your IT person is on leave or off sick, your helpdesk doesn't go dark. We step in seamlessly so the business keeps moving and your IT lead can actually switch off. Project surge capacity Extra hands and specialist skills for migrations, rollouts, office moves and infrastructure projects, without hiring contractors who do not know your environment. Co-pilot & advisory vCIO roadmapping, architecture reviews and security strategy alongside your team: the senior perspective that is hard to justify as a full-time hire. Clear lines Who does what We agree the split up front, in writing, so there is never confusion about who owns what. A typical division looks like this. Your team You keep Day-to-day helpdesk and user relationships Knowledge of your people, systems and quirks Control of budget and priorities The internal face your staff already trust Fresh Tech We cover 24/7 security: Huntress SOC + ThreatLocker zero-trust Escalation and deep technical troubleshooting Microsoft 365 & cloud architecture Monitoring, patching and RMM tooling Documentation, so nothing lives in one person’s head Out-of-hours and project delivery Reinforce your team Give your IT lead a senior bench A 20-minute call is enough to map where your team needs support. No three-year tie-ins, no replacing anyone, just a stronger IT function. Book a 20-min call → Last reviewed May 2026 · Sam James"
+  }
+}

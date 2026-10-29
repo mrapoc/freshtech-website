@@ -1,0 +1,156 @@
+---
+// Copy and structure mirror pages/ComparisonPage.tsx: hero with breadcrumb
+// (Home > Resources > h1), intro and contact + phone actions; the option cards
+// (the last of three or more is "Recommended"); the side-by-side table; the
+// RichText verdict and content; the FAQs; and the closing call to action.
+// Deliberate differences from the React page: the FAQs are native <details>
+// sharing a name so at most one is open without JavaScript, and the table sits
+// in a labelled, keyboard-focusable scroll region so narrow screens can scroll
+// it horizontally instead of crushing the cells. Feature cells are row headers
+// (<th scope="row">) rather than plain cells, with the same text.
+// The Testimonials and Contact sections that follow in the React page arrive
+// through the named slots at the end.
+import ComparisonIcon from './ComparisonIcon.astro';
+import RichText from './RichText.astro';
+import { CALL_LABEL, CONTACT_HREF, COPY, PHONE_HREF, breadcrumbItems, iconName, isRecommended } from '../lib/comparison-display.mjs';
+
+interface Option { name: string; desc: string; pros: string[]; cons: string[]; bestFor: string; icon: string }
+interface Page {
+  slug: string; title: string; metaDesc: string; h1: string; intro: string; options: Option[];
+  comparisonRows: { feature: string; values: string[] }[]; verdict: string; content: string;
+  faqs: { q: string; a: string }[]; cta: string;
+}
+interface Props { page: Page }
+const { page } = Astro.props;
+const crumbs = breadcrumbItems(page);
+const count = page.options.length;
+const tableCaptionId = `cp-table-${page.slug}`;
+---
+
+<main id="main-content" class="cp-page" data-comparison-page={page.slug} tabindex="-1">
+  <section class="cp-hero">
+    <div class="cp-copy-container">
+      <nav class="cp-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          {crumbs.map(([label, href]) => (
+            <li>{href ? <a href={href}>{label}</a> : <span aria-current="page">{label}</span>}</li>
+          ))}
+        </ol>
+      </nav>
+      <h1>{page.h1}</h1>
+      <p class="cp-hero-copy">{page.intro}</p>
+      <div class="cp-actions">
+        <a class="cp-button cp-button-primary" href={CONTACT_HREF}>{page.cta}</a>
+        <a class="cp-button cp-button-secondary" href={PHONE_HREF}>{CALL_LABEL}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cp-section cp-options">
+    <div class="cp-container">
+      <header class="cp-section-heading">
+        <h2>{COPY.optionsHeading}</h2>
+        <p>{COPY.optionsIntro}</p>
+      </header>
+      <div class="cp-option-grid" data-count={count}>
+        {page.options.map((option, index) => {
+          const recommended = isRecommended(index, count);
+          return (
+            <article class="cp-option" data-recommended={recommended ? 'true' : undefined}>
+              {recommended && <span class="cp-badge">{COPY.recommended}</span>}
+              <span class="cp-option-icon"><ComparisonIcon name={iconName(option.icon)} size={28} /></span>
+              <h3>{option.name}</h3>
+              <p class="cp-option-desc">{option.desc}</p>
+              <h4 class="cp-pros-heading">{COPY.advantages}</h4>
+              <ul class="cp-points cp-pros">
+                {option.pros.map(pro => <li><ComparisonIcon name="CheckCircle" size={16} /><span>{pro}</span></li>)}
+              </ul>
+              <h4 class="cp-cons-heading">{COPY.disadvantages}</h4>
+              <ul class="cp-points cp-cons">
+                {option.cons.map(con => <li><ComparisonIcon name="XCircle" size={16} /><span>{con}</span></li>)}
+              </ul>
+              <p class="cp-best-for"><strong>{COPY.bestFor}</strong> {option.bestFor}</p>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="cp-section cp-table-section">
+    <div class="cp-container">
+      <header class="cp-section-heading">
+        <h2 id={tableCaptionId}>{COPY.tableHeading}</h2>
+        <p>{COPY.tableIntro}</p>
+      </header>
+      <div class="cp-table-scroll" role="region" aria-labelledby={tableCaptionId} tabindex="0">
+        <table class="cp-table" data-columns={count + 1}>
+          <thead>
+            <tr>
+              <th scope="col">{COPY.featureHeader}</th>
+              {page.options.map(option => <th scope="col">{option.name}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {page.comparisonRows.map(row => (
+              <tr>
+                <th scope="row">{row.feature}</th>
+                {row.values.map(value => <td>{value}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="cp-section cp-verdict-section">
+    <div class="cp-copy-container">
+      <div class="cp-verdict">
+        <h2>{COPY.verdictHeading}</h2>
+        <div class="cp-rich cp-verdict-copy"><RichText text={page.verdict} /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cp-section cp-content">
+    <div class="cp-copy-container">
+      <div class="cp-rich cp-content-copy"><RichText text={page.content} /></div>
+    </div>
+  </section>
+
+  <section class="cp-section cp-faqs">
+    <div class="cp-copy-container">
+      <header class="cp-section-heading">
+        <h2>{COPY.faqHeading}</h2>
+        <p>{COPY.faqIntro}</p>
+      </header>
+      <div class="cp-faq-list">
+        {page.faqs.map(faq => (
+          <details name="comparison-faq">
+            <summary>
+              <span>{faq.q}</span>
+              <ComparisonIcon name="ChevronDown" size={20} class="cp-faq-chevron cp-chevron-down" />
+              <ComparisonIcon name="ChevronUp" size={20} class="cp-faq-chevron cp-chevron-up" />
+            </summary>
+            <div class="cp-rich cp-faq-answer"><RichText text={faq.a} /></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cp-final">
+    <div class="cp-copy-container">
+      <h2>{COPY.finalHeading}</h2>
+      <p class="cp-final-copy">{COPY.finalCopy}</p>
+      <div class="cp-actions cp-actions-centre">
+        <a class="cp-button cp-button-primary" href={CONTACT_HREF}>{page.cta}</a>
+        <a class="cp-button cp-button-secondary" href={PHONE_HREF}>{CALL_LABEL}</a>
+      </div>
+    </div>
+  </section>
+
+  <slot name="testimonials" />
+  <slot name="contact" />
+</main>

@@ -1,0 +1,396 @@
+{
+  "route": "/support",
+  "source": "pages/SupportPage.tsx",
+  "sourceSha256": "89dde71bf4f0d61d5a7a5e3431742efd1c86320cbf6bda2e0676c2c0736ff52f",
+  "capturedAt": "2026-09-16T12:23:08.706Z",
+  "head": {
+    "title": "Get Support - Existing Customers | Fresh Tech IT Support",
+    "description": "How to contact Fresh Tech for IT support. Log tickets via our portal, call, or email. For existing managed service customers only.",
+    "canonical": "https://fresh-tech.uk/support",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": [
+          "LocalBusiness",
+          "ProfessionalService"
+        ],
+        "@id": "https://fresh-tech.uk/#localbusiness",
+        "name": "Fresh Tech IT Support",
+        "description": "Managed IT Support and Cybersecurity services for businesses in Shropshire, Herefordshire, and the West Midlands.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/",
+        "telephone": "+441584517234",
+        "email": "hello@fresh-tech.uk",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.368,
+          "longitude": -2.717
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          },
+          {
+            "@type": "City",
+            "name": "Ludlow"
+          },
+          {
+            "@type": "City",
+            "name": "Shrewsbury"
+          },
+          {
+            "@type": "City",
+            "name": "Hereford"
+          },
+          {
+            "@type": "City",
+            "name": "Telford"
+          },
+          {
+            "@type": "City",
+            "name": "Worcester"
+          },
+          {
+            "@type": "City",
+            "name": "Leominster"
+          },
+          {
+            "@type": "City",
+            "name": "Ross-on-Wye"
+          },
+          {
+            "@type": "City",
+            "name": "Bridgnorth"
+          },
+          {
+            "@type": "City",
+            "name": "Malvern"
+          },
+          {
+            "@type": "City",
+            "name": "Ledbury"
+          },
+          {
+            "@type": "City",
+            "name": "Oswestry"
+          },
+          {
+            "@type": "City",
+            "name": "Welshpool"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.368,
+            "longitude": -2.717
+          },
+          "geoRadius": "55000"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed IT Support",
+              "url": "https://fresh-tech.uk/services/managed-it-support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Security",
+              "url": "https://fresh-tech.uk/services/cybersecurity"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Essentials Certification Support",
+              "url": "https://fresh-tech.uk/services/cyber-essentials"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microsoft 365 & Cloud Solutions",
+              "url": "https://fresh-tech.uk/services/cloud-solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud Backup & Disaster Recovery",
+              "url": "https://fresh-tech.uk/services/backup-disaster-recovery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Phone Systems",
+              "url": "https://fresh-tech.uk/services/cloud-phone-systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Procurement",
+              "url": "https://fresh-tech.uk/services/hardware-procurement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic IT Projects",
+              "url": "https://fresh-tech.uk/services/strategic-projects"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed Print",
+              "url": "https://fresh-tech.uk/services/managed-print"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Support",
+            "item": "https://fresh-tech.uk/support"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "Get IT Support"
+      ],
+      [
+        2,
+        "How to Reach Us"
+      ],
+      [
+        3,
+        "Client Portal"
+      ],
+      [
+        3,
+        "Phone Support"
+      ],
+      [
+        3,
+        "Email Support"
+      ],
+      [
+        2,
+        "Important Notes"
+      ],
+      [
+        3,
+        "Don't contact staff directly"
+      ],
+      [
+        3,
+        "SLA only starts when logged"
+      ],
+      [
+        3,
+        "Live chat is for new enquiries"
+      ],
+      [
+        2,
+        "Useful Resources"
+      ],
+      [
+        3,
+        "Microsoft 365 Status"
+      ],
+      [
+        3,
+        "Common Questions"
+      ],
+      [
+        3,
+        "What We Monitor"
+      ],
+      [
+        3,
+        "Security Best Practices"
+      ],
+      [
+        2,
+        "Know Someone Who Needs Better IT?"
+      ],
+      [
+        2,
+        "Not a Customer Yet?"
+      ]
+    ],
+    "links": [
+      [
+        "/",
+        "Home"
+      ],
+      [
+        "/",
+        "Home"
+      ],
+      [
+        "https://helpdesk.fresh-tech.uk/portal",
+        "Open Portal"
+      ],
+      [
+        "tel:01584517234",
+        "01584 517 234"
+      ],
+      [
+        "mailto:support@fresh-tech.uk",
+        "Send Email"
+      ],
+      [
+        "https://status.office365.com/",
+        "Microsoft 365 Status Check if Microsoft services are having issues"
+      ],
+      [
+        "/faq",
+        "Common Questions Quick answers to frequent IT questions"
+      ],
+      [
+        "/technology/rmm",
+        "What We Monitor See how we proactively protect your systems"
+      ],
+      [
+        "/blog?category=security",
+        "Security Best Practices Tips to keep your team safe online"
+      ],
+      [
+        "/refer",
+        "Refer a Business"
+      ],
+      [
+        "/contact",
+        "Contact Us"
+      ],
+      [
+        "/it-health-check",
+        "Free IT Health Check"
+      ]
+    ],
+    "images": [],
+    "text": "Home Home Support Existing Customers Get IT Support Already a Fresh Tech customer? Here's how to reach us and get the fastest response. Average response time: under 15 minutesfor tickets logged via the portal How to Reach Us Choose the channel that best fits your situation. The portal is fastest for most issues. FASTEST RESPONSE Client Portal Recommended - SLA starts immediately Log a ticket and we'll be notified instantly. Full visibility of progress, history, and updates. SLA timer starts the moment you submit Track progress in real-time Full history of all your tickets Attach screenshots and files easily Open Portal Phone Support For urgent issues Call us directly for critical problems that are stopping your work. We answer Mon-Fri 8:30am-5:30pm. Speak to a real person Ideal for urgent or complex issues We'll log the ticket for you 01584 517 234 Email Support support@fresh-tech.uk Email creates a ticket automatically. Include as much detail as possible to help us help you faster. Auto-creates a ticket in our system Great for non-urgent requests Include screenshots as attachments Send Email Important Notes To ensure you get the best and fastest support, please keep these points in mind. Don't contact staff directly Messaging a team member on their personal number or email risks your issue being missed. They might be on leave, in a meeting, or have moved on. Always use official channels. SLA only starts when logged Our response time guarantees only apply once a ticket exists in our system. A text message to a technician doesn't count - use the portal or email. Live chat is for new enquiries The chat widget on our website is for prospective customers. For support, use the channels above so we have your account context. Useful Resources Quick links that might help before you log a ticket. Microsoft 365 Status Check if Microsoft services are having issues Common Questions Quick answers to frequent IT questions What We Monitor See how we proactively protect your systems Security Best Practices Tips to keep your team safe online Know Someone Who Needs Better IT? If you've had a good experience with us, we'd love to help your contacts too. Refer a business and we'll make the introduction easy. Refer a Business Not a Customer Yet? If you're looking for IT support for your business, we'd love to chat. Use our live chat or get in touch to discuss your needs. Contact UsFree IT Health Check"
+  },
+  "sourceNote": "pages/SupportPage.tsx changed after capture only to remove the live chat copy (8c9342b, not deployed to Netlify); the removal is a documented difference."
+}

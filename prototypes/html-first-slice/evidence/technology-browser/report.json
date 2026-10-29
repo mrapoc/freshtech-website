@@ -1,0 +1,153 @@
+{
+  "status": "passed",
+  "generatedAt": "2026-10-29T17:33:48.591Z",
+  "runtime": {
+    "node": "v24.22.0",
+    "browserExecutable": "Contents/MacOS/Google Chrome for Testing"
+  },
+  "routes": {
+    "count": 18,
+    "listing": "/technology/",
+    "explainers": [
+      "rmm",
+      "application-control",
+      "admin-rights",
+      "edr-mdr",
+      "itdr",
+      "conditional-access",
+      "intune-autopilot",
+      "ncsc",
+      "patching",
+      "end-of-life",
+      "business-networking",
+      "cloud-vs-onpremise",
+      "zero-trust",
+      "mfa",
+      "phishing",
+      "email-authentication",
+      "vpn"
+    ],
+    "representative": "vpn"
+  },
+  "expectations": {
+    "categories": [
+      "Cyber Security",
+      "Microsoft 365",
+      "IT Management",
+      "Infrastructure",
+      "Compliance"
+    ],
+    "listingCards": 17,
+    "directoryEntries": 16,
+    "source": "src/generated/technology-data.mjs only"
+  },
+  "assertions": 777,
+  "failures": [],
+  "screenshots": [
+    "vpn-phone-font-fast.png",
+    "vpn-phone-top.png",
+    "vpn-phone-200.png",
+    "vpn-desktop-top.png",
+    "listing-phone-font-fast.png",
+    "listing-phone-top.png",
+    "listing-phone-200.png",
+    "listing-desktop-top.png",
+    "vpn-320-200.png",
+    "listing-320-200.png",
+    "vpn-phone-font-slow-fallback.png",
+    "vpn-phone-font-slow-after-load.png",
+    "listing-phone-font-slow-fallback.png",
+    "listing-phone-font-slow-after-load.png"
+  ],
+  "fontObservations": [
+    {
+      "route": "vpn",
+      "pass": "normal load",
+      "h1Fonts": [
+        "Bungee"
+      ]
+    },
+    {
+      "route": "listing",
+      "pass": "normal load",
+      "h1Fonts": [
+        "Bungee"
+      ]
+    },
+    {
+      "route": "vpn",
+      "pass": "320px delayed font after load",
+      "h1Fonts": [
+        "Helvetica"
+      ],
+      "swapped": false
+    },
+    {
+      "route": "listing",
+      "pass": "320px delayed font after load",
+      "h1Fonts": [
+        "Helvetica"
+      ],
+      "swapped": false
+    },
+    {
+      "route": "vpn",
+      "pass": "390px delayed font after load",
+      "h1Fonts": [
+        "Helvetica"
+      ],
+      "swapped": false
+    },
+    {
+      "route": "listing",
+      "pass": "390px delayed font after load",
+      "h1Fonts": [
+        "Helvetica"
+      ],
+      "swapped": false
+    }
+  ],
+  "network": {
+    "mockedCloudinaryImages": [
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/admin-rights-removal-security.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/application-control-ringfencing.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/backup-disaster-recovery-hero.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/business-networking-infrastructure.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/cloud-vs-on-premise-servers.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/edr-mdr-endpoint-security.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/end-of-life-devices-hardware.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/intune-autopilot-device-management.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/itdr-identity-threat-detection.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/ncsc-national-cyber-security.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/phishing-email-scam-protection.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/rmm-remote-monitoring-management.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/software-patching-updates.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/two-factor-authentication-mfa.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,c_fill,ar_2:1,f_auto,q_auto/zero-trust-security-model.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/admin-rights-removal-security.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/application-control-ringfencing.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/backup-disaster-recovery-hero.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/business-networking-infrastructure.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/cloud-vs-on-premise-servers.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/edr-mdr-endpoint-security.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/end-of-life-devices-hardware.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/intune-autopilot-device-management.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/itdr-identity-threat-detection.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/ncsc-national-cyber-security.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/phishing-email-scam-protection.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/rmm-remote-monitoring-management.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/software-patching-updates.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/two-factor-authentication-mfa.jpg",
+      "https://res.cloudinary.com/djkmeg5se/image/upload/w_480,c_fill,ar_2:1,f_auto,q_auto/zero-trust-security-model.jpg"
+    ],
+    "metricsStubbed": [],
+    "denied": [],
+    "note": "GET Cloudinary image responses are a local 1200x600 SVG mock; GET https://helpdesk.fresh-tech.uk/api/ReportData/* (the retired metrics feed) is stubbed 503. No other external request, and no non-GET request, is allowed."
+  },
+  "limitations": [
+    "Hero images are mocked, so real image payload, decoding cost and Cloudinary availability are not measured here.",
+    "Fonts use font-display: optional. The delayed-font pass proves the fallback layout does not move when the file arrives; it does not expect a swap to the web font.",
+    "The 200% pass doubles every computed font size after load. It models text-only enlargement, not page zoom.",
+    "Contrast is measured against solid ancestor background colours; the hero dot pattern is a low-alpha overlay and is not modelled."
+  ]
+}

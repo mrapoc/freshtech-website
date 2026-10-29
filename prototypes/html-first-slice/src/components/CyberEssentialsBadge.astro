@@ -1,0 +1,26 @@
+---
+// Blockmark's live Cyber Essentials certificate badge (IASME certification body
+// registry). It shows the current certificate and links to the public record,
+// so it updates itself when Cyber Essentials Plus is awarded. Checked 9 Oct
+// 2026: plain HTML, no cookies, no third-party scripts; its one small inline
+// script would log a console error if blocked, so scripts may run, but never
+// with allow-same-origin: the frame stays an opaque origin that cannot reach
+// our page, cookies or storage. Popups only so its link opens a new tab.
+// CSP frame-src allows exactly https://registry.blockmarktech.com.
+// 132 x 132 is Blockmark's minimum size; the fixed size avoids layout shift.
+const { theme = 'transparent', class: className } = Astro.props;
+const src = `https://registry.blockmarktech.com/certificates/d814fc98-ac12-42d2-803a-ba214816fd98/widget/?tooltip_position=bottom&theme=${theme}`;
+---
+<iframe
+  class:list={['ce-badge', className]}
+  src={src}
+  title="Fresh Tech's Cyber Essentials certificate, verified by Blockmark"
+  width="132"
+  height="132"
+  loading="lazy"
+  referrerpolicy="no-referrer"
+  sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
+></iframe>
+<style>
+  .ce-badge { display: block; flex: none; width: 132px; height: 132px; border: 0; }
+</style>

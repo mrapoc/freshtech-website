@@ -1,0 +1,343 @@
+{
+  "route": "/onboarding",
+  "source": "pages-v2/OnboardingPageV2.tsx",
+  "sourceSha256": "92bd1f0b8ca42a983fc177fe1ea02eef55de7e5ba1492bd201671d7ce227c51e",
+  "capturedAt": "2026-09-16T12:23:08.295Z",
+  "head": {
+    "title": "Switching IT Provider: Zero Downtime, No Hassle | Fresh Tech",
+    "description": "Switching IT provider? Fresh Tech makes it seamless: zero downtime, we handle the credential transfer, your staff won't notice. Based in Ludlow, Shropshire.",
+    "canonical": "https://fresh-tech.uk/onboarding",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Switching IT Provider: Zero Downtime, No Hassle",
+        "description": "Switching IT provider? Fresh Tech makes it seamless: zero downtime, we handle the credential transfer, your staff won't notice. Based in Ludlow, Shropshire.",
+        "url": "https://fresh-tech.uk/onboarding",
+        "provider": {
+          "@id": "https://fresh-tech.uk/#localbusiness"
+        },
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": [
+          "LocalBusiness",
+          "ProfessionalService"
+        ],
+        "@id": "https://fresh-tech.uk/#localbusiness",
+        "name": "Fresh Tech IT Support",
+        "description": "Managed IT Support and Cybersecurity services for businesses in Shropshire, Herefordshire, and the West Midlands.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/",
+        "telephone": "+441584517234",
+        "email": "hello@fresh-tech.uk",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.368,
+          "longitude": -2.717
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          },
+          {
+            "@type": "City",
+            "name": "Ludlow"
+          },
+          {
+            "@type": "City",
+            "name": "Shrewsbury"
+          },
+          {
+            "@type": "City",
+            "name": "Hereford"
+          },
+          {
+            "@type": "City",
+            "name": "Telford"
+          },
+          {
+            "@type": "City",
+            "name": "Worcester"
+          },
+          {
+            "@type": "City",
+            "name": "Leominster"
+          },
+          {
+            "@type": "City",
+            "name": "Ross-on-Wye"
+          },
+          {
+            "@type": "City",
+            "name": "Bridgnorth"
+          },
+          {
+            "@type": "City",
+            "name": "Malvern"
+          },
+          {
+            "@type": "City",
+            "name": "Ledbury"
+          },
+          {
+            "@type": "City",
+            "name": "Oswestry"
+          },
+          {
+            "@type": "City",
+            "name": "Welshpool"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.368,
+            "longitude": -2.717
+          },
+          "geoRadius": "55000"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed IT Support",
+              "url": "https://fresh-tech.uk/services/managed-it-support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Security",
+              "url": "https://fresh-tech.uk/services/cybersecurity"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Essentials Certification Support",
+              "url": "https://fresh-tech.uk/services/cyber-essentials"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microsoft 365 & Cloud Solutions",
+              "url": "https://fresh-tech.uk/services/cloud-solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud Backup & Disaster Recovery",
+              "url": "https://fresh-tech.uk/services/backup-disaster-recovery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Phone Systems",
+              "url": "https://fresh-tech.uk/services/cloud-phone-systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Procurement",
+              "url": "https://fresh-tech.uk/services/hardware-procurement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic IT Projects",
+              "url": "https://fresh-tech.uk/services/strategic-projects"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed Print",
+              "url": "https://fresh-tech.uk/services/managed-print"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Switching IT Provider",
+            "item": "https://fresh-tech.uk/onboarding"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "Thinking about switching? Here's the honest guide."
+      ],
+      [
+        2,
+        "What's stopping you. Addressed."
+      ],
+      [
+        2,
+        "Step by step. No surprises."
+      ],
+      [
+        2,
+        "More switching questions"
+      ],
+      [
+        2,
+        "It starts with one phone call."
+      ]
+    ],
+    "links": [
+      [
+        "/contact",
+        "Book a 20-min call →"
+      ],
+      [
+        "/contact",
+        "Book a 20-min call →"
+      ],
+      [
+        "tel:+441584517234",
+        "01584 517 234"
+      ]
+    ],
+    "images": [],
+    "text": "Switching IT provider Thinking about switching? Here's the honest guide. Most businesses stay with a bad IT provider far longer than they should, because switching sounds complicated. It isn't. We've done it dozens of times. This page explains how it actually works, what happens with your data and contracts, and what you can expect from us if you decide to make the move. Book a 20-min call → Our switching record Zero Unplanned outages during any client migration 30 days Typical time from first call to fully switched 100% Success rate on credential handovers (inc. difficult providers) The blockers What's stopping you. Addressed. These are the five reasons businesses stay with a bad IT provider. Here's the reality of each. 🔒 \"We're locked into a contract\" ✓ Most IT contracts have a notice period, often 30–90 days. We can help you review yours and plan the switch for when the timing is right. We've never advised someone to break a contract. ⏱️ \"Switching will cause downtime\" ✓ We run both systems in parallel. Your team keeps working during the entire transition. Most clients say the changeover was invisible: they just noticed support got faster. 📁 \"Getting our data and licences back\" ✓ Your data, passwords, and licences belong to you, not your IT company. If they're reluctant to hand over credentials, we know how to navigate that. We've dealt with uncooperative providers many times. 🤷 \"Our staff will struggle with the change\" ✓ We introduce ourselves to your team in the first week. One number, one email, same support. Most staff notice nothing except the calls get answered faster. 💸 \"There'll be hidden setup costs\" ✓ No setup fee. No migration charge. No \"discovery phase\" invoice. We price on a per-user per-month basis from day one. That's it. The process Step by step. No surprises. This is exactly what a standard switch looks like. Most are complete within 30 days of the first call. What if we're mid-contract? We can start the process now and time the cutover to coincide with your contract end date. We'll help you review notice period requirements and plan accordingly. No reason to wait until you're miserable. Week 1 We audit what you have Remote scan of your devices, licences, and security posture. You get a plain-English report, yours to keep regardless. Week 2 Notice served (by you) You serve notice to your existing provider. We help you draft the letter if needed and check what notice period applies. Weeks 2–4 Credential handover We request admin credentials, licence keys, and domain access from your outgoing provider. If they stall, we have workarounds. Weeks 3–5 Parallel running Our monitoring, backups, and security tools go onto every device while your old provider is still technically in place. No gap in coverage. Final week Cutover On the agreed date we take full control. Your team gets a 5-minute briefing: here's who to call, here's the new email, here's what changes. That's it. Month 2+ Business as usual You call us by name. We pick up. You stop thinking about IT. That's the goal. Questions More switching questions We have a complicated setup: servers, remote workers, a VoIP system. Can you handle it?+ Our current IT company has been with us for years. Won't it be awkward?+ What if our staff are used to the way things work with the current provider?+ Can we talk to you before committing to anything?+ Ready to talk? It starts with one phone call. 20 minutes. No commitment. We'll tell you what switching would look like for your specific setup, and whether it's actually worth doing. Book a 20-min call →01584 517 234 30-day money-back guarantee · Zero downtime switch · Mon–Fri 9am–5pm"
+  }
+}

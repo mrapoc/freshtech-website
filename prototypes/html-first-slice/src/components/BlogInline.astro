@@ -1,0 +1,14 @@
+---
+// Renders inline tokens from src/lib/blog-markdown.mjs as elements and escaped
+// text. Link labels are plain text (the V2 parseInline never parses them).
+interface Token { type: string; value?: string; href?: string; external?: boolean; label?: string }
+interface Props { tokens: Token[] }
+const { tokens } = Astro.props;
+---
+
+{tokens.map(token => {
+  if (token.type === 'strong') return <strong>{token.value}</strong>;
+  if (token.type === 'code') return <code>{token.value}</code>;
+  if (token.type === 'link') return <a href={token.href} target={token.external ? '_blank' : undefined} rel={token.external ? 'noopener noreferrer' : undefined}>{token.label}</a>;
+  return token.value;
+})}

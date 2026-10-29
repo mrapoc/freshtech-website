@@ -1,0 +1,173 @@
+---
+// Port of pages/SupportPage.tsx. The React breadcrumb shows "Home" twice (its
+// Breadcrumbs component adds a Home link and the page passes Home again); the
+// native page shows it once, documented in standalone-differences.mjs.
+import { contactDetails } from '../generated/standalone-data.mjs';
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+
+const seo = {
+  path: '/support',
+  title: 'Get Support - Existing Customers',
+  description: 'How to contact Fresh Tech for IT support. Log tickets via our portal, call, or email. For existing managed service customers only.',
+};
+
+const channels = [
+  {
+    title: 'Client Portal', subtitle: 'Recommended - SLA starts immediately',
+    desc: "Log a ticket and we'll be notified instantly. Full visibility of progress, history, and updates.",
+    benefits: ['SLA timer starts the moment you submit', 'Track progress in real-time', 'Full history of all your tickets', 'Attach screenshots and files easily'],
+    action: { label: 'Open Portal', href: contactDetails.portal },
+    highlight: true,
+  },
+  {
+    title: 'Phone Support', subtitle: 'For urgent issues',
+    desc: 'Call us directly for critical problems that are stopping your work. We answer Mon-Fri 8:30am-5:30pm.',
+    benefits: ['Speak to a real person', 'Ideal for urgent or complex issues', "We'll log the ticket for you"],
+    action: { label: contactDetails.phone, href: `tel:${contactDetails.phone.replace(/\s/g, '')}` },
+  },
+  {
+    title: 'Email Support', subtitle: 'support@fresh-tech.uk',
+    desc: 'Email creates a ticket automatically. Include as much detail as possible to help us help you faster.',
+    benefits: ['Auto-creates a ticket in our system', 'Great for non-urgent requests', 'Include screenshots as attachments'],
+    action: { label: 'Send Email', href: 'mailto:support@fresh-tech.uk' },
+  },
+];
+
+const warnings = [
+  { title: "Don't contact staff directly", desc: 'Messaging a team member on their personal number or email risks your issue being missed. They might be on leave, in a meeting, or have moved on. Always use official channels.' },
+  { title: 'SLA only starts when logged', desc: "Our response time guarantees only apply once a ticket exists in our system. A text message to a technician doesn't count - use the portal or email." },
+];
+
+const resources = [
+  { title: 'Microsoft 365 Status', desc: 'Check if Microsoft services are having issues', href: 'https://status.office365.com/' },
+  { title: 'Common Questions', desc: 'Quick answers to frequent IT questions', href: '/faq' },
+  { title: 'What We Monitor', desc: 'See how we proactively protect your systems', href: '/technology/rmm' },
+  { title: 'Security Best Practices', desc: 'Tips to keep your team safe online', href: '/blog?category=security' },
+];
+---
+
+<StandaloneShell name="support" seo={seo}>
+  <nav class="sa-crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><span>Support</span></li>
+    </ol>
+  </nav>
+
+  <section class="sa-hero">
+    <div class="sa-wrap sa-center" style="--sa-max: 760px">
+      <p class="sa-eyebrow sa-eyebrow-light">Existing Customers</p>
+      <h1 class="sa-display sa-display-light" style="--sa-size: 46px; --sa-size-mobile: 34px; margin-bottom: 16px">Get IT Support</h1>
+      <p class="sa-lead sa-center-lead">Already a Fresh Tech customer? Here's how to reach us and get the fastest response.</p>
+    </div>
+  </section>
+
+  <section class="sa-priority">
+    <div class="sa-wrap sa-center"><p><span class="sa-priority-strong">Need help with an issue?</span>{' '}<span class="sa-priority-soft">Log a ticket via the portal or call our team.</span></p></div>
+  </section>
+
+  <section class="sa-section sa-paper">
+    <div class="sa-wrap">
+      <div class="sa-center" style="margin-bottom: 40px">
+        <h2 class="sa-h2">How to Reach Us</h2>
+        <p class="sa-sub">Choose the channel that best fits your situation. The portal is fastest for most issues.</p>
+      </div>
+      <div class="sa-grid-3">
+        {channels.map(c => (
+          <div class:list={['sa-card', { 'sa-card-highlight': c.highlight }]}>
+            {c.highlight && <p class="sa-flag">FASTEST RESPONSE</p>}
+            <h3>{c.title}</h3>
+            <p class="sa-card-subtitle">{c.subtitle}</p>
+            <p class="sa-card-desc">{c.desc}</p>
+            <ul class="sa-tick-list">{c.benefits.map(b => <li>{b}</li>)}</ul>
+            <a class="sa-button" href={c.action.href}>{c.action.label}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white sa-rule">
+    <div class="sa-wrap">
+      <div class="sa-center" style="margin-bottom: 40px">
+        <h2 class="sa-h2">Important Notes</h2>
+        <p class="sa-sub">To ensure you get the best and fastest support, please keep these points in mind.</p>
+      </div>
+      <div class="sa-grid-2">
+        {warnings.map(w => (
+          <div class="sa-warning"><h3>{w.title}</h3><p>{w.desc}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap">
+      <div class="sa-center" style="margin-bottom: 40px">
+        <h2 class="sa-h2">Useful Resources</h2>
+        <p class="sa-sub">Quick links that might help before you log a ticket.</p>
+      </div>
+      <div class="sa-grid-4">
+        {resources.map(r => (
+          <a class="sa-resource" href={r.href}><h3>{r.title}</h3><p>{r.desc}</p></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-ink">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <h2 class="sa-h2 sa-h2-light">Know Someone Who Needs Better IT?</h2>
+      <p class="sa-lead sa-center-lead">If you've had a good experience with us, we'd love to help your contacts too. Refer a business and we'll make the introduction easy.</p>
+      <a class="sa-button" href="/refer">Refer a Business</a>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 640px">
+      <h2 class="sa-h2">Not a Customer Yet?</h2>
+      <p class="sa-sub">If you're looking for IT support for your business, we'd love to chat. Get in touch to discuss your needs.</p>
+      <div class="sa-btn-row">
+        <a class="sa-button" href="/contact">Contact Us</a>
+        <a class="sa-button sa-button-dark" href="/it-health-check">Free IT Health Check</a>
+      </div>
+    </div>
+  </section>
+</StandaloneShell>
+
+<style>
+  .sa-crumbs { padding: 16px 20px 0; font-size: 13px; color: #46545f; }
+  .sa-crumbs ol { display: flex; gap: 8px; align-items: center; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+  .sa-crumbs a { color: #46545f; text-decoration: none; }
+  .sa-crumbs a:hover { color: var(--primary-dark); text-decoration: underline; }
+  .sa-crumbs span { color: var(--ink); font-weight: 700; }
+  .sa-priority { background: var(--primary-dark); color: var(--paper); padding: 20px; border-bottom: 4px solid var(--ink); }
+  .sa-priority-strong { font-weight: 700; }
+  .sa-priority-soft { opacity: 0.85; margin-left: 8px; }
+  .sa-center-lead { text-align: center; margin-left: auto; margin-right: auto; }
+  .sa-h2 { color: var(--ink); font: 400 30px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; margin: 0 0 12px; }
+  .sa-h2-light { color: var(--paper); }
+  .sa-sub { color: rgba(15,25,35,0.62); font-size: 16px; max-width: 46ch; margin: 0 auto; line-height: 1.6; }
+  .sa-grid-3 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  .sa-grid-2 { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 900px; margin-inline: auto; }
+  .sa-grid-4 { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 640px) { .sa-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 768px) { .sa-grid-2 { grid-template-columns: repeat(2, 1fr); } .sa-grid-3 { grid-template-columns: repeat(3, 1fr); } .sa-grid-4 { grid-template-columns: repeat(4, 1fr); } }
+  .sa-card { position: relative; background: var(--white); border: 1px solid var(--hairline); padding: 28px 24px; box-shadow: 0 2px 8px rgba(15,25,35,0.05); }
+  .sa-card-highlight { border: 2px solid var(--primary-dark); }
+  .sa-flag { position: absolute; top: -14px; left: 24px; margin: 0; background: var(--primary-dark); color: var(--paper); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; padding: 4px 12px; }
+  .sa-card h3 { font: 400 20px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; margin: 10px 0 4px; }
+  .sa-card-subtitle { color: #46545f; font-size: 13px; margin: 0 0 12px; }
+  .sa-card-desc { color: rgba(15,25,35,0.65); font-size: 15px; line-height: 1.6; margin: 0 0 16px; }
+  .sa-tick-list { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .sa-tick-list li { font-size: 14px; color: rgba(15,25,35,0.65); padding-left: 22px; position: relative; }
+  .sa-tick-list li::before { content: ''; position: absolute; left: 0; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: #2f8f5b; }
+  .sa-warning { background: #fff8e8; border: 2px solid #f0d896; padding: 24px; }
+  .sa-warning h3 { font: 700 17px/1.3 'SA Archivo', sans-serif; margin: 0 0 8px; }
+  .sa-warning p { font-size: 14px; color: rgba(15,25,35,0.7); margin: 0; line-height: 1.6; }
+  .sa-resource { display: block; background: var(--white); border: 1px solid var(--hairline); padding: 20px; text-decoration: none; color: inherit; }
+  .sa-resource:hover { border-color: var(--primary-dark); }
+  .sa-resource h3 { font: 700 15px/1.3 'SA Archivo', sans-serif; margin: 0 0 6px; color: var(--ink); }
+  .sa-resource p { font-size: 13px; color: rgba(15,25,35,0.62); margin: 0; }
+  .sa-btn-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 24px; }
+</style>

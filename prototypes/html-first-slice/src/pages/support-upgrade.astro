@@ -1,0 +1,53 @@
+---
+// Port of pages-v2/SupportUpgradePageV2.tsx. Static: no forms, no CTA section
+// in the source (linked from support ticket email footers).
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+
+const seo = { path: '/support-upgrade', title: "Our support emails have a new look", description: "What changed when Fresh Tech upgraded its support system, and what didn't. Same team, same phone number, same email address.", type: 'article' };
+---
+
+<StandaloneShell name="support-upgrade" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap" style="--sa-max: 760px">
+      <p class="sa-eyebrow sa-eyebrow-light">A note for our clients</p>
+      <h1 class="sa-display sa-display-light" style="--sa-size: 44px; --sa-size-mobile: 32px; margin-bottom: 18px">Our support emails have a new look.</h1>
+      <p class="sa-lead" style="margin: 0">We've upgraded the system behind our support desk. If our emails look a little different, that's why. Here's the short version: same team, same contact details, sharper tools.</p>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper">
+    <div class="sa-wrap sa-prose" style="--sa-max: 760px">
+      <div class="sa-block">
+        <h2>What's changed</h2>
+        <p>Our emails are now deliberately plain. No heavy images, no marketing footers, no tracking. Plain emails get through spam filters reliably, load instantly on any device, and are easier to read with assistive tech. For a support email, that beats looking flashy.</p>
+        <p>You also get a better portal at <a href="https://my.fresh-tech.uk">my.fresh-tech.uk</a>: raise a ticket, see exactly where it's up to, add screenshots, and browse your history any time. Signing in for the first time is with your work email address.</p>
+        <p>Your ticket references may look different from the old ones. If you had a ticket open with us during the switch, you'll have received a note on it with the new reference. Just reply as normal.</p>
+      </div>
+
+      <div class="sa-block">
+        <h2>What hasn't changed</h2>
+        <p>How you reach us: <a href="mailto:support@fresh-tech.uk">support@fresh-tech.uk</a> or <a href="tel:+441584517234">01584 517 234</a>, Mon–Fri 9–5. Same people, same response targets, same service.</p>
+      </div>
+
+      <div class="verify-panel">
+        <h2>"Is this email really from you?"</h2>
+        <p>Good instinct: always worth checking. Genuine Fresh Tech support emails only ever come from <strong>support@fresh-tech.uk</strong>, and only ever link to <strong>fresh-tech.uk</strong> or <strong>my.fresh-tech.uk</strong>. If anything feels off, don't click. Call us on <a href="tel:+441584517234">01584 517 234</a> and we'll confirm.</p>
+        <div class="verify-flag">When in doubt, phone us. We'd rather take the call.</div>
+      </div>
+
+      <p class="company-line">Fresh PCS Consultancy Ltd (t/a Fresh Tech) · Company No. 09296207 · VAT GB199976510</p>
+    </div>
+  </section>
+</StandaloneShell>
+
+<style>
+  .verify-panel { margin-top: 40px; background: var(--white); border: 3px solid var(--ink); box-shadow: 6px 6px 0 0 var(--ink); padding: 28px 30px; }
+  .verify-panel h2 { font-size: 21px; margin: 0 0 14px; }
+  .verify-panel p { margin: 0 0 14px; }
+  .verify-flag { display: inline-block; background: var(--yellow); border: 2.5px solid var(--ink); padding: 8px 14px; font: 800 12px/1.4 'SA Archivo', sans-serif; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); }
+  .company-line { margin: 40px 0 0; font-size: 13px; font-style: italic; color: rgba(15, 25, 35, 0.65); line-height: 1.6; }
+  @media (max-width: 767px) {
+    .verify-panel { padding: 22px 20px; }
+    .verify-panel h2 { font-size: 18px; }
+  }
+</style>

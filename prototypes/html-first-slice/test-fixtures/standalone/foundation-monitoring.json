@@ -1,0 +1,351 @@
+{
+  "route": "/foundation-monitoring",
+  "source": "pages-v2/FoundationMonitoringPageV2.tsx",
+  "sourceSha256": "9c210e8e925171dc4bc8d84d9172347d32505d5583644e8a3e77c9d953f145ae",
+  "capturedAt": "2026-09-16T12:23:07.157Z",
+  "head": {
+    "title": "Foundation Monitoring: Protected Without Full Commitment",
+    "description": "Protection without the full management. 24/7 monitoring, Huntress EDR and patching from £10/device + £30/site. For not-yet-managed organisations.",
+    "canonical": "https://fresh-tech.uk/foundation-monitoring",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Foundation Monitoring: Protected Without Full Commitment",
+        "description": "Protection without the full management. 24/7 monitoring, Huntress EDR and patching from £10/device + £30/site. For not-yet-managed organisations.",
+        "url": "https://fresh-tech.uk/foundation-monitoring",
+        "provider": {
+          "@id": "https://fresh-tech.uk/#localbusiness"
+        },
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": [
+          "LocalBusiness",
+          "ProfessionalService"
+        ],
+        "@id": "https://fresh-tech.uk/#localbusiness",
+        "name": "Fresh Tech IT Support",
+        "description": "Managed IT Support and Cybersecurity services for businesses in Shropshire, Herefordshire, and the West Midlands.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/",
+        "telephone": "+441584517234",
+        "email": "hello@fresh-tech.uk",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.368,
+          "longitude": -2.717
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          },
+          {
+            "@type": "City",
+            "name": "Ludlow"
+          },
+          {
+            "@type": "City",
+            "name": "Shrewsbury"
+          },
+          {
+            "@type": "City",
+            "name": "Hereford"
+          },
+          {
+            "@type": "City",
+            "name": "Telford"
+          },
+          {
+            "@type": "City",
+            "name": "Worcester"
+          },
+          {
+            "@type": "City",
+            "name": "Leominster"
+          },
+          {
+            "@type": "City",
+            "name": "Ross-on-Wye"
+          },
+          {
+            "@type": "City",
+            "name": "Bridgnorth"
+          },
+          {
+            "@type": "City",
+            "name": "Malvern"
+          },
+          {
+            "@type": "City",
+            "name": "Ledbury"
+          },
+          {
+            "@type": "City",
+            "name": "Oswestry"
+          },
+          {
+            "@type": "City",
+            "name": "Welshpool"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.368,
+            "longitude": -2.717
+          },
+          "geoRadius": "55000"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed IT Support",
+              "url": "https://fresh-tech.uk/services/managed-it-support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Security",
+              "url": "https://fresh-tech.uk/services/cybersecurity"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Essentials Certification Support",
+              "url": "https://fresh-tech.uk/services/cyber-essentials"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microsoft 365 & Cloud Solutions",
+              "url": "https://fresh-tech.uk/services/cloud-solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud Backup & Disaster Recovery",
+              "url": "https://fresh-tech.uk/services/backup-disaster-recovery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Phone Systems",
+              "url": "https://fresh-tech.uk/services/cloud-phone-systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Procurement",
+              "url": "https://fresh-tech.uk/services/hardware-procurement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic IT Projects",
+              "url": "https://fresh-tech.uk/services/strategic-projects"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed Print",
+              "url": "https://fresh-tech.uk/services/managed-print"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Foundation Monitoring",
+            "item": "https://fresh-tech.uk/foundation-monitoring"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "Protected. Without the full commitment."
+      ],
+      [
+        2,
+        "What's in. What's not."
+      ],
+      [
+        2,
+        "Included"
+      ],
+      [
+        2,
+        "Not included"
+      ],
+      [
+        2,
+        "Who Foundation is, and isn't, for"
+      ],
+      [
+        2,
+        "Foundation Monitoring in 7 days"
+      ]
+    ],
+    "links": [
+      [
+        "/contact",
+        "Talk to us about Foundation →"
+      ],
+      [
+        "/pricing",
+        "Compare with our managed plans →"
+      ],
+      [
+        "/pricing",
+        "Standard, Plus or Premium"
+      ],
+      [
+        "/contact",
+        "Book a 20-min call →"
+      ]
+    ],
+    "images": [],
+    "text": "Off-tier · Foundation Monitoring Protected. Without the full commitment. Foundation Monitoring is for organisations that want the safety net of a managed service, without paying for the full management yet. We deploy our monitoring stack, watch your environment 24/7, and send you a monthly summary. When something needs human attention, we'll quote you for it, no surprise invoices. Talk to us about Foundation →Compare with our managed plans → £10 per device, per month + £30 per site, per month Indicative: we'll confirm exact pricing once we know your environment. Honest scope What's in. What's not. Foundation Monitoring deliberately leaves things out. That's how the price works. We tell you exactly what you're paying for, and what you're not. What you get Included 24/7 monitoring of every device Huntress endpoint EDR (Endpoint Detection & Response) Patch automation (Windows + third-party apps) Software bundle + RMM agent installed Monthly alert summary report What you don't get Not included Human labour on alerts, billed at our standard block-hour rate No proactive maintenance visits No onsite call-outs No Microsoft 365 administration No new starter / leaver handling Honest positioning Who Foundation is, and isn't, for It's for organisations that want professional monitoring and threat detection but aren't ready (or don't yet need) to outsource day-to-day IT. Charities running on volunteer admins. Small offices with a competent internal helper. Businesses between IT providers. It's not for organisations that need someone to pick up the phone when Outlook breaks, or that need help setting up a new starter, or that want monthly proactive maintenance. For that, you want Standard, Plus or Premium. Most Foundation clients eventually upgrade to Standard once we've shown them what we're seeing in their environment. That's fine. There's no upgrade fee, no contract reset, we just move you across. Want to start here? Foundation Monitoring in 7 days Quick scope call. Light onboarding. Monitoring active inside a week. No long contract, 30 days notice each side. Book a 20-min call → Last reviewed May 2026 · Sam James"
+  }
+}

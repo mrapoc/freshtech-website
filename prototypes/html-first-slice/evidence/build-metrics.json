@@ -1,0 +1,5344 @@
+{
+  "scope": "homepage, complete pricing page, disabled contact prototype, the /services listing, complete service template family (11 generated /services/[slug] routes), the /case-studies listing and 13 generated /case-studies/[slug] routes, 42 generated /locations/[slug] routes, the /industries listing plus 16 industry details, the /blog listing plus 49 published articles, 28 root-slug service-location routes, the /technology listing plus 17 technology explainers, 7 generated /guides/[industry] routes, 15 root-slug problem routes, 3 root-slug comparison routes, and 2 /team/[slug] profiles",
+  "homepageRoutes": [
+    "/"
+  ],
+  "serviceRoutes": [
+    "/services",
+    "/services/managed-it-support",
+    "/services/cybersecurity",
+    "/services/cyber-essentials",
+    "/services/cloud-solutions",
+    "/services/hardware-procurement",
+    "/services/strategic-projects",
+    "/services/backup-disaster-recovery",
+    "/services/cloud-phone-systems",
+    "/services/internet-connectivity",
+    "/services/structured-cabling",
+    "/services/managed-print"
+  ],
+  "caseStudyRoutes": [
+    "/case-studies",
+    "/case-studies/manufacturing-modernization",
+    "/case-studies/retail-logistics-upgrade",
+    "/case-studies/food-production-uptime",
+    "/case-studies/veterinary-wifi-upgrade",
+    "/case-studies/legal-email-security",
+    "/case-studies/care-home-digital-transformation",
+    "/case-studies/renewable-energy-remote-monitoring",
+    "/case-studies/accountancy-cloud-migration",
+    "/case-studies/farm-estate-connectivity",
+    "/case-studies/architects-hybrid-working",
+    "/case-studies/charity-microsoft-savings",
+    "/case-studies/prep-school-safeguarding",
+    "/case-studies/sharepoint-file-shortcuts-automation"
+  ],
+  "locationRoutes": [
+    "/locations/ludlow",
+    "/locations/shrewsbury",
+    "/locations/hereford",
+    "/locations/telford",
+    "/locations/leominster",
+    "/locations/craven-arms",
+    "/locations/church-stretton",
+    "/locations/bridgnorth",
+    "/locations/shropshire",
+    "/locations/herefordshire",
+    "/locations/worcestershire",
+    "/locations/powys",
+    "/locations/ross-on-wye",
+    "/locations/ledbury",
+    "/locations/worcester",
+    "/locations/malvern",
+    "/locations/kidderminster",
+    "/locations/bewdley",
+    "/locations/welshpool",
+    "/locations/newtown",
+    "/locations/brecon",
+    "/locations/oswestry",
+    "/locations/whitchurch",
+    "/locations/market-drayton",
+    "/locations/bromyard",
+    "/locations/kington",
+    "/locations/redditch",
+    "/locations/bromsgrove",
+    "/locations/droitwich",
+    "/locations/builth-wells",
+    "/locations/llandrindod-wells",
+    "/locations/much-wenlock",
+    "/locations/hay-on-wye",
+    "/locations/weobley",
+    "/locations/pembridge",
+    "/locations/tenbury-wells",
+    "/locations/upton-upon-severn",
+    "/locations/pershore",
+    "/locations/evesham",
+    "/locations/machynlleth",
+    "/locations/knighton",
+    "/locations/montgomery"
+  ],
+  "industryRoutes": [
+    "/industries",
+    "/industries/accountants",
+    "/industries/solicitors",
+    "/industries/manufacturing",
+    "/industries/agriculture",
+    "/industries/healthcare",
+    "/industries/professional-services",
+    "/industries/charities",
+    "/industries/education",
+    "/industries/construction",
+    "/industries/hospitality",
+    "/industries/estate-agents",
+    "/industries/financial-advisers",
+    "/industries/recruitment",
+    "/industries/renewable-energy",
+    "/industries/retail-distribution",
+    "/industries/veterinary"
+  ],
+  "blogRoutes": [
+    "/blog",
+    "/blog/staff-using-ai-at-work-company-data",
+    "/blog/qr-code-scams-quishing-business",
+    "/blog/bank-scam-call-one-time-code-trick",
+    "/blog/leavers-offboarding-it-checklist",
+    "/blog/cyber-essentials-danzell-2026-changes",
+    "/blog/holiday-cover-payment-fraud",
+    "/blog/microsoft-365-price-increase-2026",
+    "/blog/email-security-audit-local-businesses",
+    "/blog/claude-in-microsoft-365-copilot",
+    "/blog/best-pc-for-cad-business-buying-guide",
+    "/blog/edge-vs-chrome-which-browser-for-business",
+    "/blog/what-printing-really-costs-your-business",
+    "/blog/personal-email-business-breach-case-study",
+    "/blog/how-to-choose-it-provider-shrewsbury",
+    "/blog/cyber-essentials-checklist-herefordshire",
+    "/blog/it-challenges-manufacturers-west-midlands",
+    "/blog/repeat-after-me-phone-scam",
+    "/blog/where-are-my-files-sharepoint-solved",
+    "/blog/vet-practice-wifi-security",
+    "/blog/cyber-essentials-explained",
+    "/blog/microsoft-365-business-premium",
+    "/blog/password-security-tips",
+    "/blog/christmas-2025-it-survival-guide",
+    "/blog/cyber-essentials-vs-plus",
+    "/blog/windows-10-end-of-life-guide",
+    "/blog/how-to-spot-phishing-emails",
+    "/blog/ransomware-recovery-what-to-expect",
+    "/blog/remote-work-security-checklist",
+    "/blog/can-your-team-work-from-anywhere",
+    "/blog/backup-test-most-businesses-fail",
+    "/blog/would-your-staff-spot-this-fake-email",
+    "/blog/signs-it-company-coasting-on-contract",
+    "/blog/your-it-invoice-is-lying-to-you",
+    "/blog/that-repair-might-cost-you-thousands",
+    "/blog/business-owners-rate-their-it-support",
+    "/blog/new-year-it-budget-planning-guide",
+    "/blog/data-privacy-day-small-business-gdpr",
+    "/blog/safer-internet-day-small-business-security",
+    "/blog/copilot-ai-small-business-guide",
+    "/blog/world-backup-day-tested-backup-strategy",
+    "/blog/new-financial-year-it-priorities",
+    "/blog/world-password-day-2025-passkeys",
+    "/blog/summer-remote-work-security",
+    "/blog/back-to-school-device-refresh",
+    "/blog/cybersecurity-awareness-month-october-2025",
+    "/blog/data-privacy-day-2026-ai-data",
+    "/blog/safer-internet-day-2026-deepfakes",
+    "/blog/world-backup-day-2026-ransomware-reality",
+    "/blog/world-password-day-2026-post-password-era"
+  ],
+  "serviceLocationRoutes": [
+    "/it-support-shropshire",
+    "/it-support-herefordshire",
+    "/cyber-essentials-shropshire",
+    "/cyber-essentials-herefordshire",
+    "/microsoft-365-shropshire",
+    "/microsoft-365-herefordshire",
+    "/it-support-worcestershire",
+    "/it-support-powys",
+    "/cyber-essentials-worcestershire",
+    "/cyber-essentials-powys",
+    "/microsoft-365-worcestershire",
+    "/microsoft-365-powys",
+    "/it-support-ludlow",
+    "/it-support-shrewsbury",
+    "/it-support-telford",
+    "/it-support-hereford",
+    "/it-support-worcester",
+    "/it-support-kidderminster",
+    "/cyber-essentials-shrewsbury",
+    "/cyber-essentials-telford",
+    "/cyber-essentials-hereford",
+    "/cyber-essentials-worcester",
+    "/cyber-essentials-kidderminster",
+    "/microsoft-365-shrewsbury",
+    "/microsoft-365-telford",
+    "/microsoft-365-hereford",
+    "/microsoft-365-worcester",
+    "/microsoft-365-kidderminster"
+  ],
+  "technologyRoutes": [
+    "/technology",
+    "/technology/rmm",
+    "/technology/application-control",
+    "/technology/admin-rights",
+    "/technology/edr-mdr",
+    "/technology/itdr",
+    "/technology/conditional-access",
+    "/technology/intune-autopilot",
+    "/technology/ncsc",
+    "/technology/patching",
+    "/technology/end-of-life",
+    "/technology/business-networking",
+    "/technology/cloud-vs-onpremise",
+    "/technology/zero-trust",
+    "/technology/mfa",
+    "/technology/phishing",
+    "/technology/email-authentication",
+    "/technology/vpn"
+  ],
+  "guideRoutes": [
+    "/guides/engineering",
+    "/guides/legal",
+    "/guides/healthcare",
+    "/guides/manufacturing",
+    "/guides/veterinary",
+    "/guides/renewable-energy",
+    "/guides/retail-distribution"
+  ],
+  "guideCount": 7,
+  "problemRoutes": [
+    "/slow-computers",
+    "/it-security-audit",
+    "/switch-it-provider",
+    "/ransomware-recovery",
+    "/office-move-it",
+    "/email-account-hacked",
+    "/laptop-stolen-lost",
+    "/business-email-compromise",
+    "/data-breach-discovered",
+    "/windows-10-end-of-life",
+    "/office-wifi-problems",
+    "/staff-clicking-phishing",
+    "/server-end-of-life",
+    "/it-provider-not-responding",
+    "/new-business-it-setup"
+  ],
+  "comparisonRoutes": [
+    "/break-fix-vs-managed-it",
+    "/in-house-vs-outsourced-it",
+    "/microsoft-365-plans-compared"
+  ],
+  "teamRoutes": [
+    "/team/sam-james",
+    "/team/matt-morgan"
+  ],
+  "standaloneRoutes": [
+    "/privacy-policy",
+    "/terms-conditions",
+    "/cookie-policy",
+    "/support-upgrade",
+    "/technology-stack",
+    "/glossary",
+    "/service-standards",
+    "/co-managed-it",
+    "/foundation-monitoring",
+    "/onboarding",
+    "/support",
+    "/faq",
+    "/refer",
+    "/it-health-check",
+    "/ai-acceptable-use-policy",
+    "/about",
+    "/why-trust-us",
+    "/resources",
+    "/compare",
+    "/microsoft-business-premium",
+    "/upgrade-to-business-premium",
+    "/managed-print-guide",
+    "/cloud-backup-necessity",
+    "/email-security-check",
+    "/email-security-guide",
+    "/terms-of-business",
+    "/terms-of-business/v1-0",
+    "/dpa",
+    "/dpa/v1-0",
+    "/sub-processors"
+  ],
+  "astroVersion": "7.3.2",
+  "nodeVersion": "v24.22.0",
+  "buildMilliseconds": 8810.6,
+  "files": [
+    {
+      "path": "_astro/ContactForm.astro_astro_type_script_index_0_lang.DdhL4RRO.js",
+      "type": "js",
+      "bytes": 106,
+      "gzipBytes": 114,
+      "brotliBytes": 84
+    },
+    {
+      "path": "_astro/StandaloneShell.astro_astro_type_script_index_0_lang.gCW_MjaA.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/WebsiteProof.astro_astro_type_script_index_0_lang.C7uvRhw5.js",
+      "type": "js",
+      "bytes": 11575,
+      "gzipBytes": 4395,
+      "brotliBytes": 3896
+    },
+    {
+      "path": "_astro/_industry_.astro_astro_type_script_index_0_lang.gCW_MjaA.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/_industry_.astro_astro_type_script_index_1_lang.B7Bic1TT.js",
+      "type": "js",
+      "bytes": 3058,
+      "gzipBytes": 1188,
+      "brotliBytes": 1041
+    },
+    {
+      "path": "_astro/_slug_.astro_astro_type_script_index_0_lang.BLRDvVP2.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/_slug_.astro_astro_type_script_index_0_lang.BP15UijN.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/_slug_.astro_astro_type_script_index_0_lang.Bnxw_Mv6.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/_slug_.astro_astro_type_script_index_0_lang.Ca2iOKgD.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/_slug_.astro_astro_type_script_index_0_lang.CanyG-v9.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/_slug_.astro_astro_type_script_index_0_lang.CquLybr5.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/_slug_.astro_astro_type_script_index_0_lang.DCjFkPs9.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/_slug_.astro_astro_type_script_index_0_lang.gCW_MjaA.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/ai-acceptable-use-policy.astro_astro_type_script_index_0_lang.6IG2TJvh.js",
+      "type": "js",
+      "bytes": 555,
+      "gzipBytes": 340,
+      "brotliBytes": 255
+    },
+    {
+      "path": "_astro/contact-form.D_J16YEj.js",
+      "type": "js",
+      "bytes": 2583,
+      "gzipBytes": 1220,
+      "brotliBytes": 1020
+    },
+    {
+      "path": "_astro/contact.astro_astro_type_script_index_0_lang.gCW_MjaA.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/email-checker.ClYM17Oh.js",
+      "type": "js",
+      "bytes": 13563,
+      "gzipBytes": 5404,
+      "brotliBytes": 4640
+    },
+    {
+      "path": "_astro/email-security-guide.astro_astro_type_script_index_0_lang.Chp_xidd.js",
+      "type": "js",
+      "bytes": 525,
+      "gzipBytes": 345,
+      "brotliBytes": 260
+    },
+    {
+      "path": "_astro/enhance.C5LLFudP.js",
+      "type": "js",
+      "bytes": 8574,
+      "gzipBytes": 3457,
+      "brotliBytes": 3018
+    },
+    {
+      "path": "_astro/faq.astro_astro_type_script_index_0_lang.B7oaK-xe.js",
+      "type": "js",
+      "bytes": 953,
+      "gzipBytes": 436,
+      "brotliBytes": 360
+    },
+    {
+      "path": "_astro/glossary.astro_astro_type_script_index_0_lang.CgctRTkm.js",
+      "type": "js",
+      "bytes": 456,
+      "gzipBytes": 284,
+      "brotliBytes": 218
+    },
+    {
+      "path": "_astro/index.astro_astro_type_script_index_0_lang.BLRDvVP2.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/index.astro_astro_type_script_index_0_lang.BP15UijN.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/index.astro_astro_type_script_index_0_lang.Bnxw_Mv6.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/index.astro_astro_type_script_index_0_lang.CquLybr5.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/index.astro_astro_type_script_index_0_lang.DCjFkPs9.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/index.astro_astro_type_script_index_0_lang.gCW_MjaA.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/index.astro_astro_type_script_index_1_lang.B5ztBDHZ.js",
+      "type": "js",
+      "bytes": 692,
+      "gzipBytes": 367,
+      "brotliBytes": 308
+    },
+    {
+      "path": "_astro/index.astro_astro_type_script_index_1_lang.DTNxwXN5.js",
+      "type": "js",
+      "bytes": 1096,
+      "gzipBytes": 472,
+      "brotliBytes": 389
+    },
+    {
+      "path": "_astro/pricing.astro_astro_type_script_index_0_lang.gCW_MjaA.js",
+      "type": "js",
+      "bytes": 30,
+      "gzipBytes": 50,
+      "brotliBytes": 34
+    },
+    {
+      "path": "_astro/problem-view.DFDIQjj2.js",
+      "type": "js",
+      "bytes": 943,
+      "gzipBytes": 552,
+      "brotliBytes": 468
+    },
+    {
+      "path": "_astro/testimonials.BQSyIuKm.js",
+      "type": "js",
+      "bytes": 2512,
+      "gzipBytes": 1071,
+      "brotliBytes": 949
+    },
+    {
+      "path": "_astro/upgrade-to-business-premium.astro_astro_type_script_index_0_lang.tavQq4RP.js",
+      "type": "js",
+      "bytes": 1049,
+      "gzipBytes": 546,
+      "brotliBytes": 432
+    },
+    {
+      "path": "about/index.html",
+      "type": "html",
+      "bytes": 53706,
+      "gzipBytes": 12696,
+      "brotliBytes": 10629
+    },
+    {
+      "path": "ai-acceptable-use-policy/index.html",
+      "type": "html",
+      "bytes": 70883,
+      "gzipBytes": 17558,
+      "brotliBytes": 14284
+    },
+    {
+      "path": "blog/back-to-school-device-refresh/index.html",
+      "type": "html",
+      "bytes": 47760,
+      "gzipBytes": 12547,
+      "brotliBytes": 10469
+    },
+    {
+      "path": "blog/backup-test-most-businesses-fail/index.html",
+      "type": "html",
+      "bytes": 49858,
+      "gzipBytes": 13234,
+      "brotliBytes": 11080
+    },
+    {
+      "path": "blog/bank-scam-call-one-time-code-trick/index.html",
+      "type": "html",
+      "bytes": 56590,
+      "gzipBytes": 15995,
+      "brotliBytes": 13318
+    },
+    {
+      "path": "blog/best-pc-for-cad-business-buying-guide/index.html",
+      "type": "html",
+      "bytes": 62774,
+      "gzipBytes": 18469,
+      "brotliBytes": 15438
+    },
+    {
+      "path": "blog/business-owners-rate-their-it-support/index.html",
+      "type": "html",
+      "bytes": 50130,
+      "gzipBytes": 13217,
+      "brotliBytes": 11064
+    },
+    {
+      "path": "blog/can-your-team-work-from-anywhere/index.html",
+      "type": "html",
+      "bytes": 49288,
+      "gzipBytes": 13112,
+      "brotliBytes": 10997
+    },
+    {
+      "path": "blog/christmas-2025-it-survival-guide/index.html",
+      "type": "html",
+      "bytes": 48135,
+      "gzipBytes": 12924,
+      "brotliBytes": 10817
+    },
+    {
+      "path": "blog/claude-in-microsoft-365-copilot/index.html",
+      "type": "html",
+      "bytes": 57888,
+      "gzipBytes": 16040,
+      "brotliBytes": 13410
+    },
+    {
+      "path": "blog/copilot-ai-small-business-guide/index.html",
+      "type": "html",
+      "bytes": 47986,
+      "gzipBytes": 12589,
+      "brotliBytes": 10526
+    },
+    {
+      "path": "blog/cyber-essentials-checklist-herefordshire/index.html",
+      "type": "html",
+      "bytes": 50598,
+      "gzipBytes": 13505,
+      "brotliBytes": 11219
+    },
+    {
+      "path": "blog/cyber-essentials-danzell-2026-changes/index.html",
+      "type": "html",
+      "bytes": 52838,
+      "gzipBytes": 14530,
+      "brotliBytes": 12092
+    },
+    {
+      "path": "blog/cyber-essentials-explained/index.html",
+      "type": "html",
+      "bytes": 48673,
+      "gzipBytes": 12916,
+      "brotliBytes": 10794
+    },
+    {
+      "path": "blog/cyber-essentials-vs-plus/index.html",
+      "type": "html",
+      "bytes": 51260,
+      "gzipBytes": 13780,
+      "brotliBytes": 11471
+    },
+    {
+      "path": "blog/cybersecurity-awareness-month-october-2025/index.html",
+      "type": "html",
+      "bytes": 48076,
+      "gzipBytes": 12539,
+      "brotliBytes": 10456
+    },
+    {
+      "path": "blog/data-privacy-day-2026-ai-data/index.html",
+      "type": "html",
+      "bytes": 46969,
+      "gzipBytes": 12147,
+      "brotliBytes": 10175
+    },
+    {
+      "path": "blog/data-privacy-day-small-business-gdpr/index.html",
+      "type": "html",
+      "bytes": 48008,
+      "gzipBytes": 12577,
+      "brotliBytes": 10470
+    },
+    {
+      "path": "blog/edge-vs-chrome-which-browser-for-business/index.html",
+      "type": "html",
+      "bytes": 57442,
+      "gzipBytes": 16086,
+      "brotliBytes": 13419
+    },
+    {
+      "path": "blog/email-security-audit-local-businesses/index.html",
+      "type": "html",
+      "bytes": 47207,
+      "gzipBytes": 12325,
+      "brotliBytes": 10391
+    },
+    {
+      "path": "blog/holiday-cover-payment-fraud/index.html",
+      "type": "html",
+      "bytes": 50686,
+      "gzipBytes": 13734,
+      "brotliBytes": 11490
+    },
+    {
+      "path": "blog/how-to-choose-it-provider-shrewsbury/index.html",
+      "type": "html",
+      "bytes": 49177,
+      "gzipBytes": 13087,
+      "brotliBytes": 10928
+    },
+    {
+      "path": "blog/how-to-spot-phishing-emails/index.html",
+      "type": "html",
+      "bytes": 48517,
+      "gzipBytes": 12812,
+      "brotliBytes": 10732
+    },
+    {
+      "path": "blog/index.html",
+      "type": "html",
+      "bytes": 85944,
+      "gzipBytes": 17476,
+      "brotliBytes": 14518
+    },
+    {
+      "path": "blog/it-challenges-manufacturers-west-midlands/index.html",
+      "type": "html",
+      "bytes": 49605,
+      "gzipBytes": 13155,
+      "brotliBytes": 10896
+    },
+    {
+      "path": "blog/leavers-offboarding-it-checklist/index.html",
+      "type": "html",
+      "bytes": 53153,
+      "gzipBytes": 14682,
+      "brotliBytes": 12273
+    },
+    {
+      "path": "blog/microsoft-365-business-premium/index.html",
+      "type": "html",
+      "bytes": 45732,
+      "gzipBytes": 11904,
+      "brotliBytes": 10029
+    },
+    {
+      "path": "blog/microsoft-365-price-increase-2026/index.html",
+      "type": "html",
+      "bytes": 51832,
+      "gzipBytes": 14036,
+      "brotliBytes": 11817
+    },
+    {
+      "path": "blog/new-financial-year-it-priorities/index.html",
+      "type": "html",
+      "bytes": 46853,
+      "gzipBytes": 12310,
+      "brotliBytes": 10310
+    },
+    {
+      "path": "blog/new-year-it-budget-planning-guide/index.html",
+      "type": "html",
+      "bytes": 47687,
+      "gzipBytes": 12537,
+      "brotliBytes": 10489
+    },
+    {
+      "path": "blog/password-security-tips/index.html",
+      "type": "html",
+      "bytes": 45205,
+      "gzipBytes": 11712,
+      "brotliBytes": 9827
+    },
+    {
+      "path": "blog/personal-email-business-breach-case-study/index.html",
+      "type": "html",
+      "bytes": 52089,
+      "gzipBytes": 14018,
+      "brotliBytes": 11695
+    },
+    {
+      "path": "blog/qr-code-scams-quishing-business/index.html",
+      "type": "html",
+      "bytes": 47916,
+      "gzipBytes": 12677,
+      "brotliBytes": 10680
+    },
+    {
+      "path": "blog/ransomware-recovery-what-to-expect/index.html",
+      "type": "html",
+      "bytes": 50138,
+      "gzipBytes": 13349,
+      "brotliBytes": 11128
+    },
+    {
+      "path": "blog/remote-work-security-checklist/index.html",
+      "type": "html",
+      "bytes": 49935,
+      "gzipBytes": 13334,
+      "brotliBytes": 11191
+    },
+    {
+      "path": "blog/repeat-after-me-phone-scam/index.html",
+      "type": "html",
+      "bytes": 49756,
+      "gzipBytes": 13170,
+      "brotliBytes": 10928
+    },
+    {
+      "path": "blog/safer-internet-day-2026-deepfakes/index.html",
+      "type": "html",
+      "bytes": 46891,
+      "gzipBytes": 12219,
+      "brotliBytes": 10194
+    },
+    {
+      "path": "blog/safer-internet-day-small-business-security/index.html",
+      "type": "html",
+      "bytes": 47432,
+      "gzipBytes": 12404,
+      "brotliBytes": 10332
+    },
+    {
+      "path": "blog/signs-it-company-coasting-on-contract/index.html",
+      "type": "html",
+      "bytes": 49280,
+      "gzipBytes": 13158,
+      "brotliBytes": 11029
+    },
+    {
+      "path": "blog/staff-using-ai-at-work-company-data/index.html",
+      "type": "html",
+      "bytes": 53599,
+      "gzipBytes": 14914,
+      "brotliBytes": 12413
+    },
+    {
+      "path": "blog/summer-remote-work-security/index.html",
+      "type": "html",
+      "bytes": 48153,
+      "gzipBytes": 12650,
+      "brotliBytes": 10623
+    },
+    {
+      "path": "blog/that-repair-might-cost-you-thousands/index.html",
+      "type": "html",
+      "bytes": 49542,
+      "gzipBytes": 13210,
+      "brotliBytes": 11054
+    },
+    {
+      "path": "blog/vet-practice-wifi-security/index.html",
+      "type": "html",
+      "bytes": 46543,
+      "gzipBytes": 12117,
+      "brotliBytes": 10112
+    },
+    {
+      "path": "blog/what-printing-really-costs-your-business/index.html",
+      "type": "html",
+      "bytes": 53270,
+      "gzipBytes": 14607,
+      "brotliBytes": 12182
+    },
+    {
+      "path": "blog/where-are-my-files-sharepoint-solved/index.html",
+      "type": "html",
+      "bytes": 46720,
+      "gzipBytes": 12084,
+      "brotliBytes": 10120
+    },
+    {
+      "path": "blog/windows-10-end-of-life-guide/index.html",
+      "type": "html",
+      "bytes": 51542,
+      "gzipBytes": 14077,
+      "brotliBytes": 11776
+    },
+    {
+      "path": "blog/world-backup-day-2026-ransomware-reality/index.html",
+      "type": "html",
+      "bytes": 46835,
+      "gzipBytes": 12022,
+      "brotliBytes": 10059
+    },
+    {
+      "path": "blog/world-backup-day-tested-backup-strategy/index.html",
+      "type": "html",
+      "bytes": 48383,
+      "gzipBytes": 12634,
+      "brotliBytes": 10553
+    },
+    {
+      "path": "blog/world-password-day-2025-passkeys/index.html",
+      "type": "html",
+      "bytes": 48644,
+      "gzipBytes": 12814,
+      "brotliBytes": 10693
+    },
+    {
+      "path": "blog/world-password-day-2026-post-password-era/index.html",
+      "type": "html",
+      "bytes": 46510,
+      "gzipBytes": 11948,
+      "brotliBytes": 10016
+    },
+    {
+      "path": "blog/would-your-staff-spot-this-fake-email/index.html",
+      "type": "html",
+      "bytes": 49304,
+      "gzipBytes": 13078,
+      "brotliBytes": 10927
+    },
+    {
+      "path": "blog/your-it-invoice-is-lying-to-you/index.html",
+      "type": "html",
+      "bytes": 48848,
+      "gzipBytes": 12887,
+      "brotliBytes": 10874
+    },
+    {
+      "path": "break-fix-vs-managed-it/index.html",
+      "type": "html",
+      "bytes": 89099,
+      "gzipBytes": 20356,
+      "brotliBytes": 15932
+    },
+    {
+      "path": "business-email-compromise/index.html",
+      "type": "html",
+      "bytes": 82170,
+      "gzipBytes": 18847,
+      "brotliBytes": 14834
+    },
+    {
+      "path": "careers/index.html",
+      "type": "html",
+      "bytes": 47066,
+      "gzipBytes": 11922,
+      "brotliBytes": 9940
+    },
+    {
+      "path": "case-studies/accountancy-cloud-migration/index.html",
+      "type": "html",
+      "bytes": 52322,
+      "gzipBytes": 12535,
+      "brotliBytes": 10460
+    },
+    {
+      "path": "case-studies/architects-hybrid-working/index.html",
+      "type": "html",
+      "bytes": 52349,
+      "gzipBytes": 12527,
+      "brotliBytes": 10456
+    },
+    {
+      "path": "case-studies/care-home-digital-transformation/index.html",
+      "type": "html",
+      "bytes": 52808,
+      "gzipBytes": 12653,
+      "brotliBytes": 10553
+    },
+    {
+      "path": "case-studies/charity-microsoft-savings/index.html",
+      "type": "html",
+      "bytes": 52349,
+      "gzipBytes": 12499,
+      "brotliBytes": 10416
+    },
+    {
+      "path": "case-studies/farm-estate-connectivity/index.html",
+      "type": "html",
+      "bytes": 52441,
+      "gzipBytes": 12546,
+      "brotliBytes": 10494
+    },
+    {
+      "path": "case-studies/food-production-uptime/index.html",
+      "type": "html",
+      "bytes": 52228,
+      "gzipBytes": 12487,
+      "brotliBytes": 10416
+    },
+    {
+      "path": "case-studies/index.html",
+      "type": "html",
+      "bytes": 68363,
+      "gzipBytes": 15577,
+      "brotliBytes": 13040
+    },
+    {
+      "path": "case-studies/legal-email-security/index.html",
+      "type": "html",
+      "bytes": 52420,
+      "gzipBytes": 12555,
+      "brotliBytes": 10432
+    },
+    {
+      "path": "case-studies/manufacturing-modernization/index.html",
+      "type": "html",
+      "bytes": 52552,
+      "gzipBytes": 12549,
+      "brotliBytes": 10500
+    },
+    {
+      "path": "case-studies/prep-school-safeguarding/index.html",
+      "type": "html",
+      "bytes": 52344,
+      "gzipBytes": 12499,
+      "brotliBytes": 10433
+    },
+    {
+      "path": "case-studies/renewable-energy-remote-monitoring/index.html",
+      "type": "html",
+      "bytes": 52425,
+      "gzipBytes": 12562,
+      "brotliBytes": 10513
+    },
+    {
+      "path": "case-studies/retail-logistics-upgrade/index.html",
+      "type": "html",
+      "bytes": 52414,
+      "gzipBytes": 12527,
+      "brotliBytes": 10454
+    },
+    {
+      "path": "case-studies/sharepoint-file-shortcuts-automation/index.html",
+      "type": "html",
+      "bytes": 52912,
+      "gzipBytes": 12739,
+      "brotliBytes": 10630
+    },
+    {
+      "path": "case-studies/veterinary-wifi-upgrade/index.html",
+      "type": "html",
+      "bytes": 52137,
+      "gzipBytes": 12423,
+      "brotliBytes": 10397
+    },
+    {
+      "path": "cloud-backup-necessity/index.html",
+      "type": "html",
+      "bytes": 107769,
+      "gzipBytes": 22049,
+      "brotliBytes": 16528
+    },
+    {
+      "path": "co-managed-it/index.html",
+      "type": "html",
+      "bytes": 48195,
+      "gzipBytes": 11421,
+      "brotliBytes": 9583
+    },
+    {
+      "path": "compare/index.html",
+      "type": "html",
+      "bytes": 56173,
+      "gzipBytes": 12167,
+      "brotliBytes": 10204
+    },
+    {
+      "path": "contact/index.html",
+      "type": "html",
+      "bytes": 40762,
+      "gzipBytes": 10451,
+      "brotliBytes": 8788
+    },
+    {
+      "path": "cookie-policy/index.html",
+      "type": "html",
+      "bytes": 37262,
+      "gzipBytes": 9776,
+      "brotliBytes": 8240
+    },
+    {
+      "path": "cyber-essentials-hereford/index.html",
+      "type": "html",
+      "bytes": 46526,
+      "gzipBytes": 12662,
+      "brotliBytes": 10198
+    },
+    {
+      "path": "cyber-essentials-herefordshire/index.html",
+      "type": "html",
+      "bytes": 45667,
+      "gzipBytes": 12439,
+      "brotliBytes": 10090
+    },
+    {
+      "path": "cyber-essentials-kidderminster/index.html",
+      "type": "html",
+      "bytes": 45951,
+      "gzipBytes": 12292,
+      "brotliBytes": 10005
+    },
+    {
+      "path": "cyber-essentials-powys/index.html",
+      "type": "html",
+      "bytes": 45173,
+      "gzipBytes": 12241,
+      "brotliBytes": 10046
+    },
+    {
+      "path": "cyber-essentials-shrewsbury/index.html",
+      "type": "html",
+      "bytes": 46535,
+      "gzipBytes": 12683,
+      "brotliBytes": 10258
+    },
+    {
+      "path": "cyber-essentials-shropshire/index.html",
+      "type": "html",
+      "bytes": 45673,
+      "gzipBytes": 12273,
+      "brotliBytes": 10010
+    },
+    {
+      "path": "cyber-essentials-telford/index.html",
+      "type": "html",
+      "bytes": 46453,
+      "gzipBytes": 12585,
+      "brotliBytes": 10184
+    },
+    {
+      "path": "cyber-essentials-worcester/index.html",
+      "type": "html",
+      "bytes": 46007,
+      "gzipBytes": 12354,
+      "brotliBytes": 10000
+    },
+    {
+      "path": "cyber-essentials-worcestershire/index.html",
+      "type": "html",
+      "bytes": 45894,
+      "gzipBytes": 12352,
+      "brotliBytes": 10101
+    },
+    {
+      "path": "data-breach-discovered/index.html",
+      "type": "html",
+      "bytes": 81856,
+      "gzipBytes": 18897,
+      "brotliBytes": 14679
+    },
+    {
+      "path": "dpa/index.html",
+      "type": "html",
+      "bytes": 48463,
+      "gzipBytes": 13875,
+      "brotliBytes": 11408
+    },
+    {
+      "path": "dpa/v1-0/index.html",
+      "type": "html",
+      "bytes": 48588,
+      "gzipBytes": 13890,
+      "brotliBytes": 11421
+    },
+    {
+      "path": "email-account-hacked/index.html",
+      "type": "html",
+      "bytes": 81786,
+      "gzipBytes": 18788,
+      "brotliBytes": 14759
+    },
+    {
+      "path": "email-security-check/index.html",
+      "type": "html",
+      "bytes": 55371,
+      "gzipBytes": 13255,
+      "brotliBytes": 11123
+    },
+    {
+      "path": "email-security-guide/index.html",
+      "type": "html",
+      "bytes": 76659,
+      "gzipBytes": 19461,
+      "brotliBytes": 16260
+    },
+    {
+      "path": "faq/index.html",
+      "type": "html",
+      "bytes": 82174,
+      "gzipBytes": 19695,
+      "brotliBytes": 14155
+    },
+    {
+      "path": "fonts/ARCHIVO-NARROW-OFL.txt",
+      "type": "txt",
+      "bytes": 4402,
+      "gzipBytes": 1979,
+      "brotliBytes": 1422
+    },
+    {
+      "path": "fonts/ARCHIVO-NARROW-PROVENANCE.md",
+      "type": "md",
+      "bytes": 1976,
+      "gzipBytes": 1059,
+      "brotliBytes": 881
+    },
+    {
+      "path": "fonts/ARCHIVO-OFL.txt",
+      "type": "txt",
+      "bytes": 4388,
+      "gzipBytes": 1976,
+      "brotliBytes": 1415
+    },
+    {
+      "path": "fonts/ARCHIVO-PROVENANCE.md",
+      "type": "md",
+      "bytes": 2244,
+      "gzipBytes": 1231,
+      "brotliBytes": 1030
+    },
+    {
+      "path": "fonts/BUNGEE-OFL.txt",
+      "type": "txt",
+      "bytes": 4380,
+      "gzipBytes": 1967,
+      "brotliBytes": 1410
+    },
+    {
+      "path": "fonts/BUNGEE-PROVENANCE.md",
+      "type": "md",
+      "bytes": 4613,
+      "gzipBytes": 2295,
+      "brotliBytes": 1886
+    },
+    {
+      "path": "fonts/archivo-narrow-v35-latin-ext.woff2",
+      "type": "woff2",
+      "bytes": 16536,
+      "gzipBytes": 16564,
+      "brotliBytes": 16535
+    },
+    {
+      "path": "fonts/archivo-narrow-v35-latin.woff2",
+      "type": "woff2",
+      "bytes": 18692,
+      "gzipBytes": 18720,
+      "brotliBytes": 18691
+    },
+    {
+      "path": "fonts/archivo-v25-latin-ext.woff2",
+      "type": "woff2",
+      "bytes": 32608,
+      "gzipBytes": 32636,
+      "brotliBytes": 32612
+    },
+    {
+      "path": "fonts/archivo-v25-latin.woff2",
+      "type": "woff2",
+      "bytes": 34928,
+      "gzipBytes": 34961,
+      "brotliBytes": 34932
+    },
+    {
+      "path": "fonts/bungee-latin-ext.woff2",
+      "type": "woff2",
+      "bytes": 10712,
+      "gzipBytes": 10735,
+      "brotliBytes": 10708
+    },
+    {
+      "path": "fonts/bungee-latin.woff2",
+      "type": "woff2",
+      "bytes": 5192,
+      "gzipBytes": 5215,
+      "brotliBytes": 5196
+    },
+    {
+      "path": "foundation-monitoring/index.html",
+      "type": "html",
+      "bytes": 46230,
+      "gzipBytes": 11054,
+      "brotliBytes": 9314
+    },
+    {
+      "path": "glossary/index.html",
+      "type": "html",
+      "bytes": 54561,
+      "gzipBytes": 12997,
+      "brotliBytes": 10880
+    },
+    {
+      "path": "guides/engineering/index.html",
+      "type": "html",
+      "bytes": 69389,
+      "gzipBytes": 16594,
+      "brotliBytes": 13776
+    },
+    {
+      "path": "guides/healthcare/index.html",
+      "type": "html",
+      "bytes": 68865,
+      "gzipBytes": 16086,
+      "brotliBytes": 13397
+    },
+    {
+      "path": "guides/legal/index.html",
+      "type": "html",
+      "bytes": 68997,
+      "gzipBytes": 16213,
+      "brotliBytes": 13487
+    },
+    {
+      "path": "guides/manufacturing/index.html",
+      "type": "html",
+      "bytes": 69153,
+      "gzipBytes": 16382,
+      "brotliBytes": 13608
+    },
+    {
+      "path": "guides/renewable-energy/index.html",
+      "type": "html",
+      "bytes": 69799,
+      "gzipBytes": 16535,
+      "brotliBytes": 13699
+    },
+    {
+      "path": "guides/retail-distribution/index.html",
+      "type": "html",
+      "bytes": 69452,
+      "gzipBytes": 16317,
+      "brotliBytes": 13535
+    },
+    {
+      "path": "guides/veterinary/index.html",
+      "type": "html",
+      "bytes": 69034,
+      "gzipBytes": 16104,
+      "brotliBytes": 13426
+    },
+    {
+      "path": "icons/apple-touch-icon.png",
+      "type": "png",
+      "bytes": 7656,
+      "gzipBytes": 7668,
+      "brotliBytes": 7642
+    },
+    {
+      "path": "icons/favicon.ico",
+      "type": "ico",
+      "bytes": 15406,
+      "gzipBytes": 3508,
+      "brotliBytes": 2994
+    },
+    {
+      "path": "icons/icon-192.png",
+      "type": "png",
+      "bytes": 8376,
+      "gzipBytes": 8328,
+      "brotliBytes": 8310
+    },
+    {
+      "path": "icons/icon-32.webp",
+      "type": "webp",
+      "bytes": 760,
+      "gzipBytes": 783,
+      "brotliBytes": 764
+    },
+    {
+      "path": "icons/icon-512.png",
+      "type": "png",
+      "bytes": 33113,
+      "gzipBytes": 31641,
+      "brotliBytes": 31425
+    },
+    {
+      "path": "images/careers-hiring-20261016.png",
+      "type": "png",
+      "bytes": 310364,
+      "gzipBytes": 309205,
+      "brotliBytes": 310369
+    },
+    {
+      "path": "images/fresh-tech-logo-white.webp",
+      "type": "webp",
+      "bytes": 3222,
+      "gzipBytes": 3245,
+      "brotliBytes": 3226
+    },
+    {
+      "path": "images/fresh-tech-logo.webp",
+      "type": "webp",
+      "bytes": 3250,
+      "gzipBytes": 3273,
+      "brotliBytes": 3254
+    },
+    {
+      "path": "images/fresh-tech-social-20261016.png",
+      "type": "png",
+      "bytes": 309613,
+      "gzipBytes": 308177,
+      "brotliBytes": 307649
+    },
+    {
+      "path": "images/home-team-v1778511802-1280.webp",
+      "type": "webp",
+      "bytes": 102328,
+      "gzipBytes": 102244,
+      "brotliBytes": 102333
+    },
+    {
+      "path": "images/home-team-v1778511802-480.webp",
+      "type": "webp",
+      "bytes": 19046,
+      "gzipBytes": 18934,
+      "brotliBytes": 18842
+    },
+    {
+      "path": "images/home-team-v1778511802-640.webp",
+      "type": "webp",
+      "bytes": 35342,
+      "gzipBytes": 35238,
+      "brotliBytes": 35346
+    },
+    {
+      "path": "images/home-team-v1778511802-720.webp",
+      "type": "webp",
+      "bytes": 43110,
+      "gzipBytes": 43004,
+      "brotliBytes": 43114
+    },
+    {
+      "path": "images/home-team-v1778511802-900.jpg",
+      "type": "jpg",
+      "bytes": 60933,
+      "gzipBytes": 60325,
+      "brotliBytes": 60004
+    },
+    {
+      "path": "in-house-vs-outsourced-it/index.html",
+      "type": "html",
+      "bytes": 90719,
+      "gzipBytes": 20384,
+      "brotliBytes": 16004
+    },
+    {
+      "path": "index.html",
+      "type": "html",
+      "bytes": 74245,
+      "gzipBytes": 17884,
+      "brotliBytes": 15066
+    },
+    {
+      "path": "industries/accountants/index.html",
+      "type": "html",
+      "bytes": 45581,
+      "gzipBytes": 11782,
+      "brotliBytes": 9861
+    },
+    {
+      "path": "industries/agriculture/index.html",
+      "type": "html",
+      "bytes": 46255,
+      "gzipBytes": 12130,
+      "brotliBytes": 10099
+    },
+    {
+      "path": "industries/charities/index.html",
+      "type": "html",
+      "bytes": 46024,
+      "gzipBytes": 11919,
+      "brotliBytes": 9894
+    },
+    {
+      "path": "industries/construction/index.html",
+      "type": "html",
+      "bytes": 44896,
+      "gzipBytes": 11470,
+      "brotliBytes": 9600
+    },
+    {
+      "path": "industries/education/index.html",
+      "type": "html",
+      "bytes": 46259,
+      "gzipBytes": 11970,
+      "brotliBytes": 9997
+    },
+    {
+      "path": "industries/estate-agents/index.html",
+      "type": "html",
+      "bytes": 44897,
+      "gzipBytes": 11565,
+      "brotliBytes": 9667
+    },
+    {
+      "path": "industries/financial-advisers/index.html",
+      "type": "html",
+      "bytes": 45173,
+      "gzipBytes": 11618,
+      "brotliBytes": 9690
+    },
+    {
+      "path": "industries/healthcare/index.html",
+      "type": "html",
+      "bytes": 46415,
+      "gzipBytes": 12047,
+      "brotliBytes": 9971
+    },
+    {
+      "path": "industries/hospitality/index.html",
+      "type": "html",
+      "bytes": 44880,
+      "gzipBytes": 11580,
+      "brotliBytes": 9668
+    },
+    {
+      "path": "industries/index.html",
+      "type": "html",
+      "bytes": 46925,
+      "gzipBytes": 11028,
+      "brotliBytes": 9198
+    },
+    {
+      "path": "industries/manufacturing/index.html",
+      "type": "html",
+      "bytes": 46460,
+      "gzipBytes": 12129,
+      "brotliBytes": 10094
+    },
+    {
+      "path": "industries/professional-services/index.html",
+      "type": "html",
+      "bytes": 46439,
+      "gzipBytes": 12059,
+      "brotliBytes": 10085
+    },
+    {
+      "path": "industries/recruitment/index.html",
+      "type": "html",
+      "bytes": 44938,
+      "gzipBytes": 11649,
+      "brotliBytes": 9724
+    },
+    {
+      "path": "industries/renewable-energy/index.html",
+      "type": "html",
+      "bytes": 44582,
+      "gzipBytes": 11366,
+      "brotliBytes": 9548
+    },
+    {
+      "path": "industries/retail-distribution/index.html",
+      "type": "html",
+      "bytes": 44433,
+      "gzipBytes": 11289,
+      "brotliBytes": 9480
+    },
+    {
+      "path": "industries/solicitors/index.html",
+      "type": "html",
+      "bytes": 45936,
+      "gzipBytes": 11853,
+      "brotliBytes": 9902
+    },
+    {
+      "path": "industries/veterinary/index.html",
+      "type": "html",
+      "bytes": 44650,
+      "gzipBytes": 11335,
+      "brotliBytes": 9533
+    },
+    {
+      "path": "it-health-check/index.html",
+      "type": "html",
+      "bytes": 46273,
+      "gzipBytes": 11383,
+      "brotliBytes": 9568
+    },
+    {
+      "path": "it-provider-not-responding/index.html",
+      "type": "html",
+      "bytes": 84503,
+      "gzipBytes": 19804,
+      "brotliBytes": 15589
+    },
+    {
+      "path": "it-security-audit/index.html",
+      "type": "html",
+      "bytes": 80582,
+      "gzipBytes": 18378,
+      "brotliBytes": 14419
+    },
+    {
+      "path": "it-support-hereford/index.html",
+      "type": "html",
+      "bytes": 46156,
+      "gzipBytes": 12461,
+      "brotliBytes": 10027
+    },
+    {
+      "path": "it-support-herefordshire/index.html",
+      "type": "html",
+      "bytes": 45005,
+      "gzipBytes": 11950,
+      "brotliBytes": 9794
+    },
+    {
+      "path": "it-support-kidderminster/index.html",
+      "type": "html",
+      "bytes": 45942,
+      "gzipBytes": 12301,
+      "brotliBytes": 10009
+    },
+    {
+      "path": "it-support-ludlow/index.html",
+      "type": "html",
+      "bytes": 46617,
+      "gzipBytes": 12592,
+      "brotliBytes": 10129
+    },
+    {
+      "path": "it-support-powys/index.html",
+      "type": "html",
+      "bytes": 44827,
+      "gzipBytes": 12184,
+      "brotliBytes": 9906
+    },
+    {
+      "path": "it-support-shrewsbury/index.html",
+      "type": "html",
+      "bytes": 45597,
+      "gzipBytes": 12311,
+      "brotliBytes": 9884
+    },
+    {
+      "path": "it-support-shropshire/index.html",
+      "type": "html",
+      "bytes": 45214,
+      "gzipBytes": 12066,
+      "brotliBytes": 9855
+    },
+    {
+      "path": "it-support-telford/index.html",
+      "type": "html",
+      "bytes": 46172,
+      "gzipBytes": 12324,
+      "brotliBytes": 9949
+    },
+    {
+      "path": "it-support-worcester/index.html",
+      "type": "html",
+      "bytes": 45890,
+      "gzipBytes": 12397,
+      "brotliBytes": 9937
+    },
+    {
+      "path": "it-support-worcestershire/index.html",
+      "type": "html",
+      "bytes": 44570,
+      "gzipBytes": 11825,
+      "brotliBytes": 9692
+    },
+    {
+      "path": "laptop-stolen-lost/index.html",
+      "type": "html",
+      "bytes": 81889,
+      "gzipBytes": 18843,
+      "brotliBytes": 14709
+    },
+    {
+      "path": "locations/bewdley/index.html",
+      "type": "html",
+      "bytes": 38183,
+      "gzipBytes": 10002,
+      "brotliBytes": 8415
+    },
+    {
+      "path": "locations/brecon/index.html",
+      "type": "html",
+      "bytes": 36911,
+      "gzipBytes": 9616,
+      "brotliBytes": 8111
+    },
+    {
+      "path": "locations/bridgnorth/index.html",
+      "type": "html",
+      "bytes": 38302,
+      "gzipBytes": 9939,
+      "brotliBytes": 8381
+    },
+    {
+      "path": "locations/bromsgrove/index.html",
+      "type": "html",
+      "bytes": 37102,
+      "gzipBytes": 9615,
+      "brotliBytes": 8109
+    },
+    {
+      "path": "locations/bromyard/index.html",
+      "type": "html",
+      "bytes": 36905,
+      "gzipBytes": 9567,
+      "brotliBytes": 8069
+    },
+    {
+      "path": "locations/builth-wells/index.html",
+      "type": "html",
+      "bytes": 37021,
+      "gzipBytes": 9579,
+      "brotliBytes": 8081
+    },
+    {
+      "path": "locations/church-stretton/index.html",
+      "type": "html",
+      "bytes": 37147,
+      "gzipBytes": 9667,
+      "brotliBytes": 8160
+    },
+    {
+      "path": "locations/craven-arms/index.html",
+      "type": "html",
+      "bytes": 37160,
+      "gzipBytes": 9691,
+      "brotliBytes": 8168
+    },
+    {
+      "path": "locations/droitwich/index.html",
+      "type": "html",
+      "bytes": 37012,
+      "gzipBytes": 9596,
+      "brotliBytes": 8116
+    },
+    {
+      "path": "locations/evesham/index.html",
+      "type": "html",
+      "bytes": 36739,
+      "gzipBytes": 9493,
+      "brotliBytes": 8039
+    },
+    {
+      "path": "locations/hay-on-wye/index.html",
+      "type": "html",
+      "bytes": 36867,
+      "gzipBytes": 9563,
+      "brotliBytes": 8080
+    },
+    {
+      "path": "locations/hereford/index.html",
+      "type": "html",
+      "bytes": 39258,
+      "gzipBytes": 10300,
+      "brotliBytes": 8671
+    },
+    {
+      "path": "locations/herefordshire/index.html",
+      "type": "html",
+      "bytes": 38111,
+      "gzipBytes": 9874,
+      "brotliBytes": 8317
+    },
+    {
+      "path": "locations/kidderminster/index.html",
+      "type": "html",
+      "bytes": 39808,
+      "gzipBytes": 10422,
+      "brotliBytes": 8799
+    },
+    {
+      "path": "locations/kington/index.html",
+      "type": "html",
+      "bytes": 37011,
+      "gzipBytes": 9605,
+      "brotliBytes": 8108
+    },
+    {
+      "path": "locations/knighton/index.html",
+      "type": "html",
+      "bytes": 36638,
+      "gzipBytes": 9501,
+      "brotliBytes": 8028
+    },
+    {
+      "path": "locations/ledbury/index.html",
+      "type": "html",
+      "bytes": 38195,
+      "gzipBytes": 9979,
+      "brotliBytes": 8407
+    },
+    {
+      "path": "locations/leominster/index.html",
+      "type": "html",
+      "bytes": 37187,
+      "gzipBytes": 9663,
+      "brotliBytes": 8161
+    },
+    {
+      "path": "locations/llandrindod-wells/index.html",
+      "type": "html",
+      "bytes": 37112,
+      "gzipBytes": 9586,
+      "brotliBytes": 8094
+    },
+    {
+      "path": "locations/ludlow/index.html",
+      "type": "html",
+      "bytes": 41083,
+      "gzipBytes": 11139,
+      "brotliBytes": 9379
+    },
+    {
+      "path": "locations/machynlleth/index.html",
+      "type": "html",
+      "bytes": 36783,
+      "gzipBytes": 9567,
+      "brotliBytes": 8075
+    },
+    {
+      "path": "locations/malvern/index.html",
+      "type": "html",
+      "bytes": 38243,
+      "gzipBytes": 9992,
+      "brotliBytes": 8411
+    },
+    {
+      "path": "locations/market-drayton/index.html",
+      "type": "html",
+      "bytes": 37080,
+      "gzipBytes": 9549,
+      "brotliBytes": 8055
+    },
+    {
+      "path": "locations/montgomery/index.html",
+      "type": "html",
+      "bytes": 36765,
+      "gzipBytes": 9541,
+      "brotliBytes": 8032
+    },
+    {
+      "path": "locations/much-wenlock/index.html",
+      "type": "html",
+      "bytes": 36811,
+      "gzipBytes": 9513,
+      "brotliBytes": 8027
+    },
+    {
+      "path": "locations/newtown/index.html",
+      "type": "html",
+      "bytes": 36971,
+      "gzipBytes": 9573,
+      "brotliBytes": 8099
+    },
+    {
+      "path": "locations/oswestry/index.html",
+      "type": "html",
+      "bytes": 37016,
+      "gzipBytes": 9590,
+      "brotliBytes": 8077
+    },
+    {
+      "path": "locations/pembridge/index.html",
+      "type": "html",
+      "bytes": 36768,
+      "gzipBytes": 9533,
+      "brotliBytes": 8052
+    },
+    {
+      "path": "locations/pershore/index.html",
+      "type": "html",
+      "bytes": 36709,
+      "gzipBytes": 9480,
+      "brotliBytes": 8023
+    },
+    {
+      "path": "locations/powys/index.html",
+      "type": "html",
+      "bytes": 38058,
+      "gzipBytes": 9982,
+      "brotliBytes": 8416
+    },
+    {
+      "path": "locations/redditch/index.html",
+      "type": "html",
+      "bytes": 36937,
+      "gzipBytes": 9542,
+      "brotliBytes": 8060
+    },
+    {
+      "path": "locations/ross-on-wye/index.html",
+      "type": "html",
+      "bytes": 38216,
+      "gzipBytes": 9940,
+      "brotliBytes": 8385
+    },
+    {
+      "path": "locations/shrewsbury/index.html",
+      "type": "html",
+      "bytes": 39489,
+      "gzipBytes": 10364,
+      "brotliBytes": 8743
+    },
+    {
+      "path": "locations/shropshire/index.html",
+      "type": "html",
+      "bytes": 38334,
+      "gzipBytes": 9973,
+      "brotliBytes": 8405
+    },
+    {
+      "path": "locations/telford/index.html",
+      "type": "html",
+      "bytes": 39324,
+      "gzipBytes": 10334,
+      "brotliBytes": 8714
+    },
+    {
+      "path": "locations/tenbury-wells/index.html",
+      "type": "html",
+      "bytes": 38281,
+      "gzipBytes": 9950,
+      "brotliBytes": 8390
+    },
+    {
+      "path": "locations/upton-upon-severn/index.html",
+      "type": "html",
+      "bytes": 36890,
+      "gzipBytes": 9515,
+      "brotliBytes": 8052
+    },
+    {
+      "path": "locations/welshpool/index.html",
+      "type": "html",
+      "bytes": 37017,
+      "gzipBytes": 9583,
+      "brotliBytes": 8105
+    },
+    {
+      "path": "locations/weobley/index.html",
+      "type": "html",
+      "bytes": 36851,
+      "gzipBytes": 9556,
+      "brotliBytes": 8051
+    },
+    {
+      "path": "locations/whitchurch/index.html",
+      "type": "html",
+      "bytes": 37052,
+      "gzipBytes": 9591,
+      "brotliBytes": 8080
+    },
+    {
+      "path": "locations/worcester/index.html",
+      "type": "html",
+      "bytes": 40177,
+      "gzipBytes": 10606,
+      "brotliBytes": 8927
+    },
+    {
+      "path": "locations/worcestershire/index.html",
+      "type": "html",
+      "bytes": 38342,
+      "gzipBytes": 9901,
+      "brotliBytes": 8354
+    },
+    {
+      "path": "managed-print-guide/index.html",
+      "type": "html",
+      "bytes": 84327,
+      "gzipBytes": 20660,
+      "brotliBytes": 15893
+    },
+    {
+      "path": "manifest.json",
+      "type": "json",
+      "bytes": 715,
+      "gzipBytes": 378,
+      "brotliBytes": 294
+    },
+    {
+      "path": "microsoft-365-hereford/index.html",
+      "type": "html",
+      "bytes": 46088,
+      "gzipBytes": 12613,
+      "brotliBytes": 10130
+    },
+    {
+      "path": "microsoft-365-herefordshire/index.html",
+      "type": "html",
+      "bytes": 45129,
+      "gzipBytes": 12154,
+      "brotliBytes": 9910
+    },
+    {
+      "path": "microsoft-365-kidderminster/index.html",
+      "type": "html",
+      "bytes": 46143,
+      "gzipBytes": 12606,
+      "brotliBytes": 10140
+    },
+    {
+      "path": "microsoft-365-plans-compared/index.html",
+      "type": "html",
+      "bytes": 94693,
+      "gzipBytes": 20695,
+      "brotliBytes": 16197
+    },
+    {
+      "path": "microsoft-365-powys/index.html",
+      "type": "html",
+      "bytes": 44928,
+      "gzipBytes": 12171,
+      "brotliBytes": 9907
+    },
+    {
+      "path": "microsoft-365-shrewsbury/index.html",
+      "type": "html",
+      "bytes": 45783,
+      "gzipBytes": 12417,
+      "brotliBytes": 10021
+    },
+    {
+      "path": "microsoft-365-shropshire/index.html",
+      "type": "html",
+      "bytes": 44787,
+      "gzipBytes": 12119,
+      "brotliBytes": 9847
+    },
+    {
+      "path": "microsoft-365-telford/index.html",
+      "type": "html",
+      "bytes": 45829,
+      "gzipBytes": 12441,
+      "brotliBytes": 9998
+    },
+    {
+      "path": "microsoft-365-worcester/index.html",
+      "type": "html",
+      "bytes": 45984,
+      "gzipBytes": 12547,
+      "brotliBytes": 10068
+    },
+    {
+      "path": "microsoft-365-worcestershire/index.html",
+      "type": "html",
+      "bytes": 44707,
+      "gzipBytes": 12049,
+      "brotliBytes": 9822
+    },
+    {
+      "path": "microsoft-business-premium/index.html",
+      "type": "html",
+      "bytes": 49766,
+      "gzipBytes": 11968,
+      "brotliBytes": 10086
+    },
+    {
+      "path": "new-business-it-setup/index.html",
+      "type": "html",
+      "bytes": 84993,
+      "gzipBytes": 20096,
+      "brotliBytes": 15670
+    },
+    {
+      "path": "office-move-it/index.html",
+      "type": "html",
+      "bytes": 81059,
+      "gzipBytes": 18441,
+      "brotliBytes": 14503
+    },
+    {
+      "path": "office-wifi-problems/index.html",
+      "type": "html",
+      "bytes": 83926,
+      "gzipBytes": 19696,
+      "brotliBytes": 15339
+    },
+    {
+      "path": "onboarding/index.html",
+      "type": "html",
+      "bytes": 50783,
+      "gzipBytes": 12418,
+      "brotliBytes": 10408
+    },
+    {
+      "path": "pricing/index.html",
+      "type": "html",
+      "bytes": 68080,
+      "gzipBytes": 16244,
+      "brotliBytes": 13674
+    },
+    {
+      "path": "privacy-policy/index.html",
+      "type": "html",
+      "bytes": 33837,
+      "gzipBytes": 9395,
+      "brotliBytes": 7866
+    },
+    {
+      "path": "ransomware-recovery/index.html",
+      "type": "html",
+      "bytes": 81071,
+      "gzipBytes": 18430,
+      "brotliBytes": 14500
+    },
+    {
+      "path": "recruitment-privacy/index.html",
+      "type": "html",
+      "bytes": 41741,
+      "gzipBytes": 12086,
+      "brotliBytes": 10093
+    },
+    {
+      "path": "refer/index.html",
+      "type": "html",
+      "bytes": 41566,
+      "gzipBytes": 10506,
+      "brotliBytes": 8924
+    },
+    {
+      "path": "resources/index.html",
+      "type": "html",
+      "bytes": 105050,
+      "gzipBytes": 19617,
+      "brotliBytes": 15811
+    },
+    {
+      "path": "server-end-of-life/index.html",
+      "type": "html",
+      "bytes": 84284,
+      "gzipBytes": 19844,
+      "brotliBytes": 15480
+    },
+    {
+      "path": "service-standards/index.html",
+      "type": "html",
+      "bytes": 44145,
+      "gzipBytes": 11306,
+      "brotliBytes": 9458
+    },
+    {
+      "path": "services/backup-disaster-recovery/index.html",
+      "type": "html",
+      "bytes": 41006,
+      "gzipBytes": 11079,
+      "brotliBytes": 9376
+    },
+    {
+      "path": "services/cloud-phone-systems/index.html",
+      "type": "html",
+      "bytes": 41313,
+      "gzipBytes": 11038,
+      "brotliBytes": 9344
+    },
+    {
+      "path": "services/cloud-solutions/index.html",
+      "type": "html",
+      "bytes": 40815,
+      "gzipBytes": 10983,
+      "brotliBytes": 9252
+    },
+    {
+      "path": "services/cyber-essentials/index.html",
+      "type": "html",
+      "bytes": 40904,
+      "gzipBytes": 10962,
+      "brotliBytes": 9265
+    },
+    {
+      "path": "services/cybersecurity/index.html",
+      "type": "html",
+      "bytes": 41162,
+      "gzipBytes": 11131,
+      "brotliBytes": 9435
+    },
+    {
+      "path": "services/hardware-procurement/index.html",
+      "type": "html",
+      "bytes": 41016,
+      "gzipBytes": 11077,
+      "brotliBytes": 9364
+    },
+    {
+      "path": "services/index.html",
+      "type": "html",
+      "bytes": 41623,
+      "gzipBytes": 10922,
+      "brotliBytes": 9238
+    },
+    {
+      "path": "services/internet-connectivity/index.html",
+      "type": "html",
+      "bytes": 41581,
+      "gzipBytes": 11094,
+      "brotliBytes": 9386
+    },
+    {
+      "path": "services/managed-it-support/index.html",
+      "type": "html",
+      "bytes": 40813,
+      "gzipBytes": 10993,
+      "brotliBytes": 9295
+    },
+    {
+      "path": "services/managed-print/index.html",
+      "type": "html",
+      "bytes": 41086,
+      "gzipBytes": 10994,
+      "brotliBytes": 9314
+    },
+    {
+      "path": "services/strategic-projects/index.html",
+      "type": "html",
+      "bytes": 40651,
+      "gzipBytes": 10960,
+      "brotliBytes": 9254
+    },
+    {
+      "path": "services/structured-cabling/index.html",
+      "type": "html",
+      "bytes": 41298,
+      "gzipBytes": 10956,
+      "brotliBytes": 9271
+    },
+    {
+      "path": "slow-computers/index.html",
+      "type": "html",
+      "bytes": 82341,
+      "gzipBytes": 18777,
+      "brotliBytes": 14751
+    },
+    {
+      "path": "staff-clicking-phishing/index.html",
+      "type": "html",
+      "bytes": 84617,
+      "gzipBytes": 19901,
+      "brotliBytes": 15549
+    },
+    {
+      "path": "sub-processors/index.html",
+      "type": "html",
+      "bytes": 34440,
+      "gzipBytes": 9456,
+      "brotliBytes": 7930
+    },
+    {
+      "path": "support/index.html",
+      "type": "html",
+      "bytes": 44393,
+      "gzipBytes": 11139,
+      "brotliBytes": 9348
+    },
+    {
+      "path": "support-upgrade/index.html",
+      "type": "html",
+      "bytes": 34614,
+      "gzipBytes": 9291,
+      "brotliBytes": 7847
+    },
+    {
+      "path": "switch-it-provider/index.html",
+      "type": "html",
+      "bytes": 80600,
+      "gzipBytes": 18374,
+      "brotliBytes": 14432
+    },
+    {
+      "path": "team/matt-morgan/index.html",
+      "type": "html",
+      "bytes": 55899,
+      "gzipBytes": 11265,
+      "brotliBytes": 9432
+    },
+    {
+      "path": "team/sam-james/index.html",
+      "type": "html",
+      "bytes": 124010,
+      "gzipBytes": 17099,
+      "brotliBytes": 13807
+    },
+    {
+      "path": "technology/admin-rights/index.html",
+      "type": "html",
+      "bytes": 55278,
+      "gzipBytes": 14303,
+      "brotliBytes": 11716
+    },
+    {
+      "path": "technology/application-control/index.html",
+      "type": "html",
+      "bytes": 54301,
+      "gzipBytes": 13993,
+      "brotliBytes": 11465
+    },
+    {
+      "path": "technology/business-networking/index.html",
+      "type": "html",
+      "bytes": 51705,
+      "gzipBytes": 12842,
+      "brotliBytes": 10867
+    },
+    {
+      "path": "technology/cloud-vs-onpremise/index.html",
+      "type": "html",
+      "bytes": 51535,
+      "gzipBytes": 12869,
+      "brotliBytes": 10880
+    },
+    {
+      "path": "technology/conditional-access/index.html",
+      "type": "html",
+      "bytes": 51420,
+      "gzipBytes": 12829,
+      "brotliBytes": 10842
+    },
+    {
+      "path": "technology/edr-mdr/index.html",
+      "type": "html",
+      "bytes": 56110,
+      "gzipBytes": 14699,
+      "brotliBytes": 11947
+    },
+    {
+      "path": "technology/email-authentication/index.html",
+      "type": "html",
+      "bytes": 56561,
+      "gzipBytes": 14846,
+      "brotliBytes": 12163
+    },
+    {
+      "path": "technology/end-of-life/index.html",
+      "type": "html",
+      "bytes": 51083,
+      "gzipBytes": 12722,
+      "brotliBytes": 10794
+    },
+    {
+      "path": "technology/index.html",
+      "type": "html",
+      "bytes": 51681,
+      "gzipBytes": 12717,
+      "brotliBytes": 10712
+    },
+    {
+      "path": "technology/intune-autopilot/index.html",
+      "type": "html",
+      "bytes": 50969,
+      "gzipBytes": 12661,
+      "brotliBytes": 10741
+    },
+    {
+      "path": "technology/itdr/index.html",
+      "type": "html",
+      "bytes": 55807,
+      "gzipBytes": 14583,
+      "brotliBytes": 11841
+    },
+    {
+      "path": "technology/mfa/index.html",
+      "type": "html",
+      "bytes": 50929,
+      "gzipBytes": 12622,
+      "brotliBytes": 10720
+    },
+    {
+      "path": "technology/ncsc/index.html",
+      "type": "html",
+      "bytes": 51011,
+      "gzipBytes": 12627,
+      "brotliBytes": 10664
+    },
+    {
+      "path": "technology/patching/index.html",
+      "type": "html",
+      "bytes": 50897,
+      "gzipBytes": 12613,
+      "brotliBytes": 10710
+    },
+    {
+      "path": "technology/phishing/index.html",
+      "type": "html",
+      "bytes": 50578,
+      "gzipBytes": 12603,
+      "brotliBytes": 10663
+    },
+    {
+      "path": "technology/rmm/index.html",
+      "type": "html",
+      "bytes": 53903,
+      "gzipBytes": 13977,
+      "brotliBytes": 11519
+    },
+    {
+      "path": "technology/vpn/index.html",
+      "type": "html",
+      "bytes": 72418,
+      "gzipBytes": 20238,
+      "brotliBytes": 15691
+    },
+    {
+      "path": "technology/zero-trust/index.html",
+      "type": "html",
+      "bytes": 51021,
+      "gzipBytes": 12649,
+      "brotliBytes": 10709
+    },
+    {
+      "path": "technology-stack/index.html",
+      "type": "html",
+      "bytes": 43729,
+      "gzipBytes": 11324,
+      "brotliBytes": 9477
+    },
+    {
+      "path": "terms-conditions/index.html",
+      "type": "html",
+      "bytes": 35445,
+      "gzipBytes": 9374,
+      "brotliBytes": 7852
+    },
+    {
+      "path": "terms-of-business/index.html",
+      "type": "html",
+      "bytes": 47489,
+      "gzipBytes": 14057,
+      "brotliBytes": 11665
+    },
+    {
+      "path": "terms-of-business/v1-0/index.html",
+      "type": "html",
+      "bytes": 47628,
+      "gzipBytes": 14072,
+      "brotliBytes": 11675
+    },
+    {
+      "path": "upgrade-to-business-premium/index.html",
+      "type": "html",
+      "bytes": 87632,
+      "gzipBytes": 21105,
+      "brotliBytes": 16289
+    },
+    {
+      "path": "why-trust-us/index.html",
+      "type": "html",
+      "bytes": 65964,
+      "gzipBytes": 15174,
+      "brotliBytes": 12732
+    },
+    {
+      "path": "windows-10-end-of-life/index.html",
+      "type": "html",
+      "bytes": 84870,
+      "gzipBytes": 19956,
+      "brotliBytes": 15594
+    }
+  ],
+  "totals": {
+    "html": {
+      "bytes": 12508261,
+      "gzipBytes": 3154206,
+      "brotliBytes": 2603806
+    },
+    "css": {
+      "bytes": 0,
+      "gzipBytes": 0,
+      "brotliBytes": 0
+    },
+    "externalJavaScript": {
+      "bytes": 48780,
+      "gzipBytes": 21091,
+      "brotliBytes": 17950
+    },
+    "inlineJavaScript": {
+      "bytes": 0,
+      "gzipBytes": 0,
+      "brotliBytes": 0
+    },
+    "structuredDataBytes": 888888,
+    "fonts": {
+      "bytes": 118668,
+      "gzipBytes": 118831,
+      "brotliBytes": 118674
+    }
+  },
+  "exclusions": [
+    "Remote logo image bytes"
+  ],
+  "routes": {
+    "/about": {
+      "html": {
+        "bytes": 53706,
+        "gzipBytes": 12696,
+        "brotliBytes": 10629
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/ai-acceptable-use-policy": {
+      "html": {
+        "bytes": 70883,
+        "gzipBytes": 17558,
+        "brotliBytes": 14284
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/back-to-school-device-refresh": {
+      "html": {
+        "bytes": 47760,
+        "gzipBytes": 12547,
+        "brotliBytes": 10469
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/backup-test-most-businesses-fail": {
+      "html": {
+        "bytes": 49858,
+        "gzipBytes": 13234,
+        "brotliBytes": 11080
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/bank-scam-call-one-time-code-trick": {
+      "html": {
+        "bytes": 56590,
+        "gzipBytes": 15995,
+        "brotliBytes": 13318
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/best-pc-for-cad-business-buying-guide": {
+      "html": {
+        "bytes": 62774,
+        "gzipBytes": 18469,
+        "brotliBytes": 15438
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/business-owners-rate-their-it-support": {
+      "html": {
+        "bytes": 50130,
+        "gzipBytes": 13217,
+        "brotliBytes": 11064
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/can-your-team-work-from-anywhere": {
+      "html": {
+        "bytes": 49288,
+        "gzipBytes": 13112,
+        "brotliBytes": 10997
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/christmas-2025-it-survival-guide": {
+      "html": {
+        "bytes": 48135,
+        "gzipBytes": 12924,
+        "brotliBytes": 10817
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/claude-in-microsoft-365-copilot": {
+      "html": {
+        "bytes": 57888,
+        "gzipBytes": 16040,
+        "brotliBytes": 13410
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/copilot-ai-small-business-guide": {
+      "html": {
+        "bytes": 47986,
+        "gzipBytes": 12589,
+        "brotliBytes": 10526
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/cyber-essentials-checklist-herefordshire": {
+      "html": {
+        "bytes": 50598,
+        "gzipBytes": 13505,
+        "brotliBytes": 11219
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/cyber-essentials-danzell-2026-changes": {
+      "html": {
+        "bytes": 52838,
+        "gzipBytes": 14530,
+        "brotliBytes": 12092
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/cyber-essentials-explained": {
+      "html": {
+        "bytes": 48673,
+        "gzipBytes": 12916,
+        "brotliBytes": 10794
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/cyber-essentials-vs-plus": {
+      "html": {
+        "bytes": 51260,
+        "gzipBytes": 13780,
+        "brotliBytes": 11471
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/cybersecurity-awareness-month-october-2025": {
+      "html": {
+        "bytes": 48076,
+        "gzipBytes": 12539,
+        "brotliBytes": 10456
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/data-privacy-day-2026-ai-data": {
+      "html": {
+        "bytes": 46969,
+        "gzipBytes": 12147,
+        "brotliBytes": 10175
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/data-privacy-day-small-business-gdpr": {
+      "html": {
+        "bytes": 48008,
+        "gzipBytes": 12577,
+        "brotliBytes": 10470
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/edge-vs-chrome-which-browser-for-business": {
+      "html": {
+        "bytes": 57442,
+        "gzipBytes": 16086,
+        "brotliBytes": 13419
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/email-security-audit-local-businesses": {
+      "html": {
+        "bytes": 47207,
+        "gzipBytes": 12325,
+        "brotliBytes": 10391
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/holiday-cover-payment-fraud": {
+      "html": {
+        "bytes": 50686,
+        "gzipBytes": 13734,
+        "brotliBytes": 11490
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/how-to-choose-it-provider-shrewsbury": {
+      "html": {
+        "bytes": 49177,
+        "gzipBytes": 13087,
+        "brotliBytes": 10928
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/how-to-spot-phishing-emails": {
+      "html": {
+        "bytes": 48517,
+        "gzipBytes": 12812,
+        "brotliBytes": 10732
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog": {
+      "html": {
+        "bytes": 85944,
+        "gzipBytes": 17476,
+        "brotliBytes": 14518
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/it-challenges-manufacturers-west-midlands": {
+      "html": {
+        "bytes": 49605,
+        "gzipBytes": 13155,
+        "brotliBytes": 10896
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/leavers-offboarding-it-checklist": {
+      "html": {
+        "bytes": 53153,
+        "gzipBytes": 14682,
+        "brotliBytes": 12273
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/microsoft-365-business-premium": {
+      "html": {
+        "bytes": 45732,
+        "gzipBytes": 11904,
+        "brotliBytes": 10029
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/microsoft-365-price-increase-2026": {
+      "html": {
+        "bytes": 51832,
+        "gzipBytes": 14036,
+        "brotliBytes": 11817
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/new-financial-year-it-priorities": {
+      "html": {
+        "bytes": 46853,
+        "gzipBytes": 12310,
+        "brotliBytes": 10310
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/new-year-it-budget-planning-guide": {
+      "html": {
+        "bytes": 47687,
+        "gzipBytes": 12537,
+        "brotliBytes": 10489
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/password-security-tips": {
+      "html": {
+        "bytes": 45205,
+        "gzipBytes": 11712,
+        "brotliBytes": 9827
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/personal-email-business-breach-case-study": {
+      "html": {
+        "bytes": 52089,
+        "gzipBytes": 14018,
+        "brotliBytes": 11695
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/qr-code-scams-quishing-business": {
+      "html": {
+        "bytes": 47916,
+        "gzipBytes": 12677,
+        "brotliBytes": 10680
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/ransomware-recovery-what-to-expect": {
+      "html": {
+        "bytes": 50138,
+        "gzipBytes": 13349,
+        "brotliBytes": 11128
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/remote-work-security-checklist": {
+      "html": {
+        "bytes": 49935,
+        "gzipBytes": 13334,
+        "brotliBytes": 11191
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/repeat-after-me-phone-scam": {
+      "html": {
+        "bytes": 49756,
+        "gzipBytes": 13170,
+        "brotliBytes": 10928
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/safer-internet-day-2026-deepfakes": {
+      "html": {
+        "bytes": 46891,
+        "gzipBytes": 12219,
+        "brotliBytes": 10194
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/safer-internet-day-small-business-security": {
+      "html": {
+        "bytes": 47432,
+        "gzipBytes": 12404,
+        "brotliBytes": 10332
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/signs-it-company-coasting-on-contract": {
+      "html": {
+        "bytes": 49280,
+        "gzipBytes": 13158,
+        "brotliBytes": 11029
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/staff-using-ai-at-work-company-data": {
+      "html": {
+        "bytes": 53599,
+        "gzipBytes": 14914,
+        "brotliBytes": 12413
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/summer-remote-work-security": {
+      "html": {
+        "bytes": 48153,
+        "gzipBytes": 12650,
+        "brotliBytes": 10623
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/that-repair-might-cost-you-thousands": {
+      "html": {
+        "bytes": 49542,
+        "gzipBytes": 13210,
+        "brotliBytes": 11054
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/vet-practice-wifi-security": {
+      "html": {
+        "bytes": 46543,
+        "gzipBytes": 12117,
+        "brotliBytes": 10112
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/what-printing-really-costs-your-business": {
+      "html": {
+        "bytes": 53270,
+        "gzipBytes": 14607,
+        "brotliBytes": 12182
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/where-are-my-files-sharepoint-solved": {
+      "html": {
+        "bytes": 46720,
+        "gzipBytes": 12084,
+        "brotliBytes": 10120
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/windows-10-end-of-life-guide": {
+      "html": {
+        "bytes": 51542,
+        "gzipBytes": 14077,
+        "brotliBytes": 11776
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/world-backup-day-2026-ransomware-reality": {
+      "html": {
+        "bytes": 46835,
+        "gzipBytes": 12022,
+        "brotliBytes": 10059
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/world-backup-day-tested-backup-strategy": {
+      "html": {
+        "bytes": 48383,
+        "gzipBytes": 12634,
+        "brotliBytes": 10553
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/world-password-day-2025-passkeys": {
+      "html": {
+        "bytes": 48644,
+        "gzipBytes": 12814,
+        "brotliBytes": 10693
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/world-password-day-2026-post-password-era": {
+      "html": {
+        "bytes": 46510,
+        "gzipBytes": 11948,
+        "brotliBytes": 10016
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/would-your-staff-spot-this-fake-email": {
+      "html": {
+        "bytes": 49304,
+        "gzipBytes": 13078,
+        "brotliBytes": 10927
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/blog/your-it-invoice-is-lying-to-you": {
+      "html": {
+        "bytes": 48848,
+        "gzipBytes": 12887,
+        "brotliBytes": 10874
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/break-fix-vs-managed-it": {
+      "html": {
+        "bytes": 89099,
+        "gzipBytes": 20356,
+        "brotliBytes": 15932
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/business-email-compromise": {
+      "html": {
+        "bytes": 82170,
+        "gzipBytes": 18847,
+        "brotliBytes": 14834
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/careers": {
+      "html": {
+        "bytes": 47066,
+        "gzipBytes": 11922,
+        "brotliBytes": 9940
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/case-studies/accountancy-cloud-migration": {
+      "html": {
+        "bytes": 52322,
+        "gzipBytes": 12535,
+        "brotliBytes": 10460
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/case-studies/architects-hybrid-working": {
+      "html": {
+        "bytes": 52349,
+        "gzipBytes": 12527,
+        "brotliBytes": 10456
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/case-studies/care-home-digital-transformation": {
+      "html": {
+        "bytes": 52808,
+        "gzipBytes": 12653,
+        "brotliBytes": 10553
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/case-studies/charity-microsoft-savings": {
+      "html": {
+        "bytes": 52349,
+        "gzipBytes": 12499,
+        "brotliBytes": 10416
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/case-studies/farm-estate-connectivity": {
+      "html": {
+        "bytes": 52441,
+        "gzipBytes": 12546,
+        "brotliBytes": 10494
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/case-studies/food-production-uptime": {
+      "html": {
+        "bytes": 52228,
+        "gzipBytes": 12487,
+        "brotliBytes": 10416
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/case-studies": {
+      "html": {
+        "bytes": 68363,
+        "gzipBytes": 15577,
+        "brotliBytes": 13040
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/case-studies/legal-email-security": {
+      "html": {
+        "bytes": 52420,
+        "gzipBytes": 12555,
+        "brotliBytes": 10432
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/case-studies/manufacturing-modernization": {
+      "html": {
+        "bytes": 52552,
+        "gzipBytes": 12549,
+        "brotliBytes": 10500
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/case-studies/prep-school-safeguarding": {
+      "html": {
+        "bytes": 52344,
+        "gzipBytes": 12499,
+        "brotliBytes": 10433
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/case-studies/renewable-energy-remote-monitoring": {
+      "html": {
+        "bytes": 52425,
+        "gzipBytes": 12562,
+        "brotliBytes": 10513
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/case-studies/retail-logistics-upgrade": {
+      "html": {
+        "bytes": 52414,
+        "gzipBytes": 12527,
+        "brotliBytes": 10454
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/case-studies/sharepoint-file-shortcuts-automation": {
+      "html": {
+        "bytes": 52912,
+        "gzipBytes": 12739,
+        "brotliBytes": 10630
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/case-studies/veterinary-wifi-upgrade": {
+      "html": {
+        "bytes": 52137,
+        "gzipBytes": 12423,
+        "brotliBytes": 10397
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/cloud-backup-necessity": {
+      "html": {
+        "bytes": 107769,
+        "gzipBytes": 22049,
+        "brotliBytes": 16528
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/co-managed-it": {
+      "html": {
+        "bytes": 48195,
+        "gzipBytes": 11421,
+        "brotliBytes": 9583
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/compare": {
+      "html": {
+        "bytes": 56173,
+        "gzipBytes": 12167,
+        "brotliBytes": 10204
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/contact": {
+      "html": {
+        "bytes": 40762,
+        "gzipBytes": 10451,
+        "brotliBytes": 8788
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/cookie-policy": {
+      "html": {
+        "bytes": 37262,
+        "gzipBytes": 9776,
+        "brotliBytes": 8240
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/cyber-essentials-hereford": {
+      "html": {
+        "bytes": 46526,
+        "gzipBytes": 12662,
+        "brotliBytes": 10198
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/cyber-essentials-herefordshire": {
+      "html": {
+        "bytes": 45667,
+        "gzipBytes": 12439,
+        "brotliBytes": 10090
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/cyber-essentials-kidderminster": {
+      "html": {
+        "bytes": 45951,
+        "gzipBytes": 12292,
+        "brotliBytes": 10005
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/cyber-essentials-powys": {
+      "html": {
+        "bytes": 45173,
+        "gzipBytes": 12241,
+        "brotliBytes": 10046
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/cyber-essentials-shrewsbury": {
+      "html": {
+        "bytes": 46535,
+        "gzipBytes": 12683,
+        "brotliBytes": 10258
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/cyber-essentials-shropshire": {
+      "html": {
+        "bytes": 45673,
+        "gzipBytes": 12273,
+        "brotliBytes": 10010
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/cyber-essentials-telford": {
+      "html": {
+        "bytes": 46453,
+        "gzipBytes": 12585,
+        "brotliBytes": 10184
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/cyber-essentials-worcester": {
+      "html": {
+        "bytes": 46007,
+        "gzipBytes": 12354,
+        "brotliBytes": 10000
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/cyber-essentials-worcestershire": {
+      "html": {
+        "bytes": 45894,
+        "gzipBytes": 12352,
+        "brotliBytes": 10101
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/data-breach-discovered": {
+      "html": {
+        "bytes": 81856,
+        "gzipBytes": 18897,
+        "brotliBytes": 14679
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/dpa": {
+      "html": {
+        "bytes": 48463,
+        "gzipBytes": 13875,
+        "brotliBytes": 11408
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/dpa/v1-0": {
+      "html": {
+        "bytes": 48588,
+        "gzipBytes": 13890,
+        "brotliBytes": 11421
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/email-account-hacked": {
+      "html": {
+        "bytes": 81786,
+        "gzipBytes": 18788,
+        "brotliBytes": 14759
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/email-security-check": {
+      "html": {
+        "bytes": 55371,
+        "gzipBytes": 13255,
+        "brotliBytes": 11123
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/email-security-guide": {
+      "html": {
+        "bytes": 76659,
+        "gzipBytes": 19461,
+        "brotliBytes": 16260
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/faq": {
+      "html": {
+        "bytes": 82174,
+        "gzipBytes": 19695,
+        "brotliBytes": 14155
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/foundation-monitoring": {
+      "html": {
+        "bytes": 46230,
+        "gzipBytes": 11054,
+        "brotliBytes": 9314
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/glossary": {
+      "html": {
+        "bytes": 54561,
+        "gzipBytes": 12997,
+        "brotliBytes": 10880
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/guides/engineering": {
+      "html": {
+        "bytes": 69389,
+        "gzipBytes": 16594,
+        "brotliBytes": 13776
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/guides/healthcare": {
+      "html": {
+        "bytes": 68865,
+        "gzipBytes": 16086,
+        "brotliBytes": 13397
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/guides/legal": {
+      "html": {
+        "bytes": 68997,
+        "gzipBytes": 16213,
+        "brotliBytes": 13487
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/guides/manufacturing": {
+      "html": {
+        "bytes": 69153,
+        "gzipBytes": 16382,
+        "brotliBytes": 13608
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/guides/renewable-energy": {
+      "html": {
+        "bytes": 69799,
+        "gzipBytes": 16535,
+        "brotliBytes": 13699
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/guides/retail-distribution": {
+      "html": {
+        "bytes": 69452,
+        "gzipBytes": 16317,
+        "brotliBytes": 13535
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/guides/veterinary": {
+      "html": {
+        "bytes": 69034,
+        "gzipBytes": 16104,
+        "brotliBytes": 13426
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/in-house-vs-outsourced-it": {
+      "html": {
+        "bytes": 90719,
+        "gzipBytes": 20384,
+        "brotliBytes": 16004
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/": {
+      "html": {
+        "bytes": 74245,
+        "gzipBytes": 17884,
+        "brotliBytes": 15066
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/accountants": {
+      "html": {
+        "bytes": 45581,
+        "gzipBytes": 11782,
+        "brotliBytes": 9861
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/agriculture": {
+      "html": {
+        "bytes": 46255,
+        "gzipBytes": 12130,
+        "brotliBytes": 10099
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/charities": {
+      "html": {
+        "bytes": 46024,
+        "gzipBytes": 11919,
+        "brotliBytes": 9894
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/construction": {
+      "html": {
+        "bytes": 44896,
+        "gzipBytes": 11470,
+        "brotliBytes": 9600
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/education": {
+      "html": {
+        "bytes": 46259,
+        "gzipBytes": 11970,
+        "brotliBytes": 9997
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/estate-agents": {
+      "html": {
+        "bytes": 44897,
+        "gzipBytes": 11565,
+        "brotliBytes": 9667
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/financial-advisers": {
+      "html": {
+        "bytes": 45173,
+        "gzipBytes": 11618,
+        "brotliBytes": 9690
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/healthcare": {
+      "html": {
+        "bytes": 46415,
+        "gzipBytes": 12047,
+        "brotliBytes": 9971
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/hospitality": {
+      "html": {
+        "bytes": 44880,
+        "gzipBytes": 11580,
+        "brotliBytes": 9668
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries": {
+      "html": {
+        "bytes": 46925,
+        "gzipBytes": 11028,
+        "brotliBytes": 9198
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/manufacturing": {
+      "html": {
+        "bytes": 46460,
+        "gzipBytes": 12129,
+        "brotliBytes": 10094
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/professional-services": {
+      "html": {
+        "bytes": 46439,
+        "gzipBytes": 12059,
+        "brotliBytes": 10085
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/recruitment": {
+      "html": {
+        "bytes": 44938,
+        "gzipBytes": 11649,
+        "brotliBytes": 9724
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/renewable-energy": {
+      "html": {
+        "bytes": 44582,
+        "gzipBytes": 11366,
+        "brotliBytes": 9548
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/retail-distribution": {
+      "html": {
+        "bytes": 44433,
+        "gzipBytes": 11289,
+        "brotliBytes": 9480
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/solicitors": {
+      "html": {
+        "bytes": 45936,
+        "gzipBytes": 11853,
+        "brotliBytes": 9902
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/industries/veterinary": {
+      "html": {
+        "bytes": 44650,
+        "gzipBytes": 11335,
+        "brotliBytes": 9533
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/it-health-check": {
+      "html": {
+        "bytes": 46273,
+        "gzipBytes": 11383,
+        "brotliBytes": 9568
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/it-provider-not-responding": {
+      "html": {
+        "bytes": 84503,
+        "gzipBytes": 19804,
+        "brotliBytes": 15589
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/it-security-audit": {
+      "html": {
+        "bytes": 80582,
+        "gzipBytes": 18378,
+        "brotliBytes": 14419
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/it-support-hereford": {
+      "html": {
+        "bytes": 46156,
+        "gzipBytes": 12461,
+        "brotliBytes": 10027
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/it-support-herefordshire": {
+      "html": {
+        "bytes": 45005,
+        "gzipBytes": 11950,
+        "brotliBytes": 9794
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/it-support-kidderminster": {
+      "html": {
+        "bytes": 45942,
+        "gzipBytes": 12301,
+        "brotliBytes": 10009
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/it-support-ludlow": {
+      "html": {
+        "bytes": 46617,
+        "gzipBytes": 12592,
+        "brotliBytes": 10129
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/it-support-powys": {
+      "html": {
+        "bytes": 44827,
+        "gzipBytes": 12184,
+        "brotliBytes": 9906
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/it-support-shrewsbury": {
+      "html": {
+        "bytes": 45597,
+        "gzipBytes": 12311,
+        "brotliBytes": 9884
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/it-support-shropshire": {
+      "html": {
+        "bytes": 45214,
+        "gzipBytes": 12066,
+        "brotliBytes": 9855
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/it-support-telford": {
+      "html": {
+        "bytes": 46172,
+        "gzipBytes": 12324,
+        "brotliBytes": 9949
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/it-support-worcester": {
+      "html": {
+        "bytes": 45890,
+        "gzipBytes": 12397,
+        "brotliBytes": 9937
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/it-support-worcestershire": {
+      "html": {
+        "bytes": 44570,
+        "gzipBytes": 11825,
+        "brotliBytes": 9692
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/laptop-stolen-lost": {
+      "html": {
+        "bytes": 81889,
+        "gzipBytes": 18843,
+        "brotliBytes": 14709
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/bewdley": {
+      "html": {
+        "bytes": 38183,
+        "gzipBytes": 10002,
+        "brotliBytes": 8415
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/brecon": {
+      "html": {
+        "bytes": 36911,
+        "gzipBytes": 9616,
+        "brotliBytes": 8111
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/bridgnorth": {
+      "html": {
+        "bytes": 38302,
+        "gzipBytes": 9939,
+        "brotliBytes": 8381
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/bromsgrove": {
+      "html": {
+        "bytes": 37102,
+        "gzipBytes": 9615,
+        "brotliBytes": 8109
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/bromyard": {
+      "html": {
+        "bytes": 36905,
+        "gzipBytes": 9567,
+        "brotliBytes": 8069
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/builth-wells": {
+      "html": {
+        "bytes": 37021,
+        "gzipBytes": 9579,
+        "brotliBytes": 8081
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/church-stretton": {
+      "html": {
+        "bytes": 37147,
+        "gzipBytes": 9667,
+        "brotliBytes": 8160
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/craven-arms": {
+      "html": {
+        "bytes": 37160,
+        "gzipBytes": 9691,
+        "brotliBytes": 8168
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/droitwich": {
+      "html": {
+        "bytes": 37012,
+        "gzipBytes": 9596,
+        "brotliBytes": 8116
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/evesham": {
+      "html": {
+        "bytes": 36739,
+        "gzipBytes": 9493,
+        "brotliBytes": 8039
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/hay-on-wye": {
+      "html": {
+        "bytes": 36867,
+        "gzipBytes": 9563,
+        "brotliBytes": 8080
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/hereford": {
+      "html": {
+        "bytes": 39258,
+        "gzipBytes": 10300,
+        "brotliBytes": 8671
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/herefordshire": {
+      "html": {
+        "bytes": 38111,
+        "gzipBytes": 9874,
+        "brotliBytes": 8317
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/kidderminster": {
+      "html": {
+        "bytes": 39808,
+        "gzipBytes": 10422,
+        "brotliBytes": 8799
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/kington": {
+      "html": {
+        "bytes": 37011,
+        "gzipBytes": 9605,
+        "brotliBytes": 8108
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/knighton": {
+      "html": {
+        "bytes": 36638,
+        "gzipBytes": 9501,
+        "brotliBytes": 8028
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/ledbury": {
+      "html": {
+        "bytes": 38195,
+        "gzipBytes": 9979,
+        "brotliBytes": 8407
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/leominster": {
+      "html": {
+        "bytes": 37187,
+        "gzipBytes": 9663,
+        "brotliBytes": 8161
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/llandrindod-wells": {
+      "html": {
+        "bytes": 37112,
+        "gzipBytes": 9586,
+        "brotliBytes": 8094
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/ludlow": {
+      "html": {
+        "bytes": 41083,
+        "gzipBytes": 11139,
+        "brotliBytes": 9379
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/machynlleth": {
+      "html": {
+        "bytes": 36783,
+        "gzipBytes": 9567,
+        "brotliBytes": 8075
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/malvern": {
+      "html": {
+        "bytes": 38243,
+        "gzipBytes": 9992,
+        "brotliBytes": 8411
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/market-drayton": {
+      "html": {
+        "bytes": 37080,
+        "gzipBytes": 9549,
+        "brotliBytes": 8055
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/montgomery": {
+      "html": {
+        "bytes": 36765,
+        "gzipBytes": 9541,
+        "brotliBytes": 8032
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/much-wenlock": {
+      "html": {
+        "bytes": 36811,
+        "gzipBytes": 9513,
+        "brotliBytes": 8027
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/newtown": {
+      "html": {
+        "bytes": 36971,
+        "gzipBytes": 9573,
+        "brotliBytes": 8099
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/oswestry": {
+      "html": {
+        "bytes": 37016,
+        "gzipBytes": 9590,
+        "brotliBytes": 8077
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/pembridge": {
+      "html": {
+        "bytes": 36768,
+        "gzipBytes": 9533,
+        "brotliBytes": 8052
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/pershore": {
+      "html": {
+        "bytes": 36709,
+        "gzipBytes": 9480,
+        "brotliBytes": 8023
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/powys": {
+      "html": {
+        "bytes": 38058,
+        "gzipBytes": 9982,
+        "brotliBytes": 8416
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/redditch": {
+      "html": {
+        "bytes": 36937,
+        "gzipBytes": 9542,
+        "brotliBytes": 8060
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/ross-on-wye": {
+      "html": {
+        "bytes": 38216,
+        "gzipBytes": 9940,
+        "brotliBytes": 8385
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/shrewsbury": {
+      "html": {
+        "bytes": 39489,
+        "gzipBytes": 10364,
+        "brotliBytes": 8743
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/shropshire": {
+      "html": {
+        "bytes": 38334,
+        "gzipBytes": 9973,
+        "brotliBytes": 8405
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/telford": {
+      "html": {
+        "bytes": 39324,
+        "gzipBytes": 10334,
+        "brotliBytes": 8714
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/tenbury-wells": {
+      "html": {
+        "bytes": 38281,
+        "gzipBytes": 9950,
+        "brotliBytes": 8390
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/upton-upon-severn": {
+      "html": {
+        "bytes": 36890,
+        "gzipBytes": 9515,
+        "brotliBytes": 8052
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/welshpool": {
+      "html": {
+        "bytes": 37017,
+        "gzipBytes": 9583,
+        "brotliBytes": 8105
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/weobley": {
+      "html": {
+        "bytes": 36851,
+        "gzipBytes": 9556,
+        "brotliBytes": 8051
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/whitchurch": {
+      "html": {
+        "bytes": 37052,
+        "gzipBytes": 9591,
+        "brotliBytes": 8080
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/worcester": {
+      "html": {
+        "bytes": 40177,
+        "gzipBytes": 10606,
+        "brotliBytes": 8927
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/locations/worcestershire": {
+      "html": {
+        "bytes": 38342,
+        "gzipBytes": 9901,
+        "brotliBytes": 8354
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/managed-print-guide": {
+      "html": {
+        "bytes": 84327,
+        "gzipBytes": 20660,
+        "brotliBytes": 15893
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/microsoft-365-hereford": {
+      "html": {
+        "bytes": 46088,
+        "gzipBytes": 12613,
+        "brotliBytes": 10130
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/microsoft-365-herefordshire": {
+      "html": {
+        "bytes": 45129,
+        "gzipBytes": 12154,
+        "brotliBytes": 9910
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/microsoft-365-kidderminster": {
+      "html": {
+        "bytes": 46143,
+        "gzipBytes": 12606,
+        "brotliBytes": 10140
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/microsoft-365-plans-compared": {
+      "html": {
+        "bytes": 94693,
+        "gzipBytes": 20695,
+        "brotliBytes": 16197
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/microsoft-365-powys": {
+      "html": {
+        "bytes": 44928,
+        "gzipBytes": 12171,
+        "brotliBytes": 9907
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/microsoft-365-shrewsbury": {
+      "html": {
+        "bytes": 45783,
+        "gzipBytes": 12417,
+        "brotliBytes": 10021
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/microsoft-365-shropshire": {
+      "html": {
+        "bytes": 44787,
+        "gzipBytes": 12119,
+        "brotliBytes": 9847
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/microsoft-365-telford": {
+      "html": {
+        "bytes": 45829,
+        "gzipBytes": 12441,
+        "brotliBytes": 9998
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/microsoft-365-worcester": {
+      "html": {
+        "bytes": 45984,
+        "gzipBytes": 12547,
+        "brotliBytes": 10068
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/microsoft-365-worcestershire": {
+      "html": {
+        "bytes": 44707,
+        "gzipBytes": 12049,
+        "brotliBytes": 9822
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/microsoft-business-premium": {
+      "html": {
+        "bytes": 49766,
+        "gzipBytes": 11968,
+        "brotliBytes": 10086
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/new-business-it-setup": {
+      "html": {
+        "bytes": 84993,
+        "gzipBytes": 20096,
+        "brotliBytes": 15670
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/office-move-it": {
+      "html": {
+        "bytes": 81059,
+        "gzipBytes": 18441,
+        "brotliBytes": 14503
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/office-wifi-problems": {
+      "html": {
+        "bytes": 83926,
+        "gzipBytes": 19696,
+        "brotliBytes": 15339
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/onboarding": {
+      "html": {
+        "bytes": 50783,
+        "gzipBytes": 12418,
+        "brotliBytes": 10408
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/pricing": {
+      "html": {
+        "bytes": 68080,
+        "gzipBytes": 16244,
+        "brotliBytes": 13674
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/privacy-policy": {
+      "html": {
+        "bytes": 33837,
+        "gzipBytes": 9395,
+        "brotliBytes": 7866
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/ransomware-recovery": {
+      "html": {
+        "bytes": 81071,
+        "gzipBytes": 18430,
+        "brotliBytes": 14500
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/recruitment-privacy": {
+      "html": {
+        "bytes": 41741,
+        "gzipBytes": 12086,
+        "brotliBytes": 10093
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/refer": {
+      "html": {
+        "bytes": 41566,
+        "gzipBytes": 10506,
+        "brotliBytes": 8924
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/resources": {
+      "html": {
+        "bytes": 105050,
+        "gzipBytes": 19617,
+        "brotliBytes": 15811
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/server-end-of-life": {
+      "html": {
+        "bytes": 84284,
+        "gzipBytes": 19844,
+        "brotliBytes": 15480
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/service-standards": {
+      "html": {
+        "bytes": 44145,
+        "gzipBytes": 11306,
+        "brotliBytes": 9458
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/services/backup-disaster-recovery": {
+      "html": {
+        "bytes": 41006,
+        "gzipBytes": 11079,
+        "brotliBytes": 9376
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/services/cloud-phone-systems": {
+      "html": {
+        "bytes": 41313,
+        "gzipBytes": 11038,
+        "brotliBytes": 9344
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/services/cloud-solutions": {
+      "html": {
+        "bytes": 40815,
+        "gzipBytes": 10983,
+        "brotliBytes": 9252
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/services/cyber-essentials": {
+      "html": {
+        "bytes": 40904,
+        "gzipBytes": 10962,
+        "brotliBytes": 9265
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/services/cybersecurity": {
+      "html": {
+        "bytes": 41162,
+        "gzipBytes": 11131,
+        "brotliBytes": 9435
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/services/hardware-procurement": {
+      "html": {
+        "bytes": 41016,
+        "gzipBytes": 11077,
+        "brotliBytes": 9364
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/services": {
+      "html": {
+        "bytes": 41623,
+        "gzipBytes": 10922,
+        "brotliBytes": 9238
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/services/internet-connectivity": {
+      "html": {
+        "bytes": 41581,
+        "gzipBytes": 11094,
+        "brotliBytes": 9386
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/services/managed-it-support": {
+      "html": {
+        "bytes": 40813,
+        "gzipBytes": 10993,
+        "brotliBytes": 9295
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/services/managed-print": {
+      "html": {
+        "bytes": 41086,
+        "gzipBytes": 10994,
+        "brotliBytes": 9314
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/services/strategic-projects": {
+      "html": {
+        "bytes": 40651,
+        "gzipBytes": 10960,
+        "brotliBytes": 9254
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/services/structured-cabling": {
+      "html": {
+        "bytes": 41298,
+        "gzipBytes": 10956,
+        "brotliBytes": 9271
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/slow-computers": {
+      "html": {
+        "bytes": 82341,
+        "gzipBytes": 18777,
+        "brotliBytes": 14751
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/staff-clicking-phishing": {
+      "html": {
+        "bytes": 84617,
+        "gzipBytes": 19901,
+        "brotliBytes": 15549
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/sub-processors": {
+      "html": {
+        "bytes": 34440,
+        "gzipBytes": 9456,
+        "brotliBytes": 7930
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/support": {
+      "html": {
+        "bytes": 44393,
+        "gzipBytes": 11139,
+        "brotliBytes": 9348
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/support-upgrade": {
+      "html": {
+        "bytes": 34614,
+        "gzipBytes": 9291,
+        "brotliBytes": 7847
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/switch-it-provider": {
+      "html": {
+        "bytes": 80600,
+        "gzipBytes": 18374,
+        "brotliBytes": 14432
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/team/matt-morgan": {
+      "html": {
+        "bytes": 55899,
+        "gzipBytes": 11265,
+        "brotliBytes": 9432
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/team/sam-james": {
+      "html": {
+        "bytes": 124010,
+        "gzipBytes": 17099,
+        "brotliBytes": 13807
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/admin-rights": {
+      "html": {
+        "bytes": 55278,
+        "gzipBytes": 14303,
+        "brotliBytes": 11716
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/application-control": {
+      "html": {
+        "bytes": 54301,
+        "gzipBytes": 13993,
+        "brotliBytes": 11465
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/business-networking": {
+      "html": {
+        "bytes": 51705,
+        "gzipBytes": 12842,
+        "brotliBytes": 10867
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/cloud-vs-onpremise": {
+      "html": {
+        "bytes": 51535,
+        "gzipBytes": 12869,
+        "brotliBytes": 10880
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/conditional-access": {
+      "html": {
+        "bytes": 51420,
+        "gzipBytes": 12829,
+        "brotliBytes": 10842
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/edr-mdr": {
+      "html": {
+        "bytes": 56110,
+        "gzipBytes": 14699,
+        "brotliBytes": 11947
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/email-authentication": {
+      "html": {
+        "bytes": 56561,
+        "gzipBytes": 14846,
+        "brotliBytes": 12163
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/end-of-life": {
+      "html": {
+        "bytes": 51083,
+        "gzipBytes": 12722,
+        "brotliBytes": 10794
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology": {
+      "html": {
+        "bytes": 51681,
+        "gzipBytes": 12717,
+        "brotliBytes": 10712
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/intune-autopilot": {
+      "html": {
+        "bytes": 50969,
+        "gzipBytes": 12661,
+        "brotliBytes": 10741
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/itdr": {
+      "html": {
+        "bytes": 55807,
+        "gzipBytes": 14583,
+        "brotliBytes": 11841
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/mfa": {
+      "html": {
+        "bytes": 50929,
+        "gzipBytes": 12622,
+        "brotliBytes": 10720
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/ncsc": {
+      "html": {
+        "bytes": 51011,
+        "gzipBytes": 12627,
+        "brotliBytes": 10664
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/patching": {
+      "html": {
+        "bytes": 50897,
+        "gzipBytes": 12613,
+        "brotliBytes": 10710
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/phishing": {
+      "html": {
+        "bytes": 50578,
+        "gzipBytes": 12603,
+        "brotliBytes": 10663
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/rmm": {
+      "html": {
+        "bytes": 53903,
+        "gzipBytes": 13977,
+        "brotliBytes": 11519
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/vpn": {
+      "html": {
+        "bytes": 72418,
+        "gzipBytes": 20238,
+        "brotliBytes": 15691
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology/zero-trust": {
+      "html": {
+        "bytes": 51021,
+        "gzipBytes": 12649,
+        "brotliBytes": 10709
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/technology-stack": {
+      "html": {
+        "bytes": 43729,
+        "gzipBytes": 11324,
+        "brotliBytes": 9477
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/terms-conditions": {
+      "html": {
+        "bytes": 35445,
+        "gzipBytes": 9374,
+        "brotliBytes": 7852
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/terms-of-business": {
+      "html": {
+        "bytes": 47489,
+        "gzipBytes": 14057,
+        "brotliBytes": 11665
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/terms-of-business/v1-0": {
+      "html": {
+        "bytes": 47628,
+        "gzipBytes": 14072,
+        "brotliBytes": 11675
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/upgrade-to-business-premium": {
+      "html": {
+        "bytes": 87632,
+        "gzipBytes": 21105,
+        "brotliBytes": 16289
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/why-trust-us": {
+      "html": {
+        "bytes": 65964,
+        "gzipBytes": 15174,
+        "brotliBytes": 12732
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    },
+    "/windows-10-end-of-life": {
+      "html": {
+        "bytes": 84870,
+        "gzipBytes": 19956,
+        "brotliBytes": 15594
+      },
+      "inlineJavaScript": {
+        "bytes": 0,
+        "gzipBytes": 0,
+        "brotliBytes": 0
+      }
+    }
+  }
+}

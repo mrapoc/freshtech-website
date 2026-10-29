@@ -1,0 +1,65 @@
+---
+interface Sector { slug: string; name: string; desc: string }
+interface Props { industries: Sector[] }
+const { industries } = Astro.props;
+---
+
+<main id="main-content" class="industry-page industries-page" data-industries-page tabindex="-1">
+  <section class="industry-hero">
+    <div class="industry-container industry-hero-grid">
+      <div>
+        <p class="industry-eyebrow industry-eyebrow-light">Sectors we know</p>
+        <h1>We probably know your software.</h1>
+        <p class="industry-hero-copy">Over a decade of supporting businesses in Shropshire and the Welsh Borders means we've seen most of the practice-management, ERP, case-management and clinical software used by firms your size. We talk to your vendors so you don't have to.</p>
+        <div class="industry-actions">
+          <a class="industry-primary-button" href="/contact">Book a 20-min call <span aria-hidden="true">→</span></a>
+          <a class="industry-secondary-button" href="#sectors">See all sectors <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <aside class="industry-stat-panel" aria-label="Sector coverage">
+        <strong>{industries.length}</strong>
+        <span>Sectors with dedicated pages</span>
+        <div class="industry-stat-divider">
+          <strong class="industry-stat-small">5–50</strong>
+          <span>Staff: our sweet-spot client size</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="sectors" class="industry-section industries-grid-section">
+    <div class="industry-container">
+      <header class="industry-section-heading">
+        <p class="industry-eyebrow">Pick yours</p>
+        <h2>Sectors with a dedicated page</h2>
+        <p>Each one covers the software we support, the compliance angle, the typical pain points, and a relevant case study.</p>
+      </header>
+      <ul class="industries-grid">
+        {industries.map(sector => (
+          <li>
+            <a class="industry-sector-card" href={`/industries/${sector.slug}`}>
+              <span class="industry-sector-tone" aria-hidden="true"></span>
+              <div class="industry-sector-head">
+                <h3>{sector.name}</h3>
+                <span class="industry-sticker">Sector page</span>
+              </div>
+              <p>{sector.desc}</p>
+              <span class="industry-sector-more">Explore <span aria-hidden="true">→</span></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="industry-section industries-closing">
+    <div class="industry-container industries-closing-grid">
+      <div>
+        <p class="industry-eyebrow">Not on the list?</p>
+        <h2>Call us anyway.</h2>
+        <p>We support any business with 5–50 staff across the region. Most sectors look more alike than they look different; the principles travel. Give us 20 minutes and we'll tell you honestly if we're a fit.</p>
+      </div>
+      <a class="industry-primary-button industry-primary-button-ink" href="/contact">Book a 20-min call <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+</main>

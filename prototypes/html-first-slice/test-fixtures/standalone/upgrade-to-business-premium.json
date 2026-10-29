@@ -1,0 +1,349 @@
+{
+  "route": "/upgrade-to-business-premium",
+  "source": "pages/BusinessPremiumUpgradePage.tsx",
+  "sourceSha256": "c86bbd531677f636ca25059316853b3557dbd78f52ab86ea6176e847e8d6ff19",
+  "capturedAt": "2026-09-16T12:23:15.026Z",
+  "head": {
+    "title": "Why Enroll Devices to Business Premium | Intune & Autopilot Benefits",
+    "description": "Stop managing devices manually. Learn why enrolling devices to Microsoft 365 Business Premium with Intune gives you visibility, security, and control over company data.",
+    "canonical": "https://fresh-tech.uk/upgrade-to-business-premium",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Why Enroll Devices to Microsoft 365 Business Premium",
+        "description": "Discover why enrolling devices to Intune via Business Premium gives SMBs enterprise-grade security, visibility, and control -without enterprise complexity.",
+        "author": {
+          "@type": "Organization",
+          "name": "Fresh Tech",
+          "url": "https://fresh-tech.uk"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Fresh Tech",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png"
+          }
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What's the difference between Business Standard and Business Premium?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Business Standard (£10.30/user/month) gives you Office apps, email, and Teams -but no device management or advanced security. Business Premium (£18.10/user/month) adds Intune for device management, Defender for Business antivirus, Conditional Access for smart security policies, and more. The £7.80 difference replaces multiple third-party tools that would cost far more separately."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does 'enrolling a device' actually mean?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Enrolling a device registers it with Microsoft Intune so you can manage it centrally. Once enrolled, you can push security policies (like requiring encryption), deploy apps automatically, see device compliance status, and remotely wipe it if lost. The user experience barely changes -they just sign in with their work account and the device configures itself."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will this slow down our computers or be intrusive?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Intune policies run silently in the background. Users won't notice anything different except that their new laptop 'just works' out of the box. We configure sensible defaults -not heavy-handed restrictions that frustrate staff. You get security without the friction."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What about personal devices (BYOD)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You have options. You can require full enrollment (giving you complete management), or use 'app protection policies' that only manage company data within specific apps -leaving personal data untouched. Most SMBs we work with provide company devices, but BYOD is fully supported if that's your model."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "We're already using Google Workspace -does this still apply?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If you're on Google Workspace, you face the same device management challenges -you just solve them differently. However, many businesses use both (Google for some things, Microsoft for others). If you're considering consolidating, Business Premium gives you email, productivity apps, AND device management in one platform. We can help you evaluate whether consolidation makes sense."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does migration take?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For most SMBs, we can migrate from Standard to Premium and enroll devices within 1-2 weeks. The license upgrade itself is instant. Enrolling devices can often be done gradually -new devices enroll automatically, and existing devices can be enrolled during a scheduled 'security day' with minimal disruption."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens to our existing security tools?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Business Premium often replaces them entirely. Defender for Business replaces third-party antivirus. Built-in email filtering replaces separate spam tools. Conditional Access replaces standalone MFA tools. We'll audit your current stack and show you exactly what can be consolidated -typically saving money even with the Premium uplift."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this just for laptops, or mobile phones too?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Both. Intune manages Windows, macOS, iOS, and Android devices. If staff access company email on their phones, those devices can be enrolled too -ensuring data is protected regardless of which device someone uses."
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Resources",
+            "item": "https://fresh-tech.uk/resources"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Why Enroll Devices to Business Premium",
+            "item": "https://fresh-tech.uk/upgrade-to-business-premium"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "Take Control of Your Devices"
+      ],
+      [
+        2,
+        "Does This Sound Familiar?"
+      ],
+      [
+        3,
+        "The Unmanaged Device Problem"
+      ],
+      [
+        2,
+        "What Changes When You Enroll Devices"
+      ],
+      [
+        3,
+        "Without Device Enrollment"
+      ],
+      [
+        3,
+        "With Device Enrollment (Intune)"
+      ],
+      [
+        2,
+        "The Business Premium Advantage"
+      ],
+      [
+        3,
+        "Windows Autopilot"
+      ],
+      [
+        3,
+        "Conditional Access"
+      ],
+      [
+        3,
+        "Intune Policies"
+      ],
+      [
+        3,
+        "Defender for Business"
+      ],
+      [
+        2,
+        "Real-World Scenarios"
+      ],
+      [
+        2,
+        "See the Value Gap"
+      ],
+      [
+        3,
+        "License Upgrade Calculator"
+      ],
+      [
+        4,
+        "Current Setup"
+      ],
+      [
+        4,
+        "Business Premium"
+      ],
+      [
+        2,
+        "The Upgrade Path"
+      ],
+      [
+        3,
+        "License Upgrade"
+      ],
+      [
+        3,
+        "Configure Intune"
+      ],
+      [
+        3,
+        "Enroll Devices"
+      ],
+      [
+        3,
+        "Protected & Visible"
+      ],
+      [
+        3,
+        "Typical Timeline"
+      ],
+      [
+        2,
+        "Frequently Asked Questions"
+      ],
+      [
+        2,
+        "Ready to Take Control?"
+      ],
+      [
+        2,
+        "Related Reading"
+      ],
+      [
+        3,
+        "Why Business Premium?"
+      ],
+      [
+        3,
+        "Intune & Autopilot Explained"
+      ],
+      [
+        3,
+        "Cloud Backup Myth"
+      ],
+      [
+        2,
+        "Signal for Help"
+      ],
+      [
+        3,
+        "Send a Signal"
+      ]
+    ],
+    "links": [
+      [
+        "/",
+        "Home"
+      ],
+      [
+        "/resources",
+        "Resources"
+      ],
+      [
+        "/contact",
+        "Discuss Your Upgrade"
+      ],
+      [
+        "/it-health-check",
+        "Take Our IT Health Check"
+      ],
+      [
+        "/microsoft-business-premium",
+        "Why Business Premium? Feature comparison and cost analysis."
+      ],
+      [
+        "/technology/intune-autopilot",
+        "Intune & Autopilot Explained Technical deep-dive into device management."
+      ],
+      [
+        "/cloud-backup-necessity",
+        "Cloud Backup Myth Why OneDrive sync isn't backup."
+      ],
+      [
+        "/resources",
+        "Browse all resources"
+      ],
+      [
+        "/onboarding",
+        "Thinking of switching providers? See how easy it is"
+      ],
+      [
+        "tel:01584517234",
+        "01584 517 234"
+      ],
+      [
+        "mailto:support@fresh-tech.uk",
+        "support@fresh-tech.uk"
+      ],
+      [
+        "tel:01584517234",
+        "01584 517 234"
+      ]
+    ],
+    "images": [],
+    "text": "Control Take Control of Your Devices Unmanaged devices are accessing your company data right now. Intune and Autopilot change that -giving you visibility, security, and control without the complexity. Home Resources Why Enroll Devices to Business Premium Essential Guide Does This Sound Familiar? \"We've got a mix of everything -some stuff in SharePoint, some in Dropbox, a few people still use personal Gmail. I think most laptops have antivirus but I'm not certain. Oh, and we've just bought three new laptops for the team starting next month.\" - Conversation we have weekly Data scattered across platforms. New devices set up manually. No idea what's being saved where. This is the reality for most SMBs -and it's a security incident waiting to happen. The Unmanaged Device Problem No visibility into which devices access data Can't enforce encryption or security policies Files saved locally never get backed up No way to wipe a lost or stolen laptop What Changes When You Enroll Devices Microsoft 365 Business Premium includes Intune and Autopilot -enterprise device management made simple for SMBs. Without Device Enrollment Manual Setup Every Time Each new laptop requires hours of manual configuration -and something always gets missed No Visibility You don't know which devices are encrypted, have antivirus, or are even accessing your data Files Trapped on Devices Staff save to Desktop or Documents locally -when the device fails, the files are gone Stolen Laptop = Data Breach No remote wipe capability. You just have to hope encryption was enabled (it probably wasn't) Shadow IT Everywhere Company data ends up in Dropbox, Google Drive, USB sticks -wherever users find convenient With Device Enrollment (Intune) Zero-Touch Setup User signs in, device configures itself. Apps install, policies apply, security enforced -automatically Complete Visibility Dashboard shows every device, its compliance status, encryption state, and last check-in time Files Protected Automatically Known Folder Move redirects Desktop/Documents to OneDrive -files sync to the cloud without user action Remote Wipe Ready Laptop stolen? Wipe it remotely in minutes. Data protected even if device is lost Shadow IT Blocked Conditional Access ensures only compliant, enrolled devices can access company data The Business Premium Advantage These features work together to give you control without complexity. Windows Autopilot Zero-touch deployment New laptop? Ship it directly to the employee. When they sign in with their work account, the device automatically: Joins your organisation Applies security policies Installs required apps Enables BitLocker encryption Configures OneDrive backup No IT visit required. No manual setup checklist. Conditional Access Smart security policies Define rules for who can access what, from where, on which devices. For example: Block access from unmanaged devices Block logins from high-risk countries Require MFA for sensitive apps Only allow compliant devices Block risky sign-ins automatically Even stolen passwords won't get attackers in. Intune Policies Standardised configuration Push consistent settings to every device without touching them individually: WiFi passwords deployed silently BitLocker encryption enforced OneDrive Known Folder Move enabled Windows Defender configured Windows Updates managed Every device meets your security baseline. Defender for Business Enterprise-grade protection Not just antivirus -a complete endpoint protection platform: Next-gen anti-malware Attack surface reduction Ransomware protection Web content filtering Centralised dashboard Replaces Sophos, ESET, and similar -included in the license. Real-World Scenarios These situations happen in SMBs every day. The difference between crisis and non-event is device enrollment. The New Starter's Laptop The Shadow IT Sprawl The Compromised Account The Compliance Question The Leaver Who Didn't Leave See the Value Gap The price difference between Standard and Premium is often less than what you're already paying for separate tools. License Upgrade Calculator Select your current license to see the value gap. Business Basic (£4.90) Business Standard (£10.30) Current Setup Microsoft 365 Standard £10.30 Email & Calendar Web/Mobile Apps Desktop Apps (Word/Excel) No Device Management (Intune) No Advanced Phishing Protection No Conditional Access (Geo-block) Recommended Upgrade Business Premium Business Premium £18.10 Difference: Only £7.80 / month Everything in Standard Intune: Wipe lost laptops remotely Defender: Enterprise Antivirus included Azure P1: Block hackers by country To get these features separately with 3rd party tools would cost approx £15.00 extra. Upgrading saves you approx £7.20 per user vs buying separate tools! Upgrade My Licenses *Prices based on Microsoft UK RRP for Annual Commitment, paid monthly. Excludes VAT. The Upgrade Path Moving to Business Premium and enrolling devices is straightforward. Here's what to expect. 1 License Upgrade We upgrade your Microsoft 365 licenses from Standard to Premium. Takes effect immediately. 2 Configure Intune We deploy our tested security templates -policies for encryption, updates, OneDrive, and more. 3 Enroll Devices Existing devices enroll during a scheduled rollout. New devices auto-enroll via Autopilot. 4 Protected & Visible You now have a dashboard showing every device, its compliance status, and the power to act. Typical Timeline For most SMBs (10-50 users), the complete process takes 1-2 weeks from license upgrade to all devices enrolled. Users experience minimal disruption -most of the work happens silently in the background. Frequently Asked Questions Common questions about upgrading and device enrollment What's the difference between Business Standard and Business Premium? What does 'enrolling a device' actually mean? Will this slow down our computers or be intrusive? What about personal devices (BYOD)? We're already using Google Workspace -does this still apply? How long does migration take? What happens to our existing security tools? Is this just for laptops, or mobile phones too? Ready to Take Control? Stop wondering which devices are accessing your data and whether they're secure. Let's get your devices enrolled and protected. Discuss Your UpgradeTake Our IT Health Check Related Reading Why Business Premium? Feature comparison and cost analysis. Intune & Autopilot Explained Technical deep-dive into device management. Cloud Backup Myth Why OneDrive sync isn't backup. Browse all resources Signal for Help Ready to banish tech headaches? Fill out the form or book a chat directly. We respond faster than a speeding bullet (usually under 15 minutes). ✓ Trusted by local businesses for over 10 years Thinking of switching providers? See how easy it is Call The Batphone 01584 517 234 Email HQ hello@fresh-tech.uk Face-to-Face Book an Intro Call with Sam Send a Signal Step 1 of 3 Name Email Phone (optional) How can we help? We typically respond within 15 minutes during business hours (Mon-Fri, 9am-5pm). Send Message Existing Client? Email support@fresh-tech.uk or call 01584 517 234 for urgent help."
+  }
+}

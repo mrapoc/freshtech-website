@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogPostPage from '../../components/BlogPostPage.astro';
+import CookieConsent from '../../components/CookieConsent.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import { blogPosts } from '../../generated/blog-data.mjs';
+import { relatedPosts } from '../../lib/blog-display.mjs';
+import { postSeo } from '../../lib/blog-seo.mjs';
+import '../../styles/blog.css';
+import PrototypeBanner from '../../components/PrototypeBanner.astro';
+
+// Only published records exist in the generated data, so held and future
+// posts can never receive a route here.
+export function getStaticPaths() {
+  return blogPosts.map(post => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const related = relatedPosts(blogPosts, post.slug).map(({ slug, title, excerpt, tags }) => ({ slug, title, excerpt, tags }));
+const seo = postSeo(post);
+const headingFontPreloads = /[Ā-ỿⱠ-ꟿ]/u.test(post.title)
+  ? ['/fonts/bungee-latin.woff2', '/fonts/bungee-latin-ext.woff2']
+  : ['/fonts/bungee-latin.woff2'];
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonical={seo.canonical} image={seo.image} ogType={seo.ogType} schemas={seo.schemas} robots={seo.robots} preloadFonts={headingFontPreloads}>
+  <PrototypeBanner />
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <SiteNav activePage="Blog" />
+  <BlogPostPage post={post} related={related} />
+  <SiteFooter />
+  <CookieConsent />
+</BaseLayout>
+
+<script src="../../scripts/enhance.ts"></script>

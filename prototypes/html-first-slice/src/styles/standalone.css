@@ -1,0 +1,93 @@
+/* Shared styles for native standalone pages (src/layouts/StandaloneShell.astro).
+   Scoped font families use font-display: optional over the existing assets and
+   the shell preloads the Bungee subset. Page-specific rules live in each page's
+   scoped <style>. Colours are the V2 tokens; any React colour pair under 4.5:1 is
+   replaced with a solid pair that passes, keeping the same text. */
+@font-face { font-family: 'SA Archivo'; font-style: normal; font-weight: 400 800; font-stretch: 100%; font-display: optional; src: url('/fonts/archivo-v25-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'SA Archivo'; font-style: normal; font-weight: 400 800; font-stretch: 100%; font-display: optional; src: url('/fonts/archivo-v25-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'SA Archivo Narrow'; font-style: normal; font-weight: 600 700; font-display: optional; src: url('/fonts/archivo-narrow-v35-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'SA Archivo Narrow'; font-style: normal; font-weight: 600 700; font-display: optional; src: url('/fonts/archivo-narrow-v35-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'SA Bungee'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/bungee-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'SA Bungee'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/bungee-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* Page chrome outside main: font-family only, re-pointed at the aliases above
+   so nothing late-swaps (the Problem, comparison and team approach). */
+body[data-page-family='standalone'] { font-family: 'SA Archivo', system-ui, sans-serif; }
+body[data-page-family='standalone'] .strap { font-family: 'SA Archivo Narrow', 'SA Archivo', sans-serif; }
+body[data-page-family='standalone'] .mobile-menu nav p, body[data-page-family='standalone'] .nav-panel > p { font-family: 'SA Archivo Narrow', sans-serif; }
+body[data-page-family='standalone'] .footer-cta h2, body[data-page-family='standalone'] .site-footer h3,
+body[data-page-family='standalone'] .cookie-body h2, body[data-page-family='standalone'] .cookie-settings h2,
+body[data-page-family='standalone'] .contact-form-card h2, body[data-page-family='standalone'] .contact-form-card h3 { font-family: 'SA Bungee', 'SA Archivo', system-ui, sans-serif; }
+
+/* Primitives mirroring components-v2/primitives.tsx (T tokens, Eyebrow, DisplayHead). */
+.sa-page { background: var(--paper); color: var(--ink); font-family: 'SA Archivo', system-ui, sans-serif; }
+.sa-page :where(h1, h2, h3, h4) { margin: 0; }
+.sa-wrap { width: min(calc(100% - 40px), var(--sa-max, 1100px)); margin-inline: auto; }
+.sa-wrap > *, .sa-grid > * { min-width: 0; }
+.sa-hero { padding: 56px 0 64px; background-color: var(--ink); background-image: radial-gradient(rgba(255,255,255,.04) 1.4px, transparent 1.4px); background-size: 13px 13px; color: var(--paper); }
+.sa-section { padding: 48px 0; }
+.sa-paper { background: var(--paper); }
+.sa-deep { background: var(--paper-deep); }
+.sa-white { background: var(--white); }
+.sa-ink { background: var(--ink); color: var(--paper); }
+.sa-rule { border-top: 1px solid var(--hairline); }
+.sa-eyebrow { margin: 0 0 12px; color: var(--primary-dark); font: 700 11px/1.3 'SA Archivo Narrow', sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+.sa-eyebrow-light { color: #9ba3aa; }
+.sa-display { color: var(--ink); font: 400 var(--sa-size, 48px)/0.95 'SA Bungee', 'SA Archivo', system-ui, sans-serif; letter-spacing: -.005em; overflow-wrap: anywhere; }
+.sa-display-light { color: var(--paper); }
+.sa-lead { margin: 16px 0 0; color: #b9c0c6; font-size: 16px; line-height: 1.6; }
+.sa-prose { color: var(--ink); font-size: 16px; line-height: 1.75; }
+.sa-prose p { margin: 0 0 14px; }
+.sa-prose ul, .sa-prose ol { display: flex; flex-direction: column; gap: 6px; margin: 8px 0 14px; padding-left: 22px; }
+.sa-prose a, .sa-link { color: var(--primary-dark); font-weight: 600; }
+.sa-prose h2 { margin: 0 0 14px; color: var(--primary-dark); font: 400 22px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; overflow-wrap: anywhere; }
+.sa-prose .sa-block { margin-bottom: 32px; }
+.sa-note { margin-top: 48px; padding: 20px 24px; border: 1px solid var(--hairline); background: var(--paper-deep); font-size: 14px; }
+.sa-button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 14px 24px; border: 2px solid var(--ink); background: var(--accent); color: var(--ink); font-size: 15px; font-weight: 700; line-height: 1.3; text-decoration: none; box-shadow: 4px 4px 0 0 var(--ink); transition: background-color 150ms ease; }
+.sa-button:hover { background: #f06a38; }
+.sa-button-dark { background: var(--ink); color: var(--paper); box-shadow: 4px 4px 0 0 var(--accent); }
+.sa-button-dark:hover { background: #26313a; }
+.sa-center { text-align: center; }
+
+/* Legal document routes (terms-of-business, dpa, sub-processors), ported from
+   index.css's ".legal-*" rules for pages-v2/LegalDocumentPageV2.tsx. Table
+   cells keep the production ".legal-table-scroll" name so the scroll region
+   stays a single, focusable, labelled landmark at every width. */
+.legal-document-meta { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: 0; color: rgba(255, 255, 255, 0.78); font-size: 16px; line-height: 1.5; }
+.legal-document-meta dt { font-weight: 700; }
+.legal-document-meta dd { margin: 0; }
+.legal-placeholder-warning { background: #fff4cc; border-block: 1px solid #8a6d00; color: #493900; padding: 14px 20px; font-weight: 700; line-height: 1.5; text-align: center; }
+.legal-document-content { background: var(--paper); padding: 64px 32px; }
+.legal-document-copy { max-width: 760px; margin: 0 auto; color: var(--ink); font-size: 16px; line-height: 1.75; }
+.legal-document-copy h2 { margin: 42px 0 14px; color: var(--primary-dark); font: 400 22px/1.18 'SA Bungee', 'SA Archivo', system-ui, sans-serif; scroll-margin-top: 96px; }
+.legal-document-copy h3 { margin: 30px 0 10px; color: var(--primary-dark); font: 400 17px/1.18 'SA Bungee', 'SA Archivo', system-ui, sans-serif; scroll-margin-top: 96px; }
+.legal-document-copy p { margin: 0 0 16px; scroll-margin-top: 96px; }
+.legal-document-copy ul { padding-left: 24px; margin: 8px 0 18px; }
+.legal-document-copy li { margin-bottom: 6px; }
+.legal-document-copy a { color: var(--primary-dark); font-weight: 600; }
+.legal-table-scroll { width: 100%; margin: 20px 0 30px; overflow-x: auto; border: 1px solid var(--hairline); }
+.legal-table-scroll:focus-visible { outline-offset: 4px; }
+.legal-table-scroll table { width: 100%; min-width: 620px; border-collapse: collapse; text-align: left; font-size: 14px; line-height: 1.5; }
+.legal-table-scroll th, .legal-table-scroll td { padding: 12px 14px; border: 1px solid var(--hairline); vertical-align: top; }
+.legal-table-scroll th { background: #e8e1d5; color: var(--ink); font-weight: 700; }
+.legal-print-footer { display: none; }
+
+@media (max-width: 767px) {
+  .legal-document-content { padding: 48px 20px; }
+  .legal-table-scroll { max-width: 100%; scrollbar-width: thin; }
+}
+
+@media (max-width: 767px) {
+  .sa-display { font-size: var(--sa-size-mobile, var(--sa-size, 38px)); }
+}
+@media (min-width: 768px) {
+  .sa-wrap { width: min(calc(100% - 64px), var(--sa-max, 1100px)); }
+  .sa-hero { padding: 64px 0 72px; }
+  .sa-section { padding: 64px 0; }
+}
+@media (max-width: 479px) {
+  .sa-display { font-size: min(var(--sa-size-mobile, var(--sa-size, 38px)), calc((100vw - 40px) / 9)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sa-button { transition: none; }
+}

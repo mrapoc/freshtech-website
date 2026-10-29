@@ -1,0 +1,86 @@
+/* SourceTestimonials.astro: the shared testimonials + logos block from
+   components/Testimonials.tsx and components/LogoCarousel.tsx. Loaded by the
+   component as raw text (?inline) and emitted as an inline <style>, so it is
+   family-local and never hoisted onto other routes. Every rule is prefixed
+   .source-testimonials. Palette from the site tokens with literal fallbacks.
+
+   No-JS baseline: reviews stack vertically and every logo sits in a wrapping
+   static row. The enhanced state (.is-enhanced, set by testimonials.ts)
+   overlays reviews in one grid cell so the card keeps the height of the
+   tallest review and never jumps. Widths are fluid and heights flexible, so
+   320px and 200% text are safe; quotes are never clipped or truncated. */
+.source-testimonials { padding: 64px 0; overflow: hidden; background: var(--ink, #0f1923); color: var(--paper, #fbf6ec); font-family: 'Archivo', system-ui, sans-serif; }
+.source-testimonials * { min-width: 0; }
+.source-testimonials [hidden] { display: none !important; }
+.source-testimonials-inner { width: min(calc(100% - 40px), 1100px); margin-inline: auto; }
+
+.source-testimonials-intro { margin-bottom: 32px; text-align: center; }
+.source-testimonials-heading { margin: 0 0 12px; color: var(--yellow, #f5c24a); font-size: clamp(28px, 6vw, 40px); line-height: 1.05; overflow-wrap: anywhere; }
+.source-testimonials-lead { margin: 0 0 24px; color: rgba(251, 246, 236, .72); font-size: 18px; line-height: 1.5; }
+
+.source-testimonials-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 42rem; margin-inline: auto; }
+.source-testimonials-filter { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 14px; border: 2px solid transparent; border-radius: 999px; background: #2b3a48; color: var(--paper, #fbf6ec); font: inherit; font-size: 14px; font-weight: 600; line-height: 1.3; text-align: left; cursor: pointer; }
+.source-testimonials-filter:hover { background: #3b4c5c; }
+.source-testimonials-filter[aria-pressed='true'] { border-color: var(--paper, #fbf6ec); background: var(--accent, #e8541f); color: var(--ink, #0f1923); }
+.source-testimonials-filter svg { flex: 0 0 auto; width: 14px; height: 14px; }
+.source-testimonials-count { padding: 2px 7px; border-radius: 999px; background: rgba(255, 255, 255, .16); font-size: 12px; }
+/* Active count: an opaque paper badge keeping the pill's ink text (about
+   16.5:1 in every state: the badge is opaque, so the filter's hover background
+   and focus outline never change what sits behind the text). The previous
+   translucent ink over the accent left ink text at 3.47:1. */
+.source-testimonials-filter[aria-pressed='true'] .source-testimonials-count { background: var(--paper, #fbf6ec); color: var(--ink, #0f1923); }
+
+.source-testimonials-card { position: relative; display: flex; flex-direction: column; align-items: center; max-width: 56rem; margin: 40px auto 64px; padding: 64px 20px 32px; border: 1px solid #3b4c5c; border-radius: 16px; background: #1b2733; text-align: center; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .5); }
+.source-testimonials-quote-icon { position: absolute; top: -24px; display: grid; width: 64px; height: 64px; place-items: center; border: 4px solid var(--ink, #0f1923); border-radius: 50%; background: var(--accent, #e8541f); color: var(--white, #fff); }
+.source-testimonials-quote-icon svg { width: 32px; height: 32px; }
+.source-testimonials-stars { display: flex; gap: 4px; margin-bottom: 24px; color: #facc15; }
+.source-testimonials-stars svg { width: 24px; height: 24px; }
+
+.source-testimonials-stack { position: relative; display: grid; width: 100%; gap: 40px; }
+.source-testimonials-item { display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0; }
+.source-testimonials-blockquote { margin: 0 0 32px; }
+.source-testimonials-quote { margin: 0; color: #e5e7eb; font-size: clamp(18px, 2.5vw, 24px); font-style: italic; font-weight: 500; line-height: 1.6; overflow-wrap: anywhere; }
+.source-testimonials-name { margin: 0; color: var(--white, #fff); font-size: 18px; font-weight: 700; line-height: 1.4; }
+.source-testimonials-company { margin: 0; color: #bfdbfe; font-size: 14px; font-weight: 700; letter-spacing: .1em; line-height: 1.4; text-transform: uppercase; }
+.source-testimonials-empty { margin: 0; padding: 24px 0; color: rgba(251, 246, 236, .72); }
+
+.source-testimonials-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 16px; margin-top: 24px; }
+.source-testimonials-dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
+.source-testimonials-dot { display: grid; width: 44px; height: 44px; padding: 0; place-items: center; border: 0; border-radius: 50%; background: none; cursor: pointer; }
+.source-testimonials-dot span { display: block; width: 12px; height: 12px; border-radius: 999px; background: #6b7a88; transition: width .2s, background .2s; }
+.source-testimonials-dot:hover span { background: #9aa8b5; }
+.source-testimonials-dot[aria-current='true'] span { width: 24px; background: var(--accent, #e8541f); }
+.source-testimonials-pause { min-height: 44px; padding: 8px 16px; border: 2px solid #8d9aa7; border-radius: 999px; background: none; color: var(--paper, #fbf6ec); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+.source-testimonials-pause:hover { border-color: var(--paper, #fbf6ec); }
+.source-testimonials button:focus-visible { outline: 3px solid var(--yellow, #f5c24a); outline-offset: 3px; }
+
+/* Enhanced: all reviews of the current filter share one grid cell so the card
+   takes the tallest review's height. Inactive reviews stay in flow for that
+   measurement but are invisible, unfocusable and out of the a11y tree. */
+.source-testimonials.is-enhanced .source-testimonials-stack { gap: 0; }
+.source-testimonials.is-enhanced .source-testimonials-item { grid-area: 1 / 1; transition: opacity .5s ease-in-out, visibility 0s linear .5s; }
+.source-testimonials.is-enhanced .source-testimonials-item.is-inactive { opacity: 0; visibility: hidden; pointer-events: none; }
+.source-testimonials.is-enhanced .source-testimonials-item.is-active { z-index: 1; opacity: 1; visibility: visible; transition-delay: 0s; }
+
+/* Logos: static wrapping row in a reserved 130x40 box each, no marquee. A
+   failed image is hidden by the script but its box keeps the row stable. */
+.source-testimonials-logos-block { padding-top: 48px; border-top: 1px solid #3b4c5c; }
+.source-testimonials-logos-title { margin: 0 0 32px; color: rgba(251, 246, 236, .72); font-size: 14px; letter-spacing: .2em; text-align: center; text-transform: uppercase; }
+.source-testimonials-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px 32px; margin: 0; padding: 40px 20px; border-top: 1px solid #e5e7eb; background: var(--white, #fff); list-style: none; }
+.source-testimonials-logo { display: flex; flex: 0 0 130px; align-items: center; justify-content: center; width: 130px; height: 40px; }
+.source-testimonials-logo img { display: block; max-width: 100%; max-height: 32px; object-fit: contain; filter: grayscale(1); opacity: .6; transition: filter .3s, opacity .3s; }
+.source-testimonials-logo:hover img { filter: none; opacity: 1; }
+
+@media (min-width: 768px) {
+  .source-testimonials { padding: 80px 0; }
+  .source-testimonials-card { padding: 64px 48px 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .source-testimonials *, .source-testimonials *::before, .source-testimonials *::after { transition: none !important; }
+}
+
+@media print {
+  .source-testimonials-filters, .source-testimonials-controls { display: none !important; }
+  .source-testimonials.is-enhanced .source-testimonials-item { grid-area: auto; opacity: 1; visibility: visible; }
+}

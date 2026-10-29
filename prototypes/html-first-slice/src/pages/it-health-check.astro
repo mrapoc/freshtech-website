@@ -1,0 +1,150 @@
+---
+// Port of pages-v2/ITHealthCheckPageV2.tsx. The form only fakes a "SENT!"
+// success message (FORM-01), so it is replaced with a short truthful fallback;
+// see STANDALONE_DIFFERENCES['/it-health-check'].
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+
+// BaseLayout validates PUBLIC_SITE_MODE for every page.
+const production = import.meta.env.PUBLIC_SITE_MODE === 'production';
+
+const seo = {
+  path: '/it-health-check',
+  title: "Free IT Health Check: Find What's at Risk",
+  description: 'Get a free, no-obligation IT health check. We audit your security, backups, M365 setup, hardware and total IT spend. Plain-English report, yours to keep.',
+  type: 'service',
+};
+
+const checklist = [
+  { icon: '🔐', title: 'Security posture', desc: 'MFA coverage, password policies, account hygiene, who has admin and why.' },
+  { icon: '💾', title: 'Backup + recovery', desc: "What's backed up, how often, when it was last tested, and whether you'd actually recover from a ransomware hit." },
+  { icon: '🛡️', title: 'Endpoint protection', desc: 'Antivirus + threat detection on every device, patching cadence, Windows version coverage, encryption status.' },
+  { icon: '☁️', title: 'Microsoft 365 health', desc: 'Licence right-sizing (most clients are over-paying), Conditional Access, retention policies, secure-score gaps.' },
+  { icon: '📦', title: 'Hardware fleet', desc: 'Age, warranty status, end-of-life devices, machines that should be retired.' },
+  { icon: '🌐', title: 'Network + connectivity', desc: "Broadband contract terms, failover, Wi-Fi blackspots, what's plugged into what." },
+  { icon: '📋', title: 'Compliance posture', desc: 'Cyber Essentials readiness, GDPR documentation, sector-specific obligations.' },
+  { icon: '💸', title: 'Total IT spend audit', desc: "Everything you're paying for: software, hardware, support, licences. We find the leaks." },
+];
+
+const steps = [
+  { n: '01', title: 'Quick chat', desc: "20 minutes. We agree what we'll look at and what we won't." },
+  { n: '02', title: 'Remote audit', desc: 'We deploy a read-only scanner across your devices for 24–48 hours. No agent left behind.' },
+  { n: '03', title: 'Plain-English report', desc: 'Plain language, ranked by risk and impact. Yours to keep regardless of what you do next.' },
+  { n: '04', title: 'Optional follow-up', desc: "If you'd like us to fix any of it, we'll quote. No pressure. Many businesses just want the report." },
+];
+---
+
+<StandaloneShell name="it-health-check" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap sa-hc-hero">
+      <div>
+        <div class="sa-flags"><span class="sa-flag-chip sa-flag-green">100% free · no obligation</span><span class="sa-flag-chip">Plain English report</span></div>
+        <h1 class="sa-display sa-display-light" style="--sa-size: 44px; --sa-size-mobile: 32px; margin-bottom: 20px; line-height: 1">Find out what's at risk. Before something breaks.</h1>
+        <p class="sa-lead">A free, no-obligation audit of your security, backups, Microsoft 365 setup, hardware fleet and total IT spend. We deploy a read-only scanner for 24–48 hours, then send you a plain-English report.</p>
+        <p class="sa-lead sa-lead-soft">No sales follow-up unless you ask. The report is yours to keep, even if you stay with your current provider.</p>
+        <a class="sa-button" href="#form">Request a free health check ↓</a>
+      </div>
+      <div class="sa-hc-facts">
+        <div class="sa-hc-fact"><div class="sa-fact-num">8</div><div class="sa-fact-label">Areas we audit</div></div>
+        <div class="sa-hc-fact"><div class="sa-fact-num">24–48h</div><div class="sa-fact-label">Scanner deploy window</div></div>
+        <div class="sa-hc-fact"><div class="sa-fact-num">£0</div><div class="sa-fact-label">Cost, genuinely</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper sa-rule">
+    <div class="sa-wrap">
+      <p class="sa-eyebrow">What we audit</p>
+      <h2 class="sa-h2">The eight things we check</h2>
+      <p class="sa-sub2" style="margin-bottom: 32px">No fluff, no upsell trap. Just the things that actually matter for a 5–50-person business.</p>
+      <div class="sa-grid-4">
+        {checklist.map(c => (
+          <div class="sa-check-card"><div class="sa-check-icon">{c.icon}</div><div class="sa-check-title">{c.title}</div><p>{c.desc}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap">
+      <p class="sa-eyebrow">The process</p>
+      <h2 class="sa-h2" style="margin-bottom: 32px">Four steps. About a week, end-to-end.</h2>
+      <div class="sa-grid-4">
+        {steps.map(s => (
+          <div class="sa-step-card"><span class="sa-step-n">{s.n}</span><div class="sa-step-title2">{s.title}</div><p>{s.desc}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper sa-rule" id="form">
+    <div class="sa-wrap sa-hc-form">
+      <div>
+        <p class="sa-eyebrow">Request your check</p>
+        <h2 class="sa-h2">Get the report</h2>
+        <p class="sa-sub2">Fill in your details and we'll be in touch within one business day to schedule the audit window.</p>
+        <div class="sa-receive-box">
+          <div class="sa-reward-title">What you'll receive</div>
+          <ul>
+            <li>Plain-English PDF report (10–15 pages typical)</li>
+            <li>Risk register ranked by impact + likelihood</li>
+            <li>Quick-win list (things to fix this month)</li>
+            <li>Strategic recommendations (12-month roadmap)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="sa-fallback">
+        <p class="sa-fallback-title">Requesting your check</p>
+        <p>{production ? 'Call' : 'This preview cannot accept requests online. Call'} <a href="tel:+441584517234">01584 517 234</a>, email <a href="mailto:hello@fresh-tech.uk">hello@fresh-tech.uk</a> or use our <a href="/contact">contact page</a> to book your free health check.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-ink">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <p class="sa-eyebrow sa-eyebrow-light">Or just have a chat</p>
+      <h2 class="sa-h2 sa-h2-light">Prefer to talk first?</h2>
+      <p class="sa-lead sa-center-lead">A 20-minute call works just as well as a form. No sales script.</p>
+      <a class="sa-button" href="/contact">Book a 20-min call →</a>
+    </div>
+    <p class="sa-reviewed">Last reviewed May 2026 · Sam James</p>
+  </section>
+</StandaloneShell>
+
+<style>
+  .sa-hc-hero { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center; }
+  @media (min-width: 768px) { .sa-hc-hero { grid-template-columns: 1.2fr 0.8fr; gap: 64px; } }
+  .sa-flags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .sa-flag-chip { display: inline-block; background: var(--paper); color: var(--ink); border: 2px solid var(--paper); padding: 5px 14px; font: 400 11px 'SA Bungee', sans-serif; }
+  .sa-flag-green { background: #256b45; color: var(--white); }
+  .sa-lead { color: rgba(255,255,255,0.75); font-size: 17px; line-height: 1.65; margin: 0 0 12px; max-width: 50ch; }
+  .sa-lead-soft { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 26px; }
+  .sa-hc-facts { display: flex; flex-direction: column; gap: 12px; }
+  .sa-hc-fact { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); padding: 18px 20px; }
+  .sa-fact-num { font: 400 26px 'SA Bungee', sans-serif; color: var(--yellow); margin-bottom: 4px; }
+  .sa-fact-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); font-weight: 700; }
+  .sa-h2 { color: var(--ink); font: 400 32px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; margin: 0 0 12px; }
+  .sa-h2-light { color: var(--paper); }
+  .sa-sub2 { color: rgba(15,25,35,0.62); font-size: 16px; line-height: 1.6; max-width: 52ch; margin: 0; }
+  .sa-grid-4 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 640px) { .sa-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .sa-grid-4 { grid-template-columns: repeat(4, 1fr); } }
+  .sa-check-card { background: var(--white); border: 1px solid var(--hairline); padding: 24px; }
+  .sa-check-icon { font-size: 24px; margin-bottom: 10px; }
+  .sa-check-title { font: 400 16px 'SA Bungee', sans-serif; margin-bottom: 8px; }
+  .sa-check-card p { font-size: 13px; color: rgba(15,25,35,0.62); line-height: 1.6; margin: 0; }
+  .sa-step-card { background: var(--white); border: 1px solid var(--hairline); padding: 22px; position: relative; }
+  .sa-step-n { position: absolute; top: 10px; right: 12px; font: 400 34px 'SA Bungee', sans-serif; color: #8b949c; }
+  .sa-step-title2 { font: 400 16px 'SA Bungee', sans-serif; margin-bottom: 8px; position: relative; }
+  .sa-step-card p { font-size: 14px; color: rgba(15,25,35,0.62); line-height: 1.6; margin: 0; }
+  .sa-hc-form { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: start; }
+  @media (min-width: 768px) { .sa-hc-form { grid-template-columns: 1fr 1fr; gap: 64px; } }
+  .sa-receive-box { margin-top: 20px; background: var(--ink); color: var(--paper); padding: 20px 22px; }
+  .sa-reward-title { font: 400 16px 'SA Bungee', sans-serif; color: var(--yellow); margin-bottom: 8px; }
+  .sa-receive-box ul { margin: 0; padding-left: 18px; color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.7; }
+  .sa-fallback { background: var(--white); border: 2px solid var(--ink); padding: 32px; box-shadow: 4px 4px 0 0 var(--ink); }
+  .sa-fallback-title { font: 400 18px 'SA Bungee', sans-serif; margin: 0 0 14px; }
+  .sa-fallback p { font-size: 15px; line-height: 1.7; color: rgba(15,25,35,0.7); margin: 0; }
+  .sa-fallback a { color: var(--primary-dark); font-weight: 700; }
+  .sa-center-lead { text-align: center; margin-left: auto; margin-right: auto; max-width: 44ch; }
+  .sa-reviewed { text-align: center; padding: 20px 16px 0; font: 700 11px 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: 0.14em; color: #c7cdd2; }
+</style>

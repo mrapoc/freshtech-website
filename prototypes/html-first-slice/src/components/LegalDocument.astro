@@ -1,0 +1,68 @@
+---
+// Shared body for the three legal document routes. Port of the shared parts
+// of pages-v2/LegalDocumentPageV2.tsx: the ink hero with the version/date
+// meta list, the "being prepared" placeholder notice, the rendered document
+// body (src/lib/legal-markdown.mjs + InlineLegalMarkdown for links/strong/mailto), and the
+// print-only footer line. The calling page supplies StandaloneShell, SEO and
+// the route's data (src/generated/legal-data.mjs).
+import InlineMarkdown from './InlineLegalMarkdown.astro';
+import { parseLegalBlocks } from '../lib/legal-markdown.mjs';
+
+interface LegalRoute {
+  slug: string;
+  versionPath: string | null;
+  version: string | null;
+  title: string;
+  dateLabel: string;
+  dateValue: string;
+  printMeta: string;
+  placeholderCount: number;
+  bodyMarkdown: string;
+}
+
+interface Props { route: LegalRoute; path: string }
+const { route, path } = Astro.props;
+const blocks = route.placeholderCount === 0 ? parseLegalBlocks(route.bodyMarkdown) : [];
+---
+
+<section class="sa-hero legal-page-hero">
+  <div class="sa-wrap" style="--sa-max: 800px">
+    <p class="sa-eyebrow sa-eyebrow-light">{route.title}</p>
+    <h1 class="sa-display sa-display-light" style="--sa-size: 48px; --sa-size-mobile: 38px; margin-bottom: 18px">The legal bit.</h1>
+    <dl class="legal-document-meta">
+      {route.version && (<><dt>Version</dt><dd>{route.version}</dd></>)}
+      <dt>{route.dateLabel}</dt>
+      <dd>{route.dateValue}</dd>
+    </dl>
+  </div>
+</section>
+
+{route.placeholderCount > 0 && (
+  <div class="legal-placeholder-warning" role="status">This legal page is being prepared and is not yet available.</div>
+)}
+
+{route.placeholderCount === 0 && (
+  <section class="legal-document-content">
+    <div class="legal-document-copy">
+      {blocks.map(block => {
+        if (block.type === 'heading' && block.level === 2) return <h2 id={block.id}><InlineMarkdown text={block.text} /></h2>;
+        if (block.type === 'heading' && block.level === 3) return <h3 id={block.id}><InlineMarkdown text={block.text} /></h3>;
+        if (block.type === 'paragraph') return <p id={block.id}><InlineMarkdown text={block.text} /></p>;
+        if (block.type === 'list') return (
+          <ul>{block.items.map(item => <li><InlineMarkdown text={item} /></li>)}</ul>
+        );
+        if (block.type === 'table') return (
+          <div class="legal-table-scroll" tabindex="0" role="region" aria-label="Scrollable legal document table">
+            <table>
+              <thead><tr>{block.header.map(cell => <th scope="col"><InlineMarkdown text={cell} /></th>)}</tr></thead>
+              <tbody>{block.rows.map(row => <tr>{row.map(cell => <td><InlineMarkdown text={cell} /></td>)}</tr>)}</tbody>
+            </table>
+          </div>
+        );
+        return null;
+      })}
+    </div>
+  </section>
+)}
+
+<div class="legal-print-footer" aria-hidden="true">Fresh Tech | {route.printMeta} | https://fresh-tech.uk{path}</div>

@@ -1,0 +1,306 @@
+{
+  "generatedAt": "2026-10-29T17:37:32.812Z",
+  "distDir": "dist",
+  "routes": [
+    "about",
+    "ai-acceptable-use-policy",
+    "careers",
+    "cloud-backup-necessity",
+    "co-managed-it",
+    "compare",
+    "cookie-policy",
+    "dpa",
+    "dpa/v1-0",
+    "email-security-check",
+    "email-security-guide",
+    "faq",
+    "foundation-monitoring",
+    "glossary",
+    "it-health-check",
+    "managed-print-guide",
+    "microsoft-business-premium",
+    "onboarding",
+    "privacy-policy",
+    "recruitment-privacy",
+    "refer",
+    "resources",
+    "service-standards",
+    "sub-processors",
+    "support",
+    "support-upgrade",
+    "technology-stack",
+    "terms-conditions",
+    "terms-of-business",
+    "terms-of-business/v1-0",
+    "upgrade-to-business-premium",
+    "why-trust-us"
+  ],
+  "sections": [
+    "text-200",
+    "no-js",
+    "keyboard",
+    "delayed-font"
+  ],
+  "assertions": 673,
+  "failures": [],
+  "networkFailures": [],
+  "geometry": [
+    {
+      "label": "delayed-font/phone/about",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/about",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/ai-acceptable-use-policy",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/ai-acceptable-use-policy",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/careers",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/careers",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/cloud-backup-necessity",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/cloud-backup-necessity",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/co-managed-it",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/co-managed-it",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/compare",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/compare",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/cookie-policy",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/cookie-policy",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/dpa",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/dpa",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/dpa/v1-0",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/dpa/v1-0",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/email-security-check",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/email-security-check",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/email-security-guide",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/email-security-guide",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/faq",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/faq",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/foundation-monitoring",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/foundation-monitoring",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/glossary",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/glossary",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/it-health-check",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/it-health-check",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/managed-print-guide",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/managed-print-guide",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/microsoft-business-premium",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/microsoft-business-premium",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/onboarding",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/onboarding",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/privacy-policy",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/privacy-policy",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/recruitment-privacy",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/recruitment-privacy",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/refer",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/refer",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/resources",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/resources",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/service-standards",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/service-standards",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/sub-processors",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/sub-processors",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/support",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/support",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/support-upgrade",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/support-upgrade",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/technology-stack",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/technology-stack",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/terms-conditions",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/terms-conditions",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/terms-of-business",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/terms-of-business",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/terms-of-business/v1-0",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/terms-of-business/v1-0",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/upgrade-to-business-premium",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/upgrade-to-business-premium",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/phone/why-trust-us",
+      "delta": 0
+    },
+    {
+      "label": "delayed-font/320-200/why-trust-us",
+      "delta": 0
+    }
+  ],
+  "error": null
+}

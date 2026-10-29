@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CookieConsent from '../../components/CookieConsent.astro';
+import IndustryPage from '../../components/IndustryPage.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import { industries } from '../../generated/industries-data.mjs';
+import { industrySeo } from '../../lib/industry-seo.mjs';
+import '../../styles/industries.css';
+import PrototypeBanner from '../../components/PrototypeBanner.astro';
+
+export function getStaticPaths() {
+  return industries.map(industry => ({ params: { slug: industry.slug }, props: { industry } }));
+}
+
+const { industry } = Astro.props;
+// IndustryDetailPageV2: the first three other records in source order.
+const related = industries.filter(other => other.slug !== industry.slug).slice(0, 3).map(({ slug, name }) => ({ slug, name }));
+const seo = industrySeo(industry);
+const headingFontPreloads = /[Ā-ỿⱠ-ꟿ]/u.test(industry.h1)
+  ? ['/fonts/bungee-latin.woff2', '/fonts/bungee-latin-ext.woff2']
+  : ['/fonts/bungee-latin.woff2'];
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonical={seo.canonical} image={seo.image} ogType={seo.ogType} schemas={seo.schemas} robots={seo.robots} preloadFonts={headingFontPreloads}>
+  <PrototypeBanner />
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <SiteNav activePage="" />
+  <IndustryPage industry={industry} related={related} />
+  <SiteFooter />
+  <CookieConsent />
+</BaseLayout>
+
+<script src="../../scripts/enhance.ts"></script>

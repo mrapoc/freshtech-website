@@ -1,0 +1,129 @@
+---
+// Copy and structure mirror pages-v2/CaseStudiesPageV2.tsx. Every study value
+// comes from the generated records; hero stats, sector coverage badges and
+// section copy are copied verbatim from the source component.
+import { caseStudies } from '../generated/case-studies-data.mjs';
+import { allSectors, countLabel, coverageSectors, displayStudies, sectorColour, sectorTextColour } from '../lib/case-study-display.mjs';
+
+const studies = displayStudies(caseStudies);
+const featured = studies.filter(study => study.featured);
+const sectors = allSectors(studies);
+const heroStats = [
+  { num: `${studies.length}`, label: 'Published case studies', sub: 'With named client consent' },
+  { num: '5yrs+', label: 'Avg client relationship', sub: 'Not a revolving door' },
+  { num: 'Reviews', label: 'Customer feedback', sub: 'Selected client stories' },
+  { num: 'Support', label: 'Contact our helpdesk', sub: 'Mon–Fri, 9am–5pm' },
+];
+---
+
+<main id="main-content" tabindex="-1" class="case-studies-page">
+  <section class="service-hero cs-hero">
+    <div class="service-hero-grid">
+      <div>
+        <div class="cs-hero-tags">
+          <span class="cs-sticker">Client stories</span>
+          <span class="cs-hero-note">With written consent · No embellishment</span>
+        </div>
+        <h1>Real businesses.<br />Real results.</h1>
+        <p class="service-desc">Every story here has a named client, a verified outcome, and a number we can stand behind. We don't publish case studies until the client is happy to put their name to them.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="/contact">Book a call <span aria-hidden="true">→</span></a>
+          <a class="secondary-button" href="/pricing">See pricing</a>
+        </div>
+      </div>
+      <div class="listing-stats cs-stats">
+        {heroStats.map(({ num, label, sub }) => <div class="hero-stat"><strong>{num}</strong><span>{label}</span><small>{sub}</small></div>)}
+      </div>
+    </div>
+  </section>
+
+  {featured.length > 0 && (
+    <section class="content-section cs-featured-section" aria-labelledby="featured-heading">
+      <div class="cs-container">
+        <h2 id="featured-heading" class="eyebrow">Featured stories</h2>
+        <div class="cs-featured-list">
+          {featured.map(study => (
+            <a class="cs-featured-card" href={`/case-studies/${study.slug}`} data-slug={study.slug}>
+              <div class="cs-featured-body">
+                <span class="sector-badge" style={`background:${sectorColour(study.industry)};color:${sectorTextColour(study.industry)}`}>{study.industry}</span>
+                <h3>{study.headline}</h3>
+                <p>{study.summary}</p>
+                {study.quote && (
+                  <div class="cs-quote">
+                    <p>"{study.quote.text}"</p>
+                    <span>- {study.quote.name}</span>
+                  </div>
+                )}
+                <span class="cs-read">Read the full story <span aria-hidden="true">→</span></span>
+              </div>
+              <div class="cs-featured-metric">
+                <strong>{study.metricNum}</strong>
+                <span class="cs-metric-label">{study.metricLabel}</span>
+                {study.metricSub && <span class="cs-metric-sub">{study.metricSub}</span>}
+                {study.services.length > 0 && <div class="cs-tags">{study.services.map(service => <span>{service}</span>)}</div>}
+                <span class="cs-client-sticker">{study.client}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="content-section cs-all-section" aria-labelledby="all-heading">
+    <div class="cs-container">
+      <div class="cs-all-header">
+        <div>
+          <p class="eyebrow">All case studies</p>
+          <h2 id="all-heading" class="cs-count" data-filter-count aria-live="polite">{countLabel(studies.length, studies.length, 'All')}</h2>
+        </div>
+        <noscript><style>.cs-filters[hidden] { display: none !important; }</style></noscript>
+        <div class="cs-filters" data-case-study-filters role="group" aria-label="Filter case studies by sector" hidden>
+          {sectors.map(sector => <button type="button" data-sector={sector} aria-pressed={sector === 'All' ? 'true' : 'false'}>{sector}</button>)}
+        </div>
+      </div>
+
+      <div class="cs-grid" data-case-study-grid>
+        {studies.map(study => (
+          <a class="cs-card" href={`/case-studies/${study.slug}`} data-slug={study.slug} data-industry={study.industry}>
+            <div class="cs-card-head">
+              <div>
+                <strong>{study.metricNum}</strong>
+                <span class="cs-metric-label">{study.metricLabel}</span>
+                {study.metricSub && <span class="cs-metric-sub">{study.metricSub}</span>}
+              </div>
+              <span class="sector-badge" style={`background:${sectorColour(study.industry)};color:${sectorTextColour(study.industry)}`}>{study.industry}</span>
+            </div>
+            <div class="cs-card-body">
+              <span class="cs-client">{study.client}</span>
+              <h3>{study.headline}</h3>
+              <p>{study.summary}</p>
+              {study.quote && (
+                <div class="cs-quote">
+                  <p>"{study.quote.text}"</p>
+                  <span>- {study.quote.name}</span>
+                </div>
+              )}
+              <div class="cs-card-foot">
+                <div class="cs-tags">{study.services.slice(0, 2).map(service => <span>{service}</span>)}</div>
+                <span class="cs-read">Read <span aria-hidden="true">→</span></span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <p class="cs-empty" data-filter-empty hidden>No case studies yet for this sector, but we work with them. <a href="/contact">Ask us directly <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <section class="closing-section listing-closing cs-sectors-section">
+    <p class="eyebrow">Sectors we've worked in</p>
+    <div class="cs-sector-badges">
+      {coverageSectors().map(sector => <span class="sector-badge" style={`background:${sectorColour(sector)};color:${sectorTextColour(sector)}`}>{sector}</span>)}
+    </div>
+    <h2>Don't see your sector? Call us anyway.</h2>
+    <p>We support any business with 5–50 staff across Shropshire, Herefordshire and the Welsh Borders. If we're not the right fit we'll say so.</p>
+    <div class="closing-actions"><a class="primary-button" href="/contact">Book a 20-min call <span aria-hidden="true">→</span></a></div>
+  </section>
+</main>

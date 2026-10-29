@@ -1,0 +1,462 @@
+---
+// Port of pages/ResourceCentrePage.tsx. Learning-path, essential-guide,
+// technology-explainer, crisis-help and quick-access card copy is literal
+// from that file (not data/content.ts), copied verbatim. Guides, blog posts
+// and case studies are read from the generated data modules so they stay in
+// sync with data/industryGuides.ts and data/content.ts.
+//
+// components/BuyersGuideCta.tsx's two buttons are ported as real links, not
+// recreated JS behaviour: "Download PDF Now" builds a temporary <a> to the
+// same PDF path production downloads (rendered here as an honest anchor with
+// the download attribute), and "Ship Me a Free Copy" opens a BookRequestModal
+// lead-capture form, which cannot work statically, so it becomes a /contact
+// link with the same label. Both additions are documented in
+// scripts/lib/standalone-differences.mjs under this route's links.
+import { faqCategories } from '../generated/standalone-data.mjs';
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+import SourceContact from '../components/SourceContact.astro';
+import { guides } from '../generated/guides-data.mjs';
+import { blogPosts } from '../generated/blog-data.mjs';
+import { caseStudies } from '../generated/case-studies-data.mjs';
+
+const seo = { path: '/resources', title: 'Resource Centre', description: 'Guides, case studies, and FAQs to help your business master its technology. 10+ years of IT expertise in one place.' };
+
+// Mirrors components/SmartImage.tsx's optimizeCloudinaryUrl for the default
+// "good" quality preset used throughout this page.
+const cld = (url: string, transform: string) => url.replace('/upload/', `/upload/${transform},f_auto,q_auto:good/`);
+
+const totalBlogPosts = blogPosts.length;
+const totalCaseStudies = caseStudies.length;
+// Same count as pages/ResourceCentrePage.tsx, from the extracted FAQ data.
+const totalFaqs = faqCategories.flatMap(category => category.items).length;
+
+const latestPosts = [...blogPosts].sort((a, b) => new Date(b.isoDate).getTime() - new Date(a.isoDate).getTime()).slice(0, 2);
+const spotlightStudy = [...caseStudies].sort((a, b) => Number(b.id) - Number(a.id))[0];
+
+// Literal from pages/ResourceCentrePage.tsx (not data-driven there either).
+const learningPaths = [
+  { title: 'New to IT Support?', desc: 'Start here to understand what managed IT means for your business', steps: [
+    { label: 'Read: Managed IT Explained', link: '/services/managed-it-support' },
+    { label: 'Take: IT Health Check', link: '/it-health-check' },
+    { label: 'View: Pricing Calculator', link: '/pricing' },
+  ] },
+  { title: 'Security Focused', desc: 'Learn how to protect your business from cyber threats', steps: [
+    { label: 'Guide: Cyber Essentials', link: '/services/cyber-essentials' },
+    { label: 'Blog: Password Security Tips', link: '/blog/password-security-tips' },
+    { label: 'Compare: Business Premium', link: '/microsoft-business-premium' },
+  ] },
+  { title: 'Switching Provider?', desc: 'Everything you need to know about transitioning IT support', steps: [
+    { label: 'Guide: Onboarding Process', link: '/onboarding' },
+    { label: 'Case Study: Smooth Transitions', link: '/case-studies' },
+    { label: 'Contact: Free Consultation', link: '/contact' },
+  ] },
+];
+
+const essentialGuides = [
+  { badge: 'Featured', href: '/cloud-backup-necessity', icon: 'Cloud', title: 'Why Microsoft 365 & Google Workspace Need Backing Up', subtitle: 'The cloud backup myth explained', desc: "Microsoft and Google explicitly state they're not responsible for your data loss. This guide explains why independent backup is essential, with real ToS quotes and relatable scenarios.", tags: ['Microsoft 365', 'Google Workspace', 'OneDrive KFM', 'Intune'], cta: 'Read the guide' },
+  { badge: null, href: '/microsoft-business-premium', icon: 'ShieldCheck', title: 'Why Microsoft 365 Business Premium?', subtitle: 'The complete security bundle explained', desc: "Business Premium includes Intune, Defender, Conditional Access, and more. See how it compares to piecing together individual tools -and why it's our recommended licence.", tags: ['Intune', 'Defender', 'Conditional Access'], cta: 'Compare options' },
+  { badge: 'Free Template', href: '/ai-acceptable-use-policy', icon: 'Bot', title: 'AI Acceptable Use Policy', subtitle: 'Ready-to-use policy template', desc: 'A comprehensive AI policy template covering data classification, approved tools, deepfakes, BYOD, and more. Copy it, print it, or save as PDF, completely free.', tags: ['Copy & Paste', 'Print-Friendly', '27 Sections'], cta: 'Get the template' },
+];
+
+const techPages = [
+  { slug: 'rmm', title: 'What is RMM?', desc: 'How we monitor your systems 24/7 and fix issues before you notice them.', icon: 'Monitor' },
+  { slug: 'edr-mdr', title: 'EDR & MDR Explained', desc: "Why traditional antivirus isn't enough and how we go beyond it.", icon: 'Shield' },
+  { slug: 'application-control', title: 'Application Control', desc: 'How blocking unknown software stops ransomware in its tracks.', icon: 'Lock' },
+  { slug: 'admin-rights', title: 'Why No Admin Rights?', desc: 'The security reason behind removing local admin - and how we make it painless.', icon: 'Key' },
+  { slug: 'itdr', title: 'Identity Protection (ITDR)', desc: 'Protecting your Microsoft 365 accounts from hackers who log in, not break in.', icon: 'Users' },
+  { slug: 'conditional-access', title: 'Conditional Access', desc: 'Smart rules that control who can access your data and when.', icon: 'ShieldCheck' },
+  { slug: 'intune-autopilot', title: 'Intune & Autopilot', desc: 'Modern device management that keeps laptops secure and easy to deploy.', icon: 'Laptop' },
+  { slug: 'ncsc', title: 'The NCSC', desc: "UK's National Cyber Security Centre and their guidance for businesses.", icon: 'BadgeCheck' },
+  { slug: 'patching', title: 'Why Patching Matters', desc: 'Understanding why keeping software updated is critical for security.', icon: 'RefreshCw' },
+  { slug: 'end-of-life', title: 'End of Life Devices', desc: 'The hidden risks of running outdated Windows and what to do about it.', icon: 'FileWarning' },
+  { slug: 'business-networking', title: 'Business Networking', desc: 'From WiFi to cabling - what makes a reliable business network.', icon: 'Wifi' },
+  { slug: 'cloud-vs-onpremise', title: 'Cloud vs On-Premise', desc: 'Which is right for your business and what are the trade-offs?', icon: 'Server' },
+  { slug: 'zero-trust', title: 'Zero Trust Security', desc: 'The modern security model that assumes breaches will happen.', icon: 'Globe' },
+  { slug: 'mfa', title: 'MFA Explained', desc: "Why passwords alone aren't enough and how multi-factor authentication works.", icon: 'Key' },
+  { slug: 'phishing', title: 'Phishing Attacks', desc: 'How to spot email scams and protect your business from social engineering.', icon: 'Mail' },
+  { slug: 'vpn', title: 'Do I Need a VPN?', desc: "When VPNs still matter, when they don't, and the modern alternatives.", icon: 'Lock' },
+];
+
+const crisisGuides = [
+  { slug: 'email-account-hacked', title: 'Email Hacked?', desc: 'Step-by-step guide to secure your account and prevent further damage.', icon: 'Mail' },
+  { slug: 'laptop-stolen-lost', title: 'Laptop Lost/Stolen?', desc: 'Immediate actions to protect your business data.', icon: 'Laptop' },
+  { slug: 'business-email-compromise', title: 'Suspicious Payment Request?', desc: 'How to spot and respond to business email fraud.', icon: 'AlertTriangle' },
+  { slug: 'data-breach-discovered', title: 'Data Breach?', desc: 'Your GDPR-compliant response checklist.', icon: 'Shield' },
+];
+
+const quickLinks = [
+  { href: '/services', label: 'Our Services', icon: 'Zap' },
+  { href: '/pricing', label: 'Pricing', icon: 'FileText' },
+  { href: '/industries', label: 'Industries', icon: 'Users' },
+  { href: '/about', label: 'About Us', icon: 'Star' },
+];
+
+// Decorative lucide-style glyphs (aria-hidden, not compared by the parity gate).
+const ICONS: Record<string, string[]> = {
+  BookOpen: ['M2 3h7a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z', 'M22 3h-7a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h8z'],
+  HelpCircle: ['M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z', 'M9.1 9a3 3 0 0 1 5.82 1c0 2-3 3-3 3', 'M12 17h.01'],
+  Briefcase: ['M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z', 'M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'],
+  ArrowRight: ['M5 12h14', 'm12 5 7 7-7 7'],
+  Activity: ['M22 12h-4l-3 9L9 3l-3 9H2'],
+  FileText: ['M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z', 'M14 2v6h6', 'M9 13h6', 'M9 17h6'],
+  Users: ['M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2', 'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z', 'M23 21v-2a4 4 0 0 0-3-3.87', 'M16 3.13a4 4 0 0 1 0 7.75'],
+  Award: ['M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12z', 'M8.21 13.89 7 23l5-3 5 3-1.21-9.12'],
+  TrendingUp: ['M23 6l-9.5 9.5-5-5L1 18', 'M17 6h6v6'],
+  Shield: ['M12 2 4 5v6c0 5.25 3.5 9.74 8 11 4.5-1.26 8-5.75 8-11V5z'],
+  Zap: ['M13 2 3 14h8l-1 8 10-12h-8z'],
+  Star: ['M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3 1.2-6.9-5-4.9 6.9-1z'],
+  Printer: ['M6 9V2h12v7', 'M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2', 'M6 14h12v8H6z'],
+  CheckSquare: ['M9 11l3 3L22 4', 'M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11'],
+  Monitor: ['M2 4h20v13H2z', 'M8 20h8', 'M12 17v3'],
+  Lock: ['M5 11h14v10H5z', 'M8 11V7a4 4 0 0 1 8 0v4'],
+  Key: ['M15.5 2a6.5 6.5 0 1 0 3.9 11.7L21 15l1 1-3 3-1-1-2 2-2-2-2 2-3-3 7.6-7.6A6.5 6.5 0 0 1 15.5 2z'],
+  ShieldCheck: ['M12 2 4 5v6c0 5.25 3.5 9.74 8 11 4.5-1.26 8-5.75 8-11V5z', 'm9 12 2 2 4-4'],
+  Laptop: ['M4 5h16v10H4z', 'M2 19h20l-2-4H4z'],
+  BadgeCheck: ['M12 2l2.4 1.6 2.8-.4 1.2 2.6 2.6 1.2-.4 2.8L22 12l-1.6 2.4.4 2.8-2.6 1.2-1.2 2.6-2.8-.4L12 22l-2.4-1.6-2.8.4-1.2-2.6-2.6-1.2.4-2.8L2 12l1.6-2.4-.4-2.8 2.6-1.2 1.2-2.6 2.8.4z', 'm9 12 2 2 4-4'],
+  RefreshCw: ['M21 12a9 9 0 1 1-3-6.7', 'M21 3v6h-6'],
+  FileWarning: ['M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z', 'M14 2v6h6', 'M12 11v4', 'M12 18h.01'],
+  Wifi: ['M2 8.5a16 16 0 0 1 20 0', 'M5 12.5a11 11 0 0 1 14 0', 'M8.5 16.5a6 6 0 0 1 7 0', 'M12 20h.01'],
+  Server: ['M3 3h18v6H3z', 'M3 15h18v6H3z', 'M7 6h.01', 'M7 18h.01'],
+  Globe: ['M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z', 'M2 12h20', 'M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z'],
+  Mail: ['M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z', 'm22 6-10 7L2 6'],
+  AlertTriangle: ['M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z', 'M12 9v4', 'M12 17h.01'],
+  Cloud: ['M18 10h-1.3A5.5 5.5 0 1 0 7 16h11a4 4 0 0 0 0-8z'],
+  Bot: ['M12 8V4H8', 'M4 12h16v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z', 'M9 16h.01', 'M15 16h.01', 'M2 12h2', 'M20 12h2'],
+  Download: ['M12 3v12', 'm7 10 5 5 5-5', 'M4 21h16'],
+  Truck: ['M2 8h11v8H2z', 'M13 11h4l3 3v2h-7z', 'M6 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4z', 'M17 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'],
+};
+const icon = (name: string) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${(ICONS[name] ?? []).map(d => `<path d="${d}"/>`).join('')}</svg>`;
+---
+
+<StandaloneShell name="resources" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap" style="--sa-max: 800px">
+      <p class="sa-eyebrow sa-eyebrow-light">Knowledge Hub</p>
+      <h1 class="sa-display sa-display-light" style="--sa-size: 46px; --sa-size-mobile: 34px; margin-bottom: 16px">Resource Centre</h1>
+      <p class="sa-lead" style="margin: 0">The Fresh Tech knowledge base. Guides, success stories, and answers to your burning questions.</p>
+    </div>
+  </section>
+
+  <section class="rc-stats">
+    <div class="sa-wrap rc-stats-grid">
+      <div class="rc-stat"><span class="rc-stat-icon" set:html={icon('BookOpen')} /><div class="rc-stat-num">{totalBlogPosts}+</div><span class="rc-stat-label">Blog Articles</span></div>
+      <div class="rc-stat"><span class="rc-stat-icon" set:html={icon('Briefcase')} /><div class="rc-stat-num">{totalCaseStudies}</div><span class="rc-stat-label">Case Studies</span></div>
+      <div class="rc-stat"><span class="rc-stat-icon" set:html={icon('HelpCircle')} /><div class="rc-stat-num">{totalFaqs}+</div><span class="rc-stat-label">FAQ Answers</span></div>
+      <div class="rc-stat"><span class="rc-stat-icon" set:html={icon('Award')} /><div class="rc-stat-num">10+</div><span class="rc-stat-label">Years Expertise</span></div>
+    </div>
+  </section>
+
+  <section class="rc-section rc-paths">
+    <div class="sa-wrap">
+      <div class="rc-heading-center">
+        <h2 class="sa-display" style="--sa-size: 28px">Where Should You Start?</h2>
+        <p>Choose a learning path based on your goals</p>
+      </div>
+      <div class="rc-paths-grid">
+        {learningPaths.map(path => (
+          <div class="rc-path-card">
+            <h3>{path.title}</h3>
+            <p>{path.desc}</p>
+            <div class="rc-path-steps">
+              {path.steps.map((step, sIdx) => <a href={step.link}><span class="rc-step-num">{sIdx + 1}</span><span class="rc-step-label">{step.label}</span></a>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="rc-section">
+    <div class="sa-wrap">
+      <div class="rc-nav-grid">
+        <div class="rc-nav-card">
+          <span class="rc-nav-icon" set:html={icon('BookOpen')} />
+          <h3>Latest News</h3>
+          <p class="rc-nav-count">{totalBlogPosts}+ articles</p>
+          <p>Tips, tricks, and industry updates from our team.</p>
+          <a href="/blog">Read The Blog <span set:html={icon('ArrowRight')} /></a>
+        </div>
+        <div class="rc-nav-card">
+          <span class="rc-nav-icon" set:html={icon('Briefcase')} />
+          <h3>Case Studies</h3>
+          <p class="rc-nav-count">{totalCaseStudies} success stories</p>
+          <p>Real stories of how we've helped local businesses.</p>
+          <a href="/case-studies">View Success Stories <span set:html={icon('ArrowRight')} /></a>
+        </div>
+        <div class="rc-nav-card">
+          <span class="rc-nav-icon" set:html={icon('HelpCircle')} />
+          <h3>FAQ</h3>
+          <p class="rc-nav-count">{totalFaqs}+ answers</p>
+          <p>Quick answers to common questions about our support.</p>
+          <a href="/faq">Get Answers <span set:html={icon('ArrowRight')} /></a>
+        </div>
+        <div class="rc-nav-card">
+          <span class="rc-nav-icon" set:html={icon('Activity')} />
+          <h3>IT Health Check</h3>
+          <p class="rc-nav-count">3-minute assessment</p>
+          <p>Free assessment of your business technology.</p>
+          <a href="/it-health-check">Take The Quiz <span set:html={icon('ArrowRight')} /></a>
+        </div>
+      </div>
+
+      <div class="rc-section-head">
+        <div>
+          <h2 class="sa-display" style="--sa-size: 28px">Essential Guides</h2>
+          <p>In-depth guides on critical IT topics every business should understand</p>
+        </div>
+      </div>
+      <div class="rc-guides-grid">
+        {essentialGuides.map(guide => (
+          <a href={guide.href} class="rc-guide-card">
+            {guide.badge && <div class="rc-badge">{guide.badge}</div>}
+            <div class="rc-guide-top">
+              <span class="rc-guide-icon" set:html={icon(guide.icon)} />
+              <div><h3>{guide.title}</h3><p class="rc-guide-subtitle">{guide.subtitle}</p></div>
+            </div>
+            <p>{guide.desc}</p>
+            <div class="rc-tags">{guide.tags.map(tag => <span>{tag}</span>)}</div>
+            <span class="rc-guide-cta">{guide.cta} <span set:html={icon('ArrowRight')} /></span>
+          </a>
+        ))}
+      </div>
+
+      <div class="rc-section-head">
+        <div>
+          <h2 class="sa-display" style="--sa-size: 28px">Industry IT Guides</h2>
+          <p>Free interactive checklists for your sector</p>
+        </div>
+        <a href="/industries" class="rc-view-all">View All Industries</a>
+      </div>
+      <div class="rc-guides-grid rc-guides-grid-small">
+        {guides.map(guide => (
+          <a href={`/guides/${guide.slug}`} class="rc-industry-card">
+            <div class="rc-industry-top">
+              <span class="rc-industry-icon" set:html={icon('CheckSquare')} />
+              <div class="rc-printable"><span set:html={icon('Printer')} /> Printable</div>
+            </div>
+            <h3>{guide.title}</h3>
+            <p>{guide.subtitle}</p>
+            <div class="rc-industry-bottom"><span class="rc-industry-tag">{guide.industry}</span><span class="rc-guide-cta">Open Guide <span set:html={icon('ArrowRight')} /></span></div>
+          </a>
+        ))}
+      </div>
+
+      <div class="rc-section-head">
+        <div>
+          <h2 class="sa-display" style="--sa-size: 28px">Technology Explained</h2>
+          <p>Plain-English guides to the tech that protects your business</p>
+        </div>
+      </div>
+      <div class="rc-guides-grid rc-guides-grid-small">
+        {techPages.map(page => (
+          <a href={`/technology/${page.slug}`} class="rc-tech-card">
+            <span class="rc-tech-icon" set:html={icon(page.icon)} />
+            <h3>{page.title}</h3>
+            <p>{page.desc}</p>
+            <span class="rc-guide-cta">Explore <span set:html={icon('ArrowRight')} /></span>
+          </a>
+        ))}
+      </div>
+
+      <div class="rc-section-head">
+        <div>
+          <h2 class="sa-display" style="--sa-size: 28px">IT Crisis Help</h2>
+          <p>Free step-by-step guides when things go wrong</p>
+        </div>
+      </div>
+      <div class="rc-crisis-grid">
+        {crisisGuides.map(guide => (
+          <a href={`/${guide.slug}`} class="rc-crisis-card">
+            <span class="rc-tech-icon" set:html={icon(guide.icon)} />
+            <h3>{guide.title}</h3>
+            <p>{guide.desc}</p>
+            <span class="rc-guide-cta rc-guide-cta-red">Get Help <span set:html={icon('ArrowRight')} /></span>
+          </a>
+        ))}
+      </div>
+      <p class="rc-crisis-note">These guides are free for anyone to use - no sales pitch, just help when you need it most.</p>
+
+      <div class="rc-section-head">
+        <div>
+          <h2 class="sa-display" style="--sa-size: 28px">Fresh From The Press</h2>
+          <p>Latest insights from our team</p>
+        </div>
+        <a href="/blog" class="rc-view-all">View All Articles</a>
+      </div>
+      <div class="rc-posts-grid">
+        {latestPosts.map(post => (
+          <a href={`/blog/${post.slug}`} class="rc-post-card">
+            <img src={cld(post.image, 'w_256,h_192,c_fill')} alt={post.title} width="128" height="96" loading="lazy" decoding="async" />
+            <div>
+              <div class="rc-post-date">{post.date}</div>
+              <h3>{post.title}</h3>
+              <p>{post.excerpt}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {spotlightStudy && (
+        <div class="rc-spotlight">
+          <div>
+            <span class="rc-spotlight-eyebrow">Spotlight Mission</span>
+            <h2 class="sa-display" style="--sa-size: 30px">{spotlightStudy.title}</h2>
+            <p>{spotlightStudy.challenge}</p>
+            <a href={`/case-studies/${spotlightStudy.slug}`} class="rc-spotlight-cta">Read Full Mission Report</a>
+          </div>
+          <div class="rc-spotlight-image">
+            <img src={cld(spotlightStudy.image, 'w_800,h_600,c_fill')} alt={spotlightStudy.client} width="800" height="600" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      )}
+
+      <section class="rc-quick">
+        <h3>Quick Access</h3>
+        <div class="rc-quick-grid">
+          {quickLinks.map(link => <a href={link.href}><span set:html={icon(link.icon)} /><span>{link.label}</span></a>)}
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="rc-buyers">
+    <div class="sa-wrap rc-buyers-card">
+      <div class="rc-buyers-book">
+        <img src="https://res.cloudinary.com/djkmeg5se/image/upload/w_320,f_auto,q_auto/Buyers-Guide.png" alt="The 2025 IT Services Buyer's Guide" width="320" height="427" loading="lazy" decoding="async" />
+        <div class="rc-buyers-flag">FREE COPY!</div>
+      </div>
+      <div class="rc-buyers-content">
+        <div class="rc-buyers-kicker"><span set:html={icon('BookOpen')} /> Essential Reading</div>
+        <h2 class="sa-display sa-display-light" style="--sa-size: 32px">Don't Get Ripped Off By Bad IT Support</h2>
+        <p>Our 2025 Buyer's Guide reveals the dirty secrets most IT companies don't want you to know. Learn the 3 critical questions you must ask before signing any contract.</p>
+        <div class="rc-buyers-buttons">
+          <a href="/contact"><span set:html={icon('Truck')} /> Ship Me a Free Copy</a>
+        </div>
+        <div class="rc-buyers-fine"><span><span set:html={icon('Truck')} /> We pay postage</span><span><span set:html={icon('Shield')} /> No obligation</span></div>
+      </div>
+    </div>
+  </section>
+
+  <SourceContact />
+</StandaloneShell>
+
+<style>
+  .rc-stats { padding: 40px 0; background: var(--ink); color: var(--paper); border-bottom: 4px solid var(--primary); }
+  .rc-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; text-align: center; }
+  .rc-stat { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .rc-stat-icon { color: var(--yellow); }
+  .rc-stat-icon svg { width: 24px; height: 24px; }
+  .rc-stat-num { font: 400 32px/1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--yellow); }
+  .rc-stat-label { color: #c7cdd2; font-size: 14px; }
+  @media (min-width: 640px) { .rc-stats-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .rc-section { padding: 56px 0; }
+  .rc-paths { background: var(--paper-deep); }
+  .rc-heading-center { text-align: center; margin-bottom: 40px; }
+  .rc-heading-center p { color: #57626b; margin: 8px 0 0; }
+  .rc-paths-grid { display: grid; gap: 24px; max-width: 960px; margin-inline: auto; }
+  .rc-path-card { background: var(--white); border: 2px solid var(--hairline); border-radius: 18px; padding: 28px; }
+  .rc-path-card h3 { font: 400 21px/1.15 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--ink); margin-bottom: 8px; }
+  .rc-path-card p { color: #57626b; font-size: 14px; margin: 0 0 20px; }
+  .rc-path-steps { display: flex; flex-direction: column; gap: 10px; }
+  .rc-path-steps a { display: flex; align-items: center; gap: 10px; color: var(--primary-dark); font-size: 14px; font-weight: 600; text-decoration: none; }
+  .rc-path-steps a:hover { text-decoration: underline; }
+  .rc-step-num { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: var(--primary-dark); color: var(--white); font-size: 12px; font-weight: 800; flex-shrink: 0; }
+  @media (min-width: 768px) { .rc-paths-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .rc-nav-grid { display: grid; gap: 24px; margin-bottom: 56px; }
+  .rc-nav-card { background: var(--white); border: 2px solid var(--hairline); border-radius: 18px; padding: 28px; }
+  .rc-nav-icon { display: inline-flex; color: var(--primary); margin-bottom: 16px; }
+  .rc-nav-icon svg { width: 28px; height: 28px; }
+  .rc-nav-card h3 { font: 400 22px/1.15 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--ink); margin-bottom: 4px; }
+  .rc-nav-count { color: #46545f; font-size: 13px; margin: 0 0 4px; }
+  .rc-nav-card > p:not(.rc-nav-count) { color: #57626b; margin: 0 0 20px; }
+  .rc-nav-card a { display: inline-flex; align-items: center; gap: 6px; color: var(--primary-dark); font-weight: 700; text-decoration: none; }
+  .rc-nav-card a:hover { text-decoration: underline; }
+  .rc-nav-card a svg, .rc-guide-cta svg { width: 16px; height: 16px; }
+  @media (min-width: 640px) { .rc-nav-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .rc-nav-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .rc-section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px; margin: 0 0 28px; }
+  .rc-section-head p { color: #46545f; font-size: 14px; margin: 4px 0 0; }
+  .rc-view-all { color: var(--primary-dark); font-weight: 700; text-decoration: none; }
+  .rc-view-all:hover { text-decoration: underline; }
+
+  .rc-guides-grid { display: grid; gap: 20px; margin-bottom: 56px; }
+  .rc-guide-card { position: relative; display: block; background: var(--white); border: 2px solid var(--hairline); border-radius: 18px; padding: 26px; text-decoration: none; color: inherit; overflow: hidden; }
+  .rc-guide-card:hover { border-color: var(--primary); }
+  .rc-badge { position: absolute; top: 14px; right: 14px; background: var(--accent); color: var(--ink); font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 999px; }
+  .rc-guide-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+  .rc-guide-icon, .rc-industry-icon, .rc-tech-icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 12px; background: var(--paper-deep); color: var(--primary-dark); flex-shrink: 0; }
+  .rc-guide-icon svg, .rc-industry-icon svg, .rc-tech-icon svg { width: 24px; height: 24px; }
+  .rc-guide-card h3 { font: 400 19px/1.2 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--ink); }
+  .rc-guide-subtitle { color: #46545f; font-size: 13px; margin: 4px 0 0; }
+  .rc-guide-card > p { color: #57626b; margin: 0 0 14px; }
+  .rc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .rc-tags span { font-size: 11px; background: var(--paper-deep); color: var(--primary-dark); padding: 3px 8px; border-radius: 999px; }
+  .rc-guide-cta { display: inline-flex; align-items: center; gap: 4px; color: var(--primary-dark); font-weight: 700; font-size: 14px; }
+  .rc-guide-cta-red { color: #b3401b; }
+  @media (min-width: 768px) { .rc-guides-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .rc-guides-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .rc-guides-grid-small a { padding: 20px; border-radius: 14px; }
+  .rc-industry-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+  .rc-printable { display: flex; align-items: center; gap: 6px; color: #46545f; font-size: 12px; }
+  .rc-printable svg { width: 14px; height: 14px; }
+  .rc-industry-card h3, .rc-tech-card h3, .rc-crisis-card h3 { font: 400 17px/1.2 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--ink); margin-bottom: 8px; }
+  .rc-industry-card p, .rc-tech-card p, .rc-crisis-card p { color: #46545f; font-size: 13px; margin: 0 0 14px; }
+  .rc-industry-bottom { display: flex; align-items: center; justify-content: space-between; }
+  .rc-industry-tag { font-size: 11px; font-weight: 600; background: var(--paper-deep); color: var(--primary-dark); padding: 4px 10px; border-radius: 999px; }
+  .rc-tech-card, .rc-industry-card, .rc-crisis-card { display: block; background: var(--white); border: 2px solid var(--hairline); border-radius: 14px; padding: 20px; text-decoration: none; color: inherit; }
+  .rc-tech-card:hover, .rc-industry-card:hover, .rc-crisis-card:hover { border-color: var(--primary); }
+  .rc-tech-icon { margin-bottom: 14px; }
+
+  .rc-crisis-grid { display: grid; gap: 18px; margin-bottom: 12px; }
+  .rc-crisis-card { background: linear-gradient(135deg, #fdece4, #fef6ee); border-color: #f5d3c2; }
+  .rc-crisis-note { text-align: center; color: #46545f; font-size: 14px; margin: 0 0 56px; }
+  @media (min-width: 640px) { .rc-crisis-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .rc-crisis-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .rc-posts-grid { display: grid; gap: 20px; margin-bottom: 56px; }
+  .rc-post-card { display: flex; gap: 16px; align-items: flex-start; background: var(--paper-deep); border-radius: 14px; padding: 16px; text-decoration: none; color: inherit; }
+  .rc-post-card img { width: 128px; height: 96px; object-fit: cover; border-radius: 10px; flex-shrink: 0; }
+  .rc-post-date { color: #46545f; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+  .rc-post-card h3 { font: 400 17px/1.25 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--ink); margin-bottom: 6px; }
+  .rc-post-card p { color: #46545f; font-size: 13px; margin: 0; }
+  @media (min-width: 768px) { .rc-posts-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .rc-spotlight { display: grid; gap: 32px; align-items: center; background: var(--paper-deep); border: 1px solid var(--hairline); border-radius: 24px; padding: 32px 24px; margin-bottom: 48px; }
+  .rc-spotlight-eyebrow { display: block; color: #9a3412; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+  .rc-spotlight h2 { margin: 0 0 14px; color: var(--ink); }
+  .rc-spotlight p { color: #57626b; margin: 0 0 20px; }
+  .rc-spotlight-cta { display: inline-block; background: var(--white); border: 2px solid var(--ink); color: var(--ink); padding: 12px 22px; border-radius: 10px; font-weight: 800; text-decoration: none; }
+  .rc-spotlight-cta:hover { background: var(--ink); color: var(--paper); }
+  .rc-spotlight-image img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 16px; border: 4px solid var(--white); box-shadow: 0 12px 30px rgba(15,25,35,.18); }
+  @media (min-width: 768px) { .rc-spotlight { grid-template-columns: 1fr 1fr; } }
+
+  .rc-quick { margin-bottom: 24px; }
+  .rc-quick h3 { text-align: center; font: 400 22px/1.2 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--ink); margin-bottom: 20px; }
+  .rc-quick-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .rc-quick-grid a { display: flex; align-items: center; gap: 10px; background: var(--paper-deep); border-radius: 12px; padding: 14px; color: var(--primary-dark); font-weight: 600; font-size: 14px; text-decoration: none; }
+  .rc-quick-grid a:hover { background: var(--primary); color: var(--white); }
+  .rc-quick-grid svg { width: 20px; height: 20px; }
+  @media (min-width: 640px) { .rc-quick-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .rc-buyers { padding: 56px 0; background: var(--paper); }
+  .rc-buyers-card { display: grid; gap: 32px; align-items: center; background: var(--ink); border: 4px solid var(--primary); border-radius: 24px; padding: 32px 24px; }
+  .rc-buyers-book { position: relative; justify-self: center; max-width: 220px; }
+  .rc-buyers-book img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 20px 40px rgba(0,0,0,.4); }
+  .rc-buyers-flag { position: absolute; top: -10px; right: -10px; background: var(--yellow); color: var(--ink); font-size: 11px; font-weight: 800; padding: 6px 10px; border-radius: 999px; border: 2px solid var(--ink); }
+  .rc-buyers-kicker { display: inline-flex; align-items: center; gap: 8px; background: var(--yellow); color: var(--ink); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; padding: 6px 12px; border-radius: 4px; margin-bottom: 20px; }
+  .rc-buyers-kicker svg { width: 14px; height: 14px; }
+  .rc-buyers-content h2 { color: var(--white); margin-bottom: 16px; }
+  .rc-buyers-content > p { color: #c7cdd2; margin: 0 0 24px; max-width: 60ch; }
+  .rc-buyers-buttons { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
+  .rc-buyers-buttons a { display: flex; align-items: center; gap: 8px; border: 2px solid transparent; border-radius: 10px; padding: 14px 20px; font-weight: 800; font-size: 14px; text-decoration: none; }
+  .rc-buyers-buttons a:first-child { background: var(--white); color: var(--ink); }
+  .rc-buyers-buttons a:last-child { background: var(--accent); color: var(--ink); border-color: var(--white); }
+  .rc-buyers-buttons svg { width: 18px; height: 18px; }
+  .rc-buyers-fine { display: flex; flex-wrap: wrap; gap: 16px; color: #9aa4ab; font-size: 12px; }
+  .rc-buyers-fine svg { width: 12px; height: 12px; }
+  @media (min-width: 768px) { .rc-buyers-card { grid-template-columns: 1fr 2fr; } }
+</style>

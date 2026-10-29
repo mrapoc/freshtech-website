@@ -1,0 +1,574 @@
+---
+// Port of pages/CloudBackupNecessityPage.tsx. Two useState accordion groups
+// (FAQs and real-world scenarios) become native <details name="..."> so at
+// most one item per group is open at a time, same as the source's single
+// openFaq/openScenario state, and both work without JavaScript. Because the
+// source only renders an accordion's body once opened (conditional React
+// render), the production baseline never contains that body text; our
+// always-in-markup <details> body does, so the extra scenario "Without/With
+// Independent Backup" sub-headings and every scenario/FAQ body sentence are
+// documented as differences in standalone-differences.mjs (key
+// '/cloud-backup-necessity'). The FAQ answers use the source's ** / * inline
+// markdown, rendered here with the same split logic as the React component.
+// The hero image is a genuine Cloudinary asset; the captured production
+// baseline shows the SmartImage onError fallback (placehold.co) because that
+// capture run could not reach Cloudinary, so the real asset path is restored
+// via a documented image difference rather than reproduced literally.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+import SourceContact from '../components/SourceContact.astro';
+
+const renderMarkup = (text: string) =>
+  text
+    .split(/(\*\*[^*]+\*\*)/g)
+    .map(part =>
+      part.startsWith('**') && part.endsWith('**')
+        ? `<strong>${part.slice(2, -2)}</strong>`
+        : part
+            .split(/(\*[^*]+?\*)/g)
+            .map(sub => (sub.startsWith('*') && sub.endsWith('*') && sub.length > 2 ? `<em>${sub.slice(1, -1)}</em>` : sub))
+            .join('')
+    )
+    .join('');
+
+const scenarios = [
+  {
+    title: 'The Accidental Deletion',
+    story: "Sarah, an office manager, accidentally deleted a SharePoint folder containing 3 years of client contracts while reorganising files. She didn't notice for 6 weeks.",
+    withoutBackup: "The files exceeded the 93-day retention window. They were permanently gone. The business had to contact clients to request copies of their own contracts -embarrassing and time-consuming.",
+    withBackup: "A quick restore from the backup solution brought back the entire folder within minutes. The business didn't even need to inform clients.",
+    lesson: "Microsoft 365's recycle bin only retains deleted items for 93 days. After that, it's gone forever -unless you have independent backup.",
+  },
+  {
+    title: 'The Disgruntled Leaver',
+    story: "James, a sales manager, resigned with immediate effect after a disagreement. Before handing over his laptop, he logged into OneDrive and permanently deleted his entire sales pipeline, contacts, and 2 years of proposal documents.",
+    withoutBackup: "The deletion was discovered a week later when his replacement started. Microsoft's retention had already cleared the recycle bin. The new hire spent months rebuilding relationships from scratch.",
+    withBackup: "The IT team restored James's entire OneDrive to the state it was in before his departure. The new sales manager hit the ground running.",
+    lesson: "When employees leave unhappily, your data is at risk. Microsoft won't protect you from authorised users deleting their own files.",
+  },
+  {
+    title: 'The Ransomware Sync',
+    story: "A manufacturing firm's accountant opened a malicious email attachment. Ransomware encrypted her local files -and because OneDrive was syncing, the encrypted versions replaced the good copies in the cloud.",
+    withoutBackup: "The 'cloud backup' everyone assumed existed was just OneDrive sync. The encrypted files were now in the cloud too. They paid a £45,000 ransom and still lost 3 months of data.",
+    withBackup: "The backup solution stored immutable copies that ransomware couldn't touch. Full restore completed in 4 hours. Zero ransom paid.",
+    lesson: "OneDrive sync is not backup -it replicates problems as fast as it replicates files. See our guide on ransomware recovery.",
+  },
+  {
+    title: 'The Retention Gap',
+    story: "A law firm needed to retrieve emails from 18 months ago for a court case. The emails had been deleted by the user after the matter 'closed'.",
+    withoutBackup: "Microsoft 365's default retention is 30 days for deleted items. Even with litigation hold enabled (which they hadn't configured), the emails were unrecoverable.",
+    withBackup: "The backup solution retained all emails for 7 years as per their configured policy. The evidence was produced within the hour.",
+    lesson: "Legal and compliance requirements often exceed Microsoft's default retention. Without independent backup, you may fail regulatory obligations.",
+  },
+  {
+    title: 'The Account Compromise',
+    story: "A hacker gained access to the finance director's Microsoft 365 account through a phishing email. They set up email forwarding rules and deleted evidence of fraudulent payment requests over several weeks.",
+    withoutBackup: "By the time the breach was discovered, the deleted emails had aged out of retention. There was no audit trail of what had been sent or deleted.",
+    withBackup: "The backup retained a complete timeline. Investigators could see exactly which emails were forwarded, deleted, and when -crucial evidence for the fraud investigation.",
+    lesson: "Attackers don't just steal data -they cover their tracks. Independent backup preserves the evidence chain.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Isn't my data already backed up because it's 'in the cloud'?",
+    a: "No -and this is the most dangerous assumption businesses make. Cloud services like Microsoft 365 and Google Workspace provide **high availability** (your data is replicated across data centres so the service stays online), but this is not backup. If you delete a file, that deletion is replicated everywhere. If ransomware encrypts your files via sync, the encrypted versions replace the originals. The cloud protects against *their* hardware failures, not *your* data loss.",
+  },
+  {
+    q: "What's the difference between OneDrive sync and OneDrive backup?",
+    a: "**OneDrive Sync** mirrors files between your computer and the cloud -changes go both ways instantly. **OneDrive Backup (Known Folder Move)** redirects your Desktop, Documents, and Pictures folders to OneDrive. Both are sync technologies, not backup. A true backup is a separate, protected copy of your data that can be restored to a point in time -even if the original is deleted, corrupted, or encrypted.",
+  },
+  {
+    q: 'What is Known Folder Move (KFM) and should we use it?',
+    a: "KFM is a Microsoft feature that redirects your Desktop, Documents, and Pictures folders to OneDrive. **You absolutely should use it** -it means files aren't trapped on individual laptops and are accessible from anywhere. But it's protection against *device loss*, not data loss. If a file is deleted from OneDrive, it's deleted everywhere. KFM + independent backup = comprehensive protection.",
+  },
+  {
+    q: 'How long does Microsoft keep deleted files?',
+    a: "It varies by service: **OneDrive/SharePoint** keeps deleted items in the recycle bin for 93 days, then they're permanently deleted. **Exchange Online** keeps deleted emails for 14-30 days depending on configuration. **Teams** messages follow complex retention rules. After these windows close, Microsoft cannot recover your data -even if you pay them. These retention periods are also not guaranteed and can change.",
+  },
+  {
+    q: 'What about Google Workspace -is it the same problem?',
+    a: "Yes. Google's Terms of Service contain nearly identical disclaimers. Google Drive's trash empties after 30 days. Gmail deleted items last 30 days. Google explicitly states they are not responsible for data loss. The 'it's in the cloud' false sense of security applies equally to Google Workspace users.",
+  },
+  {
+    q: 'How much does proper cloud backup cost?',
+    a: "Typically £2-4 per user per month for comprehensive Microsoft 365 or Google Workspace backup. Compare this to the cost of losing your data: the average cost of a ransomware attack for SMBs is £115,000. For a 20-person company, that's roughly £50/month for insurance against potentially business-ending data loss.",
+  },
+  {
+    q: "Can't I just export my data regularly instead?",
+    a: "Manual exports are better than nothing, but they're not practical at scale. They require someone to remember, they're incomplete (you rarely get everything), they're not easily restorable, and they're typically stored somewhere that's also vulnerable to the same threats. Automated, managed backup with tested restores is the only reliable approach.",
+  },
+  {
+    q: "We have Microsoft 365 E5 -doesn't that include backup?",
+    a: "No. Even the most expensive Microsoft 365 licence does not include true backup. E5 includes advanced compliance features like extended retention and litigation hold, but these are not the same as backup. Retention policies keep data longer before deletion -but if data is corrupted or encrypted, that corrupted version is what's retained. Microsoft is now offering 'Microsoft 365 Backup' as an additional paid product, acknowledging that backup was never included.",
+  },
+];
+
+// Verbatim from the source's articleSchema / faqSchema (the FAQ schema strips
+// only ** markers, keeping single asterisks, per the source's regex).
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Why Microsoft 365 and Google Workspace Need Backing Up',
+  description: "The cloud doesn't back up your data. Microsoft and Google's own terms of service make this clear. Learn why independent backup is essential for business continuity.",
+  author: { '@type': 'Organization', name: 'Fresh Tech', url: 'https://fresh-tech.uk' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Fresh Tech',
+    logo: { '@type': 'ImageObject', url: 'https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png' },
+  },
+};
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(faq => ({ '@type': 'Question', name: faq.q, acceptedAnswer: { '@type': 'Answer', text: faq.a.replace(/\*\*([^*]+)\*\*/g, '$1') } })),
+};
+
+const seo = {
+  path: '/cloud-backup-necessity',
+  title: 'Why Microsoft 365 & Google Workspace Need Backing Up | The Cloud Backup Myth',
+  description: "Microsoft and Google explicitly state they're not responsible for your data loss. Learn why cloud services need independent backup, with real examples and expert guidance.",
+  breadcrumbs: [
+    { name: 'Resources', item: '/resources' },
+    { name: 'Why Cloud Backup is Essential', item: '/cloud-backup-necessity' },
+  ],
+  schema: [articleSchema, faqSchema],
+};
+
+// Small decorative icon set. All markup here is inside <svg>, which the
+// parity checker skips entirely, so shapes are simplified placeholders for
+// the source's lucide-react icons rather than pixel-identical copies.
+const ico = (path: string, size = 22) =>
+  `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${path}</svg>`;
+const ICON = {
+  check: ico('<path d="M20 6 9 17l-5-5"/>'),
+  cross: ico('<path d="M18 6 6 18M6 6l12 12"/>'),
+  warning: ico('<path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/>'),
+  arrow: ico('<path d="M5 12h14M13 6l6 6-6 6"/>', 16),
+  quote: ico('<path d="M7 7h5v5c0 3-2 5-5 5"/><path d="M15 7h5v5c0 3-2 5-5 5"/>', 24),
+  dot: ico('<circle cx="12" cy="12" r="8"/>'),
+};
+const chevron = '<svg class="cbn-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>';
+---
+
+<StandaloneShell name="cloud-backup-necessity" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap sa-center" style="--sa-max: 800px">
+      <span class="cbn-badge">Back Up</span>
+      <h1 class="sa-display sa-display-light" style="--sa-size: 44px; --sa-size-mobile: 32px; margin: 16px 0">The Cloud Doesn't Back Up Your Data</h1>
+      <p class="sa-lead" style="margin: 0 auto">Microsoft and Google explicitly say so in their terms of service. Most businesses don't discover this until it's too late.</p>
+    </div>
+  </section>
+
+  <nav class="cbn-crumbs" aria-label="Breadcrumb">
+    <div class="sa-wrap sa-center" style="--sa-max: 800px">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/resources">Resources</a></li>
+        <li><span aria-current="page">Why Cloud Backup is Essential</span></li>
+      </ol>
+    </div>
+  </nav>
+
+  <section class="sa-section sa-paper">
+    <div class="sa-wrap">
+      <div class="cbn-hero-grid">
+        <div>
+          <p class="cbn-eyebrow"><span set:html={ICON.dot} /> Essential Guide</p>
+          <h2 class="sa-display" style="--sa-size: 30px; margin-bottom: 14px">The Shared Responsibility Model</h2>
+          <p class="cbn-body">Microsoft and Google operate under a "shared responsibility" model. They protect the infrastructure -you protect your data. This guide explains what that means in practice and how to ensure your business data is truly protected.</p>
+          <div class="cbn-pill-row">
+            <span class="cbn-pill cbn-pill-blue"><span set:html={ICON.dot} /> Microsoft 365</span>
+            <span class="cbn-pill cbn-pill-green"><span set:html={ICON.dot} /> Google Workspace</span>
+            <span class="cbn-pill cbn-pill-purple"><span set:html={ICON.dot} /> OneDrive KFM</span>
+          </div>
+        </div>
+        <div>
+          <img
+            src="https://res.cloudinary.com/djkmeg5se/image/upload/w_600,f_auto,q_auto/v1749314205/cloud-backup-data-protection-microsoft-365.jpg"
+            srcset="https://res.cloudinary.com/djkmeg5se/image/upload/w_600,f_auto,q_auto/v1749314205/cloud-backup-data-protection-microsoft-365.jpg 600w, https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,f_auto,q_auto/v1749314205/cloud-backup-data-protection-microsoft-365.jpg 1200w"
+            sizes="(min-width: 768px) 45vw, calc(100vw - 40px)"
+            alt="Cloud backup and data protection for Microsoft 365 and Google Workspace"
+            width="600"
+            height="400"
+            fetchpriority="high"
+            class="cbn-hero-image"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white">
+    <div class="sa-wrap sa-center" style="--sa-max: 800px">
+      <span class="cbn-icon-circle cbn-icon-danger"><span set:html={ICON.warning} /></span>
+      <h2 class="sa-display" style="--sa-size: 32px; margin: 18px 0 14px">The Uncomfortable Truth</h2>
+      <p class="cbn-lead-dark">Most businesses believe their data is safe because it's "in the cloud". Microsoft and Google's own legal terms tell a different story.</p>
+    </div>
+    <div class="sa-wrap" style="--sa-max: 800px; margin-top: 32px">
+      <div class="cbn-quote-block cbn-quote-blue">
+        <span set:html={ICON.quote} />
+        <div>
+          <p class="cbn-quote-text">"We recommend that you regularly backup Your Content and Data that you store on the Services or store using Third-Party Apps and Services."</p>
+          <p class="cbn-quote-text">"We strive to keep the Services up and running; however, all online services suffer occasional disruptions and outages, and Microsoft is not liable for any disruption or loss you may suffer as a result."</p>
+          <p class="cbn-quote-attribution"> - Microsoft Services Agreement, Section 6(b)</p>
+          <a href="https://www.microsoft.com/en-us/servicesagreement" target="_blank" rel="noopener noreferrer" class="cbn-quote-link">View current Microsoft Services Agreement →</a>
+        </div>
+      </div>
+      <div class="cbn-quote-block cbn-quote-green">
+        <span set:html={ICON.quote} />
+        <div>
+          <p class="cbn-quote-text">"When permitted by law, Google, and Google's suppliers and distributors, will not be responsible for lost profits, revenues, or data, financial losses or indirect, special, consequential, exemplary, or punitive damages."</p>
+          <p class="cbn-quote-text">"Google does not make any commitments about the content within the services, the specific functions of the services, or their reliability, availability, or ability to meet your needs."</p>
+          <p class="cbn-quote-attribution"> - Google Workspace Terms of Service</p>
+          <a href="https://workspace.google.com/terms/user_features.html" target="_blank" rel="noopener noreferrer" class="cbn-quote-link">View current Google Workspace Terms →</a>
+        </div>
+      </div>
+      <p class="cbn-summary-line">In plain English: <strong>if your data is lost, corrupted, or deleted -that's your problem, not theirs.</strong></p>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep">
+    <div class="sa-wrap">
+      <h2 class="sa-display sa-center" style="--sa-size: 30px; margin-bottom: 12px">What Cloud Services Actually Provide</h2>
+      <p class="cbn-body sa-center cbn-intro">Understanding the difference between high availability and backup is critical.</p>
+      <div class="cbn-two-col">
+        <div class="cbn-card">
+          <h3 class="cbn-card-heading cbn-heading-good"><span set:html={ICON.check} /> What They DO Provide</h3>
+          <ul class="cbn-tick-list cbn-tick-good">
+            <li><span set:html={ICON.check} /><span><strong>High Availability</strong><br />Data replicated across multiple data centres so the service stays online</span></li>
+            <li><span set:html={ICON.check} /><span><strong>Infrastructure Redundancy</strong><br />Protection against their hardware failures, power outages, and natural disasters at their facilities</span></li>
+            <li><span set:html={ICON.check} /><span><strong>Limited Retention</strong><br />Recycle bin and version history for a limited window (typically 30-93 days)</span></li>
+            <li><span set:html={ICON.check} /><span><strong>Physical Security</strong><br />Data centres are secure, climate-controlled, and access-restricted</span></li>
+          </ul>
+        </div>
+        <div class="cbn-card cbn-card-danger-border">
+          <h3 class="cbn-card-heading cbn-heading-bad"><span set:html={ICON.cross} /> What They DON'T Provide</h3>
+          <ul class="cbn-tick-list cbn-tick-bad">
+            <li><span set:html={ICON.cross} /><span><strong>Protection from User Deletion</strong><br />If you or your staff delete files (accidentally or deliberately), that's replicated everywhere</span></li>
+            <li><span set:html={ICON.cross} /><span><strong>Ransomware Protection</strong><br />Encrypted files sync to the cloud as fast as healthy ones -your "backup" becomes encrypted too</span></li>
+            <li><span set:html={ICON.cross} /><span><strong>Long-Term Retention</strong><br />Once retention windows close (30-93 days), data is permanently unrecoverable</span></li>
+            <li><span set:html={ICON.cross} /><span><strong>Point-in-Time Recovery</strong><br />You can't restore your entire tenant to how it was 6 months ago</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white">
+    <div class="sa-wrap">
+      <h2 class="sa-display sa-center" style="--sa-size: 30px; margin-bottom: 28px"><span set:html={ICON.dot} /> Understanding OneDrive "Backup"</h2>
+
+      <div class="cbn-panel cbn-panel-blue">
+        <h3 class="cbn-panel-heading">What is Known Folder Move (KFM)?</h3>
+        <p class="cbn-body">When you enable "Backup" in OneDrive settings, you're actually enabling <strong>Known Folder Move</strong>. This redirects your Desktop, Documents, and Pictures folders so they sync to OneDrive instead of staying on your local hard drive.</p>
+        <div class="cbn-two-col">
+          <div class="cbn-subcard">
+            <h4 class="cbn-subheading cbn-heading-good"><span set:html={ICON.check} /> KFM is Excellent For:</h4>
+            <ul class="cbn-bullet-list">
+              <li>• Protecting against laptop loss or theft</li>
+              <li>• Accessing files from any device</li>
+              <li>• Preventing files being "trapped" on one computer</li>
+              <li>• Making device replacement painless</li>
+              <li>• Ensuring remote workers' files are centralised</li>
+            </ul>
+          </div>
+          <div class="cbn-subcard">
+            <h4 class="cbn-subheading cbn-heading-bad"><span set:html={ICON.cross} /> KFM Does NOT Protect Against:</h4>
+            <ul class="cbn-bullet-list">
+              <li>• Accidental or malicious file deletion</li>
+              <li>• Ransomware encrypting synced files</li>
+              <li>• Data corruption replicating to the cloud</li>
+              <li>• Account compromise and data destruction</li>
+              <li>• Retention windows expiring</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cbn-callout">
+          <p><span set:html={ICON.warning} /> <strong>Key Insight:</strong> KFM is <em>sync</em>, not <em>backup</em>. It replicates changes in both directions -including deletions and corruptions. You should absolutely use KFM, but you also need independent backup.</p>
+        </div>
+      </div>
+
+      <div class="cbn-panel cbn-panel-paper">
+        <h3 class="cbn-panel-heading"><span set:html={ICON.dot} /> How We Enable This Automatically</h3>
+        <p class="cbn-body">For businesses using <a class="sa-link" href="/microsoft-business-premium">Microsoft 365 Business Premium</a>, we configure <a class="sa-link" href="/technology/intune-autopilot">Intune</a> to automatically enable Known Folder Move on every enrolled device. No manual setup required -it just works.</p>
+        <div class="cbn-three-col">
+          <div class="cbn-mini-card">
+            <span set:html={ICON.dot} />
+            <h4 class="cbn-subheading">Automatic Enrollment</h4>
+            <p class="cbn-small">New devices automatically join Intune when users sign in with their work account</p>
+          </div>
+          <div class="cbn-mini-card">
+            <span set:html={ICON.dot} />
+            <h4 class="cbn-subheading">Policy-Driven KFM</h4>
+            <p class="cbn-small">Intune policies silently enable KFM -users don't need to do anything</p>
+          </div>
+          <div class="cbn-mini-card">
+            <span set:html={ICON.dot} />
+            <h4 class="cbn-subheading">No More "Local Only" Files</h4>
+            <p class="cbn-small">Eliminates files scattered across individual laptops that never get backed up</p>
+          </div>
+        </div>
+        <div class="cbn-button-row sa-center">
+          <a class="sa-button sa-button-dark" href="/technology/intune-autopilot">Learn about Intune &amp; Autopilot <span set:html={ICON.arrow} /></a>
+          <a class="sa-button" href="/microsoft-business-premium">Why Business Premium? <span set:html={ICON.arrow} /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep">
+    <div class="sa-wrap" style="--sa-max: 900px">
+      <div class="sa-center" style="margin-bottom: 24px">
+        <h2 class="sa-display" style="--sa-size: 30px; margin-bottom: 10px">Real-World Scenarios</h2>
+        <p class="cbn-body">These situations happen every day. The difference between disaster and minor inconvenience is backup.</p>
+      </div>
+      <div class="cbn-accordion-list">
+        {scenarios.map(scenario => (
+          <details name="cbn-scenario" class="cbn-accordion">
+            <summary>
+              <span class="cbn-accordion-title"><span set:html={ICON.dot} /> {scenario.title}</span>
+              <span set:html={chevron} />
+            </summary>
+            <div class="cbn-accordion-body">
+              <p class="cbn-story">{scenario.story}</p>
+              <div class="cbn-two-col">
+                <div class="cbn-mini-panel cbn-mini-panel-bad">
+                  <h3 class="cbn-heading-bad"><span set:html={ICON.cross} /> Without Independent Backup</h3>
+                  <p class="cbn-small">{scenario.withoutBackup}</p>
+                </div>
+                <div class="cbn-mini-panel cbn-mini-panel-good">
+                  <h3 class="cbn-heading-good"><span set:html={ICON.check} /> With Independent Backup</h3>
+                  <p class="cbn-small">{scenario.withBackup}</p>
+                </div>
+              </div>
+              <div class="cbn-lesson">
+                <p><strong>Lesson:</strong> {scenario.lesson}</p>
+              </div>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white">
+    <div class="sa-wrap">
+      <h2 class="sa-display sa-center" style="--sa-size: 30px; margin-bottom: 32px">The Real Cost Comparison</h2>
+      <div class="cbn-two-col">
+        <div class="cbn-card cbn-card-bad">
+          <h3 class="cbn-card-heading cbn-heading-bad sa-center"><span set:html={ICON.warning} /> Without Independent Backup</h3>
+          <ul class="cbn-tick-list cbn-tick-bad">
+            <li><span set:html={ICON.cross} /><span>Average ransomware cost for SMBs: <strong>£115,000</strong></span></li>
+            <li><span set:html={ICON.cross} /><span>Average downtime after data loss: <strong>21 days</strong></span></li>
+            <li><span set:html={ICON.cross} /><span>60% of SMBs close within 6 months of major data loss</span></li>
+            <li><span set:html={ICON.cross} /><span>Regulatory fines for losing customer data</span></li>
+            <li><span set:html={ICON.cross} /><span>Reputational damage and lost client trust</span></li>
+            <li><span set:html={ICON.cross} /><span>Staff productivity loss rebuilding lost work</span></li>
+          </ul>
+        </div>
+        <div class="cbn-card cbn-card-good">
+          <h3 class="cbn-card-heading cbn-heading-good sa-center"><span set:html={ICON.dot} /> With Independent Backup</h3>
+          <ul class="cbn-tick-list cbn-tick-good">
+            <li><span set:html={ICON.check} /><span>Typical cost: <strong>£2-4 per user/month</strong></span></li>
+            <li><span set:html={ICON.check} /><span>Recovery time measured in <strong>hours, not weeks</strong></span></li>
+            <li><span set:html={ICON.check} /><span>Point-in-time restore to any date</span></li>
+            <li><span set:html={ICON.check} /><span>Immutable backups ransomware can't touch</span></li>
+            <li><span set:html={ICON.check} /><span>Compliance with data retention requirements</span></li>
+            <li><span set:html={ICON.check} /><span>Peace of mind that data is truly protected</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="cbn-body sa-center cbn-cost-line">For a 20-person company, comprehensive cloud backup costs roughly <strong>£50-80/month</strong>. That's the price of one team lunch to protect against potentially business-ending data loss.</p>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep">
+    <div class="sa-wrap">
+      <h2 class="sa-display sa-center" style="--sa-size: 30px; margin-bottom: 10px">The Complete Protection Stack</h2>
+      <p class="cbn-body sa-center cbn-intro">True data protection requires multiple layers working together. Here's what we implement for our clients.</p>
+      <div class="cbn-four-col">
+        <div class="cbn-mini-card cbn-mini-card-white">
+          <span set:html={ICON.dot} />
+          <h3 class="cbn-subheading">Known Folder Move</h3>
+          <p class="cbn-small">Files sync to OneDrive automatically -no files trapped on laptops</p>
+          <span class="cbn-tag">Via Intune Policy</span>
+        </div>
+        <div class="cbn-mini-card cbn-mini-card-white">
+          <span set:html={ICON.dot} />
+          <h3 class="cbn-subheading">M365/Google Backup</h3>
+          <p class="cbn-small">Independent backup of all cloud data with long-term retention</p>
+          <span class="cbn-tag">3rd Party Solution</span>
+        </div>
+        <div class="cbn-mini-card cbn-mini-card-white">
+          <span set:html={ICON.dot} />
+          <h3 class="cbn-subheading">Immutable Storage</h3>
+          <p class="cbn-small">Backups that can't be modified or deleted -ransomware-proof</p>
+          <span class="cbn-tag">Write-Once Technology</span>
+        </div>
+        <div class="cbn-mini-card cbn-mini-card-white">
+          <span set:html={ICON.dot} />
+          <h3 class="cbn-subheading">Tested Restores</h3>
+          <p class="cbn-small">Regular restore tests prove backups actually work</p>
+          <span class="cbn-tag">Quarterly Verification</span>
+        </div>
+      </div>
+      <div class="sa-center" style="margin-top: 32px">
+        <a class="sa-button" href="/services/backup-disaster-recovery">Learn About Our Backup Services <span set:html={ICON.arrow} /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white">
+    <div class="sa-wrap" style="--sa-max: 800px">
+      <h2 class="sa-display sa-center" style="--sa-size: 30px; margin-bottom: 8px">Frequently Asked Questions</h2>
+      <p class="cbn-body sa-center cbn-intro">Common questions about cloud backup and data protection</p>
+      <div class="cbn-accordion-list">
+        {faqs.map(faq => (
+          <details name="cbn-faq" class="cbn-accordion cbn-faq">
+            <summary>
+              <span class="cbn-accordion-title">{faq.q}</span>
+              <span set:html={chevron} />
+            </summary>
+            <div class="cbn-accordion-body">
+              <p class="cbn-small" set:html={renderMarkup(faq.a)} />
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-ink sa-center">
+    <div class="sa-wrap" style="--sa-max: 760px">
+      <h2 class="sa-display sa-display-light" style="--sa-size: 30px; margin-bottom: 14px">Don't Wait for a Disaster to Discover You're Not Protected</h2>
+      <p class="sa-lead" style="margin: 0 auto 28px">Let us audit your current backup situation. We'll show you exactly what's protected, what isn't, and what it would take to close the gaps.</p>
+      <div class="cbn-button-row sa-center">
+        <a class="sa-button" href="/contact">Request a Backup Audit</a>
+        <a class="sa-button sa-button-dark" href="/it-health-check">Take Our IT Health Check</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white">
+    <div class="sa-wrap">
+      <h2 class="sa-display sa-center" style="--sa-size: 28px; margin-bottom: 28px">Related Reading</h2>
+      <div class="cbn-three-col">
+        <a class="cbn-related-card" href="/blog/backup-test-most-businesses-fail">
+          <span class="cbn-icon-circle cbn-icon-danger"><span set:html={ICON.warning} /></span>
+          <h3 class="cbn-subheading">The Backup Test 60% of Businesses Fail</h3>
+          <p class="cbn-small">Common backup mistakes and how to avoid them.</p>
+        </a>
+        <a class="cbn-related-card" href="/ransomware-recovery">
+          <span class="cbn-icon-circle cbn-icon-purple"><span set:html={ICON.dot} /></span>
+          <h3 class="cbn-subheading">Ransomware Recovery Guide</h3>
+          <p class="cbn-small">What to do if your business is hit by ransomware.</p>
+        </a>
+        <a class="cbn-related-card" href="/services/backup-disaster-recovery">
+          <span class="cbn-icon-circle cbn-icon-good"><span set:html={ICON.dot} /></span>
+          <h3 class="cbn-subheading">Our Backup Services</h3>
+          <p class="cbn-small">How we protect businesses with comprehensive backup solutions.</p>
+        </a>
+      </div>
+      <p class="sa-center" style="margin-top: 28px">
+        <a class="sa-link" href="/resources">Browse all resources <span set:html={ICON.arrow} /></a>
+      </p>
+    </div>
+  </section>
+
+  <SourceContact />
+</StandaloneShell>
+
+<style>
+  .cbn-badge { display: inline-block; padding: 6px 16px; background: var(--accent); color: var(--ink); font-weight: 700; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+  .cbn-crumbs { padding: 24px 0 0; background: var(--ink); }
+  .cbn-crumbs ol { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0 0 32px; font-size: 14px; color: #b9c0c6; }
+  .cbn-crumbs li + li::before { content: '/'; margin-right: 6px; color: #6b747c; }
+  .cbn-crumbs li { display: flex; align-items: center; gap: 6px; }
+  .cbn-crumbs a { color: #dfe4e8; }
+  .cbn-crumbs [aria-current='page'] { color: #fff; font-weight: 600; }
+
+  .cbn-hero-grid { display: grid; gap: 32px; align-items: center; }
+  .cbn-body { color: var(--ink); font-size: 16px; line-height: 1.7; margin: 0 0 16px; }
+  .cbn-lead-dark { font-size: 17px; line-height: 1.6; color: #3a4450; max-width: 640px; margin: 0 auto; }
+  .cbn-intro { max-width: 620px; margin-inline: auto; }
+  .cbn-eyebrow { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; color: var(--primary-dark); font: 700 12px/1.3 'SA Archivo Narrow', sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+  .cbn-pill-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .cbn-pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+  .cbn-pill-blue { background: #dbeafe; color: #1e40af; }
+  .cbn-pill-green { background: #dcfce7; color: #166534; }
+  .cbn-pill-purple { background: #f3e8ff; color: #6b21a8; }
+  .cbn-hero-image { width: 100%; height: auto; border: 4px solid var(--white); box-shadow: 4px 4px 0 0 var(--ink); }
+
+  .cbn-icon-circle { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 999px; }
+  .cbn-icon-danger { background: #fde8e6; color: #b42318; }
+  .cbn-icon-good { background: #e6f6ea; color: #166534; }
+  .cbn-icon-purple { background: #f3e8ff; color: #6b21a8; }
+
+  .cbn-quote-block { display: flex; gap: 16px; padding: 28px; margin-bottom: 20px; background: var(--paper-deep); border-left: 4px solid var(--primary); }
+  .cbn-quote-green { border-left-color: #1a7f37; }
+  .cbn-quote-text { font-style: italic; font-size: 17px; line-height: 1.6; margin: 0 0 14px; color: #1f2933; }
+  .cbn-quote-attribution { font-weight: 700; margin: 0 0 6px; color: #3a4450; }
+  .cbn-quote-link { color: var(--primary-dark); font-weight: 600; font-size: 14px; }
+  .cbn-summary-line { text-align: center; margin-top: 28px; font-size: 17px; color: var(--ink); }
+
+  .cbn-two-col { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-bottom: 20px; }
+  .cbn-three-col { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-bottom: 24px; }
+  .cbn-four-col { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+  .cbn-card { background: var(--white); border: 1px solid var(--hairline); border-radius: 16px; padding: 28px; }
+  .cbn-card-danger-border { border-color: #f3b0a9; }
+  .cbn-card-bad { background: #fdf1f0; border-color: #f3b0a9; }
+  .cbn-card-good { background: #eff9f1; border-color: #a9dbb5; }
+  .cbn-card-heading { display: flex; align-items: center; gap: 10px; font-size: 20px; margin: 0 0 20px; justify-content: flex-start; }
+  .cbn-card-heading.sa-center { justify-content: center; }
+  .cbn-heading-good { color: #166534; }
+  .cbn-heading-bad { color: #b42318; }
+
+  .cbn-tick-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+  .cbn-tick-list li { display: flex; align-items: flex-start; gap: 12px; }
+  .cbn-tick-good li, .cbn-tick-good { color: #166534; }
+  .cbn-tick-bad, .cbn-tick-bad li { color: #b42318; }
+  .cbn-tick-list li span:last-child { color: var(--ink); font-size: 15px; }
+
+  .cbn-panel { background: var(--paper-deep); border-radius: 16px; padding: 32px; margin-bottom: 24px; }
+  .cbn-panel-paper { background: var(--paper); border: 1px solid var(--hairline); }
+  .cbn-panel-heading { display: flex; align-items: center; gap: 10px; justify-content: center; font: 400 22px/1.2 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--ink); margin: 0 0 16px; }
+  .cbn-subcard { background: var(--white); border-radius: 12px; padding: 20px; }
+  .cbn-subheading { display: flex; align-items: center; gap: 8px; font-weight: 700; margin: 0 0 10px; font-size: 16px; }
+  .cbn-bullet-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; color: var(--ink); font-size: 15px; }
+  .cbn-callout { margin-top: 20px; padding: 16px 20px; background: #fef3c7; border: 1px solid #f2ce6b; border-radius: 10px; }
+  .cbn-callout p { margin: 0; color: #7a4a06; font-weight: 500; }
+
+  .cbn-mini-card { background: var(--white); border-radius: 12px; padding: 20px; text-align: center; }
+  .cbn-mini-card-white { border: 1px solid var(--hairline); }
+  .cbn-small { font-size: 14px; color: #4b5560; line-height: 1.6; margin: 0; }
+  .cbn-tag { display: inline-block; margin-top: 10px; padding: 4px 12px; border-radius: 999px; background: var(--paper-deep); color: var(--primary-dark); font-size: 12px; font-weight: 600; }
+  .cbn-button-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+  .cbn-accordion-list { display: flex; flex-direction: column; gap: 14px; }
+  .cbn-accordion { background: var(--white); border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; }
+  .cbn-accordion summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; cursor: pointer; list-style: none; font-weight: 700; color: var(--primary-dark); }
+  .cbn-accordion summary::-webkit-details-marker { display: none; }
+  .cbn-accordion summary:focus-visible { outline: 3px solid var(--primary); outline-offset: -3px; }
+  .cbn-accordion-title { display: flex; align-items: center; gap: 10px; }
+  .cbn-accordion[open] .cbn-chevron { transform: rotate(180deg); }
+  .cbn-accordion-body { padding: 0 22px 22px; }
+  .cbn-story { font-style: italic; border-left: 3px solid var(--hairline); padding-left: 14px; color: #3a4450; margin: 0 0 18px; }
+  .cbn-mini-panel { border-radius: 10px; padding: 16px; }
+  .cbn-mini-panel-bad { background: #fdf1f0; border: 1px solid #f3b0a9; }
+  .cbn-mini-panel-good { background: #eff9f1; border: 1px solid #a9dbb5; }
+  .cbn-mini-panel h3 { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; font-size: 15px; }
+  .cbn-lesson { margin-top: 16px; padding: 14px 18px; border-radius: 10px; background: var(--paper-deep); }
+  .cbn-lesson p { margin: 0; font-size: 14px; color: var(--ink); }
+
+  .cbn-cost-line { max-width: 640px; margin-inline: auto; }
+
+  .cbn-related-card { display: block; background: var(--paper-deep); border: 1px solid var(--hairline); border-radius: 14px; padding: 24px; text-decoration: none; transition: box-shadow 150ms ease; }
+  .cbn-related-card:hover, .cbn-related-card:focus-visible { box-shadow: 4px 4px 0 0 var(--ink); }
+  .cbn-related-card .cbn-icon-circle { width: 44px; height: 44px; margin-bottom: 14px; }
+  .cbn-related-card h3 { color: var(--ink); }
+
+  @media (min-width: 768px) {
+    .cbn-hero-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>

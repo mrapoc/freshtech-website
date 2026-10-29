@@ -1,0 +1,362 @@
+{
+  "generatedAt": "2026-10-19T12:25:17.834Z",
+  "distDir": "..\\..\\.artifacts\\problem-ci\\dist-synthetic",
+  "routes": [
+    {
+      "slug": "microsoft-365-plans-compared",
+      "options": 3,
+      "url": "http://127.0.0.1:54224/microsoft-365-plans-compared/"
+    },
+    {
+      "slug": "in-house-vs-outsourced-it",
+      "options": 2,
+      "url": "http://127.0.0.1:54224/in-house-vs-outsourced-it/"
+    },
+    {
+      "slug": "break-fix-vs-managed-it",
+      "options": 2,
+      "url": "http://127.0.0.1:54224/break-fix-vs-managed-it/"
+    }
+  ],
+  "representatives": [
+    "microsoft-365-plans-compared",
+    "in-house-vs-outsourced-it"
+  ],
+  "sections": [
+    "sweep-phone",
+    "sweep-desktop",
+    "sweep-320",
+    "representatives",
+    "table-320-200",
+    "consent-reject",
+    "consent-accept",
+    "no-js",
+    "delayed-font"
+  ],
+  "assertions": 264,
+  "failures": [],
+  "evidence": [
+    "microsoft-365-plans-compared-phone-top.png",
+    "microsoft-365-plans-compared-phone-options.png",
+    "microsoft-365-plans-compared-phone-table.png",
+    "microsoft-365-plans-compared-phone-200.png",
+    "microsoft-365-plans-compared-desktop-top.png",
+    "microsoft-365-plans-compared-desktop-options.png",
+    "microsoft-365-plans-compared-desktop-table.png",
+    "microsoft-365-plans-compared-desktop-200.png",
+    "in-house-vs-outsourced-it-phone-top.png",
+    "in-house-vs-outsourced-it-phone-options.png",
+    "in-house-vs-outsourced-it-phone-table.png",
+    "in-house-vs-outsourced-it-phone-200.png",
+    "in-house-vs-outsourced-it-desktop-top.png",
+    "in-house-vs-outsourced-it-desktop-options.png",
+    "in-house-vs-outsourced-it-desktop-table.png",
+    "in-house-vs-outsourced-it-desktop-200.png",
+    "microsoft-365-plans-compared-320-200-table.png",
+    "in-house-vs-outsourced-it-320-200-table.png"
+  ],
+  "networkFailures": [],
+  "delayedFont": [
+    {
+      "label": "delayed-font/phone/microsoft-365-plans-compared",
+      "before": {
+        "h1": {
+          "x": 20,
+          "y": 218.796875,
+          "width": 350,
+          "height": 61.25
+        },
+        "main": {
+          "x": 0,
+          "y": 105.796875,
+          "width": 390,
+          "height": 11426.125
+        },
+        "table": {
+          "x": 20,
+          "y": 3771.09375,
+          "width": 350,
+          "height": 716
+        },
+        "overflow": false
+      },
+      "after": {
+        "h1": {
+          "x": 20,
+          "y": 218.796875,
+          "width": 350,
+          "height": 61.25
+        },
+        "main": {
+          "x": 0,
+          "y": 105.796875,
+          "width": 390,
+          "height": 11426.125
+        },
+        "table": {
+          "x": 20,
+          "y": 3771.09375,
+          "width": 350,
+          "height": 716
+        },
+        "overflow": false
+      },
+      "deltas": {
+        "h1": 0,
+        "main": 0,
+        "table": 0
+      }
+    },
+    {
+      "label": "delayed-font/desktop/microsoft-365-plans-compared",
+      "before": {
+        "h1": {
+          "x": 290,
+          "y": 256.09375,
+          "width": 569.25,
+          "height": 92.375
+        },
+        "main": {
+          "x": 0,
+          "y": 134.09375,
+          "width": 1440,
+          "height": 7390.328125
+        },
+        "table": {
+          "x": 170,
+          "y": 2040.109375,
+          "width": 1100,
+          "height": 653
+        },
+        "overflow": false
+      },
+      "after": {
+        "h1": {
+          "x": 290,
+          "y": 256.09375,
+          "width": 569.25,
+          "height": 92.375
+        },
+        "main": {
+          "x": 0,
+          "y": 134.09375,
+          "width": 1440,
+          "height": 7390.328125
+        },
+        "table": {
+          "x": 170,
+          "y": 2040.109375,
+          "width": 1100,
+          "height": 653
+        },
+        "overflow": false
+      },
+      "deltas": {
+        "h1": 0,
+        "main": 0,
+        "table": 0
+      }
+    },
+    {
+      "label": "delayed-font/320-200/microsoft-365-plans-compared",
+      "before": {
+        "h1": {
+          "x": 20,
+          "y": 429.78125,
+          "width": 280,
+          "height": 196
+        },
+        "main": {
+          "x": 0,
+          "y": 211.78125,
+          "width": 320,
+          "height": 38480.609375
+        },
+        "table": {
+          "x": 20,
+          "y": 12809.5,
+          "width": 280,
+          "height": 1808
+        },
+        "overflow": false
+      },
+      "after": {
+        "h1": {
+          "x": 20,
+          "y": 429.78125,
+          "width": 280,
+          "height": 196
+        },
+        "main": {
+          "x": 0,
+          "y": 211.78125,
+          "width": 320,
+          "height": 38480.609375
+        },
+        "table": {
+          "x": 20,
+          "y": 12809.5,
+          "width": 280,
+          "height": 1808
+        },
+        "overflow": false
+      },
+      "deltas": {
+        "h1": 0,
+        "main": 0,
+        "table": 0
+      }
+    },
+    {
+      "label": "delayed-font/phone/in-house-vs-outsourced-it",
+      "before": {
+        "h1": {
+          "x": 20,
+          "y": 218.796875,
+          "width": 350,
+          "height": 61.25
+        },
+        "main": {
+          "x": 0,
+          "y": 105.796875,
+          "width": 390,
+          "height": 10844.078125
+        },
+        "table": {
+          "x": 20,
+          "y": 3209.546875,
+          "width": 350,
+          "height": 684
+        },
+        "overflow": false
+      },
+      "after": {
+        "h1": {
+          "x": 20,
+          "y": 218.796875,
+          "width": 350,
+          "height": 61.25
+        },
+        "main": {
+          "x": 0,
+          "y": 105.796875,
+          "width": 390,
+          "height": 10844.078125
+        },
+        "table": {
+          "x": 20,
+          "y": 3209.546875,
+          "width": 350,
+          "height": 684
+        },
+        "overflow": false
+      },
+      "deltas": {
+        "h1": 0,
+        "main": 0,
+        "table": 0
+      }
+    },
+    {
+      "label": "delayed-font/desktop/in-house-vs-outsourced-it",
+      "before": {
+        "h1": {
+          "x": 290,
+          "y": 256.09375,
+          "width": 569.25,
+          "height": 92.375
+        },
+        "main": {
+          "x": 0,
+          "y": 134.09375,
+          "width": 1440,
+          "height": 7228.859375
+        },
+        "table": {
+          "x": 170,
+          "y": 1897.640625,
+          "width": 1100,
+          "height": 516
+        },
+        "overflow": false
+      },
+      "after": {
+        "h1": {
+          "x": 290,
+          "y": 256.09375,
+          "width": 569.25,
+          "height": 92.375
+        },
+        "main": {
+          "x": 0,
+          "y": 134.09375,
+          "width": 1440,
+          "height": 7228.859375
+        },
+        "table": {
+          "x": 170,
+          "y": 1897.640625,
+          "width": 1100,
+          "height": 516
+        },
+        "overflow": false
+      },
+      "deltas": {
+        "h1": 0,
+        "main": 0,
+        "table": 0
+      }
+    },
+    {
+      "label": "delayed-font/320-200/in-house-vs-outsourced-it",
+      "before": {
+        "h1": {
+          "x": 20,
+          "y": 429.78125,
+          "width": 280,
+          "height": 245
+        },
+        "main": {
+          "x": 0,
+          "y": 211.78125,
+          "width": 320,
+          "height": 36472.28125
+        },
+        "table": {
+          "x": 20,
+          "y": 10741.96875,
+          "width": 280,
+          "height": 1944
+        },
+        "overflow": false
+      },
+      "after": {
+        "h1": {
+          "x": 20,
+          "y": 429.78125,
+          "width": 280,
+          "height": 245
+        },
+        "main": {
+          "x": 0,
+          "y": 211.78125,
+          "width": 320,
+          "height": 36472.28125
+        },
+        "table": {
+          "x": 20,
+          "y": 10741.96875,
+          "width": 280,
+          "height": 1944
+        },
+        "overflow": false
+      },
+      "deltas": {
+        "h1": 0,
+        "main": 0,
+        "table": 0
+      }
+    }
+  ],
+  "error": null
+}

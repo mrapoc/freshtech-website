@@ -1,0 +1,70 @@
+---
+import SourceContact from './SourceContact.astro';
+import { groupListing, listingCopy } from '../lib/technology-display.mjs';
+
+// pages/TechnologyLandingPage.tsx: PageHeader, "Why We Created This",
+// category-grouped topic cards, the closing CTA and the shared <Contact />
+// section. SourceContact.astro is the root-owned port of components/Contact.tsx:
+// the informational side (Signal for Help, trust line, onboarding, tel and
+// email links) is preserved; the form and Calendly modal are disabled
+// separately (ContactForm submissionMode=disabled notice, booking redirects to
+// /contact). It takes no props and imports its own scoped CSS.
+interface Card { slug: string; title: string; desc: string; category: string }
+interface Props { listing: { pages: Card[]; categories: string[] } }
+const { listing } = Astro.props;
+const groups = groupListing(listing);
+---
+
+<main id="main-content" class="tech-page tech-listing-page" data-technology-listing tabindex="-1">
+  <section class="tech-hero">
+    <div class="tech-container tech-hero-text">
+      <p class="tech-eyebrow tech-eyebrow-light">{listingCopy.highlight}</p>
+      <h1>{listingCopy.title}</h1>
+      <p class="tech-hero-copy">{listingCopy.subtitle}</p>
+    </div>
+  </section>
+
+  <section class="tech-section tech-intro">
+    <div class="tech-container tech-narrow">
+      <h2>{listingCopy.introHeading}</h2>
+      <p>{listingCopy.intro}</p>
+    </div>
+  </section>
+
+  <section id="topics" class="tech-section tech-topics">
+    <div class="tech-container">
+      <header class="tech-section-heading tech-section-heading-centre">
+        <h2>{listingCopy.topicsHeading}</h2>
+        <p>{listingCopy.topicsSub}</p>
+      </header>
+      {groups.map(group => (
+        <div class="tech-category" data-category={group.category}>
+          <h3>{group.category}</h3>
+          <ul class="tech-card-grid">
+            {group.pages.map(page => (
+              <li>
+                <a class="tech-topic-card" href={`/technology/${page.slug}`}>
+                  <h4>{page.title}</h4>
+                  <p>{page.desc}</p>
+                  <span class="tech-topic-more">{listingCopy.readGuide} <span aria-hidden="true">→</span></span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="tech-section tech-cta">
+    <div class="tech-container tech-narrow tech-cta-inner">
+      <h2>{listingCopy.ctaHeading}</h2>
+      <p>{listingCopy.ctaBody}</p>
+      <div class="tech-actions">
+        <a class="tech-primary-button" href={listingCopy.ctaPrimary.href}>{listingCopy.ctaPrimary.label}</a>
+        <a class="tech-secondary-button" href={listingCopy.ctaSecondary.href}>{listingCopy.ctaSecondary.label}</a>
+      </div>
+    </div>
+  </section>
+  <SourceContact />
+</main>

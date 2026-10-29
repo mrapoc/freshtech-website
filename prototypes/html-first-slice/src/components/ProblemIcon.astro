@@ -1,0 +1,16 @@
+---
+// Decorative glyphs for the problem family. Card names arrive already resolved
+// through src/lib/problem-display.mjs (iconName), so an icon absent from the
+// React iconMap has fallen back to CheckCircle before reaching here; the page
+// also asks directly for XCircle, ChevronDown, ChevronUp, Phone and ArrowRight.
+// Outlines are the lucide-react v0.554.0 shapes (ISC) copied into
+// src/lib/problem-icons.mjs, drawn inline so no icon font or script is needed.
+import { iconNodes } from '../lib/problem-icons.mjs';
+
+interface Props { name: string; size?: number; class?: string }
+const { name, size = 24, class: className } = Astro.props;
+const nodes = iconNodes(name);
+---
+<svg class={className} viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  {nodes.map(([Tag, attrs]) => <Tag {...attrs} />)}
+</svg>

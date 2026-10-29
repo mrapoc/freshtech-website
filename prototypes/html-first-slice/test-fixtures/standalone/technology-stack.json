@@ -1,0 +1,307 @@
+{
+  "route": "/technology-stack",
+  "source": "pages-v2/TechnologyStackPageV2.tsx",
+  "sourceSha256": "b1e3ebd0dcfa963aadc51e4d40d576c4adb096fef45b860cbd8a34385fe5387b",
+  "capturedAt": "2026-09-16T12:23:04.249Z",
+  "head": {
+    "title": "Our Technology Stack: The Tools We Trust | Fresh Tech IT Support",
+    "description": "The technology Fresh Tech builds on: Huntress 24/7 SOC, ThreatLocker zero-trust, Microsoft 365, Dell, Ubiquiti UniFi, Yealink and Cyber Essentials. Why we chose each, not just logos.",
+    "canonical": "https://fresh-tech.uk/technology-stack",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": [
+          "LocalBusiness",
+          "ProfessionalService"
+        ],
+        "@id": "https://fresh-tech.uk/#localbusiness",
+        "name": "Fresh Tech IT Support",
+        "description": "Managed IT Support and Cybersecurity services for businesses in Shropshire, Herefordshire, and the West Midlands.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/",
+        "telephone": "+441584517234",
+        "email": "hello@fresh-tech.uk",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.368,
+          "longitude": -2.717
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          },
+          {
+            "@type": "City",
+            "name": "Ludlow"
+          },
+          {
+            "@type": "City",
+            "name": "Shrewsbury"
+          },
+          {
+            "@type": "City",
+            "name": "Hereford"
+          },
+          {
+            "@type": "City",
+            "name": "Telford"
+          },
+          {
+            "@type": "City",
+            "name": "Worcester"
+          },
+          {
+            "@type": "City",
+            "name": "Leominster"
+          },
+          {
+            "@type": "City",
+            "name": "Ross-on-Wye"
+          },
+          {
+            "@type": "City",
+            "name": "Bridgnorth"
+          },
+          {
+            "@type": "City",
+            "name": "Malvern"
+          },
+          {
+            "@type": "City",
+            "name": "Ledbury"
+          },
+          {
+            "@type": "City",
+            "name": "Oswestry"
+          },
+          {
+            "@type": "City",
+            "name": "Welshpool"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.368,
+            "longitude": -2.717
+          },
+          "geoRadius": "55000"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed IT Support",
+              "url": "https://fresh-tech.uk/services/managed-it-support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Security",
+              "url": "https://fresh-tech.uk/services/cybersecurity"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Essentials Certification Support",
+              "url": "https://fresh-tech.uk/services/cyber-essentials"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microsoft 365 & Cloud Solutions",
+              "url": "https://fresh-tech.uk/services/cloud-solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud Backup & Disaster Recovery",
+              "url": "https://fresh-tech.uk/services/backup-disaster-recovery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Phone Systems",
+              "url": "https://fresh-tech.uk/services/cloud-phone-systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Procurement",
+              "url": "https://fresh-tech.uk/services/hardware-procurement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic IT Projects",
+              "url": "https://fresh-tech.uk/services/strategic-projects"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed Print",
+              "url": "https://fresh-tech.uk/services/managed-print"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Technology Stack",
+            "item": "https://fresh-tech.uk/technology-stack"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "The technology we trust. And why."
+      ],
+      [
+        2,
+        "We make our money on service, not resale"
+      ],
+      [
+        2,
+        "Let’s talk about your setup"
+      ]
+    ],
+    "links": [
+      [
+        "/services/cloud-solutions",
+        "CSP"
+      ],
+      [
+        "/pricing",
+        "transparent pricing"
+      ],
+      [
+        "/contact",
+        "Book a 20-min call →"
+      ]
+    ],
+    "images": [],
+    "text": "How we build The technology we trust. And why. Plenty of IT companies drop a wall of vendor logos on their site. We’d rather tell you exactly what we run, what it does for you, and why we chose it over the alternatives. This is the same stack across every client. No cut corners on the small accounts, no upsells you don’t need. Huntress Managed Detection & Response A 24/7 Security Operations Centre watching every endpoint. Real human threat hunters review suspicious activity and isolate compromised machines, even out of hours. Why we chose it Most small businesses can’t staff a 24/7 SOC. Huntress gives our clients enterprise-grade detection and human response at SME scale, catching the foothold attacks that slip past antivirus. ThreatLocker Zero-Trust / Application Control Allowlisting and ringfencing: only approved applications run, and they can only do what they’re meant to. Ransomware that lands simply can’t execute. Why we chose it Antivirus blocks what it recognises; ThreatLocker blocks everything it hasn’t been told to trust. It’s the difference between detecting an attack and denying it a way in. Microsoft 365 Productivity & Identity Email, Teams, SharePoint and OneDrive, deployed, secured and managed properly, with Conditional Access and device management doing the heavy lifting on identity security. Why we chose it We resell licences as a Microsoft Cloud Solution Provider (CSP) at cost, with no markup. You get the platform billed honestly, and configured the way it should be, not left on defaults. Dell Business Hardware Dell Pro and Dell Pro Max (formerly Latitude and Precision) business machines, specced to the workload and backed by proper onsite warranties, supplied through our Dell Premier account. Why we chose it Consumer laptops from a high street shop cost you in downtime and short lifespans. Business-grade hardware, specced correctly, is cheaper over its life and far less hassle. Ubiquiti UniFi Networking & Wi-Fi Business-class switching, firewalls and Wi-Fi designed for real environments, from offices to warehouses and rural sites, managed centrally from a single dashboard. Why we chose it Reliable connectivity is the foundation everything else sits on. UniFi gives us enterprise capability and proper segmentation without enterprise pricing or complexity. Yealink Business Telephony Cloud phone systems and handsets that let your team make and take calls on the office number from anywhere: desk, mobile or laptop. Why we chose it Proven, reliable hardware that integrates cleanly with cloud phone platforms, so your phones just work whether staff are in the office or remote. Cyber Essentials Certification The UK government-backed security standard. We hold it ourselves, and we prepare and guide clients through certification. Why we chose it It’s increasingly demanded by clients, insurers and supply chains. We practise what we deploy, and we get clients certified, not just “nearly there”. No hidden margins We make our money on service, not resale Microsoft licences are resold at cost as a CSP, with no markup. Hardware is supplied at fair, transparent prices. The tools above are chosen because they work, not because they pay the best margin. That’s the same principle behind our transparent pricing and no three-year tie-ins. You should know what you’re paying for, and why. Want this stack behind your business? Let’s talk about your setup A 20-minute call to understand what you run today and where the gaps are. Honest advice, no jargon, no hard sell. Book a 20-min call → Last reviewed May 2026 · Sam James"
+  }
+}

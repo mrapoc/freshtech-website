@@ -1,0 +1,728 @@
+{
+  "route": "/resources",
+  "source": "pages/ResourceCentrePage.tsx",
+  "sourceSha256": "10a03183844c574a78c093f423adeda66406d26f77080d07e451a4fbd87cb634",
+  "capturedAt": "2026-09-16T12:23:13.109Z",
+  "head": {
+    "title": "Resource Centre | Fresh Tech IT Support",
+    "description": "Guides, case studies, and FAQs to help your business master its technology. 10+ years of IT expertise in one place.",
+    "canonical": "https://fresh-tech.uk/resources",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": [
+          "LocalBusiness",
+          "ProfessionalService"
+        ],
+        "@id": "https://fresh-tech.uk/#localbusiness",
+        "name": "Fresh Tech IT Support",
+        "description": "Managed IT Support and Cybersecurity services for businesses in Shropshire, Herefordshire, and the West Midlands.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/",
+        "telephone": "+441584517234",
+        "email": "hello@fresh-tech.uk",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.368,
+          "longitude": -2.717
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          },
+          {
+            "@type": "City",
+            "name": "Ludlow"
+          },
+          {
+            "@type": "City",
+            "name": "Shrewsbury"
+          },
+          {
+            "@type": "City",
+            "name": "Hereford"
+          },
+          {
+            "@type": "City",
+            "name": "Telford"
+          },
+          {
+            "@type": "City",
+            "name": "Worcester"
+          },
+          {
+            "@type": "City",
+            "name": "Leominster"
+          },
+          {
+            "@type": "City",
+            "name": "Ross-on-Wye"
+          },
+          {
+            "@type": "City",
+            "name": "Bridgnorth"
+          },
+          {
+            "@type": "City",
+            "name": "Malvern"
+          },
+          {
+            "@type": "City",
+            "name": "Ledbury"
+          },
+          {
+            "@type": "City",
+            "name": "Oswestry"
+          },
+          {
+            "@type": "City",
+            "name": "Welshpool"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.368,
+            "longitude": -2.717
+          },
+          "geoRadius": "55000"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed IT Support",
+              "url": "https://fresh-tech.uk/services/managed-it-support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Security",
+              "url": "https://fresh-tech.uk/services/cybersecurity"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Essentials Certification Support",
+              "url": "https://fresh-tech.uk/services/cyber-essentials"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microsoft 365 & Cloud Solutions",
+              "url": "https://fresh-tech.uk/services/cloud-solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud Backup & Disaster Recovery",
+              "url": "https://fresh-tech.uk/services/backup-disaster-recovery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Phone Systems",
+              "url": "https://fresh-tech.uk/services/cloud-phone-systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Procurement",
+              "url": "https://fresh-tech.uk/services/hardware-procurement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic IT Projects",
+              "url": "https://fresh-tech.uk/services/strategic-projects"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed Print",
+              "url": "https://fresh-tech.uk/services/managed-print"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Resources",
+            "item": "https://fresh-tech.uk/resources"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "Resource Centre"
+      ],
+      [
+        2,
+        "Where Should You Start?"
+      ],
+      [
+        3,
+        "New to IT Support?"
+      ],
+      [
+        3,
+        "Security Focused"
+      ],
+      [
+        3,
+        "Switching Provider?"
+      ],
+      [
+        3,
+        "Latest News"
+      ],
+      [
+        3,
+        "Case Studies"
+      ],
+      [
+        3,
+        "FAQ"
+      ],
+      [
+        3,
+        "IT Health Check"
+      ],
+      [
+        2,
+        "Essential Guides"
+      ],
+      [
+        4,
+        "Why Microsoft 365 & Google Workspace Need Backing Up"
+      ],
+      [
+        4,
+        "Why Microsoft 365 Business Premium?"
+      ],
+      [
+        4,
+        "AI Acceptable Use Policy"
+      ],
+      [
+        2,
+        "Industry IT Guides"
+      ],
+      [
+        4,
+        "Engineer's IT Performance Guide"
+      ],
+      [
+        4,
+        "Legal Tech Compliance Checklist"
+      ],
+      [
+        4,
+        "NHS Data Security Guide"
+      ],
+      [
+        4,
+        "Smart Factory IT Guide"
+      ],
+      [
+        4,
+        "Vet Practice Network Security Check"
+      ],
+      [
+        4,
+        "Renewable Energy IT Guide"
+      ],
+      [
+        4,
+        "Retail & Distribution IT Operations Guide"
+      ],
+      [
+        2,
+        "Technology Explained"
+      ],
+      [
+        4,
+        "What is RMM?"
+      ],
+      [
+        4,
+        "EDR & MDR Explained"
+      ],
+      [
+        4,
+        "Application Control"
+      ],
+      [
+        4,
+        "Why No Admin Rights?"
+      ],
+      [
+        4,
+        "Identity Protection (ITDR)"
+      ],
+      [
+        4,
+        "Conditional Access"
+      ],
+      [
+        4,
+        "Intune & Autopilot"
+      ],
+      [
+        4,
+        "The NCSC"
+      ],
+      [
+        4,
+        "Why Patching Matters"
+      ],
+      [
+        4,
+        "End of Life Devices"
+      ],
+      [
+        4,
+        "Business Networking"
+      ],
+      [
+        4,
+        "Cloud vs On-Premise"
+      ],
+      [
+        4,
+        "Zero Trust Security"
+      ],
+      [
+        4,
+        "MFA Explained"
+      ],
+      [
+        4,
+        "Phishing Attacks"
+      ],
+      [
+        4,
+        "Do I Need a VPN?"
+      ],
+      [
+        2,
+        "IT Crisis Help"
+      ],
+      [
+        4,
+        "Email Hacked?"
+      ],
+      [
+        4,
+        "Laptop Lost/Stolen?"
+      ],
+      [
+        4,
+        "Suspicious Payment Request?"
+      ],
+      [
+        4,
+        "Data Breach?"
+      ],
+      [
+        2,
+        "Fresh From The Press"
+      ],
+      [
+        4,
+        "QR Code Phishing: What to Tell Your Team"
+      ],
+      [
+        4,
+        "The Leaver You Forgot to Remove"
+      ],
+      [
+        2,
+        "Where Are My Files? - Solved"
+      ],
+      [
+        3,
+        "Quick Access"
+      ],
+      [
+        2,
+        "Don't Get Ripped Off By Bad IT Support"
+      ],
+      [
+        2,
+        "Signal for Help"
+      ],
+      [
+        3,
+        "Send a Signal"
+      ]
+    ],
+    "links": [
+      [
+        "/services/managed-it-support",
+        "1Read: Managed IT Explained"
+      ],
+      [
+        "/it-health-check",
+        "2Take: IT Health Check"
+      ],
+      [
+        "/pricing",
+        "3View: Pricing Calculator"
+      ],
+      [
+        "/services/cyber-essentials",
+        "1Guide: Cyber Essentials"
+      ],
+      [
+        "/blog/password-security-tips",
+        "2Blog: Password Security Tips"
+      ],
+      [
+        "/microsoft-business-premium",
+        "3Compare: Business Premium"
+      ],
+      [
+        "/onboarding",
+        "1Guide: Onboarding Process"
+      ],
+      [
+        "/case-studies",
+        "2Case Study: Smooth Transitions"
+      ],
+      [
+        "/contact",
+        "3Contact: Free Consultation"
+      ],
+      [
+        "/blog",
+        "Read The Blog"
+      ],
+      [
+        "/case-studies",
+        "View Success Stories"
+      ],
+      [
+        "/faq",
+        "Get Answers"
+      ],
+      [
+        "/it-health-check",
+        "Take The Quiz"
+      ],
+      [
+        "/cloud-backup-necessity",
+        "Featured Why Microsoft 365 & Google Workspace Need Backing Up The cloud backup myth explained Microsoft and Google explicitly state they're not responsible for your data loss. This guide explains why independent backup is essential, with real ToS quotes and relatable scenarios. Microsoft 365Google WorkspaceOneDrive KFMIntune Read the guide"
+      ],
+      [
+        "/microsoft-business-premium",
+        "Why Microsoft 365 Business Premium? The complete security bundle explained Business Premium includes Intune, Defender, Conditional Access, and more. See how it compares to piecing together individual tools -and why it's our recommended licence. IntuneDefenderConditional Access Compare options"
+      ],
+      [
+        "/ai-acceptable-use-policy",
+        "Free Template AI Acceptable Use Policy Ready-to-use policy template A comprehensive AI policy template covering data classification, approved tools, deepfakes, BYOD, and more. Copy it, print it, or save as PDF, completely free. Copy & PastePrint-Friendly27 Sections Get the template"
+      ],
+      [
+        "/industries",
+        "View All Industries"
+      ],
+      [
+        "/guides/engineering",
+        "Printable Engineer's IT Performance Guide Optimise your CAD workstations, secure your IP, and eliminate network bottlenecks EngineeringOpen Guide"
+      ],
+      [
+        "/guides/legal",
+        "Printable Legal Tech Compliance Checklist Protect client confidentiality, meet SRA requirements, and prevent conveyancing fraud LegalOpen Guide"
+      ],
+      [
+        "/guides/healthcare",
+        "Printable NHS Data Security Guide Meet DSPT requirements, secure patient data, and pass CQC inspections HealthcareOpen Guide"
+      ],
+      [
+        "/guides/manufacturing",
+        "Printable Smart Factory IT Guide Connect your shop floor, optimise ERP performance, and secure OT systems ManufacturingOpen Guide"
+      ],
+      [
+        "/guides/veterinary",
+        "Printable Vet Practice Network Security Check Secure your PMS, optimise imaging workflows, and isolate guest WiFi VeterinaryOpen Guide"
+      ],
+      [
+        "/guides/renewable-energy",
+        "Printable Renewable Energy IT Guide Connect remote sites, monitor assets securely, and scale with your portfolio Renewable EnergyOpen Guide"
+      ],
+      [
+        "/guides/retail-distribution",
+        "Printable Retail & Distribution IT Operations Guide Optimise warehouse systems, secure EPOS, and enable omnichannel retail Retail & DistributionOpen Guide"
+      ],
+      [
+        "/technology/rmm",
+        "What is RMM? How we monitor your systems 24/7 and fix issues before you notice them. Explore"
+      ],
+      [
+        "/technology/edr-mdr",
+        "EDR & MDR Explained Why traditional antivirus isn't enough and how we go beyond it. Explore"
+      ],
+      [
+        "/technology/application-control",
+        "Application Control How blocking unknown software stops ransomware in its tracks. Explore"
+      ],
+      [
+        "/technology/admin-rights",
+        "Why No Admin Rights? The security reason behind removing local admin - and how we make it painless. Explore"
+      ],
+      [
+        "/technology/itdr",
+        "Identity Protection (ITDR) Protecting your Microsoft 365 accounts from hackers who log in, not break in. Explore"
+      ],
+      [
+        "/technology/conditional-access",
+        "Conditional Access Smart rules that control who can access your data and when. Explore"
+      ],
+      [
+        "/technology/intune-autopilot",
+        "Intune & Autopilot Modern device management that keeps laptops secure and easy to deploy. Explore"
+      ],
+      [
+        "/technology/ncsc",
+        "The NCSC UK's National Cyber Security Centre and their guidance for businesses. Explore"
+      ],
+      [
+        "/technology/patching",
+        "Why Patching Matters Understanding why keeping software updated is critical for security. Explore"
+      ],
+      [
+        "/technology/end-of-life",
+        "End of Life Devices The hidden risks of running outdated Windows and what to do about it. Explore"
+      ],
+      [
+        "/technology/business-networking",
+        "Business Networking From WiFi to cabling - what makes a reliable business network. Explore"
+      ],
+      [
+        "/technology/cloud-vs-onpremise",
+        "Cloud vs On-Premise Which is right for your business and what are the trade-offs? Explore"
+      ],
+      [
+        "/technology/zero-trust",
+        "Zero Trust Security The modern security model that assumes breaches will happen. Explore"
+      ],
+      [
+        "/technology/mfa",
+        "MFA Explained Why passwords alone aren't enough and how multi-factor authentication works. Explore"
+      ],
+      [
+        "/technology/phishing",
+        "Phishing Attacks How to spot email scams and protect your business from social engineering. Explore"
+      ],
+      [
+        "/technology/vpn",
+        "Do I Need a VPN? When VPNs still matter, when they don't, and the modern alternatives. Explore"
+      ],
+      [
+        "/email-account-hacked",
+        "Email Hacked? Step-by-step guide to secure your account and prevent further damage. Get Help"
+      ],
+      [
+        "/laptop-stolen-lost",
+        "Laptop Lost/Stolen? Immediate actions to protect your business data. Get Help"
+      ],
+      [
+        "/business-email-compromise",
+        "Suspicious Payment Request? How to spot and respond to business email fraud. Get Help"
+      ],
+      [
+        "/data-breach-discovered",
+        "Data Breach? Your GDPR-compliant response checklist. Get Help"
+      ],
+      [
+        "/blog",
+        "View All Articles"
+      ],
+      [
+        "/blog/qr-code-scams-quishing-business",
+        "Sep 14, 2026 QR Code Phishing: What to Tell Your Team QR code scams turn up in emails and on car park machines. What the preview on your phone does and does not tell you, and what to switch on in Microsoft 365."
+      ],
+      [
+        "/blog/leavers-offboarding-it-checklist",
+        "Sep 8, 2026 The Leaver You Forgot to Remove Somebody left last year and their account is still live. It is the most common gap we find, the cheapest to fix, and the one that fails you at renewal."
+      ],
+      [
+        "/case-studies/sharepoint-file-shortcuts-automation",
+        "Read Full Mission Report"
+      ],
+      [
+        "/services",
+        "Our Services"
+      ],
+      [
+        "/pricing",
+        "Pricing"
+      ],
+      [
+        "/industries",
+        "Industries"
+      ],
+      [
+        "/about",
+        "About Us"
+      ],
+      [
+        "/onboarding",
+        "Thinking of switching providers? See how easy it is"
+      ],
+      [
+        "tel:01584517234",
+        "01584 517 234"
+      ],
+      [
+        "mailto:support@fresh-tech.uk",
+        "support@fresh-tech.uk"
+      ],
+      [
+        "tel:01584517234",
+        "01584 517 234"
+      ]
+    ],
+    "images": [
+      [
+        "https://res.cloudinary.com/djkmeg5se/image/upload/w_200,f_auto,q_auto:good/f_auto,q_auto/phishing-email-scam-protection.jpg",
+        "QR Code Phishing: What to Tell Your Team"
+      ],
+      [
+        "https://res.cloudinary.com/djkmeg5se/image/upload/w_200,f_auto,q_auto:good/f_auto,q_auto/admin-rights-removal-security.jpg",
+        "The Leaver You Forgot to Remove"
+      ],
+      [
+        "https://res.cloudinary.com/djkmeg5se/image/upload/w_800,f_auto,q_auto:good/f_auto,q_auto/v1768909718/d1edf776-5a15-4ba3-a52f-45d2bd347afe.png",
+        "Fast-Growing Energy Company"
+      ],
+      [
+        "https://res.cloudinary.com/djkmeg5se/image/upload/w_320,f_auto,q_auto/Buyers-Guide.png",
+        "The 2025 IT Services Buyer's Guide"
+      ]
+    ],
+    "text": "Knowledge Hub Resource Centre The Fresh Tech knowledge base. Guides, success stories, and answers to your burning questions. 49+ Blog Articles 13 Case Studies 32+ FAQ Answers 10+ Years Expertise Where Should You Start? Choose a learning path based on your goals New to IT Support? Start here to understand what managed IT means for your business 1Read: Managed IT Explained2Take: IT Health Check3View: Pricing Calculator Security Focused Learn how to protect your business from cyber threats 1Guide: Cyber Essentials2Blog: Password Security Tips3Compare: Business Premium Switching Provider? Everything you need to know about transitioning IT support 1Guide: Onboarding Process2Case Study: Smooth Transitions3Contact: Free Consultation Latest News 49+ articles Tips, tricks, and industry updates from our team. Read The Blog Case Studies 13 success stories Real stories of how we've helped local businesses. View Success Stories FAQ 32+ answers Quick answers to common questions about our support. Get Answers IT Health Check 3-minute assessment Free assessment of your business technology. Take The Quiz Essential Guides In-depth guides on critical IT topics every business should understand Featured Why Microsoft 365 & Google Workspace Need Backing Up The cloud backup myth explained Microsoft and Google explicitly state they're not responsible for your data loss. This guide explains why independent backup is essential, with real ToS quotes and relatable scenarios. Microsoft 365Google WorkspaceOneDrive KFMIntune Read the guide Why Microsoft 365 Business Premium? The complete security bundle explained Business Premium includes Intune, Defender, Conditional Access, and more. See how it compares to piecing together individual tools -and why it's our recommended licence. IntuneDefenderConditional Access Compare options Free Template AI Acceptable Use Policy Ready-to-use policy template A comprehensive AI policy template covering data classification, approved tools, deepfakes, BYOD, and more. Copy it, print it, or save as PDF, completely free. Copy & PastePrint-Friendly27 Sections Get the template Industry IT Guides Free interactive checklists for your sector View All Industries Printable Engineer's IT Performance Guide Optimise your CAD workstations, secure your IP, and eliminate network bottlenecks EngineeringOpen Guide Printable Legal Tech Compliance Checklist Protect client confidentiality, meet SRA requirements, and prevent conveyancing fraud LegalOpen Guide Printable NHS Data Security Guide Meet DSPT requirements, secure patient data, and pass CQC inspections HealthcareOpen Guide Printable Smart Factory IT Guide Connect your shop floor, optimise ERP performance, and secure OT systems ManufacturingOpen Guide Printable Vet Practice Network Security Check Secure your PMS, optimise imaging workflows, and isolate guest WiFi VeterinaryOpen Guide Printable Renewable Energy IT Guide Connect remote sites, monitor assets securely, and scale with your portfolio Renewable EnergyOpen Guide Printable Retail & Distribution IT Operations Guide Optimise warehouse systems, secure EPOS, and enable omnichannel retail Retail & DistributionOpen Guide Technology Explained Plain-English guides to the tech that protects your business What is RMM? How we monitor your systems 24/7 and fix issues before you notice them. Explore EDR & MDR Explained Why traditional antivirus isn't enough and how we go beyond it. Explore Application Control How blocking unknown software stops ransomware in its tracks. Explore Why No Admin Rights? The security reason behind removing local admin - and how we make it painless. Explore Identity Protection (ITDR) Protecting your Microsoft 365 accounts from hackers who log in, not break in. Explore Conditional Access Smart rules that control who can access your data and when. Explore Intune & Autopilot Modern device management that keeps laptops secure and easy to deploy. Explore The NCSC UK's National Cyber Security Centre and their guidance for businesses. Explore Why Patching Matters Understanding why keeping software updated is critical for security. Explore End of Life Devices The hidden risks of running outdated Windows and what to do about it. Explore Business Networking From WiFi to cabling - what makes a reliable business network. Explore Cloud vs On-Premise Which is right for your business and what are the trade-offs? Explore Zero Trust Security The modern security model that assumes breaches will happen. Explore MFA Explained Why passwords alone aren't enough and how multi-factor authentication works. Explore Phishing Attacks How to spot email scams and protect your business from social engineering. Explore Do I Need a VPN? When VPNs still matter, when they don't, and the modern alternatives. Explore IT Crisis Help Free step-by-step guides when things go wrong Email Hacked? Step-by-step guide to secure your account and prevent further damage. Get Help Laptop Lost/Stolen? Immediate actions to protect your business data. Get Help Suspicious Payment Request? How to spot and respond to business email fraud. Get Help Data Breach? Your GDPR-compliant response checklist. Get Help These guides are free for anyone to use - no sales pitch, just help when you need it most. Fresh From The Press Latest insights from our team View All Articles Sep 14, 2026 QR Code Phishing: What to Tell Your Team QR code scams turn up in emails and on car park machines. What the preview on your phone does and does not tell you, and what to switch on in Microsoft 365. Sep 8, 2026 The Leaver You Forgot to Remove Somebody left last year and their account is still live. It is the most common gap we find, the cheapest to fix, and the one that fails you at renewal. Spotlight Mission Where Are My Files? - Solved A fast-growing energy company with 50 staff was using Microsoft 365 and SharePoint for document storage - but nobody could find anything. Every week, we fielded the same support requests: 'Where's the HR folder?', 'Can you send me the marketing link again?'. New starters spent days asking colleagues where things were stored. When people changed roles, they'd lose access to files they needed or keep access to things they shouldn't. The business owner was blunt: 'We're paying for Microsoft 365, but our team can't find their files.' Read Full Mission Report Quick Access Our ServicesPricingIndustriesAbout Us FREE COPY! Essential Reading Don't Get Ripped Off By Bad IT Support Our 2025 Buyer's Guide reveals the dirty secrets most IT companies don't want you to know. Learn the 3 critical questions you must ask before signing any contract. Download PDF Now Ship Me a Free Copy We pay postage No obligation Signal for Help Ready to banish tech headaches? Fill out the form or book a chat directly. We respond faster than a speeding bullet (usually under 15 minutes). ✓ Trusted by local businesses for over 10 years Thinking of switching providers? See how easy it is Call The Batphone 01584 517 234 Email HQ hello@fresh-tech.uk Face-to-Face Book an Intro Call with Sam Send a Signal Step 1 of 3 Name Email Phone (optional) How can we help? We typically respond within 15 minutes during business hours (Mon-Fri, 9am-5pm). Send Message Existing Client? Email support@fresh-tech.uk or call 01584 517 234 for urgent help."
+  }
+}

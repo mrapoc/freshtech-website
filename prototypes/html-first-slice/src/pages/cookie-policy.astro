@@ -1,0 +1,112 @@
+---
+// Port of pages-v2/CookiePolicyPageV2.tsx. "Last updated" is a fixed date: the
+// last change to the policy wording. Update it whenever the wording changes
+// (the React page shows its build month instead).
+// Difference: openCookieSettings() becomes a data-cookie-settings button, wired
+// up by the existing src/scripts/enhance.ts. The manage button also uses white
+// text on primary-dark rather than the React white-on-primary pair (3.97:1).
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+
+const updated = '15 June 2026';
+const seo = { path: '/cookie-policy', title: 'Cookie Policy', description: 'What cookies Fresh Tech uses, why, and how to change your mind. Plain English, no nonsense.', type: 'article' };
+
+const essential = [
+  { name: 'ft-cookie-consent-v1', meta: "Fresh Tech (this site) · Until you clear it", purpose: "Remembers your cookie choice so we don't keep asking. Stored in your browser, never sent to us." },
+];
+const analytics = [
+  { name: '_ga, _ga_*', meta: 'Google Analytics · Up to 2 years', purpose: 'Tells visitors apart so we can count page views and traffic sources anonymously.' },
+  { name: '_gid', meta: 'Google Analytics · 24 hours', purpose: 'Distinguishes visitors for daily usage stats.' },
+  { name: '_clck, _clsk', meta: 'Microsoft Clarity · Up to 1 year', purpose: 'Anonymous heatmaps and session insights: shows where people get stuck so we can fix it.' },
+];
+---
+
+<StandaloneShell name="cookie-policy" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap" style="--sa-max: 800px">
+      <p class="sa-eyebrow sa-eyebrow-light">Cookies</p>
+      <h1 class="sa-display sa-display-light" style="--sa-size: 48px; --sa-size-mobile: 36px; margin-bottom: 16px">The cookie policy.</h1>
+      <p class="sa-lead" style="margin: 0">Last updated: {updated}</p>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper">
+    <div class="sa-wrap sa-prose" style="--sa-max: 760px">
+      <div class="sa-block">
+        <h2>The short version</h2>
+        <p>Our site works perfectly fine with zero cookies. We don't use them for advertising and we never sell your data. The only non-essential ones we'd like to set are anonymous analytics, and they only run if you say yes. You can change your mind any time using the button below.</p>
+        <div class="cookie-manage"><button type="button" data-cookie-settings>🍪 Manage cookie preferences</button></div>
+      </div>
+
+      <div class="sa-block">
+        <h2>What is a cookie?</h2>
+        <p>A cookie is a tiny text file a website stores in your browser. Some are needed for a site to function; others help the owner understand how the site is used. Under UK law (PECR and the UK GDPR), anything that isn't strictly necessary needs your permission first, which is why you saw a banner.</p>
+      </div>
+
+      <div class="sa-block">
+        <h2>Strictly necessary</h2>
+        <p>These keep the site working and remember your privacy choice. They don't track you and can't be switched off.</p>
+        <div class="cookie-table">
+          {essential.map(row => (
+            <div class="cookie-row">
+              <div class="cookie-row-head"><code>{row.name}</code><span>{row.meta}</span></div>
+              <div class="cookie-row-purpose">{row.purpose}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="sa-block">
+        <h2>Analytics (optional, off until you allow it)</h2>
+        <p>If you opt in, we use Google Analytics and Microsoft Clarity to see which pages are useful and where visitors run into trouble. The data is aggregated and anonymous; we use it purely to improve the site. Nothing loads until you consent.</p>
+        <div class="cookie-table">
+          {analytics.map(row => (
+            <div class="cookie-row">
+              <div class="cookie-row-head"><code>{row.name}</code><span>{row.meta}</span></div>
+              <div class="cookie-row-purpose">{row.purpose}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="sa-block">
+        <h2>Changing your mind</h2>
+        <p>Hit the button below to reopen your cookie choices at any time. You can also block or delete cookies in your browser settings; every major browser lets you do this. Turning off analytics here also clears the related cookies from your device.</p>
+        <div class="cookie-manage"><button type="button" data-cookie-settings>🍪 Manage cookie preferences</button></div>
+      </div>
+
+      <div class="sa-block">
+        <h2>More detail</h2>
+        <p>For how we handle personal data generally, see our <a href="/privacy-policy">privacy policy</a>. Google and Microsoft also publish their own privacy information for the tools above.</p>
+      </div>
+
+      <div class="sa-note">Questions about cookies or your data? Email <a href="mailto:hello@fresh-tech.uk">hello@fresh-tech.uk</a> or call <a href="tel:+441584517234">01584 517 234</a>. We are FRESH PCS CONSULTANCY LTD (Co. No. 09296207), ICO registration ZA136732.</div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <h2 class="sa-display" style="--sa-size: 32px; margin-bottom: 14px">Any questions?</h2>
+      <a class="sa-button" href="/contact">Get in touch →</a>
+    </div>
+  </section>
+</StandaloneShell>
+
+<style>
+  .cookie-manage { margin-top: 16px; }
+  .cookie-manage button {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px;
+    background: var(--primary-dark); color: var(--white);
+    border: 2.5px solid var(--ink);
+    box-shadow: 4px 4px 0 0 var(--ink);
+    font-weight: 800; font-size: 14px;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    cursor: pointer;
+  }
+  .cookie-table { margin-top: 14px; display: flex; flex-direction: column; gap: 12px; }
+  .cookie-row { background: var(--white); border: 2px solid var(--ink); box-shadow: 3px 3px 0 0 var(--ink); padding: 16px 18px; }
+  .cookie-row-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+  .cookie-row-head code { font: 700 13px/1.2 'SA Archivo', monospace; background: var(--paper-deep); padding: 3px 8px; border: 1px solid var(--hairline); }
+  .cookie-row-head span { font: 600 12px/1.4 'SA Archivo Narrow', sans-serif; color: rgba(15, 25, 35, 0.65); text-transform: uppercase; letter-spacing: 0.04em; }
+  .cookie-row-purpose { font: 500 14px/1.5 'SA Archivo', sans-serif; color: rgba(15, 25, 35, 0.8); }
+</style>

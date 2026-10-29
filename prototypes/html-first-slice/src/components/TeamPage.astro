@@ -1,0 +1,95 @@
+---
+// Copy and structure mirror pages/AuthorPage.tsx: hero with breadcrumb
+// (Home > About > name), portrait, power badge, name, role, extended bio,
+// expertise tags and the LinkedIn link when present; the member's published
+// articles newest first (or the empty state); and the closing call to action.
+// Deliberate differences from the React page: images are requested at their
+// rendered size from Cloudinary, and article cards are native links with no
+// hover zoom. The card heading level (h3) follows the React markup.
+import TeamIcon from './TeamIcon.astro';
+import { COPY, authorPosts, breadcrumbItems, cardImageSources, expertiseIcon, portraitSources, readingTime } from '../lib/team-display.mjs';
+
+interface Member {
+  name: string; shortName: string; slug: string; role: string; power: string; bio: string; extendedBio: string;
+  expertise: string[]; imgMasked: string; imgUnmasked: string; linkedin: string;
+}
+interface Post { slug: string; title: string; excerpt: string; content: string; date: string; author: string; image?: string; tags: string[] }
+interface Props { member: Member; posts: Post[] }
+const { member, posts } = Astro.props;
+const crumbs = breadcrumbItems(member);
+const articles = authorPosts(posts, member);
+const portrait = portraitSources(member.imgUnmasked);
+---
+
+<main id="main-content" class="team-page" data-team-page={member.slug} tabindex="-1">
+  <section class="team-hero">
+    <div class="team-container">
+      <nav class="team-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          {crumbs.map(([label, href]) => (
+            <li>{href ? <a href={href}>{label}</a> : <span aria-current="page">{label}</span>}</li>
+          ))}
+        </ol>
+      </nav>
+      <div class="team-profile">
+        <div class="team-portrait">
+          <img src={portrait.src} srcset={portrait.srcset} sizes={portrait.sizes} alt={member.name} width="256" height="256" fetchpriority="high" />
+        </div>
+        <div class="team-intro">
+          <p class="team-power">{member.power}</p>
+          <h1>{member.name}</h1>
+          <p class="team-role">{member.role}</p>
+          <p class="team-bio">{member.extendedBio}</p>
+          <ul class="team-expertise" aria-label="Expertise">
+            {member.expertise.map(skill => <li><TeamIcon name={expertiseIcon(skill)} size={14} />{skill}</li>)}
+          </ul>
+          {member.linkedin && (
+            <a class="team-linkedin" href={member.linkedin} target="_blank" rel="noopener noreferrer"><TeamIcon name="Linkedin" size={18} />{COPY.linkedin}</a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-articles" aria-labelledby="team-articles-heading">
+    <div class="team-container">
+      <h2 id="team-articles-heading">{COPY.articlesHeading(member.shortName)} <span class="team-count">({articles.length})</span></h2>
+      {articles.length > 0 ? (
+        <ul class="team-article-grid">
+          {articles.map(post => {
+            const image = post.image ? cardImageSources(post.image) : null;
+            return (
+              <li>
+                <a class="team-card" href={`/blog/${post.slug}`}>
+                  <span class="team-card-media">
+                    {image && <img src={image.src} srcset={image.srcset} sizes={image.sizes} alt={post.title} width="800" height="450" loading="lazy" decoding="async" />}
+                  </span>
+                  <span class="team-card-body">
+                    <span class="team-tags">{post.tags.slice(0, 2).map(tag => <span>{tag}</span>)}</span>
+                    <h3>{post.title}</h3>
+                    <span class="team-excerpt">{post.excerpt}</span>
+                    <span class="team-meta">
+                      <span><TeamIcon name="Calendar" size={12} />{post.date}</span>
+                      <span><TeamIcon name="Clock" size={12} />{readingTime(post.content)}</span>
+                      <span class="team-read">{COPY.read} <TeamIcon name="ArrowRight" size={12} /></span>
+                    </span>
+                  </span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p class="team-empty">{COPY.empty}</p>
+      )}
+    </div>
+  </section>
+
+  <section class="team-cta">
+    <div class="team-container">
+      <h3>{COPY.ctaHeading(member.shortName)}</h3>
+      <p>{COPY.ctaBody}</p>
+      <a class="team-cta-button" href={COPY.ctaHref}>{COPY.ctaLabel}<TeamIcon name="ArrowRight" size={18} /></a>
+    </div>
+  </section>
+</main>

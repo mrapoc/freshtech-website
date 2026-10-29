@@ -1,0 +1,22 @@
+---
+// Port of pages-v2/LegalDocumentPageV2.tsx for slug="sub-processors" (App.tsx
+// route "/sub-processors", no version segment: sub-processors.md carries no
+// "version" front matter field).
+import LegalDocument from '../components/LegalDocument.astro';
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+import { legalRoutes } from '../generated/legal-data.mjs';
+
+const route = legalRoutes.find(entry => entry.slug === 'sub-processors' && !entry.versionPath);
+if (!route) throw new Error('sub-processors: no current legal route found in generated legal data');
+
+const path = '/sub-processors';
+const breadcrumbs = [
+  { name: 'Home', item: '/' },
+  { name: route.title, item: path },
+];
+const seo = { path, title: route.title, description: route.summary, type: 'article', breadcrumbs };
+---
+
+<StandaloneShell name="sub-processors" seo={seo}>
+  <LegalDocument route={route} path={path} />
+</StandaloneShell>

@@ -1,0 +1,5 @@
+{
+  "_comment": "Editorial hold. Slugs listed here stay out of every public listing, the sitemap and the prerender route list until Sam has approved the full article and its social captions in preview. Elapsed dates never lift a hold: remove a slug in the release commit for that article only. Unapproved drafts are kept outside this public repository and are added here only when ready for preview.",
+  "asOf": "2026-10-29",
+  "slugs": []
+}

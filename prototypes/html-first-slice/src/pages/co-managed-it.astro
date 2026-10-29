@@ -1,0 +1,131 @@
+---
+// Port of pages-v2/CoManagedITPageV2.tsx.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+
+const seo = {
+  path: '/co-managed-it',
+  title: 'Co-Managed IT Support: Reinforce Your In-House IT',
+  description: 'Co-managed IT support for businesses with an in-house IT team. Escalation, holiday cover, project surge capacity and 24/7 security, alongside your people, not instead of them.',
+  type: 'service',
+};
+
+const MODELS = [
+  { title: 'Escalation backstop', desc: 'Your team owns day-to-day support. We are the senior bench behind them for the genuinely hard problems: deep troubleshooting, security incidents, and the issues that would otherwise eat a whole afternoon.' },
+  { title: 'Holiday & sickness cover', desc: "When your IT person is on leave or off sick, your helpdesk doesn't go dark. We step in seamlessly so the business keeps moving and your IT lead can actually switch off." },
+  { title: 'Project surge capacity', desc: 'Extra hands and specialist skills for migrations, rollouts, office moves and infrastructure projects, without hiring contractors who do not know your environment.' },
+  { title: 'Co-pilot & advisory', desc: 'vCIO roadmapping, architecture reviews and security strategy alongside your team: the senior perspective that is hard to justify as a full-time hire.' },
+];
+const YOU_KEEP = ['Day-to-day helpdesk and user relationships', 'Knowledge of your people, systems and quirks', 'Control of budget and priorities', 'The internal face your staff already trust'];
+const WE_COVER = ['24/7 security: Huntress SOC + ThreatLocker zero-trust', 'Escalation and deep technical troubleshooting', 'Microsoft 365 & cloud architecture', 'Monitoring, patching and RMM tooling', 'Documentation, so nothing lives in one person’s head', 'Out-of-hours and project delivery'];
+---
+
+<StandaloneShell name="co-managed-it" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap cm-hero-grid" style="--sa-max: 1100px">
+      <div>
+        <p class="sa-eyebrow sa-eyebrow-light">For in-house IT teams</p>
+        <h1 class="sa-display sa-display-light" style="--sa-size: 50px; --sa-size-mobile: 34px; margin-bottom: 20px">Your IT team, reinforced. Not replaced.</h1>
+        <p class="sa-lead" style="max-width: 52ch">Co-managed IT gives your internal IT person, or team, a senior partner behind them. For escalation, holiday and sickness cover, project surge capacity, and the specialist work that is hard to justify hiring for.</p>
+        <p class="cm-sub" style="max-width: 52ch">You keep control and the in-house relationship. We add the tools, the 24/7 security and the deep bench, so your IT lead stops being a single point of failure.</p>
+        <div class="cm-cta-row"><a class="sa-button" href="/contact">Talk to us about co-managed IT →</a><a class="sa-button cm-btn-outline" href="/technology-stack">See our technology stack →</a></div>
+      </div>
+      <div class="cm-quote">
+        <p class="cm-quote-h">One IT person shouldn’t be a single point of failure.</p>
+        <p class="cm-quote-p">When your in-house IT lead is off, overloaded, or out of their depth on a specialist problem, the business shouldn’t stop. Co-managed IT is the safety net behind them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper sa-rule">
+    <div class="sa-wrap sa-prose" style="--sa-max: 900px">
+      <p class="sa-eyebrow">Who it’s for</p>
+      <h2 class="sa-display" style="--sa-size: 34px; margin-bottom: 16px">Built for the in-house IT manager</h2>
+      <p style="max-width: 64ch">Co-managed IT suits growing businesses, typically <strong>30 to 200 staff</strong>, that already have a capable internal IT person or small team, but feel the strain when one person has to cover everything.</p>
+      <p style="max-width: 64ch; margin-bottom: 0">If your IT lead is brilliant on the day-to-day but stretched thin on security, cloud architecture and projects, and the whole function falls over the week they are on holiday, co-managed IT fills exactly those gaps, without you losing the internal relationship your staff rely on.</p>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <p class="sa-eyebrow">Flexible by design</p>
+      <h2 class="sa-display" style="--sa-size: 34px; margin-bottom: 12px">Four ways we plug in</h2>
+      <p class="cm-intro">Mix and match to suit your team. Most clients start with one and grow into others as the relationship builds.</p>
+      <div class="cm-models">
+        {MODELS.map(m => (
+          <div class="cm-model">
+            <p class="cm-model-h">{m.title}</p>
+            <p class="cm-model-p">{m.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper sa-rule">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <p class="sa-eyebrow">Clear lines</p>
+      <h2 class="sa-display" style="--sa-size: 34px; margin-bottom: 12px">Who does what</h2>
+      <p class="cm-intro">We agree the split up front, in writing, so there is never confusion about who owns what. A typical division looks like this.</p>
+      <div class="cm-split">
+        <div class="cm-panel cm-panel-ink">
+          <p class="cm-panel-tag">Your team</p>
+          <h2 class="cm-panel-h">You keep</h2>
+          <div class="cm-list">
+            {YOU_KEEP.map(item => (
+              <div class="cm-list-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#0F1923" fill-opacity="0.15"></circle><path d="M4.5 8l2.5 2.5 4.5-5" stroke="#0F1923" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>{item}</span></div>
+            ))}
+          </div>
+        </div>
+        <div class="cm-panel cm-panel-primary">
+          <p class="cm-panel-tag cm-panel-tag-primary">Fresh Tech</p>
+          <h2 class="cm-panel-h">We cover</h2>
+          <div class="cm-list">
+            {WE_COVER.map(item => (
+              <div class="cm-list-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#1F5C8C" fill-opacity="0.15"></circle><path d="M4.5 8l2.5 2.5 4.5-5" stroke="#1F5C8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>{item}</span></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-ink sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <p class="sa-eyebrow sa-eyebrow-light">Reinforce your team</p>
+      <h2 class="sa-display sa-display-light" style="--sa-size: 36px; margin-bottom: 16px">Give your IT lead a senior bench</h2>
+      <p class="sa-lead cm-cta-lead">A 20-minute call is enough to map where your team needs support. No three-year tie-ins, no replacing anyone, just a stronger IT function.</p>
+      <a class="sa-button" href="/contact">Book a 20-min call →</a>
+    </div>
+    <p class="cm-reviewed">Last reviewed May 2026 · Sam James</p>
+  </section>
+</StandaloneShell>
+
+<style>
+  .cm-hero-grid { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center; }
+  @media (min-width: 768px) { .cm-hero-grid { grid-template-columns: 1.2fr 0.8fr; gap: 64px; } }
+  .cm-sub { margin: 0 0 32px; color: #9ba3aa; font-size: 15px; line-height: 1.65; }
+  .cm-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .cm-btn-outline { background: transparent; color: var(--paper); border: 2px solid rgba(255,255,255,0.3); box-shadow: none; }
+  .cm-btn-outline:hover { background: rgba(255,255,255,0.08); }
+  .cm-quote { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); padding: 32px; }
+  .cm-quote-h { font: 400 22px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--yellow); margin: 0 0 16px; }
+  .cm-quote-p { font-size: 14px; color: #b9c0c6; line-height: 1.65; margin: 0; }
+  .cm-intro { color: var(--ink); opacity: 0.62; font-size: 16px; margin: 0 0 40px; max-width: 60ch; line-height: 1.6; }
+  .cm-models { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 768px) { .cm-models { grid-template-columns: 1fr 1fr; } }
+  .cm-model { background: var(--white); border: 1px solid var(--hairline); padding: 28px; box-shadow: 0 4px 16px rgba(15,25,35,0.06); }
+  .cm-model-h { font: 400 18px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--primary-dark); margin: 0 0 10px; }
+  .cm-model-p { font-size: 14px; color: var(--ink); opacity: 0.75; line-height: 1.65; margin: 0; }
+  .cm-split { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 768px) { .cm-split { grid-template-columns: 1fr 1fr; } }
+  .cm-panel { background: var(--white); border: 2px solid var(--ink); padding: 28px; box-shadow: 4px 4px 0 0 var(--ink); }
+  .cm-panel-primary { border-color: var(--primary-dark); box-shadow: 4px 4px 0 0 var(--primary-dark); }
+  .cm-panel-tag { font: 700 11px/1 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .14em; color: var(--ink); margin: 0 0 10px; }
+  .cm-panel-tag-primary { color: var(--primary-dark); }
+  .cm-panel-h { font: 400 22px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--ink); margin: 0 0 16px; }
+  .cm-list { display: flex; flex-direction: column; gap: 12px; }
+  .cm-list-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--ink); line-height: 1.5; }
+  .cm-list-item svg { flex-shrink: 0; margin-top: 2px; }
+  .cm-cta-lead { max-width: 46ch; margin-inline: auto; margin-bottom: 28px; color: #b9c0c6; }
+  .cm-reviewed { text-align: center; padding: 20px 16px 24px; font: 700 11px/1.3 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .14em; color: #c7cdd2; margin: 0; }
+</style>

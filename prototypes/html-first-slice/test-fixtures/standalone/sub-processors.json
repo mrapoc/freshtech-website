@@ -1,0 +1,131 @@
+{
+  "route": "/sub-processors",
+  "source": "pages-v2/LegalDocumentPageV2.tsx",
+  "sourceSha256": "c572f3ca3c42e1be10e29b23ec320004aae4715ac0930d0c16c26d524e8fbaee",
+  "capturedAt": "2026-09-16T15:17:29.270Z",
+  "head": {
+    "title": "Sub-processors | Fresh Tech IT Support",
+    "description": "The third parties Fresh Tech uses to deliver its services, where they process data, and how changes are notified.",
+    "canonical": "https://fresh-tech.uk/sub-processors",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "article",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Sub-processors",
+        "description": "The third parties Fresh Tech uses to deliver its services, where they process data, and how changes are notified.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/sub-processors",
+        "author": {
+          "@id": "https://fresh-tech.uk/#organization"
+        },
+        "publisher": {
+          "@id": "https://fresh-tech.uk/#organization"
+        },
+        "mainEntityOfPage": "https://fresh-tech.uk/sub-processors"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Sub-processors",
+            "item": "https://fresh-tech.uk/sub-processors"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "The legal bit."
+      ],
+      [
+        2,
+        "Current sub-processors"
+      ],
+      [
+        2,
+        "How changes are notified"
+      ],
+      [
+        2,
+        "Change log"
+      ]
+    ],
+    "links": [
+      [
+        "/dpa",
+        "Data Processing Terms"
+      ],
+      [
+        "mailto:hello@fresh-tech.uk",
+        "hello@fresh-tech.uk"
+      ]
+    ],
+    "images": [],
+    "text": "Sub-processors The legal bit. Last updated 14 September 2026 Last updated 14 September 2026. This page is Annex 3 to our Data Processing Terms. To deliver our services we rely on a small number of third party platforms. Where those platforms process personal data on behalf of our clients, they are sub-processors under Article 28 of the UK GDPR. This page lists them, where they process data, and the legal mechanism that covers any transfer outside the United Kingdom. Current sub-processors Sub-processor Service provided Processing location Transfer safeguard Microsoft Ireland Operations Ltd and Microsoft Corporation Microsoft 365, Entra ID, Intune, Azure United Kingdom, with support access from the EU and US Microsoft Data Protection Addendum, EU SCCs with UK Addendum SuperOps Remote monitoring and management, service desk and ticketing Europe EU Standard Contractual Clauses with UK Addendum Huntress Labs Inc Managed endpoint detection and identity threat detection United States UK Extension to the EU-US Data Privacy Framework and EU Standard Contractual Clauses ThreatLocker Inc Application allowlisting and endpoint control Europe UK adequacy regulations; UK Extension to the EU-US Data Privacy Framework for any transfers to the United States Keeper Security Inc Encrypted credential vault Europe EU Standard Contractual Clauses with UK Addendum Pax8 Microsoft licence provisioning and billing. Business contact data only. United States and other locations used by Pax8, its affiliates and sub-processors EU Standard Contractual Clauses with UK Addendum Microsoft acts as a sub-processor to Fresh Tech and as a processor to each client in its own right under the Microsoft Customer Agreement. Nothing on this page limits a client's direct relationship with Microsoft. How changes are notified We give clients at least 30 days' notice before adding or replacing a sub-processor, as set out in clause 7 of our Data Processing Terms. Notice is given by email to each client's primary contact and recorded in the change log below. If you would like to receive sub-processor notices at an additional address, email hello@fresh-tech.uk with the subject \"Sub-processor notifications\". Change log Date Change 14 September 2026 First published list."
+  }
+}

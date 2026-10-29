@@ -1,0 +1,180 @@
+---
+// Port of pages-v2/EmailSecurityCheckPageV2.tsx. The interactive checker
+// (components-v2/EmailCheckerTool.tsx) is ported as a framework-free module,
+// src/scripts/email-checker.ts, loaded on demand by src/scripts/enhance.ts.
+// The tool's markup and styles live in src/components/EmailChecker.astro,
+// shared with /email-security-guide (the same React tool, same copy).
+//
+// Documented differences from the React page (see scripts/lib/standalone-differences.mjs):
+//  - Both Calendly-opening actions ("Book my free check" and "Book a 15-min
+//    call") become plain links to /contact: there is no Calendly modal in this
+//    prototype.
+//  - The React page's translucent greys and the amber status colour fail
+//    WCAG AA 4.5:1 on their backgrounds. This port uses solid colours that
+//    pass, keeping the same wording (see the scoped <style> below).
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+import EmailChecker from '../components/EmailChecker.astro';
+
+const seo = {
+  path: '/email-security-check',
+  title: 'Free Email Security Check: SPF, DKIM & DMARC',
+  description: "Can someone send email pretending to be your business? Get a free check of your SPF, DKIM, DMARC, MTA-STS and DNSSEC, with a plain-English report you keep.",
+  type: 'service',
+};
+
+const REPORT = [
+  { icon: '🛡️', title: 'SPF', what: 'Sender Policy Framework: the list of servers allowed to send email from your domain.', means: "Missing or wrong, and anyone can send email as you. Your own emails are also more likely to land in spam." },
+  { icon: '✍️', title: 'DKIM', what: 'A tamper-proof digital signature added to every email you send.', means: "Without it, messages can be altered in transit and receivers can't confirm they're genuinely from you." },
+  { icon: '🚫', title: 'DMARC', what: 'The policy that tells the world what to do with fakes, and reports who is sending in your name.', means: "The one that actually blocks impersonation. Most businesses either don't have it, or have it on 'monitor only', which blocks nothing." },
+  { icon: '📧', title: 'Email platform', what: 'Whether you run Microsoft 365, Google Workspace, or mail off a web server, and how it is configured.', means: 'Each platform has its own common misconfigurations. We check yours against current best practice.' },
+  { icon: '🔒', title: 'MTA-STS', what: 'A rule that forces email sent to your domain to travel encrypted.', means: 'Stops attackers intercepting or downgrading your email in transit. Almost nobody has this set up.' },
+  { icon: '🌐', title: 'DNSSEC', what: 'Cryptographic protection for your DNS records themselves.', means: 'Stops criminals forging your DNS to hijack your email or your website.' },
+];
+
+const STEPS = [
+  { n: '01', title: 'Tell us your domain', desc: 'A quick 15-minute call, no prep needed. We just need the web address you send email from.' },
+  { n: '02', title: 'We run the checks', desc: 'We test your live DNS and mail setup against all six areas above. Read-only, so we change nothing.' },
+  { n: '03', title: 'You get the report', desc: "Plain English: what's exposed, what it means, and what to fix first. Yours to keep, whatever you decide next." },
+];
+---
+
+<StandaloneShell name="email-security-check" seo={seo}>
+  <section class="sa-hero ec-hero">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <div class="ec-hero-grid">
+        <div>
+          <div class="ec-stickers">
+            <span class="ec-sticker ec-sticker-green">100% free · no obligation</span><span class="ec-sticker ec-sticker-yellow">Plain-English report</span>
+          </div>
+          <h1 class="sa-display sa-display-light" style="--sa-size: 48px; --sa-size-mobile: 36px; margin-bottom: 20px">Can someone send email pretending to be your business?</h1>
+          <p class="ec-hero-lead">For most businesses, the answer is yes, and they have no idea. We'll check your domain's email security for free and send you a plain-English report on exactly what's exposed.</p>
+          <p class="ec-hero-sub">We've been quietly checking local businesses, and most are wide open, often without their current IT provider ever flagging it.</p>
+          <a href="#checker" class="sa-button ec-btn-dark">Run my free check ↓</a>
+        </div>
+        <div class="ec-stat-stack">
+          {[{ n: '6', l: 'Areas we check' }, { n: '15 min', l: 'All it takes from you' }, { n: '£0', l: 'Cost (genuinely)' }].map(s => (
+            <div class="ec-stat">
+              <div class="ec-stat-n">{s.n}</div>
+              <div class="ec-stat-l">{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="checker" class="sa-section ec-checker-section">
+    <div class="sa-wrap" style="--sa-max: 760px">
+      <EmailChecker />
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper sa-rule">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <div style="margin-bottom: 40px">
+        <p class="sa-eyebrow">What the report covers</p>
+        <h2 class="sa-display" style="--sa-size: 36px; margin-bottom: 12px">Six checks. One clear verdict.</h2>
+        <p class="ec-section-intro">These are the settings that decide whether criminals can impersonate your domain, and whether your real email reaches the inbox. New to the terms? Start with our <a class="sa-link" href="/technology/email-authentication">plain-English guide to SPF, DKIM & DMARC</a>, or our <a class="sa-link" href="/email-security-guide">step-by-step guide to fixing them yourself</a>.</p>
+      </div>
+      <div class="ec-report-grid">
+        {REPORT.map(c => (
+          <div class="ec-report-card">
+            <div class="ec-report-icon">{c.icon}</div>
+            <div class="ec-report-title">{c.title}</div>
+            <div class="ec-report-what">{c.what}</div>
+            <div class="ec-report-label">What it means for you</div>
+            <div class="ec-report-means">{c.means}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <div style="margin-bottom: 40px">
+        <p class="sa-eyebrow">How it works</p>
+        <h2 class="sa-display" style="--sa-size: 36px; margin-bottom: 8px">Three steps. Nothing to install.</h2>
+      </div>
+      <div class="ec-steps-grid">
+        {STEPS.map(s => (
+          <div class="ec-step-card">
+            <div class="ec-step-n">{s.n}</div>
+            <div class="ec-step-title">{s.title}</div>
+            <div class="ec-step-desc">{s.desc}</div>
+          </div>
+        ))}
+      </div>
+      <p class="ec-steps-foot">Worried email fraud is already happening? See <a class="sa-link" href="/business-email-compromise">what to do about business email compromise</a>, or read why this is the foundation of <a class="sa-link" href="/services/cyber-essentials">Cyber Essentials</a>.</p>
+    </div>
+  </section>
+
+  <section class="sa-section sa-ink ec-cta">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <p class="sa-eyebrow sa-eyebrow-light">Find out where you stand</p>
+      <h2 class="sa-display sa-display-light" style="--sa-size: 40px; margin-bottom: 16px">Get your free email security check</h2>
+      <p class="ec-cta-lead">Book a 15-minute call. We'll run the checks and send your report. No sales script, no obligation.</p>
+      <a href="/contact" class="sa-button ec-btn-dark">Book my free check →</a>
+      <p class="ec-cta-fine">Prefer to talk? Call <a class="ec-cta-tel" href="tel:+441584517234">01584 517 234</a>.</p>
+    </div>
+    <p class="sa-last-reviewed sa-last-reviewed-light">Last reviewed May 2026 · Sam James</p>
+  </section>
+</StandaloneShell>
+
+<style>
+  /* Colours matched to the report's contrast pass (see the frontmatter comment
+     and the port notes): --ec-muted/--ec-onink-muted replace the React
+     translucent greys that failed 4.5:1 on their backgrounds, and --ec-amber
+     replaces the React amber (#b8791a, 3.63:1) with a darker shade that passes
+     on both white and the status colour itself. */
+  .ec-hero { --ec-muted: #565c63; --ec-onink-muted: #9fa3a7; }
+  .ec-hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 64px; align-items: center; }
+  .ec-stickers { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  .ec-sticker { display: inline-block; padding: 6px 14px; border: 2px solid rgba(255,255,255,.3); font: 400 12px/1.3 'SA Bungee', sans-serif; }
+  .ec-sticker-green { background: var(--accent, #2E7D5B); background: #2E7D5B; color: #fff; transform: rotate(-3deg); }
+  .ec-sticker-yellow { background: var(--yellow); color: var(--ink); transform: rotate(2deg); }
+  .ec-hero-lead { color: rgba(255,255,255,0.82); font-size: 18px; line-height: 1.65; margin: 0 0 24px; max-width: 52ch; }
+  .ec-hero-sub { color: var(--ec-onink-muted, #9fa3a7); font-size: 15px; line-height: 1.65; margin: 0 0 28px; max-width: 52ch; }
+  .ec-stat-stack { display: flex; flex-direction: column; gap: 12px; }
+  .ec-stat { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); padding: 20px 22px; }
+  .ec-stat-n { font: 400 28px/1 'SA Bungee', sans-serif; color: var(--yellow); margin-bottom: 4px; }
+  .ec-stat-l { font: 700 10px/1.3 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .12em; color: var(--ec-onink-muted, #9fa3a7); }
+  .ec-btn-dark { border: 2px solid var(--white); box-shadow: 4px 4px 0 0 var(--yellow); }
+
+  .ec-checker-section { background: var(--paper-deep); border-bottom: 1px solid var(--hairline); scroll-margin-top: 80px; }
+
+  .ec-section-intro { color: #565c63; font-size: 16px; margin: 0; max-width: 54ch; line-height: 1.6; }
+  .ec-report-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .ec-report-card { background: var(--white); border: 1px solid var(--hairline); padding: 24px; box-shadow: 0 2px 8px rgba(15,25,35,0.04); }
+  .ec-report-icon { font-size: 26px; margin-bottom: 10px; }
+  .ec-report-title { font: 400 18px/1.1 'SA Bungee', sans-serif; margin-bottom: 8px; }
+  .ec-report-what { font-size: 13px; color: #565c63; line-height: 1.6; margin-bottom: 12px; }
+  .ec-report-label { font: 700 10px/1 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .1em; color: var(--primary-dark); margin-bottom: 4px; }
+  .ec-report-means { font-size: 13px; color: var(--ink); line-height: 1.6; }
+
+  .ec-steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .ec-step-card { background: var(--white); border: 1px solid var(--hairline); padding: 24px 22px; box-shadow: 0 4px 16px rgba(15,25,35,0.06); position: relative; }
+  .ec-step-n { font: 400 40px/1 'SA Bungee', sans-serif; color: #8a929a; position: absolute; top: 12px; right: 14px; }
+  .ec-step-title { font: 400 17px/1.1 'SA Bungee', sans-serif; margin-bottom: 10px; position: relative; }
+  .ec-step-desc { font-size: 14px; color: #565c63; line-height: 1.6; }
+  .ec-steps-foot { color: #565c63; font-size: 14px; line-height: 1.65; margin: 28px 0 0; max-width: 60ch; }
+
+  .ec-cta { background-image: radial-gradient(rgba(255,255,255,.04) 1.4px, transparent 1.4px); background-size: 14px 14px; }
+  .ec-cta-lead { color: rgba(255,255,255,0.82); font-size: 17px; line-height: 1.65; margin: 0 auto 28px; max-width: 46ch; }
+  .ec-cta-fine { color: #9fa3a7; font-size: 13px; margin-top: 16px; }
+  .ec-cta-tel { color: var(--yellow); }
+
+  .ec-report-card, .ec-step-card { min-width: 0; }
+
+  .sa-last-reviewed { text-align: center; padding: 20px 16px 24px; font: 700 11px/1.3 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .14em; color: rgba(15,25,35,0.42); }
+  .sa-last-reviewed-light { color: #9fa3a7; }
+
+  @media (max-width: 1023px) {
+    .ec-report-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 767px) {
+    .ec-hero-grid { grid-template-columns: 1fr; gap: 36px; }
+    .ec-report-grid { grid-template-columns: 1fr; }
+    .ec-steps-grid { grid-template-columns: 1fr; }
+  }
+</style>

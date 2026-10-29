@@ -1,0 +1,355 @@
+{
+  "route": "/email-security-check",
+  "source": "pages-v2/EmailSecurityCheckPageV2.tsx",
+  "sourceSha256": "3df6f4c262943b14f20c6bff51a3458584b608ef0dc220f9b12b5d4dbcbf1c87",
+  "capturedAt": "2026-09-16T12:23:16.920Z",
+  "head": {
+    "title": "Free Email Security Check: SPF, DKIM & DMARC | Fresh Tech",
+    "description": "Can someone send email pretending to be your business? Get a free check of your SPF, DKIM, DMARC, MTA-STS and DNSSEC, with a plain-English report you keep.",
+    "canonical": "https://fresh-tech.uk/email-security-check",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Free Email Security Check: SPF, DKIM & DMARC",
+        "description": "Can someone send email pretending to be your business? Get a free check of your SPF, DKIM, DMARC, MTA-STS and DNSSEC, with a plain-English report you keep.",
+        "url": "https://fresh-tech.uk/email-security-check",
+        "provider": {
+          "@id": "https://fresh-tech.uk/#localbusiness"
+        },
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": [
+          "LocalBusiness",
+          "ProfessionalService"
+        ],
+        "@id": "https://fresh-tech.uk/#localbusiness",
+        "name": "Fresh Tech IT Support",
+        "description": "Managed IT Support and Cybersecurity services for businesses in Shropshire, Herefordshire, and the West Midlands.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/",
+        "telephone": "+441584517234",
+        "email": "hello@fresh-tech.uk",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.368,
+          "longitude": -2.717
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          },
+          {
+            "@type": "City",
+            "name": "Ludlow"
+          },
+          {
+            "@type": "City",
+            "name": "Shrewsbury"
+          },
+          {
+            "@type": "City",
+            "name": "Hereford"
+          },
+          {
+            "@type": "City",
+            "name": "Telford"
+          },
+          {
+            "@type": "City",
+            "name": "Worcester"
+          },
+          {
+            "@type": "City",
+            "name": "Leominster"
+          },
+          {
+            "@type": "City",
+            "name": "Ross-on-Wye"
+          },
+          {
+            "@type": "City",
+            "name": "Bridgnorth"
+          },
+          {
+            "@type": "City",
+            "name": "Malvern"
+          },
+          {
+            "@type": "City",
+            "name": "Ledbury"
+          },
+          {
+            "@type": "City",
+            "name": "Oswestry"
+          },
+          {
+            "@type": "City",
+            "name": "Welshpool"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.368,
+            "longitude": -2.717
+          },
+          "geoRadius": "55000"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed IT Support",
+              "url": "https://fresh-tech.uk/services/managed-it-support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Security",
+              "url": "https://fresh-tech.uk/services/cybersecurity"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Essentials Certification Support",
+              "url": "https://fresh-tech.uk/services/cyber-essentials"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microsoft 365 & Cloud Solutions",
+              "url": "https://fresh-tech.uk/services/cloud-solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud Backup & Disaster Recovery",
+              "url": "https://fresh-tech.uk/services/backup-disaster-recovery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Phone Systems",
+              "url": "https://fresh-tech.uk/services/cloud-phone-systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Procurement",
+              "url": "https://fresh-tech.uk/services/hardware-procurement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic IT Projects",
+              "url": "https://fresh-tech.uk/services/strategic-projects"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed Print",
+              "url": "https://fresh-tech.uk/services/managed-print"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Email Security Check",
+            "item": "https://fresh-tech.uk/email-security-check"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "Can someone send email pretending to be your business?"
+      ],
+      [
+        2,
+        "Six checks. One clear verdict."
+      ],
+      [
+        2,
+        "Three steps. Nothing to install."
+      ],
+      [
+        2,
+        "Get your free email security check"
+      ]
+    ],
+    "links": [
+      [
+        "#checker",
+        "Run my free check ↓"
+      ],
+      [
+        "/privacy-policy",
+        "privacy policy"
+      ],
+      [
+        "/technology/email-authentication",
+        "plain-English guide to SPF, DKIM & DMARC"
+      ],
+      [
+        "/email-security-guide",
+        "step-by-step guide to fixing them yourself"
+      ],
+      [
+        "/business-email-compromise",
+        "what to do about business email compromise"
+      ],
+      [
+        "/services/cyber-essentials",
+        "Cyber Essentials"
+      ],
+      [
+        "tel:+441584517234",
+        "01584 517 234"
+      ]
+    ],
+    "images": [],
+    "text": "100% free · no obligationPlain-English report Can someone send email pretending to be your business? For most businesses, the answer is yes, and they have no idea. We'll check your domain's email security for free and send you a plain-English report on exactly what's exposed. We've been quietly checking local businesses, and most are wide open, often without their current IT provider ever flagging it. Run my free check ↓ 6 Areas we check 15 min All it takes from you £0 Cost (genuinely) Check your domain in 20 seconds Enter your work email. We'll check your live email security and show you exactly what's exposed, in plain English. Work email I'm happy for Fresh Tech to follow up about these results and send occasional security tips. Unsubscribe anytime. (Optional, your results show on screen either way.) Run my free check → We use your email to run the check and to handle your enquiry. We won't share it with anyone else or add you to marketing unless you tick above. See our privacy policy. What the report covers Six checks. One clear verdict. These are the settings that decide whether criminals can impersonate your domain, and whether your real email reaches the inbox. New to the terms? Start with our plain-English guide to SPF, DKIM & DMARC, or our step-by-step guide to fixing them yourself. 🛡️ SPF Sender Policy Framework: the list of servers allowed to send email from your domain. What it means for you Missing or wrong, and anyone can send email as you. Your own emails are also more likely to land in spam. ✍️ DKIM A tamper-proof digital signature added to every email you send. What it means for you Without it, messages can be altered in transit and receivers can't confirm they're genuinely from you. 🚫 DMARC The policy that tells the world what to do with fakes, and reports who is sending in your name. What it means for you The one that actually blocks impersonation. Most businesses either don't have it, or have it on 'monitor only', which blocks nothing. 📧 Email platform Whether you run Microsoft 365, Google Workspace, or mail off a web server, and how it is configured. What it means for you Each platform has its own common misconfigurations. We check yours against current best practice. 🔒 MTA-STS A rule that forces email sent to your domain to travel encrypted. What it means for you Stops attackers intercepting or downgrading your email in transit. Almost nobody has this set up. 🌐 DNSSEC Cryptographic protection for your DNS records themselves. What it means for you Stops criminals forging your DNS to hijack your email or your website. How it works Three steps. Nothing to install. 01 Tell us your domain A quick 15-minute call, no prep needed. We just need the web address you send email from. 02 We run the checks We test your live DNS and mail setup against all six areas above. Read-only, so we change nothing. 03 You get the report Plain English: what's exposed, what it means, and what to fix first. Yours to keep, whatever you decide next. Worried email fraud is already happening? See what to do about business email compromise, or read why this is the foundation of Cyber Essentials. Find out where you stand Get your free email security check Book a 15-minute call. We'll run the checks and send your report. No sales script, no obligation. Book my free check → Prefer to talk? Call 01584 517 234. Last reviewed May 2026 · Sam James"
+  }
+}

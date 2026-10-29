@@ -1,0 +1,488 @@
+---
+// Port of pages/ManagedPrintGuidePage.tsx.
+//
+// Differences from the source (documented in scripts/lib/standalone-differences.mjs
+// under '/managed-print-guide'):
+//  - The two accordions (contract traps, FAQ) are native <details>/<summary> so they
+//    work without JavaScript. The source only puts a trap's description or an FAQ's
+//    answer into the DOM once it is expanded (React state, both closed at prerender),
+//    so the captured baseline text has titles/questions only. Native <details> content
+//    is always present in the markup (the browser hides it with CSS, not by omitting
+//    it), so the visible-text extractor always counts it. The text differences insert
+//    each description/answer into the baseline text right after its title/question.
+//  - The closing contact block is the shared <SourceContact /> (copy from
+//    components/Contact.tsx), not hand-rolled. Two links it renders as real anchors
+//    (Email HQ, Face-to-Face) are a disabled-preview stand-in for the source's
+//    ObfuscatedEmail button and Calendly button, which are not real links in the
+//    captured baseline; the text content is identical, so only the links list needs a
+//    documented difference. The trust line's checkmark is wrapped in an aria-hidden
+//    span (kept consistent with the other SourceContact call sites), losing one
+//    character from the extracted text, which the text differences also correct.
+//    ContactForm.astro renders the shared disabled-preview copy instead of the source's
+//    live form fields; heading and text differences cover that section.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+import SourceContact from '../components/SourceContact.astro';
+
+const seo = {
+  path: '/managed-print-guide',
+  title: 'The Ultimate Guide to Managed Print Solutions',
+  description: "Everything you need to know about business printing costs, lease traps, ownership models, and how a print audit can save your business thousands. Free guide from Fresh Tech.",
+  breadcrumbs: [
+    { name: 'Resources', item: '/resources' },
+    { name: 'Managed Print Guide', item: '/managed-print-guide' },
+  ],
+  schema: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: 'The Ultimate Guide to Managed Print Solutions',
+      description: 'Everything you need to know about managed print: hidden costs, lease traps, ownership models, print audits, and how to take control of your business printing costs.',
+      author: { '@type': 'Organization', name: 'Fresh Tech', url: 'https://fresh-tech.uk' },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Fresh Tech',
+        logo: { '@type': 'ImageObject', url: 'https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png' },
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: 'How much does a managed print service cost?', acceptedAnswer: { '@type': 'Answer', text: "It depends entirely on your print volumes, which is why we start with a free print audit. The hardware cost is a one-off purchase (typically spread over 10 interest-free monthly payments). The ongoing service is a simple cost-per-page covering all toner, parts, and engineer callouts. Most businesses find the total cost is significantly lower than what they were spending on ad-hoc toner purchases." } },
+        { '@type': 'Question', name: "What if we don't print enough to justify managed print?", acceptedAnswer: { '@type': 'Answer', text: "Then we'll tell you. Honestly. If your print volumes are low and your current setup is working fine, managed print may not make sense. That's exactly what the print audit is designed to establish - we'll only recommend it if the numbers genuinely stack up." } },
+        { '@type': 'Question', name: "We're currently in a lease contract. Can you help?", acceptedAnswer: { '@type': 'Answer', text: "Yes. We can review your existing contract, identify the notice period and renewal date, and advise on the most cost-effective exit strategy. Even if the end date is years away, getting it in the diary now means you won't miss the cancellation window and get auto-renewed." } },
+        { '@type': 'Question', name: 'What brands do you supply?', acceptedAnswer: { '@type': 'Answer', text: "We're not tied to any single manufacturer. Our print partner assesses your requirements and recommends the best device for the job regardless of brand. A small office with light printing gets a different recommendation to a busy accounts department churning through thousands of pages a month." } },
+        { '@type': 'Question', name: 'What does the service agreement include?', acceptedAnswer: { '@type': 'Answer', text: "Everything except paper. Toner, parts, consumables, labour, callouts, and support are all included in the cost-per-page charge. It's a 12-month rolling agreement - no 5-year lock-ins, no automatic renewals, and you can leave with reasonable notice." } },
+        { '@type': 'Question', name: 'Is the print audit really free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We deploy monitoring software that runs in the background for around a month and collects the data. We then analyse it and present the findings. If improvements can be made, we\'ll show you the numbers. If everything is already in good shape, that\'s the end of it. No obligation, no pressure.' } },
+        { '@type': 'Question', name: 'Do you cover the whole UK?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Our print partner provides national coverage with direct manufacturer warranty and service. Whether you have one office or multiple sites across the country, you\'re covered.' } },
+        { '@type': 'Question', name: 'What about printer security?', acceptedAnswer: { '@type': 'Answer', text: "Business-grade managed printers include features that consumer devices don't: secure print release (documents only print when you authenticate at the device), encrypted storage, access controls, and managed firmware updates. We ensure print devices are properly secured as part of the setup." } },
+      ],
+    },
+  ],
+};
+
+const contractTraps = [
+  { title: 'Volume Commitments', description: "Some suppliers require you to commit to a minimum number of prints per quarter. Fall short and you still pay for the prints you didn't make. Exceed the limit and you're charged at a higher rate. Volume commitments only ever benefit the supplier." },
+  { title: 'Toner Coverage Limitations', description: 'The agreed cost per page may only cover a certain percentage of an A4 page in toner - sometimes as low as 5%. Any toner used beyond that threshold is charged at an inflated rate. This is rarely explained upfront and can add thousands to your annual costs.' },
+  { title: 'Development Meters (Colour Print Trick)', description: "Some contracts charge per colour, not per colour print. Since a colour printer uses four toner colours (cyan, magenta, yellow, black), each colour page costs you four clicks instead of one. A '5p per colour click' contract actually means 20p per colour page." },
+  { title: 'Termination Clauses', description: "Exit penalties are deliberately designed to make leaving more expensive than staying, even when you're overpaying. If you realise mid-contract that you're getting a bad deal, the termination fee ensures you can't walk away without paying through the nose." },
+  { title: 'Automatic Renewal', description: "Most lease agreements auto-renew if you don't give written notice within a narrow window - typically 3 to 6 months before the end date. Miss it by a week and you're locked in for another year. These clauses exist for one reason: to catch you out." },
+  { title: 'Hidden Fees', description: "Network support charges, consumable delivery fees, parts warranty surcharges after year one - we've seen all of these buried in the small print. Individually they look small. Collectively they can add 20-30% to your expected costs." },
+  { title: 'Annual Price Increases', description: 'Buried in the terms will be a clause allowing the supplier to increase costs each year, often by RPI or a fixed percentage. Over a 5-year contract, compound increases can push your costs significantly above what you originally agreed to.' },
+];
+
+const faqs = [
+  { q: 'How much does a managed print service cost?', a: 'It depends entirely on your print volumes, which is why we start with a free print audit. The hardware cost is a one-off purchase (typically spread over 10 interest-free monthly payments). The ongoing service is a simple cost-per-page covering all toner, parts, and engineer callouts. Most businesses find the total cost is significantly lower than what they were spending on ad-hoc toner purchases.' },
+  { q: "What if we don't print enough to justify managed print?", a: "Then we'll tell you. Honestly. If your print volumes are low and your current setup is working fine, managed print may not make sense. That's exactly what the print audit is designed to establish - we'll only recommend it if the numbers genuinely stack up." },
+  { q: "We're currently in a lease contract. Can you help?", a: "Yes. We can review your existing contract, identify the notice period and renewal date, and advise on the most cost-effective exit strategy. Even if the end date is years away, getting it in the diary now means you won't miss the cancellation window and get auto-renewed." },
+  { q: 'What brands do you supply?', a: "We're not tied to any single manufacturer. Our print partner assesses your requirements and recommends the best device for the job regardless of brand. A small office with light printing gets a different recommendation to a busy accounts department churning through thousands of pages a month." },
+  { q: 'What does the service agreement include?', a: "Everything except paper. Toner, parts, consumables, labour, callouts, and support are all included in the cost-per-page charge. It's a 12-month rolling agreement - no 5-year lock-ins, no automatic renewals, and you can leave with reasonable notice." },
+  { q: 'Is the print audit really free?', a: "Yes. We deploy monitoring software that runs in the background for around a month and collects the data. We then analyse it and present the findings. If improvements can be made, we'll show you the numbers. If everything is already in good shape, that's the end of it. No obligation, no pressure." },
+  { q: 'Do you cover the whole UK?', a: "Yes. Our print partner provides national coverage with direct manufacturer warranty and service. Whether you have one office or multiple sites across the country, you're covered." },
+  { q: 'What about printer security?', a: "Business-grade managed printers include features that consumer devices don't: secure print release (documents only print when you authenticate at the device), encrypted storage, access controls, and managed firmware updates. We ensure print devices are properly secured as part of the setup." },
+];
+
+const auditItems = [
+  'Current equipment running costs',
+  'Full usage report by device',
+  'Detailed print volume breakdown',
+  'Average annual consumable spend',
+  'Recommendations for improvement',
+  'Projected savings with managed print',
+];
+
+const securityFeatures = [
+  { title: 'Secure Print Release', desc: 'Documents only print when the user authenticates at the device. No more sensitive papers left in the output tray.' },
+  { title: 'Encrypted Storage', desc: "Documents held in the printer's memory are encrypted, protecting data at rest." },
+  { title: 'Access Controls', desc: 'Restrict who can print, copy, scan, and access device settings.' },
+  { title: 'Managed Firmware Updates', desc: 'Firmware is kept up to date as part of the service, closing known vulnerabilities.' },
+];
+
+const commitments = [
+  { title: 'Nothing Hidden Below the Line', desc: 'What we quote is what you\'ll pay. No surprise fees, no hidden clauses, no inflated charges buried in the small print.' },
+  { title: 'No Long-Term Contracts', desc: "12-month rolling service agreements with easy termination. We'll never ask you to sign a 5-year contract." },
+  { title: 'No Hard Sell', desc: "If our proposal makes sense, the numbers will speak for themselves. We don't do pressure selling." },
+  { title: 'Complete Honesty', desc: "If managed print doesn't make financial sense for your business, we'll tell you. We'd rather earn your trust than take your money for something you don't need." },
+  { title: 'Qualified Engineers', desc: 'Direct manufacturer warranty with nationally covered, fully qualified engineers trained on the specific equipment you have.' },
+  { title: 'No Brand Loyalty', desc: 'The right device for the job, regardless of manufacturer. Recommendations based on your needs, not our commission structure.' },
+];
+---
+
+<StandaloneShell name="managed-print-guide" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap sa-center" style="--sa-max: 760px">
+      <div class="mpg-badge">Managed Print</div>
+      <h1 class="sa-display sa-display-light" style="--sa-size: 48px; --sa-size-mobile: 36px; margin-bottom: 20px">The Ultimate Guide to Managed Print</h1>
+      <p class="sa-lead">Everything you need to know about taking control of your business printing costs. No jargon, no hard sell - just honest advice.</p>
+    </div>
+  </section>
+
+  <div class="sa-wrap" style="--sa-max: 1100px; padding-top: 24px">
+    <nav class="mpg-crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/" aria-label="Home">Home</a></li>
+        <li><a href="/resources">Resources</a></li>
+        <li aria-current="page">Managed Print Guide</li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="sa-section sa-paper">
+    <div class="sa-wrap mpg-intro-grid" style="--sa-max: 1000px">
+      <div>
+        <p class="sa-eyebrow">Complete Guide</p>
+        <h2 class="mpg-h2" style="font-size: 26px">Printing: The Forgotten Line in Your IT Budget</h2>
+        <p class="mpg-p">Ask most business owners how much they spend on printing and you'll get a blank stare. Yet it's one of the largest unmonitored costs in a typical IT budget - and the less you track something, the more it costs.</p>
+        <p class="mpg-p">This guide covers everything from why cheap printers aren't cheap, to how lease contracts catch businesses out, to exactly how a print audit works. Whether you're buying toner from Amazon or locked into a 5-year copier lease, this will help you make better decisions.</p>
+        <div class="mpg-tag-row">
+          <span class="mpg-tag mpg-tag-blue">Cost Control</span>{" "}
+          <span class="mpg-tag mpg-tag-amber">Lease Traps</span>{" "}
+          <span class="mpg-tag mpg-tag-green">Print Audit</span>
+        </div>
+      </div>
+      <div class="mpg-intro-image">
+        <img src="https://res.cloudinary.com/djkmeg5se/image/upload/w_800,f_auto,q_auto/managed-print-cost-savings.jpg" alt="Business printing cost analysis and managed print solutions" width="800" height="500" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 900px">
+      <h2 class="mpg-h2">What Is Managed Print?</h2>
+      <p class="mpg-lead-p">Managed print is a complete service that covers your business printing hardware, supplies, and maintenance in one package - so you know exactly what printing costs and never have to think about toner again.</p>
+      <div class="mpg-card-grid mpg-card-grid-3">
+        <div class="mpg-card mpg-card-center">
+          <h3 class="mpg-h3">Business-Grade Hardware</h3>
+          <p class="mpg-small-p">Printers and copiers built for business workloads, not consumer devices repackaged with a higher price tag. The right device for your actual print volumes, regardless of brand.</p>
+        </div>
+        <div class="mpg-card mpg-card-center">
+          <h3 class="mpg-h3">All-Inclusive Service</h3>
+          <p class="mpg-small-p">Toner, parts, consumables, labour, and callouts all included. You just add paper. When something goes wrong, a qualified engineer is a phone call away - with national coverage.</p>
+        </div>
+        <div class="mpg-card mpg-card-center">
+          <h3 class="mpg-h3">Monitored Costs</h3>
+          <p class="mpg-small-p">A simple cost-per-page model means you always know what printing costs. No more surprise toner orders, no more ad-hoc purchases on Amazon, and no more guessing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 900px">
+      <h2 class="mpg-h2">The Hidden Cost of Cheap Printers</h2>
+      <p class="mpg-lead-p">That printer you bought for under a hundred pounds was designed to be cheap to buy and expensive to run.</p>
+    </div>
+    <div class="sa-wrap" style="--sa-max: 900px">
+      <div class="mpg-panel">
+        <h3 class="mpg-h3" style="text-align: left">The Razor-and-Blades Problem</h3>
+        <p class="mpg-p">Printer manufacturers sell hardware at razor-thin margins (some even at a loss) because the real money is in consumables. A set of replacement toner cartridges for a typical desktop colour printer can cost more than the printer itself. Over two to three years, you might spend five to ten times the purchase price on toner alone.</p>
+
+        <div class="mpg-callout mpg-callout-red">
+          <h4 class="mpg-h4 mpg-h4-red">Real Example: The Numbers Behind a 'Cheap' Printer</h4>
+          <div class="mpg-card-grid mpg-card-grid-2">
+            <div class="mpg-mini-card">
+              <p class="mpg-mini-title">HP OfficeJet Pro 8720</p>
+              <p class="mpg-small-p">Mono cost per page: <strong>1.67p</strong></p>
+              <p class="mpg-small-p">Colour cost per page: <strong>8.80p</strong></p>
+              <p class="mpg-small-p">Monthly print cost at average volumes: <strong>~£199</strong></p>
+            </div>
+            <div class="mpg-mini-card">
+              <p class="mpg-mini-title">HP OfficeJet Pro 9010</p>
+              <p class="mpg-small-p">Mono cost per page: <strong>1.80p</strong></p>
+              <p class="mpg-small-p">Colour cost per page: <strong>6.41p</strong></p>
+              <p class="mpg-small-p">Monthly print cost at average volumes: <strong>~£91</strong></p>
+            </div>
+          </div>
+          <p class="mpg-callout-footer mpg-callout-footer-red">Combined annual running cost: £3,481 - for two printers that cost under £200 each to buy.</p>
+        </div>
+
+        <div class="mpg-callout mpg-callout-green">
+          <h4 class="mpg-h4 mpg-h4-green">The Same Workload on a Managed Device</h4>
+          <div class="mpg-card-grid mpg-card-grid-3">
+            <div class="mpg-mini-card mpg-mini-card-center">
+              <p class="mpg-stat-label">Mono cost per page</p>
+              <p class="mpg-stat-value mpg-stat-green">0.8p</p>
+            </div>
+            <div class="mpg-mini-card mpg-mini-card-center">
+              <p class="mpg-stat-label">Colour cost per page</p>
+              <p class="mpg-stat-value mpg-stat-green">5p</p>
+            </div>
+            <div class="mpg-mini-card mpg-mini-card-center">
+              <p class="mpg-stat-label">Annual running cost</p>
+              <p class="mpg-stat-value mpg-stat-green">£1,939</p>
+            </div>
+          </div>
+          <p class="mpg-callout-footer mpg-callout-footer-green">Annual saving: £1,542. Over five years: £7,710. The hardware pays for itself within 18 months.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 900px">
+      <h2 class="mpg-h2">Ownership vs Leasing: The Full Picture</h2>
+      <p class="mpg-lead-p">Over 80% of businesses lease their printing equipment. We think most of them shouldn't.</p>
+    </div>
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <div class="mpg-split">
+        <div class="mpg-panel mpg-panel-outline mpg-panel-red">
+          <h3 class="mpg-h3 mpg-h3-red" style="text-align: left">The Typical Lease Model</h3>
+          <ul class="mpg-trait-list">
+            <li><span class="mpg-trait-head">You never own the equipment</span><p class="mpg-small-p">At the end of 5 years of payments, the leasing company collects the device (at your expense) and you start over</p></li>
+            <li><span class="mpg-trait-head">You pay far more than the device is worth</span><p class="mpg-small-p">The leasing company pays the dealer upfront, then charges you the capital cost plus interest, admin fees, insurance, and more</p></li>
+            <li><span class="mpg-trait-head">You're forced to upgrade on their schedule</span><p class="mpg-small-p">Most leased devices would happily run for 8-10 years, but the lease forces replacement at year 5 whether you need it or not</p></li>
+            <li><span class="mpg-trait-head">Walking away is deliberately expensive</span><p class="mpg-small-p">Termination clauses ensure that even when you know you're overpaying, it costs more to leave than to stay</p></li>
+          </ul>
+        </div>
+        <div class="mpg-panel mpg-panel-outline mpg-panel-green">
+          <h3 class="mpg-h3 mpg-h3-green" style="text-align: left">Our Ownership Model</h3>
+          <ul class="mpg-trait-list">
+            <li><span class="mpg-trait-head">You own the device outright</span><p class="mpg-small-p">Pay once (or over 10 interest-free monthly instalments) and it's yours. No lease, no residual value games</p></li>
+            <li><span class="mpg-trait-head">Run it for as long as it works</span><p class="mpg-small-p">Business-grade devices last the best part of a decade. Replace it when you need to, not when a contract tells you to</p></li>
+            <li><span class="mpg-trait-head">0% interest purchase plan available</span><p class="mpg-small-p">Spread the cost over 10 monthly payments with no deposit and no third-party finance company involved</p></li>
+            <li><span class="mpg-trait-head">12-month rolling service - no lock-in</span><p class="mpg-small-p">A simple service agreement covering toner, parts, and callouts. Leave with reasonable notice if you're not happy</p></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mpg-callout mpg-callout-amber">
+        <h3 class="mpg-h3 mpg-h3-amber" style="text-align: left">Case Study: The £40,000 Copier Lease</h3>
+        <p class="mpg-p">A business approached us coming into the last year of a 5-year copier lease. They had two HP Color LaserJet MFPs on a lease costing £2,000 per quarter (£1,000 per machine). Over the full 5-year term, they would have spent <strong>£40,000</strong> on two copiers they didn't even own at the end.</p>
+        <p class="mpg-p">The equivalent devices through us would cost approximately £3,500 each to purchase outright - roughly £7,000 total. The customer used our 0% purchase plan to spread the cost over 10 months. Once paid, they own the equipment and can run it for as long as it serves them.</p>
+        <div class="mpg-card-grid mpg-card-grid-3">
+          <div class="mpg-mini-card mpg-mini-card-center">
+            <p class="mpg-stat-label">5-year lease cost</p>
+            <p class="mpg-stat-value mpg-stat-red">£40,000</p>
+            <p class="mpg-stat-note">Owned nothing at the end</p>
+          </div>
+          <div class="mpg-mini-card mpg-mini-card-center">
+            <p class="mpg-stat-label">Purchase cost</p>
+            <p class="mpg-stat-value mpg-stat-green">~£7,000</p>
+            <p class="mpg-stat-note">Owned outright</p>
+          </div>
+          <div class="mpg-mini-card mpg-mini-card-center">
+            <p class="mpg-stat-label">Saving</p>
+            <p class="mpg-stat-value" style="color: var(--primary-dark)">£33,000</p>
+            <p class="mpg-stat-note">Over the lease term</p>
+          </div>
+        </div>
+        <p class="mpg-callout-footer mpg-callout-footer-amber">The business also moved from a 5-year service contract to a 12-month rolling agreement. No more being handcuffed to a supplier. They didn't even need new equipment - the existing devices had years of life left. They were only being replaced because the lease was up.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 900px">
+      <h2 class="mpg-h2">What to Watch Out For in Print Contracts</h2>
+      <p class="mpg-lead-p">The print industry has a tarnished reputation for good reason. If something looks too good to be true, it probably is. Here are the tactics to be aware of.</p>
+    </div>
+    <div class="sa-wrap" style="--sa-max: 900px">
+      <div class="mpg-accordion">
+        {contractTraps.map(trap => (
+          <details class="mpg-trap">
+            <summary class="mpg-trap-summary">
+              <span class="mpg-trap-title">{trap.title}</span>
+              <span class="mpg-trap-arrow" aria-hidden="true"></span>
+            </summary>
+            <div class="mpg-trap-body"><p class="mpg-small-p">{trap.description}</p></div>
+          </details>
+        ))}
+      </div>
+      <div class="mpg-note">
+        <p class="mpg-p" style="margin: 0"><strong>Our position:</strong> We publish clear pricing, use 12-month rolling service agreements, don't require volume commitments, and don't hide fees in the small print. If that sounds different to what you're used to, it's because it is. Read more about our approach on our <a class="sa-link" href="/services/managed-print">managed print service page</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 900px">
+      <h2 class="mpg-h2">How Our Free Print Audit Works</h2>
+      <p class="mpg-lead-p">Not sure if managed print would benefit your business? The print audit is the fastest way to find out. No cost, no commitment - just data.</p>
+    </div>
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <div class="mpg-card-grid mpg-card-grid-3">
+        <div class="mpg-step-card">
+          <span class="mpg-step-number">1</span>
+          <h3 class="mpg-h3" style="text-align: left">Monitor</h3>
+          <p class="mpg-small-p">We deploy an intelligent monitoring agent to your network. It identifies every printing device you're running and begins tracking usage data - how much each device prints, in colour and mono, and the associated costs. This runs quietly in the background for around four weeks.</p>
+        </div>
+        <div class="mpg-step-card">
+          <span class="mpg-step-number">2</span>
+          <h3 class="mpg-h3" style="text-align: left">Analyse</h3>
+          <p class="mpg-small-p">Our print specialists analyse the collected data, break down the running costs of your current equipment, and build a comprehensive report on your current situation. This includes cost per page, total monthly and annual expenditure, and where waste is occurring.</p>
+        </div>
+        <div class="mpg-step-card">
+          <span class="mpg-step-number">3</span>
+          <h3 class="mpg-h3" style="text-align: left">Improve</h3>
+          <p class="mpg-small-p">We present the findings to you. If improvements can be made, we'll have real facts and figures to back it up, along with detailed recommendations. If your setup is already in good shape, we'll tell you that too. No pressure, no obligation.</p>
+        </div>
+      </div>
+
+      <div class="mpg-panel">
+        <h3 class="mpg-h3">What the Print Audit Report Covers</h3>
+        <div class="mpg-card-grid mpg-card-grid-3">
+          {auditItems.map(item => (
+            <div class="mpg-feature-row"><span class="mpg-small-p" style="font-weight: 600">{item}</span></div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 900px">
+      <h2 class="mpg-h2">The Security Side of Print</h2>
+      <p class="mpg-lead-p">Printers are network devices. An unsecured printer is a genuine entry point for attackers.</p>
+    </div>
+    <div class="sa-wrap" style="--sa-max: 900px">
+      <div class="mpg-panel">
+        <p class="mpg-p">In 2020, ethical hacking group CyberNews demonstrated this by remotely accessing nearly 28,000 unsecured printers worldwide. These weren't sophisticated attacks - they simply found devices exposed to the internet with no security configured.</p>
+        <p class="mpg-p">Consumer printers typically have no meaningful security features. Business-grade managed devices include protections that most businesses don't know they need until it's too late.</p>
+        <div class="mpg-card-grid mpg-card-grid-2">
+          {securityFeatures.map(item => (
+            <div class="mpg-mini-card">
+              <h3 class="mpg-h4">{item.title}</h3>
+              <p class="mpg-small-p">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <p class="mpg-p sa-center">If you're working towards <a class="sa-link" href="/services/cyber-essentials">Cyber Essentials</a> certification or improving your overall <a class="sa-link" href="/services/cybersecurity">cyber security</a> posture, your print devices should be part of that conversation.</p>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 900px">
+      <h2 class="mpg-h2">Our Commitments</h2>
+      <p class="mpg-lead-p">We work with a specialist print partner who shares our approach to honest, transparent business.</p>
+    </div>
+    <div class="sa-wrap" style="--sa-max: 900px">
+      <div class="mpg-card-grid mpg-card-grid-2">
+        {commitments.map(item => (
+          <div class="mpg-mini-card mpg-mini-card-green">
+            <h3 class="mpg-h4">{item.title}</h3>
+            <p class="mpg-small-p">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap" style="--sa-max: 900px">
+      <h2 class="mpg-h2 sa-center">Frequently Asked Questions</h2>
+      <div class="mpg-accordion">
+        {faqs.map(faq => (
+          <details class="mpg-trap">
+            <summary class="mpg-trap-summary">
+              <span class="mpg-trap-title">{faq.q}</span>
+              <span class="mpg-trap-arrow" aria-hidden="true"></span>
+            </summary>
+            <div class="mpg-trap-body"><p class="mpg-small-p">{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 700px">
+      <h2 class="mpg-h2">Ready to Find Out What Printing Really Costs You?</h2>
+      <p class="mpg-lead-p">Our free print audit takes the guesswork out of print costs. We'll deploy monitoring software, collect the data, and give you a clear picture of what you're spending - with recommendations only if the numbers justify it.</p>
+      <div class="mpg-cta-row">
+        <a class="sa-button" href="/contact">Request a Free Print Audit</a>{" "}
+        <a class="sa-button sa-button-dark" href="/services/managed-print">View Managed Print Service</a>
+      </div>
+    </div>
+  </section>
+
+  <SourceContact />
+</StandaloneShell>
+
+<style>
+  .mpg-badge { display: inline-block; margin: 0 0 20px; padding: 6px 16px; border: 1px solid rgba(255,255,255,0.35); color: var(--paper); font: 700 11px/1.3 'SA Archivo Narrow', sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+  .mpg-crumbs ol { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 0; padding: 0; list-style: none; font-size: 13px; color: #565c63; }
+  .mpg-crumbs li + li::before { content: '/'; margin-right: 6px; color: var(--hairline); }
+  .mpg-crumbs a { color: #565c63; font-weight: 600; }
+  .mpg-crumbs [aria-current='page'] { color: var(--ink); font-weight: 700; }
+
+  .mpg-h2 { font: 400 30px/1.15 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--ink); margin: 0 0 16px; overflow-wrap: anywhere; }
+  .sa-hero .mpg-h2 { color: var(--paper); }
+  .mpg-h3 { font: 400 19px/1.2 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--ink); margin: 0 0 12px; text-align: center; }
+  .mpg-h4 { font: 700 15px/1.3 'SA Archivo', sans-serif; color: var(--ink); margin: 0 0 6px; }
+  .mpg-h4-red { color: #a3271a; }
+  .mpg-h4-green { color: #166534; }
+  .mpg-h3-red { color: #a3271a; }
+  .mpg-h3-green { color: #166534; }
+  .mpg-h3-amber { color: #92400e; }
+  .mpg-lead-p { max-width: 62ch; margin: 0 auto 40px; color: #565c63; font-size: 17px; line-height: 1.6; }
+  .mpg-p { margin: 0 0 16px; color: #33393f; font-size: 15.5px; line-height: 1.7; }
+  .mpg-small-p { margin: 0; color: #4a5158; font-size: 14px; line-height: 1.65; }
+
+  .mpg-intro-grid { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; }
+  @media (min-width: 768px) { .mpg-intro-grid { grid-template-columns: 1.1fr 0.9fr; } }
+  .mpg-intro-image img { display: block; width: 100%; height: auto; border: 4px solid var(--white); box-shadow: 0 12px 30px rgba(15,25,35,0.15); }
+  .mpg-tag-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .mpg-tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+  .mpg-tag-blue { background: #dbeafe; color: #1d4ed8; }
+  .mpg-tag-amber { background: #fef3c7; color: #92400e; }
+  .mpg-tag-green { background: #dcfce7; color: #166534; }
+
+  .mpg-card-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin: 0 0 8px; }
+  @media (min-width: 640px) { .mpg-card-grid-2 { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 768px) { .mpg-card-grid-3 { grid-template-columns: 1fr 1fr 1fr; } }
+  .mpg-card { background: var(--paper-deep); padding: 24px; border-radius: 14px; }
+  .mpg-card-center { text-align: center; }
+
+  .mpg-panel { background: var(--white); border: 1px solid var(--hairline); border-radius: 18px; padding: 32px; margin-bottom: 24px; box-shadow: 0 4px 16px rgba(15,25,35,0.05); }
+  .mpg-panel-outline { border-width: 2px; }
+  .mpg-panel-red { border-color: #f3c9c3; }
+  .mpg-panel-green { border-color: #bfe3cc; }
+
+  .mpg-split { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 24px; }
+  @media (min-width: 768px) { .mpg-split { grid-template-columns: 1fr 1fr; } }
+  .mpg-trait-list { display: flex; flex-direction: column; gap: 16px; margin: 0; padding: 0; list-style: none; }
+  .mpg-trait-head { display: block; margin-bottom: 4px; font-weight: 700; color: var(--ink); font-size: 14.5px; }
+
+  .mpg-callout { border-radius: 16px; padding: 24px; margin: 20px 0; }
+  .mpg-callout-red { background: #fdf1ef; }
+  .mpg-callout-green { background: #eefbf2; }
+  .mpg-callout-amber { background: #fdf4e3; border: 1px solid #f2ddab; border-radius: 18px; padding: 32px; }
+  .mpg-callout-footer { margin: 16px 0 0; font-weight: 700; font-size: 14.5px; }
+  .mpg-callout-footer-red { color: #a3271a; }
+  .mpg-callout-footer-green { color: #166534; }
+  .mpg-callout-footer-amber { color: #7c5a12; font-size: 13.5px; margin-top: 24px; }
+
+  .mpg-mini-card { background: var(--white); border-radius: 10px; padding: 16px; border: 1px solid var(--hairline); }
+  .mpg-mini-card-center { text-align: center; }
+  .mpg-mini-card-green { background: #eefbf2; border: none; }
+  .mpg-mini-title { margin: 0 0 8px; font-weight: 700; color: var(--ink); font-size: 14px; }
+  .mpg-stat-label { margin: 0 0 4px; color: #6b7280; font-size: 13px; }
+  .mpg-stat-value { margin: 0; font-size: 24px; font-weight: 800; }
+  .mpg-stat-green { color: #15803d; }
+  .mpg-stat-red { color: #b91c1c; }
+  .mpg-stat-note { margin: 4px 0 0; color: #6b7280; font-size: 12px; }
+
+  .mpg-accordion { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+  .mpg-trap { background: var(--white); border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; }
+  .mpg-trap-summary { display: flex; align-items: center; gap: 12px; justify-content: space-between; padding: 16px 18px; cursor: pointer; font-weight: 700; color: var(--ink); list-style: none; }
+  .mpg-trap-summary::-webkit-details-marker { display: none; }
+  .mpg-trap-title { flex: 1; }
+  .mpg-trap-arrow { width: 10px; height: 10px; border-right: 2px solid #9ca3af; border-bottom: 2px solid #9ca3af; transform: rotate(45deg); flex-shrink: 0; transition: transform 150ms ease; }
+  details[open] > .mpg-trap-summary .mpg-trap-arrow { transform: rotate(-135deg); }
+  .mpg-trap-summary:hover { background: var(--paper-deep); }
+  .mpg-trap-body { padding: 0 18px 18px; }
+
+  .mpg-note { background: rgba(31,92,140,0.06); border: 1px solid rgba(31,92,140,0.2); border-radius: 14px; padding: 20px 24px; }
+
+  .mpg-step-card { position: relative; background: #eaf2fa; border: 1px solid #d3e5f4; border-radius: 14px; padding: 30px 22px 22px; }
+  .mpg-step-number { position: absolute; top: -16px; left: -12px; width: 36px; height: 36px; border-radius: 50%; background: var(--primary-dark); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 800; box-shadow: 0 4px 10px rgba(15,25,35,0.2); }
+
+  .mpg-feature-row { display: flex; align-items: center; background: var(--white); border-radius: 10px; padding: 14px; border: 1px solid var(--hairline); }
+
+  .mpg-cta-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+  @media (max-width: 479px) {
+    .mpg-h2 { font-size: 24px; }
+  }
+</style>

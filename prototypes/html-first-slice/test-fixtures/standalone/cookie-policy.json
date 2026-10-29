@@ -1,0 +1,155 @@
+{
+  "route": "/cookie-policy",
+  "source": "pages-v2/CookiePolicyPageV2.tsx",
+  "sourceSha256": "1126e5d1860b78f1c77a754f3c33d31429ce0ff040775cc5c83121aa613511b2",
+  "capturedAt": "2026-09-16T12:23:02.682Z",
+  "head": {
+    "title": "Cookie Policy | Fresh Tech IT Support",
+    "description": "What cookies Fresh Tech uses, why, and how to change your mind. Plain English, no nonsense.",
+    "canonical": "https://fresh-tech.uk/cookie-policy",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "article",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Cookie Policy",
+        "description": "What cookies Fresh Tech uses, why, and how to change your mind. Plain English, no nonsense.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/cookie-policy",
+        "author": {
+          "@id": "https://fresh-tech.uk/#organization"
+        },
+        "publisher": {
+          "@id": "https://fresh-tech.uk/#organization"
+        },
+        "mainEntityOfPage": "https://fresh-tech.uk/cookie-policy"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Cookie Policy",
+            "item": "https://fresh-tech.uk/cookie-policy"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "The cookie policy."
+      ],
+      [
+        2,
+        "The short version"
+      ],
+      [
+        2,
+        "What is a cookie?"
+      ],
+      [
+        2,
+        "Strictly necessary"
+      ],
+      [
+        2,
+        "Analytics (optional, off until you allow it)"
+      ],
+      [
+        2,
+        "Changing your mind"
+      ],
+      [
+        2,
+        "More detail"
+      ],
+      [
+        2,
+        "Any questions?"
+      ]
+    ],
+    "links": [
+      [
+        "/privacy-policy",
+        "privacy policy"
+      ],
+      [
+        "mailto:hello@fresh-tech.uk",
+        "hello@fresh-tech.uk"
+      ],
+      [
+        "tel:+441584517234",
+        "01584 517 234"
+      ],
+      [
+        "/contact",
+        "Get in touch →"
+      ]
+    ],
+    "images": [],
+    "text": "Cookies The cookie policy. Last updated: September 2026 The short version Our site works perfectly fine with zero cookies. We don't use them for advertising and we never sell your data. The only non-essential ones we'd like to set are anonymous analytics, and they only run if you say yes. You can change your mind any time using the button below. 🍪 Manage cookie preferences What is a cookie? A cookie is a tiny text file a website stores in your browser. Some are needed for a site to function; others help the owner understand how the site is used. Under UK law (PECR and the UK GDPR), anything that isn't strictly necessary needs your permission first, which is why you saw a banner. Strictly necessary These keep the site working and remember your privacy choice. They don't track you and can't be switched off. ft-cookie-consent-v1Fresh Tech (this site) · Until you clear it Remembers your cookie choice so we don't keep asking. Stored in your browser, never sent to us. Analytics (optional, off until you allow it) If you opt in, we use Google Analytics and Microsoft Clarity to see which pages are useful and where visitors run into trouble. The data is aggregated and anonymous; we use it purely to improve the site. Nothing loads until you consent. _ga, _ga_*Google Analytics · Up to 2 years Tells visitors apart so we can count page views and traffic sources anonymously. _gidGoogle Analytics · 24 hours Distinguishes visitors for daily usage stats. _clck, _clskMicrosoft Clarity · Up to 1 year Anonymous heatmaps and session insights: shows where people get stuck so we can fix it. Changing your mind Hit the button below to reopen your cookie choices at any time. You can also block or delete cookies in your browser settings; every major browser lets you do this. Turning off analytics here also clears the related cookies from your device. 🍪 Manage cookie preferences More detail For how we handle personal data generally, see our privacy policy. Google and Microsoft also publish their own privacy information for the tools above. Questions about cookies or your data? Email hello@fresh-tech.uk or call 01584 517 234. We are FRESH PCS CONSULTANCY LTD (Co. No. 09296207), ICO registration ZA136732. Any questions? Get in touch →"
+  }
+}

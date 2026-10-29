@@ -1,0 +1,169 @@
+/* /case-studies listing and /case-studies/[slug] detail. Must be imported
+   after services.css, which supplies the service hero, content-section,
+   closing-section, listing-stats and hero-stat rules these routes build on. */
+/* Case-study font aliases: font-display: optional over the existing assets (the
+   standalone, problem and homepage approach). Late-swapping global faces moved the
+   case-study image and outcome box on slow phones (CLS 0.15). The routes preload the
+   Bungee subset so the fast path still paints the display face. */
+@font-face { font-family: 'CS Archivo'; font-style: normal; font-weight: 400 800; font-stretch: 100%; font-display: optional; src: url('/fonts/archivo-v25-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'CS Archivo'; font-style: normal; font-weight: 400 800; font-stretch: 100%; font-display: optional; src: url('/fonts/archivo-v25-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'CS Archivo Narrow'; font-style: normal; font-weight: 600 700; font-display: optional; src: url('/fonts/archivo-narrow-v35-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'CS Archivo Narrow'; font-style: normal; font-weight: 600 700; font-display: optional; src: url('/fonts/archivo-narrow-v35-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'CS Bungee'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/bungee-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'CS Bungee'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/bungee-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+body[data-page-family='case-studies'] { font-family: 'CS Archivo', system-ui, sans-serif; }
+body[data-page-family='case-studies'] .strap { font-family: 'CS Archivo Narrow', 'CS Archivo', sans-serif; }
+body[data-page-family='case-studies'] .mobile-menu nav p, body[data-page-family='case-studies'] .nav-panel > p, body[data-page-family='case-studies'] .eyebrow { font-family: 'CS Archivo Narrow', sans-serif; }
+body[data-page-family='case-studies'] :is(h1, h2, h3) { font-family: 'CS Bungee', 'CS Archivo', system-ui, sans-serif; }
+/* Shared services.css rules these routes reuse, re-pointed at the aliases. */
+body[data-page-family='case-studies'] .hero-stat strong, body[data-page-family='case-studies'] .hero-price strong { font-family: 'CS Bungee', sans-serif; }
+body[data-page-family='case-studies'] .price-label { font-family: 'CS Bungee', sans-serif; }
+body[data-page-family='case-studies'] .quote-label { font-family: 'CS Archivo Narrow', sans-serif; }
+body[data-page-family='case-studies'] .outcomes strong { font-family: 'CS Bungee', sans-serif; }
+body[data-page-family='case-studies'] .step-number { font-family: 'CS Bungee', sans-serif; }
+body[data-page-family='case-studies'] .faq-list summary span { font-family: 'CS Bungee', sans-serif; }
+body[data-page-family='case-studies'] .related-label { font-family: 'CS Archivo Narrow', sans-serif; }
+body[data-page-family='case-studies'] .listing-stats .hero-stat span { font-family: 'CS Archivo Narrow', sans-serif; }
+body[data-page-family='case-studies'] .service-card small { font-family: 'CS Archivo Narrow', sans-serif; }
+body[data-page-family='case-studies'] .card-tag { font-family: 'CS Bungee', sans-serif; }
+
+:root { --red: #C8443A; }
+.cs-grid > * { min-width: 0; }
+.case-studies-page [hidden], .case-study-page [hidden] { display: none !important; }
+.cs-container { max-width: 1100px; margin: 0 auto; }
+.sector-badge { display: inline-block; max-width: 100%; padding: 4px 10px; background: var(--primary); color: var(--white); font: 700 11px/1.4 'CS Archivo Narrow', sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.cs-hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+.cs-sticker { display: inline-block; padding: 5px 14px; border: 2px solid rgba(255,255,255,.3); background: var(--yellow); color: var(--ink); font: 400 11px/1.4 'CS Bungee', sans-serif; transform: rotate(-2deg); }
+.cs-hero-note { display: inline-flex; align-items: center; padding: 5px 14px; border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.72); font: 700 11px/1.4 'CS Archivo Narrow', sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.cs-hero h1 { max-width: none; font-size: clamp(38px, 7vw, 58px); line-height: .92; }
+.cs-hero .service-desc { max-width: 44ch; color: rgba(255,255,255,.72); font-size: 17px; }
+.cs-stats { grid-template-columns: minmax(0, 1fr); }
+.cs-stats .hero-stat { min-width: 0; }
+.cs-stats .hero-stat strong, .cs-stats .hero-stat span, .cs-stats .hero-stat small { overflow-wrap: anywhere; }
+.cs-stats .hero-stat span { color: rgba(255,255,255,.8); font: 700 13px/1.3 'CS Archivo', sans-serif; letter-spacing: 0; text-transform: none; }
+.cs-stats .hero-stat small { display: block; margin-top: 3px; color: rgba(255,255,255,.62); font: 700 10px/1.4 'CS Archivo Narrow', sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.cs-featured-section { background: var(--paper-deep); }
+.cs-all-section { background: var(--paper); }
+.cs-featured-section h2.eyebrow { margin-bottom: 24px; font: 700 11px/1.2 'CS Archivo Narrow', sans-serif; letter-spacing: .14em; }
+.cs-featured-list { display: grid; gap: 20px; }
+.cs-featured-card { position: relative; display: grid; border: 2px solid var(--ink); background-color: var(--ink); background-image: radial-gradient(rgba(255,255,255,.03) 1.4px, transparent 1.4px); background-size: 12px 12px; color: var(--white); text-decoration: none; box-shadow: 4px 4px 0 var(--ink); transition: box-shadow 180ms; }
+.cs-featured-card:hover, .cs-featured-card:focus-visible { box-shadow: 6px 6px 0 var(--accent); }
+.cs-featured-body { display: flex; flex-direction: column; gap: 16px; padding: 32px 24px; }
+.cs-featured-body .sector-badge { align-self: flex-start; }
+.cs-featured-body h3 { margin: 0; color: var(--white); font-size: clamp(22px, 4vw, 28px); line-height: 1; overflow-wrap: anywhere; }
+.cs-featured-body > p { max-width: 44ch; margin: 0; color: rgba(255,255,255,.72); font-size: 15px; line-height: 1.65; }
+.cs-quote { margin-top: 4px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.12); }
+.cs-quote p { margin: 0 0 8px; color: rgba(255,255,255,.68); font-size: 14px; font-style: italic; line-height: 1.6; }
+.cs-quote span { display: block; color: rgba(255,255,255,.62); font: 700 11px/1.4 'CS Archivo Narrow', sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.cs-read { display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 8px; color: var(--yellow); font-size: 13px; font-weight: 700; }
+.cs-featured-metric { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 64px 24px 32px; border-top: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.05); text-align: center; }
+.cs-featured-metric > strong { color: var(--yellow); font: 400 clamp(40px, 8vw, 56px)/.85 'CS Bungee', sans-serif; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.cs-metric-label { display: block; max-width: 20ch; margin-top: 12px; color: var(--white); font-size: 15px; font-weight: 700; line-height: 1.2; }
+.cs-metric-sub { display: block; margin-top: 4px; color: rgba(255,255,255,.62); font: 700 11px/1.4 'CS Archivo Narrow', sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.cs-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 24px; }
+.cs-tags span { padding: 4px 10px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.08); color: rgba(255,255,255,.72); font: 700 10px/1.4 'CS Archivo Narrow', sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.cs-client-sticker { position: absolute; top: 16px; right: 16px; max-width: 50%; padding: 5px 12px; border: 2px solid var(--ink); background: var(--yellow); color: var(--ink); font: 400 11px/1.4 'CS Bungee', sans-serif; transform: rotate(2deg); box-shadow: 2px 2px 0 var(--ink); overflow-wrap: anywhere; }
+.cs-all-header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 32px; }
+.cs-all-header .eyebrow { margin-bottom: 8px; }
+.cs-count { margin: 0; font-size: clamp(26px, 5vw, 32px); line-height: .95; }
+.cs-filters { display: flex; flex-wrap: wrap; gap: 6px; }
+/* Enhancement controls keep their space while hidden, so revealing them after
+   the external script loads does not shift the page. Without JavaScript a
+   <noscript> rule collapses them as before. */
+.cs-filters[hidden] { display: flex; visibility: hidden; }
+.cs-filters button { padding: 8px 14px; border: 1px solid var(--hairline); background: var(--white); color: var(--ink); font: 700 11px/1.4 'CS Archivo Narrow', sans-serif; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: background 150ms, color 150ms, box-shadow 150ms; }
+.cs-filters button:hover { border-color: var(--ink); }
+.cs-filters button[aria-pressed='true'] { border-color: var(--ink); background: var(--ink); color: var(--white); box-shadow: 2px 2px 0 var(--ink); }
+.cs-grid { display: grid; gap: 20px; }
+.cs-card { display: flex; flex-direction: column; border: 1px solid var(--hairline); background: var(--white); color: var(--ink); text-decoration: none; box-shadow: 0 4px 16px rgba(15,25,35,.06); transition: border-color 180ms, box-shadow 180ms; }
+.cs-card:hover, .cs-card:focus-visible { border-color: var(--primary); box-shadow: 4px 4px 0 var(--primary); }
+.cs-card-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 24px; background-color: var(--ink); background-image: radial-gradient(rgba(255,255,255,.03) 1.4px, transparent 1.4px); background-size: 12px 12px; color: var(--white); }
+.cs-card-head > div { min-width: 0; }
+.cs-card-head strong { display: block; color: var(--yellow); font: 400 40px/.85 'CS Bungee', sans-serif; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.cs-card-head .cs-metric-label { max-width: none; margin-top: 8px; color: rgba(255,255,255,.8); font-size: 13px; }
+.cs-card-head .cs-metric-sub { margin-top: 3px; font-size: 10px; }
+.cs-card-body { display: flex; flex: 1; flex-direction: column; gap: 10px; padding: 24px; }
+.cs-client { color: rgba(15,25,35,.62); font: 400 11px/1.4 'CS Bungee', sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+.cs-card-body h3 { margin: 0; font-size: 18px; line-height: 1.1; overflow-wrap: anywhere; }
+.cs-card-body > p { margin: 0; color: rgba(15,25,35,.66); font-size: 14px; line-height: 1.65; }
+.cs-card-body .cs-quote { padding-top: 12px; border-top-color: var(--hairline); }
+.cs-card-body .cs-quote p { color: rgba(15,25,35,.66); font-size: 13px; line-height: 1.55; }
+.cs-card-body .cs-quote span { color: rgba(15,25,35,.62); font-size: 10px; }
+.cs-card-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 12px; }
+.cs-card-foot .cs-tags { justify-content: flex-start; margin: 0; }
+.cs-card-foot .cs-tags span { padding: 3px 8px; border: 0; background: var(--paper-deep); color: rgba(15,25,35,.62); }
+.cs-card-foot .cs-read { margin: 0; padding: 0; color: rgba(15,25,35,.62); }
+.cs-card:hover .cs-read { color: var(--primary-dark); }
+.cs-empty { margin: 0; padding: 64px 0; color: rgba(15,25,35,.62); font-size: 16px; text-align: center; }
+.cs-empty a { color: var(--primary-dark); font-weight: 700; }
+.cs-sectors-section { border-top: 3px solid var(--ink); }
+.cs-sectors-section .eyebrow { margin-bottom: 16px; }
+.cs-sector-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 32px; }
+.cs-sectors-section h2 { font-size: clamp(24px, 4vw, 32px); line-height: 1; }
+
+/* Detail */
+.cs-back { margin: 0 0 16px; }
+.cs-back a { display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,.72); font: 700 11px/1.4 'CS Archivo Narrow', sans-serif; letter-spacing: .12em; text-decoration: none; text-transform: uppercase; }
+.cs-back a:hover { color: var(--white); }
+.cs-detail-grid { display: grid; gap: 32px; align-items: center; }
+.cs-detail-grid > * { min-width: 0; }
+.cs-detail-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 18px; }
+.cs-detail-client { color: var(--yellow); font: 400 11px/1.4 'CS Bungee', sans-serif; letter-spacing: .06em; }
+.cs-detail-hero h1 { max-width: none; margin-bottom: 16px; font-size: clamp(32px, 6vw, 46px); line-height: 1; overflow-wrap: anywhere; }
+.cs-outcome { max-width: 54ch; margin: 0; color: rgba(255,255,255,.78); font-size: 18px; font-weight: 600; line-height: 1.6; }
+.cs-outcome-box { padding: 28px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.07); text-align: center; }
+.cs-box-label { display: block; margin-bottom: 8px; color: rgba(255,255,255,.62); font: 700 11px/1.4 'CS Archivo Narrow', sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.cs-outcome-box strong { display: block; color: var(--yellow); font: 400 clamp(24px, 5vw, 32px)/1 'CS Bungee', sans-serif; overflow-wrap: anywhere; }
+.cs-image-section { padding: 32px 20px; background: var(--paper-deep); }
+.cs-image-section img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+.cs-body a, .cs-outcome a, .cs-related-outcome a { color: var(--primary-dark); font-weight: 600; }
+.cs-story-section { background: var(--paper); }
+.cs-story-section h2 { font-size: clamp(24px, 4vw, 28px); }
+.cs-body { margin: 0; color: rgba(15,25,35,.7); font-size: 16px; line-height: 1.7; }
+.cs-risk { margin: 16px 0 0; padding: 12px 16px; border-left: 4px solid var(--red); background: var(--paper-deep); color: var(--ink); font: 700 12px/1.5 'CS Archivo Narrow', sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.cs-stack { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
+.cs-stack li { padding: 5px 10px; background: var(--ink); color: var(--paper); font: 700 11px/1.4 'CS Archivo Narrow', sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.cs-result-section { background-color: var(--ink); background-image: radial-gradient(rgba(255,255,255,.04) 1.4px, transparent 1.4px); background-size: 14px 14px; color: var(--paper); }
+.cs-result-heading { margin-bottom: 40px; text-align: center; }
+.cs-result-heading .eyebrow { color: rgba(255,255,255,.62); }
+.cs-result-heading h2 { color: var(--paper); font-size: clamp(28px, 5vw, 36px); overflow-wrap: anywhere; }
+.cs-metrics { display: grid; gap: 20px; }
+.cs-metric { padding: 28px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.06); text-align: center; }
+.cs-metric span { display: block; margin-bottom: 12px; color: rgba(255,255,255,.62); font: 700 11px/1.4 'CS Archivo Narrow', sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.cs-metric strong { display: block; font: 400 22px/1.2 'CS Bungee', sans-serif; overflow-wrap: anywhere; }
+.cs-metric[data-tone='risk'] strong { color: #f0a396; }
+.cs-metric[data-tone='strategy'] strong { color: #8cc4ec; }
+.cs-metric[data-tone='victory'] strong { color: var(--yellow); }
+.cs-testimonial-section { background: var(--paper-deep); }
+.cs-testimonial { max-width: 720px; margin: 0 auto; text-align: center; }
+.cs-quote-mark { display: block; margin-bottom: 16px; color: var(--primary-dark); font: 400 56px/.8 'CS Bungee', sans-serif; }
+.cs-testimonial p { margin: 0 0 20px; color: var(--ink); font-size: 20px; font-style: italic; line-height: 1.6; }
+.cs-testimonial footer { color: var(--primary-dark); font: 700 12px/1.4 'CS Archivo Narrow', sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+.cs-related-section { background: var(--white); }
+.cs-related-section h2 { margin-bottom: 32px; font-size: clamp(26px, 5vw, 32px); }
+.cs-related-grid { display: grid; gap: 16px; }
+.cs-related-card { display: block; padding: 24px; border: 1px solid var(--hairline); background: var(--paper); color: var(--ink); text-decoration: none; transition: border-color 180ms, box-shadow 180ms; }
+.cs-related-card:hover, .cs-related-card:focus-visible { border-color: var(--primary); box-shadow: 3px 3px 0 var(--primary); }
+.cs-related-industry { display: block; margin-bottom: 8px; color: var(--primary-dark); font: 700 11px/1.4 'CS Archivo Narrow', sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.cs-related-card strong { display: block; margin-bottom: 8px; font: 400 16px/1.1 'CS Bungee', sans-serif; overflow-wrap: anywhere; }
+.cs-related-outcome { display: block; color: rgba(15,25,35,.66); font-size: 13px; line-height: 1.5; }
+.cs-cta-section { background: var(--paper); }
+
+@media (min-width: 768px) {
+  .cs-hero .service-hero-grid { grid-template-columns: 1fr 1fr; align-items: end; }
+  .cs-featured-card { grid-template-columns: 1fr 1fr; }
+  .cs-featured-body { padding: 40px 36px; }
+  .cs-featured-metric { padding: 40px 32px; border-top: 0; border-left: 1px solid rgba(255,255,255,.12); }
+  .cs-client-sticker { top: 20px; right: 20px; }
+  .cs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-detail-grid { grid-template-columns: 1.4fr .6fr; gap: 56px; }
+  .cs-image-section { padding: 48px 32px; }
+  .cs-metrics, .cs-related-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .cs-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+

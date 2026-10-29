@@ -1,0 +1,22 @@
+---
+// Inline renderer for legal document text: links (including autolinked bare
+// emails), **strong**, and escaped plain text. See src/lib/legal-markdown.mjs
+// (inlineLegalTokens) for why this is a small variant of InlineMarkdown.astro
+// rather than that shared component: legal documents need mailto: links,
+// which isAllowedInlineHref (used by every other caller of InlineMarkdown)
+// deliberately does not allow.
+import { inlineLegalTokens } from '../lib/legal-markdown.mjs';
+
+interface Props { text: string }
+const tokens = inlineLegalTokens(Astro.props.text);
+---
+
+{tokens.map(token => {
+  if (token.type === 'strong') return <strong>{token.value}</strong>;
+  if (token.type === 'link') return (
+    <a href={token.href} target={token.external ? '_blank' : undefined} rel={token.external ? 'noopener noreferrer' : undefined}>
+      {token.children.map(child => child.type === 'strong' ? <strong>{child.value}</strong> : child.value)}
+    </a>
+  );
+  return token.value;
+})}

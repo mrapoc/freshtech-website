@@ -1,0 +1,278 @@
+---
+// Port of pages-v2/AIAcceptableUsePolicyPageV2.tsx. Static content only: the
+// React "Copy full text" / "Print / Save as PDF" buttons are re-created with a
+// small scoped script instead of React state, since they are pure client-side
+// conveniences with no effect on the visible text the output gate compares.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+
+interface Section { n: number; emoji: string; title: string; body: string }
+
+// Copied verbatim from pages-v2/AIAcceptableUsePolicyPageV2.tsx SECTIONS.
+const SECTIONS: Section[] = [
+  { n: 1,  emoji: '🧠', title: 'Our approach to AI',
+    body: "Artificial Intelligence offers real opportunities for productivity, creativity and efficiency. We want everyone in the business to benefit from these tools and to do the best work of their careers with them.\n\nHowever, AI also introduces new risks. Data leakage, copyright issues and misinformation can threaten our business, our clients and our reputation if tools are used carelessly.\n\nThis policy exists to make sure we use AI safely and responsibly. It is not here to slow anyone down. It is here to protect the business so we can continue to innovate without putting our hard work at risk.\n\nIf you find a tool that makes your job easier, we want to hear about it. Just ask before you use it so we can check it is safe." },
+  { n: 2,  emoji: '🙋', title: 'Personal responsibility',
+    body: "You are responsible for the accuracy, legality and privacy of any work you submit, regardless of whether AI was involved in producing it.\n\nAI is a tool, not an employee. Using AI does not excuse errors, bias or copyright infringement. You must verify all AI-generated outputs before they leave your desk.\n\nThink of AI as a junior assistant. It is fast, eager and helpful, but it does not know our business context, our clients or our ethical standards the way you do. Your professional judgment is the final filter." },
+  { n: 3,  emoji: '📖', title: 'Key definitions',
+    body: "**Generative AI:** Artificial intelligence that creates new content (text, images, code) in response to prompts. Examples: ChatGPT, Microsoft Copilot, Midjourney.\n\n**Hallucination:** When AI confidently generates false, misleading or nonsensical information as though it were fact.\n\n**Training Data:** Information fed into an AI model to teach it. If company data is used as training data by a public AI tool, that data may become part of the public model.\n\n**Shadow IT:** The use of unauthorised or unvetted software by employees without IT department approval.\n\n**Jailbreaking / Prompt Injection:** Using specific inputs to trick AI into bypassing its safety filters or security rules.\n\n**PII (Personally Identifiable Information):** Any data that could identify a specific individual: names, National Insurance numbers, addresses, phone numbers.\n\n**Anonymisation:** Removing or masking sensitive details from a document before sharing it with an AI tool.\n\n**Deepfake:** Synthetic media (video, audio, image) created by AI to convincingly impersonate a real person.\n\n**API:** A software bridge that allows two applications to exchange data. Automation tools like Zapier and Power Automate use APIs.\n\n**Human Oversight:** A process requiring human review and approval before an AI-generated decision is finalised.\n\n**BYOD:** Employees using personal devices for work purposes." },
+  { n: 4,  emoji: '🔍', title: 'Scope of policy',
+    body: "This policy applies to all forms of AI usage within the business, including but not limited to:\n\n• **Web-based tools:** ChatGPT, Claude, Gemini and similar platforms.\n• **Browser extensions:** Grammar checkers, page summarisers, writing assistants.\n• **Operating system features:** AI features built into Windows, macOS, iOS or Android (e.g. Copilot in Windows, Apple Intelligence).\n• **Meeting recorders:** Automated transcription and note-taking tools.\n\nAI features and tools pre-installed on company devices are also covered by this policy." },
+  { n: 5,  emoji: '🛡️', title: 'Authorised and prohibited software',
+    body: "To protect against data leakage, we restrict which AI tools may be used for business purposes.\n\nUnvetted tools expose the company to Shadow IT risks, where data may be used to train public models or stored on insecure servers outside our control.\n\n**Rules:**\n• You may only use AI tools that have been formally approved and set up by the IT department.\n• Subscriptions to unapproved AI tools will not be reimbursed.\n• Any AI tool, browser extension or plugin that is not on the Authorised Software List is prohibited.\n\nWe do not maintain a \"banned apps\" list because new tools appear daily. Unless a tool has been vetted and added to the Authorised List, it may not be used for company business.\n\nRefer to Appendix A for the current Authorised AI Software List." },
+  { n: 6,  emoji: '📋', title: 'Requesting new tools',
+    body: "Innovation is encouraged. If you would like to request an AI tool to be added to the Authorised Software List, contact [YOUR IT CONTACT].\n\nThey will perform an AI Vendor Review covering privacy, security and data governance to ensure the tool is safe for your environment." },
+  { n: 7,  emoji: '🗂️', title: 'Data classification protocol',
+    body: "You must classify data before entering it into any AI tool. Use the following guide:\n\n**PUBLIC DATA: Safe to Use**\nInformation already in the public domain. No restrictions.\nExamples: Marketing copy, general industry research, brainstorming.\n\n**INTERNAL DATA: Use with Caution**\nInternal business documents that are not confidential. Anonymisation required before input.\nExamples: Internal memos, process documentation, draft emails.\n\n**RESTRICTED DATA: Never Input into AI**\nAny data that would cause harm if leaked.\nExamples: Client names, National Insurance numbers, home addresses, bank account details, credit card numbers, passwords, API keys.\n\nIf you are ever unsure how to classify a document, contact your IT department before proceeding." },
+  { n: 8,  emoji: '⚖️', title: 'Regional and industry regulations',
+    body: "Processing data subject to specific privacy or industry regulations requires a compliance review by IT before use with any AI tool.\n\nMost standard AI tools do not automatically meet regulatory standards. Many regulations require data to remain within a specific country or require strict audit logs that public AI tools do not provide.\n\nJust because a tool is popular does not mean it is compliant with the laws governing your industry.\n\nYou are responsible for adhering to the regulations relevant to your role. If you have questions about compliance, speak to your IT or legal team." },
+  { n: 9,  emoji: '📄', title: 'Client contract requirements',
+    body: "Client contracts come first.\n\nBefore using AI on any client project, verify that the relevant Master Services Agreement (MSA) does not prohibit the use of AI.\n\nIf a contract forbids AI usage, you must not use it regardless of the data classification." },
+  { n: 10, emoji: '🎙️', title: 'Meeting recorders and extensions',
+    body: "**Meeting Recorders:** Third-party AI bots (e.g. Otter.ai, Fireflies) are prohibited from joining meetings unless authorised by IT. If an unauthorised bot joins a meeting, the host must remove it immediately.\n\n**Browser Extensions:** Installing browser extensions that use AI features is prohibited unless deployed by the IT department. These extensions often require full read-access to web traffic, including private emails and banking portals." },
+  { n: 11, emoji: '👁️', title: 'Monitoring and privacy',
+    body: "Company-provided AI accounts are company property.\n\nThe business reserves the right to audit, monitor and review all prompts, inputs and outputs generated on company AI accounts to ensure compliance with this policy.\n\nCompany AI accounts are monitored and should not be treated as private." },
+  { n: 12, emoji: '⚠️', title: 'AI hallucinations and output verification',
+    body: "AI models frequently hallucinate: they confidently present incorrect information as fact.\n\nYou are required to fact-check 100% of AI-generated claims against a primary source.\n\n**Never rely on AI for:**\n• Legal statutes or case law\n• Mathematical calculations\n• Factual citations or historical dates\n\nIf you make a business decision based on AI output, you must validate the underlying data first." },
+  { n: 13, emoji: '©️', title: 'Intellectual property and copyright',
+    body: "AI-generated content occupies a complex legal grey area.\n\n**Copyright Risks:** Do not use AI to generate content that copies the distinct style of existing copyrighted works or deliberately reproduces protected trademarks.\n\n**Brand Representation:** Be cautious using AI to generate photos, videos or audio representing your brand. AI often introduces subtle errors (misspelled logos, physical anomalies) that can damage professional reputation.\n\n**Code Generation:** Using AI to generate software code is prohibited unless you are qualified to audit the code for security vulnerabilities. Ensure AI-generated code does not inadvertently incorporate open-source code that could create legal issues." },
+  { n: 14, emoji: '🔁', title: 'Automation workflows',
+    body: "Creating automated workflows (e.g. via Zapier, Power Automate, Make.com) that automatically send company data to an AI API without prior IT review is prohibited.\n\nA misconfigured automation can accidentally leak thousands of emails or files in minutes. Even if the AI tool is approved, the API connection must be secured by IT." },
+  { n: 15, emoji: '🎤', title: 'Voice cloning and deepfakes',
+    body: "Using AI to clone, simulate or mimic the voice or likeness of any person, including staff, contractors, suppliers or public figures, is strictly prohibited unless explicitly authorised in writing by company leadership.\n\nThis includes using text-to-speech tools trained on a specific individual's voice samples." },
+  { n: 16, emoji: '💷', title: 'Financial verification',
+    body: "Deepfake technology is now used to commit wire fraud.\n\nAny urgent request for funds (wire transfers, gift cards, invoice payments) or credential changes received via voice, video or email requires secondary verification through a known, trusted channel.\n\nIf you receive an unexpected call from a senior figure requesting money, hang up and call them back on their known internal number to verify." },
+  { n: 17, emoji: '🧑‍⚖️', title: 'AI-assisted decisions',
+    body: "AI tools lack human judgment, ethical reasoning and real-world context. They frequently hallucinate or rely on biased training data while sounding completely authoritative.\n\nA human must review and approve all AI-assisted decisions. This applies to any professional judgment, including:\n\n• Hiring and termination decisions\n• Employee performance evaluations\n• Financial approvals\n• Strategic business planning\n• Professional advice (legal, medical, financial)" },
+  { n: 18, emoji: '🪧', title: 'Transparency and disclosure',
+    body: "Transparency is key to maintaining trust.\n\n**External Disclosure:** If AI is used to generate content for a client deliverable (report, code, image, article), you must disclose the use of AI unless your contract states otherwise.\n\n**Internal Disclosure:** When submitting work to a manager, flag if the content was AI-assisted to ensure proper review.\n\n**Watermarking:** Where technically feasible, AI-generated images should retain their metadata or visible watermarks indicating their artificial origin." },
+  { n: 19, emoji: '📱', title: 'Mobile and personal device usage (BYOD)',
+    body: "Using AI apps on personal devices to process company data is prohibited.\n\nYou may not copy company emails, files or chat logs into AI apps (e.g. the ChatGPT mobile app) on a personal device.\n\nMobile access to AI tools is only permitted via a company-managed work profile or approved apps installed by IT." },
+  { n: 20, emoji: '🎓', title: 'AI training requirements',
+    body: "Access to company AI tools is conditional on competence.\n\nAccess is typically granted upon successful completion of required AI training programmes, including AI Security Awareness, AI Usability Training, and Ethics modules.\n\nThe company reserves the right to revoke AI access for any employee who fails to complete required annual training." },
+  { n: 21, emoji: '🤝', title: 'Vendor and contractor compliance',
+    body: "Security standards extend to the supply chain.\n\nContractors, vendors and freelancers must use company-approved and provisioned AI tools when working with company data. Use of personal or free AI accounts by contractors is prohibited unless explicit written permission is granted by the IT department.\n\nAll vendors should sign this AI Acceptable Use Policy as part of their onboarding process." },
+  { n: 22, emoji: '🔒', title: 'Termination and data retention',
+    body: "All prompts, inputs and outputs generated using company AI accounts are the exclusive property of the business.\n\nUpon termination of employment, IT will archive the employee's AI account to ensure business continuity. Employees may not delete, export or transfer AI chat history to a personal account prior to departure." },
+  { n: 23, emoji: '🚫', title: 'Ethics and prohibited content',
+    body: "AI tools may not be used to generate content that violates the company's Code of Conduct or Harassment Policy.\n\n**Prohibited uses include:**\n• Generating discriminatory, sexually explicit, hateful or harassing content\n• Facilitating cyberattacks, creating phishing emails or generating malicious software" },
+  { n: 24, emoji: '🔐', title: 'Security integrity',
+    body: "Attempting to bypass the security filters, content moderation protocols or safety guardrails of any AI tool, commonly known as \"jailbreaking\" or \"prompt injection\", is strictly prohibited.\n\nManipulating an AI tool to ignore its safety instructions is a violation of this policy." },
+  { n: 25, emoji: '📞', title: 'Incident reporting',
+    body: "If you accidentally input restricted data into an AI tool, or suspect an unauthorised bot has recorded a meeting, report it immediately.\n\nSelf-reporting accidental errors is encouraged. Early reporting allows rapid remediation and protects the entire team.\n\nTo report an issue, open an emergency security ticket or call [YOUR IT CONTACT] immediately." },
+  { n: 26, emoji: '🔄', title: 'Policy review and updates',
+    body: "Due to the rapid pace of AI advancement, this policy is a living document.\n\nIt should be reviewed and updated at least every six months, or upon the release of significant new AI capabilities, to ensure it addresses emerging risks.\n\nEmployees should be notified of any major updates. Continued use of company systems after an update constitutes agreement to the new terms." },
+  { n: 27, emoji: '⚖️', title: 'Policy enforcement and acknowledgment',
+    body: "These guidelines exist to protect employees, clients and the company's reputation. Mistakes happen, but wilful disregard for these safety measures is a serious issue.\n\nViolations will be investigated. Accidental errors, especially self-reported ones, are typically treated as learning opportunities. Deliberate violations or negligence will be met with appropriate disciplinary action.\n\n**Acknowledgment:**\nAll employees should read and confirm they understand this policy. Employees acknowledge that AI technology evolves rapidly and that it is their responsibility to seek clarification from IT or their manager if they are ever unsure about the safety of a specific tool or action." },
+];
+
+// Minimal **bold** + bullet renderer matching renderBody/renderInline in the React source.
+const escapeHtml = (text: string) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+const renderInline = (text: string): string => {
+  let out = '';
+  let i = 0;
+  while (i < text.length) {
+    const start = text.indexOf('**', i);
+    if (start === -1) { out += escapeHtml(text.slice(i)); break; }
+    if (start > i) out += escapeHtml(text.slice(i, start));
+    const end = text.indexOf('**', start + 2);
+    if (end === -1) { out += escapeHtml(text.slice(i)); break; }
+    out += `<strong>${escapeHtml(text.slice(start + 2, end))}</strong>`;
+    i = end + 2;
+  }
+  return out;
+};
+
+const renderBody = (body: string): string =>
+  body.split('\n\n').map(para => {
+    if (para.startsWith('• ')) {
+      const items = para.split('\n').filter(l => l.startsWith('• ')).map(l => l.slice(2));
+      return `<ul>${items.map(it => `<li>${renderInline(it)}</li>`).join('')}</ul>`;
+    }
+    return `<p>${renderInline(para)}</p>`;
+  }).join('');
+
+const RISKS = [
+  { i: '🕳️', t: 'Data leaks',        d: 'Client data pasted into ChatGPT becomes part of the public training pool.' },
+  { i: '©️', t: 'Copyright trouble', d: 'AI-generated content can replicate protected styles or trademarks without warning.' },
+  { i: '📑', t: 'Compliance breach', d: 'Regulated industries have strict rules on where data can be processed. Public AI tools often violate them.' },
+  { i: '🎭', t: 'Deepfake fraud',    d: 'Voice-cloning is now used to authorise fake wire transfers from the "CEO".' },
+];
+
+const seo = {
+  path: '/ai-acceptable-use-policy',
+  title: 'Free AI Acceptable Use Policy Template',
+  description: "Free, ready-to-edit AI Acceptable Use Policy template for UK small businesses. Covers data classes, approved tools, deepfakes, BYOD, output checks and IP.",
+  type: 'article',
+};
+---
+
+<StandaloneShell name="ai-acceptable-use-policy" seo={seo}>
+  <section class="sa-hero aaup-hero">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <div class="aaup-hero-grid">
+        <div>
+          <div class="aaup-stickers">
+            <span class="aaup-sticker aaup-sticker-yellow">Free template</span><span class="aaup-sticker aaup-sticker-green">For your business, not ours</span>
+          </div>
+          <h1 class="sa-display sa-display-light" style="--sa-size: 48px; --sa-size-mobile: 36px; margin-bottom: 18px">AI Acceptable Use Policy template.</h1>
+          <p class="aaup-hero-lead">A battle-tested AI policy template you can adapt for your own business. Copy it, fill in the <code class="aaup-code">[PLACEHOLDER]</code> fields, deploy.</p>
+          <p class="aaup-hero-note">This is <strong>not</strong> Fresh Tech's internal policy. It's a free starting point for businesses who want to give their team clear rules on AI use without paying a consultant to write one from scratch.</p>
+          <div class="aaup-buttons">
+            <button type="button" id="aaup-copy" class="aaup-btn aaup-btn-primary">Copy full text</button>
+            <button type="button" id="aaup-print" class="aaup-btn aaup-btn-outline">Print / Save as PDF</button>
+          </div>
+          <div class="aaup-tip">Browser tip: in the print dialog, "Save as PDF" gives you a clean download.</div>
+        </div>
+        <div class="aaup-panel">
+          <div class="aaup-panel-label">What's inside</div>
+          <ul class="aaup-panel-list">
+            <li>27 sections covering every common AI risk</li>
+            <li>Data classification protocol (Public / Internal / Restricted)</li>
+            <li>Deepfake + voice-clone fraud guidance</li>
+            <li>BYOD + meeting-recorder rules</li>
+            <li>Vendor + contractor compliance</li>
+            <li>Plain English, UK-flavoured, ready to edit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper sa-rule">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <p class="sa-eyebrow">Why your business needs one</p>
+      <h2 class="sa-display" style="--sa-size: 32px; margin-bottom: 12px">AI is already in your business. Decide on the terms.</h2>
+      <p class="aaup-why-lead">ChatGPT, Copilot, Gemini: your team is using them whether you have a policy or not. Without clear rules, you risk:</p>
+      <div class="aaup-cards">
+        {RISKS.map(r => (
+          <div class="aaup-card">
+            <div class="aaup-card-icon">{r.i}</div>
+            <div class="aaup-card-title">{r.t}</div>
+            <div class="aaup-card-desc">{r.d}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap" style="--sa-max: 880px">
+      <p class="aaup-toc-label">Contents</p>
+      <div class="aaup-toc-grid">
+        {SECTIONS.map(s => (
+          <a href={`#section-${s.n}`} class="aaup-toc-link"><span class="aaup-toc-n">{s.n}.</span><span>{s.title}</span></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper">
+    <div class="sa-wrap" style="--sa-max: 880px">
+      <div class="sa-note">
+        <strong>Version 1.0.</strong> Replace the <code class="aaup-code">[PLACEHOLDER]</code> fields throughout (e.g. <code class="aaup-code">[YOUR IT CONTACT]</code>) with your own company details before distributing.
+      </div>
+
+      {SECTIONS.map(s => (
+        <div id={`section-${s.n}`} class="aaup-section">
+          <div class="aaup-section-head">
+            <div class="aaup-section-icon">{s.emoji}</div>
+            <h2 class="aaup-section-title">{s.n}. {s.title}</h2>
+          </div>
+          <div class="aaup-section-body" set:html={renderBody(s.body)} />
+        </div>
+      ))}
+
+      <div class="aaup-appendix">
+        <div class="aaup-appendix-title">Appendix A: Authorised AI Software List</div>
+        <p class="aaup-appendix-text">List the AI tools your business has formally approved here. Common starter items: Microsoft Copilot in M365, ChatGPT Enterprise / Team, Anthropic Claude (via API or Team plan), Otter.ai (with IT-approved meeting policy). Update this list as part of every policy review.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-ink aaup-cta">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <p class="sa-eyebrow sa-eyebrow-light">Need a hand?</p>
+      <h2 class="sa-display sa-display-light" style="--sa-size: 36px; margin-bottom: 14px">We can help tailor this to your business</h2>
+      <p class="aaup-cta-lead">If your sector has specific compliance obligations (legal, healthcare, finance), we'll tune this template and the supporting M365 controls to match. Free 20-min call to scope it.</p>
+      <a class="sa-button" href="/contact">Book a 20-min call →</a>
+    </div>
+  </section>
+</StandaloneShell>
+
+<script>
+  const policy = document.querySelector('[data-standalone-page="ai-acceptable-use-policy"]');
+  const copyBtn = document.getElementById('aaup-copy');
+  const printBtn = document.getElementById('aaup-print');
+
+  copyBtn?.addEventListener('click', async () => {
+    const text = policy?.innerText ?? '';
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    const original = copyBtn.textContent;
+    copyBtn.textContent = '✓ Copied';
+    setTimeout(() => { copyBtn.textContent = original; }, 3000);
+  });
+
+  printBtn?.addEventListener('click', () => window.print());
+</script>
+
+<style>
+  .aaup-hero { padding-bottom: 64px; }
+  .aaup-hero-grid { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; }
+  .aaup-stickers { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  .aaup-sticker { display: inline-block; border: 2.5px solid var(--ink); box-shadow: 3px 3px 0 0 var(--ink); padding: 5px 11px; font: 800 11px/1 'SA Archivo', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; white-space: normal; max-width: 100%; }
+  .aaup-sticker-yellow { background: var(--accent-yellow, #f5c24a); color: var(--ink); transform: rotate(-3deg); }
+  .aaup-sticker-green { background: var(--accent-green, #1f5c46); color: #fff; transform: rotate(2deg); }
+  .aaup-hero-lead { color: rgba(255,255,255,0.75); font-size: 18px; line-height: 1.6; margin: 0 0 16px; max-width: 50ch; }
+  .aaup-code { background: var(--ink); color: var(--yellow); padding: 1px 6px; }
+  .aaup-hero-note { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.6; margin: 0 0 28px; max-width: 50ch; }
+  .aaup-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+  .aaup-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 14px 22px; font: 700 15px/1.3 'SA Archivo', sans-serif; cursor: pointer; border: 2px solid #fff; }
+  .aaup-btn-primary { background: var(--accent); color: var(--ink); box-shadow: 4px 4px 0 0 var(--accent-yellow, #f5c24a); }
+  .aaup-btn-outline { background: transparent; color: #fff; border-color: rgba(255,255,255,0.4); }
+  .aaup-tip { margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.55); }
+  .aaup-panel { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); padding: 24px 28px; }
+  .aaup-panel-label { font: 700 11px/1 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.55); margin-bottom: 12px; }
+  .aaup-panel-list { padding-left: 18px; margin: 0; color: rgba(255,255,255,0.8); font-size: 13px; line-height: 1.7; display: flex; flex-direction: column; gap: 4px; }
+  .aaup-why-lead { color: rgba(15,25,35,0.7); font-size: 16px; line-height: 1.6; margin: 0 0 32px; max-width: 60ch; }
+  .aaup-cards { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .aaup-card { background: var(--white); border: 1px solid var(--hairline); padding: 20px; box-shadow: 0 2px 8px rgba(15,25,35,0.06); }
+  .aaup-card-icon { font-size: 24px; margin-bottom: 10px; }
+  .aaup-card-title { font: 400 15px/1.15 'SA Bungee', 'SA Archivo', sans-serif; color: var(--ink); margin-bottom: 8px; }
+  .aaup-card-desc { font-size: 13px; color: rgba(15,25,35,0.68); line-height: 1.6; }
+  .aaup-toc-label { font: 700 11px/1 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary-dark); margin: 0 0 16px; }
+  .aaup-toc-grid { display: grid; grid-template-columns: 1fr; gap: 6px 24px; }
+  .aaup-toc-link { display: flex; gap: 10px; align-items: baseline; font-size: 13px; color: var(--ink); text-decoration: none; padding: 4px 0; }
+  .aaup-toc-link:hover { text-decoration: underline; }
+  .aaup-toc-n { width: 26px; text-align: right; font: 400 12px 'SA Bungee', sans-serif; color: var(--primary-dark); flex-shrink: 0; }
+  .aaup-section { margin-bottom: 36px; scroll-margin-top: 24px; }
+  .aaup-section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .aaup-section-icon { width: 36px; height: 36px; background: var(--paper-deep); border: 2px solid var(--ink); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .aaup-section-title { font: 400 20px/1.15 'SA Bungee', 'SA Archivo', sans-serif; color: var(--ink); margin: 0; }
+  .aaup-section-body { padding-left: 0; font: 400 15px/1.7 'SA Archivo', sans-serif; color: var(--ink); }
+  .aaup-section-body :global(p) { margin: 0 0 12px; }
+  .aaup-section-body :global(ul) { padding-left: 22px; margin: 0 0 12px; display: flex; flex-direction: column; gap: 6px; }
+  .aaup-appendix { margin-top: 32px; padding: 20px 24px; background: var(--ink); color: var(--paper); }
+  .aaup-appendix-title { font: 400 16px 'SA Bungee', sans-serif; color: var(--accent-yellow, #f5c24a); margin-bottom: 8px; }
+  .aaup-appendix-text { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0; }
+  .aaup-cta-lead { color: rgba(255,255,255,0.7); font-size: 16px; line-height: 1.65; margin: 0 auto 28px; max-width: 46ch; }
+
+  @media (min-width: 768px) {
+    .aaup-hero-grid { grid-template-columns: 1.3fr 0.7fr; gap: 56px; }
+    .aaup-section-body { padding-left: 48px; }
+    .aaup-toc-grid { grid-template-columns: 1fr 1fr; }
+    .aaup-cards { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1024px) {
+    .aaup-cards { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>

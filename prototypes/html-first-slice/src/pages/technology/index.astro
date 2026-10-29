@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CookieConsent from '../../components/CookieConsent.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import TechnologyListing from '../../components/TechnologyListing.astro';
+import { technologyListing } from '../../generated/technology-data.mjs';
+import { listingSeo } from '../../lib/technology-seo.mjs';
+import '../../styles/technology.css';
+import PrototypeBanner from '../../components/PrototypeBanner.astro';
+
+// Preview keeps BaseLayout's noindex default; `robots` is deliberately not passed.
+const seo = listingSeo();
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonical={seo.canonical} image={seo.image} ogType={seo.ogType} schemas={seo.schemas} preloadFonts={['/fonts/bungee-latin.woff2']}>
+  <PrototypeBanner />
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <SiteNav activePage="" />
+  <TechnologyListing listing={technologyListing} />
+  <SiteFooter />
+  <CookieConsent />
+</BaseLayout>
+
+<script src="../../scripts/enhance.ts"></script>

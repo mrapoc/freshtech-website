@@ -1,0 +1,31 @@
+import React from 'react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
+import { afterEach, expect, it, vi } from 'vitest';
+import { SiteNavV2 } from '../../components-v2/SiteNavV2';
+vi.mock('../../components-v2/primitives', async importOriginal => ({ ...await importOriginal<object>(), useWindowWidth: () => 1440 }));
+afterEach(cleanup);
+it.each(['sectors', 'resources'])('%s disclosure supports keyboard, escape, focus exit and parent links', async name => {
+  const user = userEvent.setup();
+  render(<MemoryRouter><SiteNavV2 /></MemoryRouter>);
+  const button = screen.getByRole('button', { name: `Show ${name} links` });
+  expect(screen.getByRole('link', { name: name === 'sectors' ? 'Sectors' : 'Resources' })).toHaveAttribute('href', name === 'sectors' ? '/industries' : '/blog');
+  button.focus();
+  await user.keyboard('{Enter}');
+  expect(button).toHaveAttribute('aria-expanded', 'true');
+  await user.tab();
+  expect(document.activeElement?.closest(`#${name === 'sectors' ? 'sector' : 'resource'}-links`)).not.toBeNull();
+  await user.keyboard('{Escape}');
+  expect(button).toHaveAttribute('aria-expanded', 'false');
+  expect(button).toHaveFocus();
+  await user.keyboard(' ');
+  expect(button).toHaveAttribute('aria-expanded', 'true');
+  fireEvent.blur(button, { relatedTarget: document.body });
+  expect(button).toHaveAttribute('aria-expanded', 'false');
+});
+it('shows neutral opening hours rather than unconditional open/response claims', () => {
+  render(<MemoryRouter><SiteNavV2 /></MemoryRouter>);
+  expect(screen.getByText('Helpdesk hours · Mon–Fri, 9am–5pm')).toBeVisible();
+  expect(screen.queryByText(/helpdesk open/i)).toBeNull();
+});

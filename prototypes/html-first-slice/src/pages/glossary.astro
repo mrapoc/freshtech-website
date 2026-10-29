@@ -1,0 +1,164 @@
+---
+// Port of pages/GlossaryPage.tsx. The live search box filters client-side in
+// React; ported here with a small inline <script> doing the same
+// term/question/risk/reward substring match, enabled progressively (with no
+// JS it simply shows every term, which is also the page's default,
+// unfiltered, state, so nothing is hidden). The trailing <Contact/> is
+// ported via SourceContact.astro (see its own header comment); see
+// STANDALONE_DIFFERENCES['/glossary'] for the resulting heading/link/text
+// differences against the production ContactForm.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+import SourceContact from '../components/SourceContact.astro';
+
+const seo = {
+  path: '/glossary',
+  title: 'IT Glossary - Jargon-Free Technology Guide',
+  description: 'Plain English explanations of common IT and cybersecurity terms. EDR, RMM, MDM, SIEM - decoded without the jargon. Your guide to understanding business technology.',
+  canonical: 'https://fresh-tech.uk/glossary',
+  schema: [{
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTermSet',
+    name: 'IT Glossary - Jargon-Free Technology Guide',
+    description: 'Plain English explanations of common IT and cybersecurity terms. No jargon, no fluff - just clear answers to help you understand your business technology.',
+    hasDefinedTerm: [
+      { '@type': 'DefinedTerm', name: 'EDR (Endpoint Detection & Response)', description: 'EDR watches for behaviour, stopping ransomware instantly.' },
+      { '@type': 'DefinedTerm', name: 'Application Control (Ringfencing)', description: 'We block everything by default. Only approved apps can run.' },
+      { '@type': 'DefinedTerm', name: 'RMM (Remote Monitoring & Management)', description: 'We fix issues in the background before you notice them.' },
+      { '@type': 'DefinedTerm', name: 'SIEM (Security Information & Event Management)', description: 'SIEM collects logs from everywhere and alerts us to anomalies.' },
+      { '@type': 'DefinedTerm', name: 'MDM (Mobile Device Management)', description: 'We can remotely wipe corporate data without touching personal photos.' },
+      { '@type': 'DefinedTerm', name: 'VPN (Virtual Private Network)', description: 'Modern cloud apps are encrypted by default. VPNs are now mainly for accessing on-premise servers.' },
+      { '@type': 'DefinedTerm', name: 'ZTNA (Zero Trust Network Access)', description: 'Zero Trust verifies every connection, granting only the specific access needed, continuously.' },
+    ],
+  }],
+};
+
+const definitions = [
+  { term: 'EDR (Endpoint Detection & Response)', question: 'Is antivirus enough?', risk: 'Traditional AV misses 60% of modern attacks.', reward: 'EDR watches for behaviour, stopping ransomware instantly.' },
+  { term: 'Application Control (Ringfencing)', question: 'Who controls what runs?', risk: 'Users can accidentally run malware or bad scripts.', reward: 'We block everything by default. Only approved apps can run.' },
+  { term: 'RMM (Remote Monitoring & Management)', question: 'How do you fix things so fast?', risk: 'Waiting for things to break causes downtime.', reward: 'We fix issues in the background before you notice them.' },
+  { term: 'SIEM (Security Information & Event Management)', question: 'Who watches the logs?', risk: 'Hackers can hide in your logs for months without you knowing.', reward: 'SIEM collects logs from everywhere and alerts us to anomalies.' },
+  { term: 'MDM (Mobile Device Management)', question: 'What if a phone is lost?', risk: 'Company data on a lost phone is a GDPR breach.', reward: 'We can remotely wipe corporate data without touching personal photos.' },
+  { term: 'VPN (Virtual Private Network)', question: 'Do I need a VPN to work remotely?', risk: 'Without encryption, data on public WiFi was exposed to eavesdroppers.', reward: 'Modern cloud apps are encrypted by default. VPNs are now mainly for accessing on-premise servers.' },
+  { term: 'ZTNA (Zero Trust Network Access)', question: 'What replaces traditional VPN?', risk: 'VPNs grant full network access once connected - one compromised device exposes everything.', reward: 'Zero Trust verifies every connection, granting only the specific access needed, continuously.' },
+];
+---
+
+<StandaloneShell name="glossary" seo={seo}>
+  <section class="gl-hero">
+    <div class="gl-wrap">
+      <nav aria-label="Breadcrumb" class="gl-breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><span aria-hidden="true">›</span><a href="/resources">Resources</a></li>
+          <li><span aria-hidden="true">›</span><span aria-current="page">IT Glossary</span></li>
+        </ol>
+      </nav>
+      <h1>IT Glossary</h1>
+      <p class="gl-hero-lead">Technology is full of acronyms and jargon. We believe you shouldn't need a computer science degree to understand what your IT company is talking about. Here's our plain English guide to the terms that matter for your business.</p>
+      <div class="gl-search">
+        <input type="text" id="gl-search-input" placeholder="Search terms..." aria-label="Search glossary terms" />
+      </div>
+    </div>
+  </section>
+
+  <section class="gl-grid-section">
+    <div class="gl-wrap">
+      <div class="gl-grid" id="gl-grid">
+        {definitions.map(def => (
+          <div class="gl-card" data-search={`${def.term} ${def.question} ${def.risk} ${def.reward}`.toLowerCase()}>
+            <div class="gl-card-head">
+              <div class="gl-icon" aria-hidden="true"><span aria-hidden="true">{def.term.charAt(0)}</span></div>
+              <div>
+                <h2>{def.term}</h2>
+                <p class="gl-question">{def.question}</p>
+              </div>
+            </div>
+            <div class="gl-body">
+              <div class="gl-risk"><span>The risk:</span> {def.risk}</div>
+              <div class="gl-reward"><span>What we do:</span> {def.reward}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="gl-empty" id="gl-empty" hidden>
+        <p>No terms match "<span id="gl-empty-term"></span>". Try a different search.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="gl-deeper">
+    <div class="gl-wrap gl-center">
+      <h2>Want to Go Deeper?</h2>
+      <p>Each of these technologies has a dedicated explainer page with detailed information on how it works, why it matters, and how we deploy it for your business.</p>
+      <div class="gl-deeper-links"><a class="gl-btn-primary" href="/technology">Browse Technology Explainers</a><a class="gl-btn-secondary" href="/contact">Ask Us a Question</a></div>
+    </div>
+  </section>
+
+  <SourceContact />
+</StandaloneShell>
+
+<script>
+  const input = document.getElementById('gl-search-input') as HTMLInputElement | null;
+  const grid = document.getElementById('gl-grid');
+  const cards = [...document.querySelectorAll<HTMLElement>('#gl-grid .gl-card')];
+  const emptyState = document.getElementById('gl-empty');
+  const emptyTerm = document.getElementById('gl-empty-term');
+
+  input?.addEventListener('input', () => {
+    const raw = input.value;
+    const term = raw.trim().toLowerCase();
+    let visibleCount = 0;
+    cards.forEach(card => {
+      const match = !term || (card.dataset.search ?? '').includes(term);
+      card.hidden = !match;
+      if (match) visibleCount++;
+    });
+    const isEmpty = term !== '' && visibleCount === 0;
+    if (grid) grid.hidden = isEmpty;
+    if (emptyState) emptyState.hidden = !isEmpty;
+    if (isEmpty && emptyTerm) emptyTerm.textContent = raw;
+  });
+</script>
+
+<style>
+  .gl-hero { padding: 56px 20px 48px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: var(--white); }
+  @media (min-width: 768px) { .gl-hero { padding: 72px 32px 60px; } }
+  .gl-wrap { width: min(calc(100% - 40px), 900px); margin-inline: auto; }
+  @media (min-width: 768px) { .gl-wrap { width: min(calc(100% - 64px), 900px); } }
+  .gl-breadcrumb { font-size: 14px; margin-bottom: 20px; }
+  .gl-breadcrumb ol { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; }
+  .gl-breadcrumb li { display: flex; align-items: center; gap: 6px; }
+  .gl-breadcrumb a { color: rgba(255, 255, 255, 0.85); font-weight: 600; text-decoration: underline; }
+  .gl-breadcrumb span[aria-current] { color: var(--white); font-weight: 700; }
+  .gl-breadcrumb li span[aria-hidden] { color: rgba(255, 255, 255, 0.6); }
+  .gl-hero h1 { font-family: 'SA Bungee', sans-serif; font-size: 34px; line-height: 1.1; margin: 0 0 20px; }
+  @media (min-width: 768px) { .gl-hero h1 { font-size: 44px; } }
+  .gl-hero-lead { font-size: 17px; line-height: 1.6; color: rgba(255, 255, 255, 0.92); margin: 0 0 28px; max-width: 62ch; }
+  .gl-search { position: relative; max-width: 380px; }
+  .gl-search input { width: 100%; padding: 12px 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.35); color: var(--white); font-size: 15px; }
+  .gl-search input::placeholder { color: rgba(255, 255, 255, 0.75); }
+  .gl-grid-section { padding: 56px 20px; background: var(--white); }
+  @media (min-width: 768px) { .gl-grid-section { padding: 64px 32px; } }
+  .gl-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 640px) { .gl-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .gl-grid { grid-template-columns: 1fr 1fr 1fr; } }
+  .gl-card { background: var(--paper-deep); border-radius: 16px; padding: 22px; }
+  .gl-card-head { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+  .gl-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--primary); color: var(--white); font-family: 'SA Bungee', sans-serif; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .gl-card h2 { font-size: 17px; margin: 0 0 4px; color: var(--ink); }
+  .gl-question { font-size: 13px; color: var(--primary-dark); font-weight: 700; margin: 0; }
+  .gl-body { display: flex; flex-direction: column; gap: 10px; }
+  .gl-risk, .gl-reward { font-size: 14px; border-radius: 8px; padding: 10px 12px; line-height: 1.5; }
+  .gl-risk { background: #fbe4e2; border: 1px solid #f0b8b3; color: #7a2620; }
+  .gl-reward { background: #e0f2e9; border: 1px solid #a9d9c0; color: #1c4a34; }
+  .gl-risk span, .gl-reward span { font-weight: 700; }
+  .gl-empty { text-align: center; padding: 40px 20px; color: rgba(15,25,35,0.6); font-size: 16px; }
+  .gl-deeper { padding: 56px 20px; background: var(--paper-deep); text-align: center; }
+  @media (min-width: 768px) { .gl-deeper { padding: 64px 32px; } }
+  .gl-deeper h2 { font-family: 'SA Bungee', sans-serif; font-size: 26px; color: var(--primary-dark); margin: 0 0 16px; }
+  .gl-deeper p { color: rgba(15, 25, 35, 0.68); font-size: 17px; margin: 0 0 28px; max-width: 60ch; margin-inline: auto; }
+  .gl-deeper-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+  .gl-btn-primary, .gl-btn-secondary { display: inline-flex; align-items: center; justify-content: center; padding: 14px 26px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 15px; }
+  .gl-btn-primary { background: var(--primary-dark); color: var(--white); }
+  .gl-btn-secondary { background: var(--accent); color: var(--ink); border: 2px solid var(--ink); }
+</style>

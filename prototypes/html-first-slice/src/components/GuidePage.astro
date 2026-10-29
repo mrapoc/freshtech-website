@@ -1,0 +1,206 @@
+---
+// Copy, order and interactions mirror pages/IndustryGuidePage.tsx. Section
+// content passes through renderGuideContent (every character escaped; only
+// h3/p/ul/ol/li/strong are emitted) so set:html is safe here.
+//
+// Deliberate preview differences from the React page, all documented in the
+// batch notes:
+//   - Every section renders in full, including source `locked: true` ones.
+//     The email-capture unlock (Netlify form, localStorage) is not rebuilt;
+//     that is a disabled preview integration, not a content gate.
+//   - Expand/collapse, progress and the print buttons are enhancements from
+//     guide-enhance.ts. Without JavaScript the sections are all open, the
+//     checkboxes still work natively and the progress bar never appears.
+//   - Collapsed sections still print: the CSS forces hidden bodies visible in
+//     @media print and the script expands/restores around beforeprint/afterprint.
+//   - The visible hero prints (plain), so the source's print-only duplicate
+//     title (a second level-1 heading) is not reproduced.
+//   - "Related Resources" is an h2 (the source h3 broke the outline); the
+//     print-only contact line uses words instead of emoji.
+//   - Element ids are prefixed (guide-section-, guide-body-, guide-title-,
+//     guide-check-, guide-tip-, guide-priority-) so a source id can never
+//     collide with page chrome such as main-content or cookie-settings-title.
+//   - The closing contact block is the shared <SourceContact /> (copy from
+//     components/Contact.tsx) rather than invented guide-only copy.
+import { renderGuideContent } from '../lib/guide-markdown.mjs';
+import SourceContact from './SourceContact.astro';
+
+interface Check { id: string; text: string; priority: 'critical' | 'high' | 'medium'; tip?: string }
+interface Section { id: string; title: string; icon: string; content: string; checklist: Check[]; locked: boolean }
+interface Guide {
+  slug: string; industry: string; title: string; subtitle: string; metaDesc: string; intro: string;
+  stats: { readTime: string; lastUpdated: string }; sections: Section[];
+}
+interface Props { guide: Guide }
+const { guide } = Astro.props;
+
+const totalItems = guide.sections.reduce((total, section) => total + section.checklist.length, 0);
+const sector = guide.industry.toLowerCase();
+
+// getPriorityLabel from the source page.
+const PRIORITY_LABELS: Record<Check['priority'], string> = { critical: 'Critical', high: 'High Priority', medium: 'Recommended' };
+
+// Hand-drawn 24x24 stroke paths standing in for the lucide-react icons named
+// in the source data (the reader allow-lists exactly these names).
+const ICON_PATHS: Record<string, string[]> = {
+  AlertTriangle: ['M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z', 'M12 9v4', 'M12 17h.01'],
+  Battery: ['M4 7h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z', 'M22 11v2'],
+  Cloud: ['M17.5 19a4.5 4.5 0 1 0-1.5-8.7 6 6 0 0 0-11.6 1.7A4 4 0 0 0 6 19h11.5z'],
+  FileText: ['M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z', 'M14 2v6h6', 'M16 13H8', 'M16 17H8'],
+  Lock: ['M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z', 'M7 11V7a5 5 0 0 1 10 0v4'],
+  Monitor: ['M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z', 'M8 21h8', 'M12 17v4'],
+  Package: ['M21 8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7z', 'M3.3 7 12 12l8.7-5', 'M12 22V12'],
+  Server: ['M4 2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z', 'M4 14h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z', 'M6 6h.01', 'M6 18h.01'],
+  Shield: ['M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z'],
+  Smartphone: ['M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z', 'M12 18h.01'],
+  Sun: ['M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0', 'M12 2v2', 'M12 20v2', 'M4.9 4.9l1.4 1.4', 'M17.7 17.7l1.4 1.4', 'M2 12h2', 'M20 12h2', 'M6.3 17.7l-1.4 1.4', 'M19.1 4.9l-1.4 1.4'],
+  Truck: ['M10 17h4V5H2v12h3', 'M20 17h2v-3.3a1 1 0 0 0-.3-.7l-3-3a1 1 0 0 0-.7-.3H14v7h1', 'M5 17.5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0', 'M15 17.5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0'],
+  Wifi: ['M5 12.5a11 11 0 0 1 14 0', 'M8.5 16a6 6 0 0 1 7 0', 'M2 8.8a16 16 0 0 1 20 0', 'M12 20h.01'],
+};
+const iconPaths = (name: string) => {
+  const paths = ICON_PATHS[name];
+  if (!paths) throw new Error(`GuidePage has no icon drawing for ${name}`);
+  return paths;
+};
+
+const sections = guide.sections.map((section, index) => ({
+  ...section,
+  number: index + 1,
+  anchorId: `guide-section-${section.id}`,
+  titleId: `guide-title-${section.id}`,
+  bodyId: `guide-body-${section.id}`,
+  paths: iconPaths(section.icon),
+  html: renderGuideContent(section.content),
+}));
+---
+
+<main id="main-content" class="guide-page" data-guide-page={guide.slug} data-guide-total={totalItems} tabindex="-1">
+  <div class="guide-print-only guide-print-header">
+    <img src="https://res.cloudinary.com/djkmeg5se/image/upload/w_200,f_auto,q_auto/fresh-tech-logo.png" alt="Fresh Tech" width="200" height="145" decoding="async" />
+    <div class="guide-print-header-text">
+      <strong>{guide.title}</strong>
+      <span>fresh-tech.uk | 01584 517 234</span>
+    </div>
+  </div>
+
+  <section class="guide-hero">
+    <div class="guide-container">
+      <nav class="guide-breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/industries">Industries</a></li>
+          <li><a href={`/industries/${guide.slug}`}>{guide.industry}</a></li>
+          <li aria-current="page">Guide</li>
+        </ol>
+      </nav>
+      <p class="guide-eyebrow guide-eyebrow-light">Free Industry Guide</p>
+      <h1>{guide.title}</h1>
+      <p class="guide-hero-copy">{guide.subtitle}</p>
+      <noscript><style>.guide-actions[hidden], .guide-toggle[hidden] { display: none !important; }</style></noscript>
+      <div class="guide-actions" data-guide-actions hidden>
+        <button type="button" class="guide-primary-button" data-guide-print>Print Guide</button>
+        <button type="button" class="guide-secondary-button" data-guide-print>Save as PDF</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="guide-container guide-body">
+    <p class="guide-intro">{guide.intro}</p>
+
+    <dl class="guide-stats">
+      <div><dt>Read Time</dt><dd>{guide.stats.readTime}</dd></div>
+      <div><dt>Checklist Items</dt><dd>{totalItems}</dd></div>
+      <div><dt>Last Updated</dt><dd>{guide.stats.lastUpdated}</dd></div>
+    </dl>
+
+    <nav class="guide-toc" aria-labelledby="guide-toc-heading">
+      <h2 id="guide-toc-heading">What's In This Guide</h2>
+      <ol>
+        {sections.map(section => (
+          <li>
+            <a href={`#${section.anchorId}`}>
+              <span class="guide-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{section.paths.map(d => <path d={d} />)}</svg></span>
+              <span>{section.number}. {section.title}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    {sections.map(section => (
+      <section id={section.anchorId} class="guide-section" aria-labelledby={section.titleId} data-guide-section data-locked={section.locked ? 'true' : undefined}>
+        <div class="guide-section-header" data-guide-header>
+          <span class="guide-icon guide-icon-solid" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{section.paths.map(d => <path d={d} />)}</svg></span>
+          <h2 id={section.titleId}>{section.title}</h2>
+          <button type="button" class="guide-toggle" data-guide-toggle aria-expanded="true" aria-controls={section.bodyId} hidden>
+            <span data-guide-toggle-text>Hide</span><span class="guide-sr-only"> section: {section.title}</span>
+          </button>
+        </div>
+        <div id={section.bodyId} class="guide-section-body">
+          <div class="guide-content" set:html={section.html} />
+          {section.checklist.length > 0 && (
+            <div class="guide-checklist">
+              <h3>Action Checklist</h3>
+              <ul>
+                {section.checklist.map(item => {
+                  const inputId = `guide-check-${item.id}`;
+                  const tipId = `guide-tip-${item.id}`;
+                  const priorityId = `guide-priority-${item.id}`;
+                  return (
+                    <li class="guide-check" data-priority={item.priority}>
+                      <input type="checkbox" id={inputId} class="guide-check-input" data-guide-check aria-describedby={item.tip ? `${tipId} ${priorityId}` : priorityId} />
+                      <div class="guide-check-body">
+                        <label for={inputId}>{item.text}</label>
+                        {item.tip && <p id={tipId} class="guide-tip"><span>Tip:</span> {item.tip}</p>}
+                      </div>
+                      <span id={priorityId} class="guide-priority">{PRIORITY_LABELS[item.priority]}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+        </div>
+      </section>
+    ))}
+
+    <section class="guide-cta" aria-labelledby="guide-cta-heading">
+      <h2 id="guide-cta-heading">Ready to Implement?</h2>
+      <p>This guide gives you the knowledge. We provide the expertise to make it happen. Book a free consultation to discuss your {sector} IT needs.</p>
+      <div class="guide-cta-actions">
+        <a class="guide-primary-button" href="/contact">Book Free Consultation</a>
+        <a class="guide-secondary-button" href="/it-health-check">Take IT Health Check</a>
+      </div>
+      <div class="guide-print-only guide-print-contact">
+        <p><strong>Contact Fresh Tech for a free consultation:</strong></p>
+        <p>Phone 01584 517 234 | Email hello@fresh-tech.uk | Web fresh-tech.uk</p>
+      </div>
+    </section>
+
+    <section class="guide-related" aria-labelledby="guide-related-heading">
+      <h2 id="guide-related-heading">Related Resources</h2>
+      <div class="guide-related-grid">
+        <a href={`/industries/${guide.slug}`}><span aria-hidden="true">→</span> {guide.industry} IT Services</a>
+        <a href="/services/cyber-essentials"><span aria-hidden="true">→</span> Cyber Essentials</a>
+        <a href="/pricing"><span aria-hidden="true">→</span> View Pricing</a>
+      </div>
+    </section>
+  </div>
+
+  <SourceContact />
+
+  <div class="guide-progress" data-guide-progress hidden>
+    <div class="guide-container guide-progress-inner">
+      <p class="guide-progress-text">Progress: <strong><span data-guide-progress-count>0</span>/{totalItems}</strong></p>
+      <progress class="guide-progress-bar" max={totalItems} value="0" data-guide-progress-bar aria-label="Checklist progress">0%</progress>
+      <p class="guide-progress-text"><strong data-guide-progress-percent>0%</strong></p>
+      <p class="guide-progress-complete" role="status" data-guide-progress-complete hidden>Complete!</p>
+    </div>
+  </div>
+
+  <div class="guide-print-only guide-print-footer">
+    <span>© Fresh Tech IT Support | hello@fresh-tech.uk</span>
+    <span>Downloaded from fresh-tech.uk/guides/{guide.slug}</span>
+    <span>01584 517 234</span>
+  </div>
+</main>

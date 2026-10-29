@@ -1,0 +1,10 @@
+node_modules/
+.astro/
+dist/
+src/generated/
+evidence/**/*.png
+public/fonts/
+
+# Generated route-wide browser reports; dated conclusions live in docs/seo.
+evidence/quality-browser/
+dist-production/

@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CookieConsent from '../../components/CookieConsent.astro';
+import LocationPage from '../../components/LocationPage.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import { locations } from '../../generated/locations-data.mjs';
+import { locationSeo } from '../../lib/location-seo.mjs';
+import '../../styles/locations.css';
+import PrototypeBanner from '../../components/PrototypeBanner.astro';
+
+export function getStaticPaths() {
+  return locations.map(location => ({ params: { slug: location.slug }, props: { location } }));
+}
+
+const { location } = Astro.props;
+const seo = locationSeo(location);
+const headingFontPreloads = /[\u0100-\u1eff\u2c60-\ua7ff]/u.test(location.heroTitle)
+  ? ['/fonts/bungee-latin.woff2', '/fonts/bungee-latin-ext.woff2']
+  : ['/fonts/bungee-latin.woff2'];
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonical={seo.canonical} image={seo.image} ogType={seo.ogType} schemas={seo.schemas} robots={seo.robots} preloadFonts={headingFontPreloads}>
+  <PrototypeBanner />
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <SiteNav activePage="" />
+  <LocationPage location={location} />
+  <SiteFooter />
+  <CookieConsent />
+</BaseLayout>
+
+<script src="../../scripts/enhance.ts"></script>

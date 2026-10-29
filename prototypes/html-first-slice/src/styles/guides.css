@@ -1,0 +1,212 @@
+/* /guides/[industry]. Scoped font families use font-display: optional (the
+   location, industry and blog approach) so a slow font never swaps in
+   mid-document and never moves the layout; the route preloads the Bungee
+   subset so the fast path paints the display face. Structure and copy follow
+   pages/IndustryGuidePage.tsx; the Tailwind gradient hero, low-alpha tints and
+   red/orange/blue priority pills are replaced with palette colours whose text
+   meets 4.5:1 at the rendered sizes. Print rules reproduce the source's A4
+   sheet and force every section body visible, collapsed or not. */
+@font-face { font-family: 'Guide Archivo'; font-style: normal; font-weight: 400 800; font-stretch: 100%; font-display: optional; src: url('/fonts/archivo-v25-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Guide Archivo'; font-style: normal; font-weight: 400 800; font-stretch: 100%; font-display: optional; src: url('/fonts/archivo-v25-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Guide Archivo Narrow'; font-style: normal; font-weight: 600 700; font-display: optional; src: url('/fonts/archivo-narrow-v35-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Guide Archivo Narrow'; font-style: normal; font-weight: 600 700; font-display: optional; src: url('/fonts/archivo-narrow-v35-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Guide Bungee'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/bungee-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Guide Bungee'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/bungee-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+.guide-page { background: var(--paper); color: var(--ink); font-family: 'Guide Archivo', system-ui, sans-serif; }
+.guide-page [hidden] { display: none !important; }
+.guide-page :where(.guide-stats, .guide-toc ol, .guide-related-grid, .guide-check, .guide-progress-inner, .guide-section-header) > * { min-width: 0; }
+.guide-container { width: min(calc(100% - 40px), 880px); margin-inline: auto; }
+.guide-print-only { display: none; }
+.guide-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.guide-eyebrow { margin: 0 0 12px; color: var(--primary-dark); font: 700 11px/1.3 'Guide Archivo Narrow', sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+.guide-eyebrow-light { color: #c6cbd0; }
+
+/* Shared buttons (hero print buttons, closing and contact links) */
+.guide-primary-button, .guide-secondary-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid var(--paper); font: 700 15px/1.3 'Guide Archivo', system-ui, sans-serif; text-decoration: none; cursor: pointer; overflow-wrap: anywhere; }
+.guide-primary-button { background: var(--accent); color: var(--ink); box-shadow: 4px 4px 0 var(--yellow); }
+.guide-secondary-button { background: transparent; color: var(--paper); }
+.guide-primary-button:hover, .guide-secondary-button:hover { border-color: var(--yellow); }
+
+/* Hero */
+.guide-hero { padding: 48px 0 56px; background-color: var(--ink); background-image: radial-gradient(rgba(255,255,255,.05) 1.4px, transparent 1.4px); background-size: 13px 13px; color: var(--paper); }
+.guide-breadcrumb { margin-bottom: 24px; }
+.guide-breadcrumb ol { display: flex; flex-wrap: wrap; gap: 6px 4px; margin: 0; padding: 0; list-style: none; color: #c6cbd0; font-size: 13px; line-height: 1.5; }
+.guide-breadcrumb li + li::before { content: '/'; margin-right: 4px; color: #8f979e; }
+.guide-breadcrumb a { display: inline-block; padding: 4px 2px; color: #d0d4d7; text-decoration: underline; text-underline-offset: 3px; }
+.guide-breadcrumb a:hover { color: var(--white); }
+.guide-breadcrumb [aria-current='page'] { padding: 4px 2px; color: var(--paper); font-weight: 700; }
+.guide-hero h1 { max-width: 18ch; margin: 0 0 18px; color: var(--paper); font: 400 clamp(30px, 8vw, 48px)/1 'Guide Bungee', sans-serif; overflow-wrap: anywhere; }
+.guide-hero-copy { max-width: 54ch; margin: 0 0 28px; color: #d0d4d7; font-size: 18px; line-height: 1.65; }
+.guide-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+/* Enhancement controls keep their space while hidden, so revealing them after
+   the external script loads does not shift the page. Without JavaScript a
+   <noscript> rule collapses them as before. */
+.guide-actions[hidden] { display: flex; visibility: hidden; }
+
+/* Intro and stats */
+.guide-body { padding: 40px 0 64px; }
+.guide-intro { margin: 0 0 32px; padding: 16px 20px; border-left: 4px solid var(--primary); background: var(--white); color: #3b4650; font-size: 18px; line-height: 1.65; }
+.guide-stats { display: grid; gap: 12px; margin: 0 0 40px; }
+.guide-stats > div { display: flex; flex-direction: column-reverse; align-items: center; gap: 6px; padding: 20px 16px; border: 1px solid var(--hairline); background: var(--white); text-align: center; }
+.guide-stats dd { margin: 0; color: var(--primary-dark); font: 400 clamp(24px, 6vw, 30px)/1 'Guide Bungee', sans-serif; overflow-wrap: anywhere; }
+.guide-stats dt { margin: 0; color: #53606a; font: 700 12px/1.4 'Guide Archivo Narrow', sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+
+/* Table of contents */
+.guide-toc { margin: 0 0 48px; padding: 24px 20px; background: var(--paper-deep); }
+.guide-toc h2 { margin: 0 0 18px; font: 400 clamp(22px, 6vw, 26px)/1.1 'Guide Bungee', sans-serif; overflow-wrap: anywhere; }
+.guide-toc ol { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.guide-toc a { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 10px 14px; border: 1px solid var(--hairline); background: var(--white); color: var(--ink); font-size: 15px; font-weight: 600; line-height: 1.4; text-decoration: none; }
+.guide-toc a:hover { border-color: var(--primary); color: var(--primary-dark); }
+.guide-icon { display: inline-grid; flex: 0 0 40px; width: 40px; height: 40px; place-items: center; background: #e6f0f8; color: var(--primary-dark); }
+.guide-icon svg { width: 20px; height: 20px; }
+.guide-icon-solid { flex-basis: 44px; width: 44px; height: 44px; background: var(--primary-dark); color: var(--white); }
+.guide-icon-solid svg { width: 24px; height: 24px; }
+
+/* Sections */
+.guide-section { margin: 0 0 48px; scroll-margin-top: 7rem; }
+.guide-section-header { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin: 0 0 20px; padding: 0 0 14px; border-bottom: 2px solid var(--ink); }
+.guide-section-header-clickable { cursor: pointer; }
+.guide-section-header h2 { flex: 1 1 200px; margin: 0; font: 400 clamp(22px, 6vw, 28px)/1.1 'Guide Bungee', sans-serif; overflow-wrap: anywhere; }
+.guide-section-header-clickable:hover h2 { color: var(--primary-dark); }
+.guide-toggle { flex: 0 0 auto; min-width: 44px; min-height: 44px; padding: 8px 14px; border: 2px solid var(--ink); background: var(--white); color: var(--ink); font: 700 13px/1.3 'Guide Archivo Narrow', sans-serif; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+.guide-toggle[hidden] { display: inline-block; visibility: hidden; }
+.guide-toggle:hover { background: var(--paper-deep); }
+.guide-toggle[aria-expanded='true']::after { content: ' \2212'; }
+.guide-toggle[aria-expanded='false']::after { content: ' +'; }
+.guide-content { color: #3b4650; font-size: 16px; line-height: 1.7; }
+.guide-content > :first-child { margin-top: 0; }
+.guide-content h3 { margin: 24px 0 8px; color: var(--ink); font: 800 17px/1.35 'Guide Archivo', system-ui, sans-serif; overflow-wrap: anywhere; }
+.guide-content p { margin: 0 0 8px; }
+.guide-content ul, .guide-content ol { margin: 4px 0 12px; padding-left: 24px; }
+.guide-content li { margin: 0 0 4px; }
+.guide-content li::marker { color: var(--primary-dark); font-weight: 700; }
+.guide-content strong { color: var(--ink); }
+
+/* Checklists */
+.guide-checklist { margin: 28px 0 0; padding: 20px 16px; background: var(--paper-deep); }
+.guide-checklist h3 { margin: 0 0 16px; font: 400 18px/1.1 'Guide Bungee', sans-serif; }
+.guide-checklist ul { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.guide-check { position: relative; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px 12px; padding: 14px; border: 2px solid var(--hairline); background: var(--white); transition: border-color 150ms, background-color 150ms; }
+.guide-check:hover { border-color: var(--primary); }
+.guide-check:has(.guide-check-input:checked) { border-color: #2e7d5b; background: #eef7f1; }
+.guide-check:has(.guide-check-input:focus-visible) { outline: 3px solid var(--primary); outline-offset: 2px; }
+.guide-check-input { flex: 0 0 auto; width: 24px; height: 24px; margin: 2px 0 0; accent-color: #2e7d5b; cursor: pointer; }
+.guide-check-body { flex: 1 1 200px; }
+.guide-check-body label { display: block; color: var(--ink); font-size: 15px; font-weight: 600; line-height: 1.45; cursor: pointer; }
+/* The whole card toggles the box, as the source's clickable row did. */
+.guide-check-body label::after { content: ''; position: absolute; inset: 0; }
+.guide-check:has(.guide-check-input:checked) label { color: #53606a; text-decoration: line-through; }
+.guide-tip { margin: 6px 0 0; color: #53606a; font-size: 14px; line-height: 1.5; }
+.guide-tip span { color: #7a5a00; font-weight: 700; }
+.guide-priority { flex: 0 0 auto; padding: 4px 10px; border: 1px solid transparent; font: 700 11px/1.4 'Guide Archivo Narrow', sans-serif; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.guide-check[data-priority='critical'] .guide-priority { border-color: #f1b7b7; background: #fdeaea; color: #9b1c1c; }
+.guide-check[data-priority='high'] .guide-priority { border-color: #f3cf9f; background: #fff1e0; color: #8a4500; }
+.guide-check[data-priority='medium'] .guide-priority { border-color: #b7d3ea; background: #e6f0f8; color: #1f5c8c; }
+
+/* Closing call to action, related links, contact strip */
+.guide-cta { margin: 56px 0 0; padding: 32px 20px; background-color: var(--ink); background-image: radial-gradient(rgba(255,255,255,.04) 1.4px, transparent 1.4px); background-size: 12px 12px; color: var(--paper); text-align: center; }
+.guide-cta h2 { margin: 0 0 12px; color: var(--paper); font: 400 clamp(26px, 7vw, 34px)/1.05 'Guide Bungee', sans-serif; overflow-wrap: anywhere; }
+.guide-cta > p { max-width: 48ch; margin: 0 auto 24px; color: #d0d4d7; font-size: 16px; line-height: 1.65; }
+.guide-cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.guide-related { margin: 48px 0 0; padding: 40px 0 0; border-top: 1px solid var(--hairline); }
+.guide-related h2 { margin: 0 0 20px; font: 400 clamp(22px, 6vw, 26px)/1.1 'Guide Bungee', sans-serif; }
+.guide-related-grid { display: grid; gap: 10px; }
+.guide-related-grid a { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 12px 16px; border: 1px solid var(--hairline); background: var(--white); color: var(--ink); font-size: 15px; font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+.guide-related-grid a span { color: var(--primary-dark); }
+.guide-related-grid a:hover { border-color: var(--primary); color: var(--primary-dark); }
+/* Progress strip: sticky to the viewport bottom while the guide is on screen.
+   The source pinned it under a non-sticky header; here the site header is
+   already sticky at the top, so the strip takes the other edge. */
+.guide-progress { position: sticky; bottom: 0; z-index: 15; border-top: 2px solid var(--ink); background: var(--white); }
+.guide-progress-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 10px 0; }
+.guide-progress-text { margin: 0; color: #3b4650; font-size: 14px; }
+.guide-progress-text strong { color: var(--primary-dark); }
+.guide-progress-bar { flex: 1 1 120px; width: 100%; height: 10px; border: 1px solid var(--hairline); background: var(--paper-deep); accent-color: var(--primary-dark); appearance: none; }
+.guide-progress-bar::-webkit-progress-bar { background: var(--paper-deep); }
+.guide-progress-bar::-webkit-progress-value { background: var(--primary-dark); transition: width 300ms; }
+.guide-progress-bar::-moz-progress-bar { background: var(--primary-dark); }
+.guide-progress-complete { margin: 0; color: #1f5b40; font-size: 14px; font-weight: 700; }
+
+@media (min-width: 640px) {
+  .guide-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .guide-toc ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .guide-related-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (min-width: 768px) {
+  .guide-container { width: min(calc(100% - 64px), 880px); }
+  .guide-hero { padding: 64px 0 72px; }
+  .guide-body { padding: 56px 0 80px; }
+  .guide-toc { padding: 32px; }
+  .guide-checklist { padding: 24px; }
+  .guide-cta { padding: 40px 32px; }
+  .guide-progress-inner { flex-wrap: nowrap; }
+  .guide-progress-bar { max-width: 320px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guide-check, .guide-progress-bar::-webkit-progress-value { transition: none; }
+}
+
+/* Print: an A4 sheet with everything, following the source's print rules.
+   Site chrome, enhancement controls and on-screen links are dropped; hidden
+   (collapsed) section bodies are forced visible whether or not the script's
+   beforeprint handler ran; the print header/footer and contact line appear. */
+@media print {
+  @page { size: A4; margin: 20mm 15mm 25mm 15mm; }
+  /* The site canvas is tinted paper; a print page that holds only the
+     repeated footer (or trailing whitespace) would otherwise print as a
+     tinted blank sheet. */
+  html, body { background: white !important; }
+  .prototype-banner, .skip-link, .site-header, .site-footer, .cookie-banner, .cookie-settings,
+  .guide-actions, .guide-toggle, .guide-progress, .guide-cta-actions, .guide-related, .guide-breadcrumb { display: none !important; }
+  .guide-page .guide-section-body[hidden] { display: block !important; }
+  .guide-page .guide-print-only { display: block !important; }
+  .guide-page, .guide-hero, .guide-toc, .guide-checklist, .guide-check, .guide-intro, .guide-stats > div, .guide-cta { background: white !important; color: #1a1a1a !important; box-shadow: none !important; }
+  .guide-page { font-size: 10pt; line-height: 1.5; }
+  .guide-container { width: 100%; }
+  .guide-page .guide-print-header { display: flex !important; align-items: center; justify-content: space-between; gap: 12pt; padding-bottom: 12pt; margin-bottom: 16pt; border-bottom: 2pt solid #1f5c8c; }
+  .guide-print-header img { width: auto; height: 32pt; }
+  .guide-print-header-text { text-align: right; font-size: 9pt; color: #666; }
+  .guide-print-header-text strong { display: block; color: #1f5c8c; }
+  .guide-hero { padding: 0 0 12pt; }
+  .guide-hero h1, .guide-hero-copy, .guide-eyebrow { color: #1a1a1a !important; max-width: none; }
+  .guide-hero h1 { font-size: 22pt; margin-bottom: 8pt; }
+  .guide-hero-copy { font-size: 11pt; margin: 0; }
+  .guide-body { padding: 0; }
+  .guide-intro { font-size: 11pt; line-height: 1.6; padding: 12pt; margin-bottom: 16pt; background: #f8fafc !important; border-left: 3pt solid #1f5c8c; break-inside: avoid; }
+  .guide-stats { display: flex; gap: 12pt; margin-bottom: 16pt; break-inside: avoid; }
+  .guide-stats > div { flex: 1; padding: 12pt; border: 1pt solid #1f5c8c; }
+  .guide-stats dd { font-size: 16pt; }
+  .guide-toc { padding: 0; margin-bottom: 16pt; break-inside: avoid; }
+  .guide-toc h2 { padding-bottom: 4pt; border-bottom: 2pt solid #1f5c8c; font-size: 16pt; }
+  .guide-toc ol { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4pt; }
+  .guide-toc a { min-height: 0; padding: 2pt 0; border: 0; color: inherit; text-decoration: none; }
+  .guide-toc .guide-icon { display: none; }
+  .guide-icon-solid { flex-basis: 28pt; width: 28pt; height: 28pt; background: #1f5c8c !important; color: white !important; print-color-adjust: exact; }
+  .guide-icon-solid svg { width: 16pt; height: 16pt; }
+  .guide-section { margin-bottom: 16pt; }
+  .guide-section + .guide-section { break-before: page; }
+  .guide-section-header { border-bottom: 1pt solid #e5e5e5; padding-bottom: 6pt; margin-bottom: 8pt; break-after: avoid; }
+  .guide-section-header h2 { font-size: 16pt; }
+  .guide-content h3 { font-size: 11pt; }
+  .guide-content, .guide-content p, .guide-content li, .guide-tip, .guide-check-body label { font-size: 10pt; color: #1a1a1a !important; }
+  .guide-checklist { padding: 0; margin-top: 12pt; }
+  .guide-checklist h3 { font-size: 13pt; margin-bottom: 8pt; break-after: avoid; }
+  .guide-check { break-inside: avoid; margin-bottom: 8pt; padding: 8pt; border: 1pt solid #e5e5e5; }
+  .guide-check-input { width: 12pt; height: 12pt; }
+  .guide-check:has(.guide-check-input:checked) label { text-decoration: none; }
+  .guide-tip { font-size: 9pt; color: #666 !important; }
+  .guide-priority { font-size: 8pt; padding: 2pt 6pt; }
+  .guide-cta { margin-top: 20pt; padding: 16pt; border: 2pt solid #1f5c8c; background: #f8fafc !important; break-inside: avoid; }
+  .guide-cta h2 { color: #1f5c8c !important; font-size: 16pt; }
+  .guide-cta > p { color: #4a5568 !important; }
+  .guide-print-contact p { margin: 4pt 0; color: #1a1a1a; }
+  /* Print the footer once after the guide content. A fixed footer can be
+     repositioned over later-page headings by Chromium's paged layout. Normal
+     flow reserves the footer's full height and keeps every source string. */
+  .guide-page .guide-print-footer { display: flex !important; position: static; box-sizing: content-box; justify-content: space-between; align-items: center; gap: 8pt; padding: 6pt 0; margin: 12pt 0 0; border-top: 1pt solid #e5e5e5; background: white; font-size: 8pt; line-height: 12pt; color: #666; white-space: nowrap; overflow: visible; break-inside: avoid; }
+  .guide-page .guide-print-footer > * { margin: 0; }
+  .guide-page a { color: inherit !important; text-decoration: none !important; }
+}

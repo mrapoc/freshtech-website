@@ -1,0 +1,195 @@
+---
+title: Data Processing Terms
+version: "1.0"
+effective_date: "2026-09-14"
+slug: dpa
+summary: How Fresh Tech handles personal data on your behalf as your processor under Article 28 of the UK GDPR.
+---
+
+# Data Processing Terms
+
+Version 1.0. Effective 14 September 2026. These terms form part of our [Terms of Business](/terms-of-business).
+
+## 1. Parties and scope
+
+1.1 These Data Processing Terms apply between FRESH PCS CONSULTANCY LTD, trading as Fresh Tech, company number 09296207, registered office 28 Livesey Avenue, Ludlow, Shropshire, SY8 1HN, ICO registration ZA136732 ("Fresh Tech"), and each client that has accepted our Terms of Business ("the Client").
+
+1.2 Fresh Tech provides managed IT services to the Client under the Terms of Business and any Proposal ("the Services Agreement"). In performing those services, Fresh Tech processes personal data on behalf of the Client.
+
+1.3 These terms set out the provisions required by Article 28 of the UK GDPR and apply to all processing of personal data carried out by Fresh Tech on behalf of the Client.
+
+1.4 Where these terms conflict with the Services Agreement on a matter of data protection, these terms prevail.
+
+1.5 Where a client requires a separately signed data processing agreement, we will provide one on the same terms.
+
+## 2. Definitions
+
+2.1 "UK GDPR", "personal data", "processing", "controller", "processor", "personal data breach" and "data subject" have the meanings given to them in the UK GDPR and the Data Protection Act 2018.
+
+2.2 "Data Protection Law" means the UK GDPR, the Data Protection Act 2018 and the Privacy and Electronic Communications Regulations 2003, each as amended from time to time.
+
+2.3 "Sub-processor" means any third party engaged by Fresh Tech to process personal data on behalf of the Client.
+
+## 3. Status of the parties
+
+3.1 In relation to the personal data described in Annex 1, the Client acts as controller and Fresh Tech acts as processor.
+
+3.2 Where the Client is itself a processor acting on behalf of its own clients, Fresh Tech acts as a sub-processor. In that case, references in these terms to the Client as controller are to be read as references to the Client acting on the instructions of its own controller, and the Client confirms that it holds the authorisation required by Article 28(2) of the UK GDPR to engage Fresh Tech.
+
+3.3 Fresh Tech acts as a controller in its own right in respect of its business contact records, billing records and marketing activity. That processing falls outside these terms and is governed by our [privacy policy](/privacy-policy).
+
+## 4. Processing on documented instructions
+
+4.1 Fresh Tech shall process personal data only on the documented instructions of the Client, including in relation to transfers of personal data outside the United Kingdom, unless required to do otherwise by law. Where required by law, Fresh Tech shall inform the Client of that requirement before processing, unless the law prohibits it on important grounds of public interest.
+
+4.2 The Client's initial documented instructions are set out in these terms, the Services Agreement and Annex 1. Further instructions may be given in writing, including by email or by a ticket raised through the Fresh Tech service desk.
+
+4.3 Fresh Tech shall inform the Client without undue delay if, in its opinion, an instruction infringes Data Protection Law, and may suspend the affected processing until the instruction is confirmed, amended or withdrawn.
+
+4.4 The Client warrants that it has a lawful basis for the processing it instructs and that its instructions will not place Fresh Tech in breach of Data Protection Law.
+
+## 5. Confidentiality
+
+5.1 Fresh Tech shall ensure that each person authorised to process the personal data is subject to a binding duty of confidentiality, whether contractual or statutory, which survives the end of their engagement.
+
+5.2 Access to the Client's personal data is restricted to those Fresh Tech personnel who require it in order to deliver the services.
+
+## 6. Security
+
+6.1 Fresh Tech shall implement and maintain appropriate technical and organisational measures as required by Article 32 of the UK GDPR. The measures in force at the effective date are described in Annex 2.
+
+6.2 Fresh Tech holds Cyber Essentials certification and shall maintain that certification, or an equivalent or higher standard, for the term of these terms.
+
+6.3 Fresh Tech may update the measures described in Annex 2 provided that the overall level of protection is not reduced.
+
+## 7. Sub-processors
+
+7.1 The Client gives Fresh Tech general written authorisation to engage the sub-processors listed on our [sub-processors page](/sub-processors), which forms Annex 3 to these terms.
+
+7.2 Fresh Tech shall give the Client at least 30 days' written notice before adding or replacing a sub-processor. The Client may object on reasonable data protection grounds within that period. If the objection cannot be resolved, either party may terminate the affected services on 30 days' written notice without penalty.
+
+7.3 Fresh Tech shall impose on each sub-processor, by written contract, data protection obligations no less protective than those set out in these terms.
+
+7.4 Fresh Tech remains fully liable to the Client for the performance of each sub-processor's obligations.
+
+## 8. Assistance with data subject rights
+
+8.1 Taking into account the nature of the processing, Fresh Tech shall assist the Client by appropriate technical and organisational measures, so far as is possible, in fulfilling the Client's obligation to respond to requests to exercise data subject rights under Chapter III of the UK GDPR.
+
+8.2 If Fresh Tech receives a request directly from a data subject relating to the Client's personal data, it shall not respond substantively and shall notify the Client without undue delay and in any event within two working days.
+
+8.3 Assistance that goes beyond routine effort may be charged at Fresh Tech's Standard Rates, agreed with the Client in advance.
+
+## 9. Personal data breaches and further assistance
+
+9.1 Fresh Tech shall notify the Client without undue delay, and in any event within 24 hours, of becoming aware of a personal data breach affecting the Client's personal data.
+
+9.2 The notification shall describe, so far as known at the time: the nature of the breach, the categories and approximate number of data subjects and records affected, the likely consequences, the measures taken or proposed, and a point of contact for further information. Information not available at the time of notification shall be provided in phases as it becomes available.
+
+9.3 Fresh Tech shall not notify the Information Commissioner or any data subject on the Client's behalf unless instructed in writing by the Client to do so.
+
+9.4 Fresh Tech shall provide reasonable assistance to the Client in complying with its obligations under Articles 32 to 36 of the UK GDPR, including data protection impact assessments and prior consultation, taking into account the nature of the processing and the information available to Fresh Tech.
+
+## 10. International transfers
+
+10.1 The Client's personal data is stored primarily in the United Kingdom. Microsoft 365 tenants provisioned by Fresh Tech for UK clients are created in the United Kingdom data region.
+
+10.2 Certain sub-processors process personal data outside the United Kingdom, principally service metadata, security telemetry and support records. Such transfers are made only where the receiving country is covered by UK adequacy regulations, or where an appropriate safeguard under Article 46 of the UK GDPR is in place, such as the International Data Transfer Agreement or the UK Addendum to the EU standard contractual clauses. The sub-processors page records the position for each sub-processor.
+
+10.3 Fresh Tech shall not transfer the Client's personal data outside the United Kingdom other than as described on the sub-processors page without the Client's prior written instruction.
+
+## 11. Audit and information
+
+11.1 Fresh Tech shall make available to the Client all information reasonably necessary to demonstrate compliance with Article 28 of the UK GDPR, and shall allow for and contribute to audits, including inspections, conducted by the Client or an auditor mandated by the Client.
+
+11.2 The Client shall give at least 30 days' written notice of an audit, shall conduct it during normal business hours, shall not audit more than once in any 12 month period unless a personal data breach has occurred or the Information Commissioner requires it, and shall bear its own costs.
+
+11.3 Fresh Tech may satisfy an audit request in whole or in part by providing its current Cyber Essentials certificate, relevant policy documents, and any third party assurance reports available for its sub-processors.
+
+## 12. Deletion and return of data
+
+12.1 On termination of the services, or earlier at the Client's written request, Fresh Tech shall at the Client's choice delete or return all of the Client's personal data and delete existing copies.
+
+12.2 Fresh Tech shall complete deletion or return within 30 days of the request and shall certify completion in writing if asked to do so.
+
+12.3 Fresh Tech may retain personal data to the extent required by law, or where it is held within immutable backups pending expiry of the applicable retention cycle, and shall continue to protect it in accordance with these terms until it is deleted.
+
+12.4 Administrative credentials and delegated administrative privileges held by Fresh Tech in the Client's tenant shall be removed within 5 working days of termination.
+
+## 13. Term, liability and general
+
+13.1 These terms take effect when the Client accepts the Terms of Business and continue for as long as Fresh Tech processes personal data on behalf of the Client. Clauses 5, 12 and 13 survive termination.
+
+13.2 Liability under these terms is subject to the limitations and exclusions set out in the Terms of Business.
+
+13.3 These terms are governed by the law of England and Wales, and the parties submit to the exclusive jurisdiction of the courts of England and Wales.
+
+## Annex 1. Description of the processing
+
+| Item | Detail |
+|---|---|
+| Subject matter | The provision of managed IT services, including Microsoft 365 administration, endpoint management, security monitoring, backup and technical support. |
+| Duration | The term of the Services Agreement, plus the deletion period set out in clause 12. |
+| Nature of the processing | Storage, hosting, administration, configuration, access for support and troubleshooting, migration, backup, security monitoring and incident response, and deletion. Fresh Tech does not use the Client's personal data for any purpose of its own. |
+| Purpose of the processing | To deliver the services described in the Services Agreement. |
+| Types of personal data | Names, job titles, business and personal contact details, mailbox content, calendar and file content, authentication and account data, device identifiers, IP addresses, and any other personal data the Client chooses to store in systems administered by Fresh Tech. |
+| Categories of data subject | The Client's employees, contractors, customers, suppliers and their contacts, and any other individuals whose personal data the Client stores in those systems. |
+| Special category data | None anticipated, other than any contained in records the Client chooses to hold in its own systems. Fresh Tech does not deliberately access such data. |
+| Client-specific detail | Any client-specific description of data types, data subjects or special category data is recorded in the Client's onboarding record and is available on request. |
+| Fresh Tech contact for data protection | Sam James, Director. hello@fresh-tech.uk. 01584 517 234. |
+
+## Annex 2. Technical and organisational measures
+
+The measures below are those in force at the effective date. They apply to Fresh Tech systems and to the administrative access Fresh Tech holds in Client systems.
+
+### Access control and privileged access
+
+- Multi-factor authentication is enforced on all Fresh Tech administrative accounts and on access to Client tenants.
+- Conditional access policies restrict administrative sign-in by device compliance and risk.
+- Role based access and least privilege. Administrative access is granted only where required to deliver the services.
+- Separate named administrative accounts are used. Shared logins are not permitted.
+- Credentials are held in an encrypted password vault with per-user access control, sharing controls and audit logging.
+- Local administrator passwords on managed endpoints are rotated automatically and stored encrypted.
+- Administrative activity in Client Microsoft 365 tenants is recorded in the Microsoft unified audit log and is available to the Client.
+
+### Endpoint and network security
+
+- Managed endpoint detection and response on Fresh Tech devices and on managed Client endpoints.
+- Application allowlisting where deployed.
+- Operating system and third party patching managed centrally through the Fresh Tech RMM platform.
+- Full disk encryption on Fresh Tech workstations and laptops.
+- Email filtering and DNS filtering on Fresh Tech systems.
+
+### Data protection measures
+
+- Encryption in transit using TLS for all administrative and service traffic.
+- Encryption at rest for backups, credential vaults and managed endpoints.
+- Microsoft 365 tenants for UK clients are provisioned in the United Kingdom data region.
+- Client environments are segregated. Data from one client is never combined with another.
+- Backups are monitored and restore testing is carried out periodically.
+
+### Monitoring and incident response
+
+- Security alerting is monitored and raised into the Fresh Tech service desk for triage.
+- A documented incident response process defines triage, containment, notification and review, including the 24 hour notification commitment in clause 9.
+- Audit and alert records are retained for review.
+
+### People and governance
+
+- Employment contracts include binding confidentiality obligations that survive termination.
+- Security awareness training and reference checking for personnel with administrative access.
+- Access is removed promptly when a member of staff leaves or changes role.
+- Cyber Essentials certification is held and maintained.
+- Registered with the Information Commissioner's Office under registration ZA136732.
+- Documented policies covering acceptable use, access control, incident response and artificial intelligence use, reviewed at least annually.
+
+## Annex 3. Sub-processors
+
+The current list of authorised sub-processors, their processing locations and transfer safeguards is published at [/sub-processors](/sub-processors) and forms part of these terms.
+
+## Version history
+
+| Version | Effective date | Change |
+|---|---|---|
+| 1.0 | 14 September 2026 | First published version. |
+

@@ -1,0 +1,706 @@
+# Netlify Configuration File
+# Place this in the root of your repository
+
+[build]
+  publish = "dist"
+  # Notify IndexNow engines about newly published pages. Google discovers ordinary
+  # pages through the sitemap; its Indexing API is limited to eligible job/live-video pages.
+  # Keep IndexNow failures non-fatal so notification issues do not fail deployment.
+  command = "npm run build && (node scripts/indexnow-submit.mjs --new-vs-live || true)"
+
+# Staging deploys (branch + deploy preview) get X-Robots-Tag: noindex
+# via the strip-trailing-slash edge function, which already runs on /*.
+# context.*.headers blocks in this file proved unreliable for this case.
+
+# Install Playwright browsers inside node_modules so Netlify's dependency
+# cache also caches them. Required by scripts/prerender.js (Chromium).
+[build.environment]
+  PLAYWRIGHT_BROWSERS_PATH = "0"
+
+# Disable Pretty URLs (trailing slash addition) to prevent redirect loops
+[build.processing]
+  skip_processing = false
+[build.processing.html]
+  pretty_urls = false
+
+# ---------------------------------------------------------
+# 0. Edge Functions
+# ---------------------------------------------------------
+# Strip trailing slashes (301) to prevent duplicate canonical URLs in GSC.
+# Edge function runs before redirects, so no conflict with SPA fallback.
+[[edge_functions]]
+  function = "strip-trailing-slash"
+  path = "/*"
+
+# ---------------------------------------------------------
+# 1. Legacy SEO Redirects (301 Permanent) - MUST be before SPA fallback
+# ---------------------------------------------------------
+# Redirect old WordPress URLs to new React routes to preserve SEO.
+# These are processed in order, so more specific rules come first.
+
+# WordPress query params - only on homepage
+# (wildcard query redirects cause loops, so be specific)
+[[redirects]]
+  from = "/"
+  query = {wordfence_lh = ":val"}
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/"
+  query = {id = ":id"}
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/"
+  query = {s = ":term"}
+  to = "/blog"
+  status = 301
+  force = true
+
+# Old WordPress home
+[[redirects]]
+  from = "/home"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/home/"
+  to = "/"
+  status = 301
+  force = true
+
+# News/Blog redirects (wildcard catches query params too)
+[[redirects]]
+  from = "/news/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/news"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/latest-news"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/latest-news/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+# Dated blog posts (/2019/..., /2022/..., /2023/..., /2024/..., /2025/...)
+[[redirects]]
+  from = "/2019/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2020/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2021/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2022/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2023/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2024/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2025/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+# Technology projects
+[[redirects]]
+  from = "/technology-projects"
+  to = "/technology"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/technology-projects/"
+  to = "/technology"
+  status = 301
+  force = true
+
+# Core page redirects
+[[redirects]]
+  from = "/about-us"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact-us"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/feed"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/rss"
+  to = "/blog"
+  status = 301
+  force = true
+
+# Terms page variations
+[[redirects]]
+  from = "/terms"
+  to = "/terms-conditions"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/terms/"
+  to = "/terms-conditions"
+  status = 301
+  force = true
+
+# Old WordPress theme pages (The7 theme) — specific team members first
+[[redirects]]
+  from = "/the7_team/sam-james"
+  to = "/team/sam-james"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/the7_team/matthew-morgan"
+  to = "/team/matt-morgan"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/the7_team/*"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/the7_reviews/*"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/elements_list/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/elements/*"
+  to = "/"
+  status = 301
+  force = true
+
+# Location pages with "in" prefix (old URL format)
+[[redirects]]
+  from = "/it-support-in-shropshire"
+  to = "/it-support-shropshire"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-support-in-shropshire/"
+  to = "/it-support-shropshire"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-support-in-ludlow"
+  to = "/it-support-ludlow"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-support-in-ludlow/"
+  to = "/it-support-ludlow"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-support-in-hereford"
+  to = "/locations/hereford"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-support-in-hereford/"
+  to = "/locations/hereford"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-support-in-telford"
+  to = "/locations/telford"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-support-in-shrewsbury"
+  to = "/locations/shrewsbury"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-support-in-worcester"
+  to = "/it-support-worcestershire"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-support-in-craven-arms"
+  to = "/locations/craven-arms"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-support-in-craven-arms/"
+  to = "/locations/craven-arms"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-support-craven-arms"
+  to = "/locations/craven-arms"
+  status = 301
+  force = true
+
+# Privacy page variations
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy-policy"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy/"
+  to = "/privacy-policy"
+  status = 301
+  force = true
+
+# WordPress admin/security paths (redirect to home)
+[[redirects]]
+  from = "/wp-admin"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/wp-admin/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/wp-login.php"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/wp-content/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/wp-includes/*"
+  to = "/"
+  status = 301
+  force = true
+
+# Old WordPress uploads (PDFs, images, etc.)
+[[redirects]]
+  from = "/wp-content/uploads/*"
+  to = "/resources"
+  status = 301
+  force = true
+
+# Category and tag archives
+[[redirects]]
+  from = "/category/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tag/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+# Old portfolio/case studies
+[[redirects]]
+  from = "/portfolio/*"
+  to = "/case-studies"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/*"
+  to = "/case-studies"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/project/*"
+  to = "/case-studies"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/heroic-it-feats"
+  to = "/case-studies"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/heroic_it_feats/*"
+  to = "/case-studies"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/heroic_it_feats"
+  to = "/case-studies"
+  status = 301
+  force = true
+
+# Renamed case study redirect
+[[redirects]]
+  from = "/case-studies/healthcare-dspt-compliance"
+  to = "/case-studies/care-home-digital-transformation"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/locations.kml"
+  to = "/about"
+  status = 301
+  force = true
+
+# Old "it-services" URLs (different from "it-support")
+[[redirects]]
+  from = "/it-services-in-ludlow"
+  to = "/locations/ludlow"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-services-in-*"
+  to = "/services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-services/*"
+  to = "/services"
+  status = 301
+  force = true
+
+# Our-team redirects (old WordPress team pages)
+# Specific team members first, then wildcard fallback
+[[redirects]]
+  from = "/our-team/sam-james"
+  to = "/team/sam-james"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/our-team/sam-james/"
+  to = "/team/sam-james"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/our-team/matt-morgan"
+  to = "/team/matt-morgan"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/our-team/matthew-morgan"
+  to = "/team/matt-morgan"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/our-team/matt-morgan/"
+  to = "/team/matt-morgan"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/our-team/*"
+  to = "/about"
+  status = 301
+  force = true
+
+# Service area legacy — specific locations first (high-impression URLs from GSC)
+[[redirects]]
+  from = "/service-area/it-support-in-shropshire"
+  to = "/it-support-shropshire"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-area/it-support-in-shropshire/"
+  to = "/it-support-shropshire"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-area/it-support-in-ludlow"
+  to = "/it-support-ludlow"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-area/it-support-in-ludlow/"
+  to = "/it-support-ludlow"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-area/it-support-in-hereford"
+  to = "/it-support-hereford"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-area/it-support-in-hereford/"
+  to = "/it-support-hereford"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-area/it-support-in-shrewsbury"
+  to = "/it-support-shrewsbury"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-area/it-support-in-shrewsbury/"
+  to = "/it-support-shrewsbury"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-area/it-support-in-telford"
+  to = "/it-support-telford"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-area/it-support-in-telford/"
+  to = "/it-support-telford"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-area/it-support-in-worcester"
+  to = "/it-support-worcester"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-area/it-support-in-worcester/"
+  to = "/it-support-worcester"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-area"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-area/*"
+  to = "/about"
+  status = 301
+  force = true
+
+# Old URL variants still indexed by Google
+[[redirects]]
+  from = "/managed-print-solutions"
+  to = "/services/managed-print"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/managed-print-solutions/"
+  to = "/services/managed-print"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/terms-and-conditions"
+  to = "/terms-conditions"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/terms-and-conditions/"
+  to = "/terms-conditions"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cyber-security-services"
+  to = "/services/cybersecurity"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cyber-security-services/"
+  to = "/services/cybersecurity"
+  status = 301
+  force = true
+
+# Old WordPress taxonomy URLs still indexed
+[[redirects]]
+  from = "/the7_project_category/*"
+  to = "/case-studies"
+  status = 301
+  force = true
+
+# Old WordPress sitemap URLs - return 410 Gone to stop Googlebot crawling
+# These hit the SPA fallback (200 HTML) which wastes crawl budget
+[[redirects]]
+  from = "/page-sitemap.xml"
+  to = "/sitemap.xml"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/post-sitemap.xml"
+  to = "/sitemap.xml"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/category-sitemap.xml"
+  to = "/sitemap.xml"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/wp-sitemap.xml"
+  to = "/sitemap.xml"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sitemap_index.xml"
+  to = "/sitemap.xml"
+  status = 301
+  force = true
+
+# WordPress theme-specific sitemaps - no equivalent exists
+[[redirects]]
+  from = "/*-sitemap.xml"
+  to = "/sitemap.xml"
+  status = 301
+  force = true
+
+# ---------------------------------------------------------
+# 2. Trailing Slash Normalization (via Edge Function)
+# ---------------------------------------------------------
+# Generic placeholder redirects (/:path1/) cause loops on Netlify because
+# the trailing slash is treated as optional. Using an edge function instead.
+# See netlify/edge-functions/strip-trailing-slash.ts
+
+# ---------------------------------------------------------
+# 3. SPA Fallback (Critical for React Router)
+# ---------------------------------------------------------
+# This rule tells Netlify to serve index.html for any path
+# that doesn't match a static file (images, css, etc).
+# This allows React Router to handle the URL.
+# Preserve the former client-only industry aliases on static hosting.
+[[redirects]]
+  from = "/industries/engineering"
+  to = "/industries/manufacturing"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/industries/legal"
+  to = "/industries/solicitors"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# ---------------------------------------------------------
+# 4. Security Headers
+# ---------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    # HSTS - Force HTTPS for 1 year, include subdomains
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    # Content Security Policy - Tightened with explicit domains
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://cdn.tailwindcss.com https://esm.sh https://assets.calendly.com https://hq.fresh-tech.uk; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com https://assets.calendly.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://*.google-analytics.com https://www.googletagmanager.com https://c.clarity.ms https://c.bing.com https://res.cloudinary.com https://ui-avatars.com https://registry.blockmarktech.com blob:; connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://www.clarity.ms https://*.clarity.ms https://*.netlify.app https://helpdesk.fresh-tech.uk https://calendly.com https://hq.fresh-tech.uk https://dns.google; frame-src https://calendly.com https://registry.blockmarktech.com https://hq.fresh-tech.uk https://maps.google.com https://www.google.com; frame-ancestors 'none'; media-src 'self' https://res.cloudinary.com; object-src 'none'; base-uri 'self'; form-action 'self' https://calendly.com; upgrade-insecure-requests;"
+
+# ---------------------------------------------------------
+# 5. Performance Caching
+# ---------------------------------------------------------
+# Vite generates files with hashes (e.g. index.a3b2c1.js).
+# We can cache these forever because if the content changes, the hash changes.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Do not cache index.html so users always get the latest version info
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

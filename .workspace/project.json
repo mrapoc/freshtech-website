@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "lifecycle": "active",
+  "context": [
+    "FreshTech/Commercial"
+  ],
+  "required_paths": [
+    "AGENTS.md",
+    "DEVELOPMENT.md",
+    "package-lock.json",
+    "docs/seo/static-quality-contract.md"
+  ],
+  "commands": [
+    {
+      "cwd": ".",
+      "runner": "npm",
+      "name": "lint"
+    },
+    {
+      "cwd": ".",
+      "runner": "npm",
+      "name": "test"
+    },
+    {
+      "cwd": ".",
+      "runner": "npm",
+      "name": "build:no-prerender"
+    },
+    {
+      "cwd": ".",
+      "runner": "npm",
+      "name": "build"
+    },
+    {
+      "name": "test",
+      "cwd": "prototypes/html-first-slice",
+      "runner": "npm"
+    },
+    {
+      "name": "build",
+      "cwd": "prototypes/html-first-slice",
+      "runner": "npm"
+    }
+  ],
+  "notes": "Current Fresh Tech website."
+}

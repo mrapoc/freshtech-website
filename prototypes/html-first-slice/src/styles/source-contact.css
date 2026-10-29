@@ -1,0 +1,47 @@
+/* SourceContact.astro: the shared contact block from components/Contact.tsx.
+   Imported by the component as a Vite ?inline string and emitted in its own
+   <style is:inline>, so only pages that actually render the block get these
+   rules, once. It is not a side-effect import: that would be hoisted onto
+   every page that imports the component, rendered or not (service-location
+   pages). Palette colours from the site tokens; the source's tinted card
+   and two-column layout are kept, the blur blob and in-view animation are not.
+   Widths are fluid and every text node wraps, so 320px and 200% text are safe.
+   Not printed: the guide print sheet carries its own contact line. */
+.source-contact { padding: 48px 0; background: var(--paper-deep); color: var(--ink); font-family: system-ui, sans-serif; }
+.source-contact * { min-width: 0; }
+.source-contact-card { display: flex; flex-direction: column; width: min(calc(100% - 40px), 1040px); margin-inline: auto; border: 4px solid var(--ink); background: var(--white); box-shadow: 8px 8px 0 var(--yellow); }
+.source-contact-info { padding: 28px 20px; }
+.source-contact-heading { margin: 0 0 16px; color: var(--primary-dark); font-size: clamp(28px, 7vw, 40px); font-weight: 800; line-height: 1.05; overflow-wrap: anywhere; }
+.source-contact-lead { margin: 0 0 16px; color: #3b4650; font-size: 18px; line-height: 1.6; }
+.source-contact-trust { display: inline-block; margin: 0 0 16px; padding: 8px 12px; border: 1px solid #a9d6bb; background: #eef7f1; color: #1f5b40; font-size: 14px; line-height: 1.5; }
+.source-contact-switch { margin: 0 0 32px; font-size: 14px; line-height: 1.5; }
+.source-contact-switch a { display: inline-block; padding: 4px 0; color: var(--primary-dark); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.source-contact-switch a:hover { color: var(--primary-dark); text-decoration: underline; text-underline-offset: 3px; }
+.source-contact-list { display: grid; gap: 20px; margin: 0; padding: 0; list-style: none; }
+.source-contact-item { display: flex; align-items: center; gap: 16px; }
+.source-contact-icon { display: inline-grid; flex: 0 0 48px; width: 48px; height: 48px; place-items: center; border-radius: 50%; background: #e6f0f8; color: var(--primary-dark); }
+.source-contact-icon svg { width: 24px; height: 24px; }
+.source-contact-icon-highlight { background: #fff1e0; color: var(--ink); }
+.source-contact-item-body { display: flex; flex: 1 1 0; flex-direction: column; gap: 2px; }
+.source-contact-label { color: #53606a; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.source-contact-value { display: inline-block; padding: 4px 0; color: var(--ink); font-size: 20px; font-weight: 700; line-height: 1.3; text-decoration: none; overflow-wrap: anywhere; }
+.source-contact-value-large { font-size: 24px; }
+.source-contact-value:hover { color: var(--primary-dark); text-decoration: underline; text-underline-offset: 3px; }
+.source-contact-value:focus-visible, .source-contact-switch a:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+.source-contact-aside { display: grid; place-items: center; padding: 28px 20px; border-top: 4px solid var(--ink); background: #f5f6f7; }
+
+@media (min-width: 768px) {
+  .source-contact { padding: 72px 0; }
+  .source-contact-card { width: min(calc(100% - 64px), 1040px); }
+  .source-contact-info, .source-contact-aside { padding: 48px; }
+}
+
+@media (min-width: 1024px) {
+  .source-contact-card { flex-direction: row; }
+  .source-contact-info { display: flex; flex: 1 1 50%; flex-direction: column; justify-content: center; }
+  .source-contact-aside { flex: 1 1 50%; border-top: 0; border-left: 4px solid var(--ink); }
+}
+
+@media print {
+  .source-contact { display: none !important; }
+}

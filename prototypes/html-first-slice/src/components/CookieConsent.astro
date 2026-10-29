@@ -1,0 +1,26 @@
+---
+const { compact = false } = Astro.props;
+---
+<div class:list={['cookie-banner', { 'cookie-banner-compact': compact }]} role="dialog" aria-label="Cookie notice" aria-live="polite" data-cookie-banner hidden>
+  <div class="cookie-accent"></div>
+  <div class="cookie-body">
+    {compact ? <p>We use optional analytics cookies to help improve this site. It works fully without them, and you can change your choice any time. <a href="/cookie-policy">Cookie policy</a>.</p> : <>
+      <p class="cookie-sticker">One quick thing</p>
+      <h2>Cookies. Bleh.</h2>
+      <p>Not the tasty kind, sadly. The site works fine without them, but a couple help us see which pages actually get read so we can make this place less rubbish. Totally your call. <a href="/cookie-policy">The boring details</a>.</p>
+    </>}
+    <div><button type="button" data-consent="accept">Accept</button><button type="button" data-consent="reject">Reject</button><button type="button" data-consent="customise">Let me choose</button></div>
+  </div>
+</div>
+
+<dialog class="cookie-settings" aria-labelledby="cookie-settings-title" data-cookie-dialog>
+  <form method="dialog">
+    <button class="dialog-close" value="close" aria-label="Close cookie settings">×</button>
+    <h2 id="cookie-settings-title" tabindex="-1">Pick your cookies</h2>
+    <p>Essentials keep the site working. The rest is up to you: flip it off and we won't load it.</p>
+    <div class="cookie-row"><div><strong>Strictly necessary</strong><p>Remembers your cookie choice and keeps core features working.</p></div><span>Always on</span></div>
+    <label class="cookie-row"><div><strong>Analytics</strong><p>Google Analytics and Microsoft Clarity help show which pages get read.</p></div><input type="checkbox" data-analytics /></label>
+    <div class="cookie-buttons"><button value="save" data-save-consent>Save choices</button><button value="accept" data-dialog-accept>Accept all</button><button value="reject" data-dialog-reject>Reject all</button></div>
+    <a href="/cookie-policy">Read the full cookie policy</a>
+  </form>
+</dialog>

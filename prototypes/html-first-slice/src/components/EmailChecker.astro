@@ -1,0 +1,102 @@
+---
+// Shared markup for the framework-free email security checker
+// (src/scripts/email-checker.ts), reused by /email-security-check and
+// /email-security-guide (both render the same tool as
+// components-v2/EmailCheckerTool.tsx, so the copy is identical on both
+// pages). Rendered once per page: element ids are page-unique as long as
+// each page includes this component only once.
+// Preview: lead capture (SMTP2GO) is not connected on this host, so the
+// follow-up consent checkbox is disabled and a visible note says nothing is
+// sent. Production (PUBLIC_SITE_MODE=production) enables the checkbox, drops the
+// note and marks the tool for lead capture through /api/send-email.
+// BaseLayout validates PUBLIC_SITE_MODE for every page.
+// method="post" keeps typed addresses out of the URL (logs, history and
+// analytics page locations) if the form is ever submitted without JavaScript.
+const production = import.meta.env.PUBLIC_SITE_MODE === 'production';
+---
+
+<div class="ec-tool" data-email-checker data-lead-capture={production ? 'enabled' : undefined}>
+  <div data-email-checker-input>
+    <div class="ec-tool-title">Check your domain in 20 seconds</div>
+    <p class="ec-tool-desc">Enter your work email. We'll check your live email security and show you exactly what's exposed, in plain English.</p>
+    <form data-email-checker-form method="post" novalidate>
+      <label for="ec-email" class="ec-label">Work email</label>
+      <input class="ec-input" type="email" id="ec-email" name="email" placeholder="you@yourcompany.co.uk" required />
+      <div data-email-checker-domain-wrap hidden>
+        <label for="ec-domain" class="ec-label" style="margin-top: 12px">Your business domain</label>
+        <input class="ec-input" id="ec-domain" name="domain" placeholder="yourcompany.co.uk" />
+      </div>
+      <label class="ec-consent">
+        {production ? <input type="checkbox" id="ec-consent" /> : <input type="checkbox" id="ec-consent" disabled aria-describedby="ec-preview-note" />}
+        <span>I'm happy for Fresh Tech to follow up about these results and send occasional security tips. Unsubscribe anytime. (Optional, your results show on screen either way.)</span>
+      </label>
+      {!production && <p id="ec-preview-note" class="ec-preview-note">This preview runs the check in your browser only. Nothing you enter is sent to Fresh Tech, so no follow-up will be sent.</p>}
+      <div data-email-checker-error class="ec-error" role="alert" hidden></div>
+      <button type="submit" class="sa-button ec-btn-accent">Run my free check →</button>
+      <p class="ec-fineprint">We use your email to run the check and to handle your enquiry. We won't share it with anyone else or add you to marketing unless you tick above. See our <a class="sa-link" href="/privacy-policy">privacy policy</a>.</p>
+    </form>
+    <noscript>
+      <p class="ec-noscript">This check needs JavaScript to run in your browser. Please call <a class="sa-link" href="tel:+441584517234">01584 517 234</a> or use our <a class="sa-link" href="/contact">contact page</a> and we'll run it for you.</p>
+    </noscript>
+  </div>
+  <div data-email-checker-loading hidden class="ec-loading">
+    <div class="ec-loading-text">Checking your domain…</div>
+  </div>
+  <div data-email-checker-results hidden tabindex="-1" aria-live="polite">
+    <div data-email-checker-summary class="ec-summary"></div>
+    <div data-email-checker-list class="ec-result-list"></div>
+    <div class="ec-fix-box">
+      <div class="ec-fix-title">Want us to fix this?</div>
+      <p class="ec-fix-desc">We'll put together your full report and sort any of the above for you. Most of it is quick to fix once you know it's there.</p>
+      <a href="/contact" class="sa-button ec-btn-accent-dark">Book a 15-min call →</a>
+    </div>
+    <p class="ec-fineprint">These checks read public DNS records and are a quick indicator, not a full audit. DKIM in particular needs a manual look. Your full report covers everything.</p>
+  </div>
+</div>
+
+<style>
+  .ec-tool { background: var(--white); border: 2px solid var(--ink); box-shadow: 6px 6px 0 0 var(--ink); padding: 36px; }
+  .ec-tool-title { font: 400 26px/1.1 'SA Bungee', sans-serif; color: var(--ink); margin-bottom: 10px; }
+  .ec-tool-desc { font-size: 15px; color: #565c63; line-height: 1.6; margin: 0 0 20px; }
+  .ec-label { display: block; margin-bottom: 6px; font: 700 11px/1.3 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .12em; color: #565c63; }
+  .ec-input { width: 100%; padding: 13px 15px; border: 2px solid var(--ink); background: var(--white); font-family: 'SA Archivo', sans-serif; font-size: 16px; color: var(--ink); }
+  .ec-consent { display: flex; gap: 10px; align-items: flex-start; margin: 16px 0; cursor: pointer; }
+  .ec-consent input { margin-top: 3px; width: 18px; height: 18px; flex-shrink: 0; }
+  .ec-consent span { font-size: 13px; color: #42484f; line-height: 1.5; }
+  .ec-error { font-size: 13px; color: #c0392b; margin-bottom: 12px; font-weight: 600; }
+  .ec-btn-accent { background: var(--accent); color: var(--ink); border: 2px solid var(--ink); box-shadow: 4px 4px 0 0 var(--ink); font-size: 16px; padding: 14px 26px; }
+  .ec-btn-accent-dark { background: var(--accent); color: var(--ink); border: 2px solid var(--white); box-shadow: 4px 4px 0 0 var(--yellow); }
+  .ec-fineprint { font-size: 12px; color: #565c63; margin: 14px 0 0; line-height: 1.5; }
+  .ec-noscript { margin-top: 16px; padding: 14px 16px; border: 1px solid var(--hairline); background: var(--paper-deep); font-size: 13px; line-height: 1.5; }
+  .ec-loading { text-align: center; padding: 24px 0 0; }
+  .ec-loading-text { font: 400 18px/1.1 'SA Bungee', sans-serif; color: var(--primary-dark); }
+
+  .ec-summary { color: var(--white); padding: 16px 20px; margin-bottom: 20px; }
+  .ec-summary-head { font: 400 24px/1.1 'SA Bungee', sans-serif; }
+  .ec-summary-sub { font-size: 14px; margin-top: 4px; }
+  .ec-result-list { display: flex; flex-direction: column; gap: 10px; }
+  .ec-result-item { border: 1px solid var(--hairline); border-left-width: 5px; padding: 14px 16px; }
+  .ec-result-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .ec-result-label { font: 400 15px/1 'SA Bungee', sans-serif; }
+  .ec-result-status { font: 700 10px/1 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .1em; }
+  .ec-result-finding { font-size: 14px; color: var(--ink); font-weight: 600; margin: 4px 0 2px; }
+  .ec-result-meaning { font-size: 13px; color: #565c63; line-height: 1.55; }
+  .ec-result-details { margin: 10px 0 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .ec-result-detail { font-size: 12.5px; line-height: 1.45; display: flex; gap: 8px; align-items: baseline; padding: 5px 9px; border: 1px solid var(--hairline); font-weight: 400; color: #33393f; background: var(--paper); }
+  .ec-result-detail-mark { font-weight: 700; flex-shrink: 0; color: #565c63; }
+  .ec-result-detail.is-service { color: #1f5c40; font-weight: 700; background: rgba(46,125,79,0.09); border-color: rgba(46,125,79,0.4); }
+  .ec-result-detail.is-service .ec-result-detail-mark { color: #2e7d4f; }
+  .ec-result-detail.is-unknown { color: #a5301f; font-weight: 700; background: rgba(192,57,43,0.09); border-color: rgba(192,57,43,0.4); }
+  .ec-result-detail.is-unknown .ec-result-detail-mark { color: #c0392b; }
+  .ec-fix-box { margin-top: 22px; padding: 18px 20px; background: var(--ink); color: var(--white); }
+  .ec-fix-title { font: 400 17px/1.1 'SA Bungee', sans-serif; margin-bottom: 6px; }
+  .ec-fix-desc { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.6; margin: 0 0 14px; }
+
+  @media (max-width: 767px) {
+    .ec-tool { padding: 24px; }
+    .ec-tool-title { font-size: 22px; }
+    .ec-summary-head { font-size: 20px; }
+  }
+  .ec-preview-note { margin: 0 0 14px; padding: 10px 12px; border-left: 4px solid var(--primary-dark); background: #e5eef6; color: #16324a; font-size: 13px; line-height: 1.5; }
+  .ec-consent input:disabled + span { color: #5f6b75; }
+</style>

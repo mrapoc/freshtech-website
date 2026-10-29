@@ -1,0 +1,79 @@
+---
+import '../styles/global.css';
+import { PREVIEW_ROBOTS, PRODUCTION_ROBOTS, resolveSiteMode } from '../lib/site-mode.mjs';
+import { DEFAULT_SOCIAL_IMAGE } from '../lib/social-image.mjs';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  robots?: string;
+  image?: string;
+  ogType?: 'website' | 'article' | 'profile';
+  schemas?: Record<string, unknown>[];
+  preloadFonts?: string[];
+  // Optional body marker. Only the problem family sets it, so its route
+  // stylesheet can re-point the chrome outside <main> (header, footer, cookie
+  // consent) at that family's optional-display font aliases. Undefined renders
+  // no attribute, so every other route's <body> is byte-for-byte unchanged.
+  pageFamily?: 'problems' | 'comparisons' | 'team' | 'standalone' | 'home' | 'case-studies';
+}
+
+const {
+  title,
+  description,
+  canonical,
+  // Preview keeps noindex; production indexes unless a page passes its own directive.
+  robots = resolveSiteMode(import.meta.env.PUBLIC_SITE_MODE) === 'production' ? PRODUCTION_ROBOTS : PREVIEW_ROBOTS,
+  image = DEFAULT_SOCIAL_IMAGE,
+  ogType = 'website',
+  schemas = [],
+  preloadFonts = [],
+  pageFamily = undefined,
+} = Astro.props;
+const schemaJson = JSON.stringify(schemas).replaceAll('<', '\\u003c');
+const isProduction = resolveSiteMode(import.meta.env.PUBLIC_SITE_MODE) === 'production';
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <meta name="theme-color" content="#0F1923" />
+    <link rel="canonical" href={canonical} />
+    {isProduction && (
+      <Fragment>
+        {/* Site icons and manifest (production only: the preview browser gates block unplanned external requests). */}
+        <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
+        <link rel="icon" type="image/webp" sizes="32x32" href="/icons/icon-32.webp" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+      </Fragment>
+    )}
+    {preloadFonts.map(href => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Fresh Tech IT Support" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@fresh_tech_" />
+    <meta name="twitter:creator" content="@fresh_tech_" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <title>{title}</title>
+    <script id="json-ld-schema" type="application/ld+json" set:html={schemaJson}></script>
+    <slot name="head" />
+  </head>
+  <body data-page-family={pageFamily}>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,16 @@
+---
+import { inlineMarkdownTokens } from '../lib/inline-markdown.mjs';
+
+interface Props { text: string }
+const tokens = inlineMarkdownTokens(Astro.props.text);
+---
+
+{tokens.map(token => {
+  if (token.type === 'strong') return <strong>{token.value}</strong>;
+  if (token.type === 'link') return (
+    <a href={token.href} target={token.external ? '_blank' : undefined} rel={token.external ? 'noopener noreferrer' : undefined}>
+      {token.children.map(child => child.type === 'strong' ? <strong>{child.value}</strong> : child.value)}
+    </a>
+  );
+  return token.value;
+})}

@@ -1,0 +1,21 @@
+---
+import '../styles/website-proof.css';
+const { id = 'website-proof', contact = false, metrics = true, feedback = true, compact = false } = Astro.props;
+---
+<div class:list={['website-proof', { 'website-proof-compact': compact }]} data-website-proof>
+  {compact && <div class="proof-fallback" data-proof-fallback><h2>Reaching our support team</h2><p>Fresh Tech provides business IT support, and we are happy to talk through what you need.</p><a href="/service-standards">Read our service standards →</a></div>}
+  {contact && <div class="proof-next-step"><h2>Talk to us about business IT support</h2><p>Fresh Tech provides business IT support, and we are happy to talk through what you need. If you are already with another provider, our switching guide explains how a move works.</p><a href="/contact">Contact us →</a> <a href="/onboarding">Read the switching guide →</a></div>}
+  {metrics && <section data-proof-metrics hidden aria-labelledby={`${id}-metrics-title`}>
+    <h2 id={`${id}-metrics-title`}>Reaching our support team</h2>
+    <div data-proof-metric-cards data-proof-compact={compact ? 'true' : undefined}></div>
+    {!compact && <p class="proof-note">Measured historic results, not a guarantee, a resolution time or every customer's experience.</p>}
+  </section>}
+  {feedback && <section data-proof-feedback hidden aria-labelledby={`${id}-feedback-title`}>
+    <h2 id={`${id}-feedback-title`}>Selected customer feedback</h2>
+    <div class="proof-feedback-cards" data-proof-feedback-cards></div>
+  </section>}
+</div>
+<script>
+  import { startWebsiteProof } from '../scripts/website-proof.mjs';
+  startWebsiteProof();
+</script>

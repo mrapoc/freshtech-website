@@ -1,0 +1,10 @@
+---
+// Preview-only comparison banner. Production builds (PUBLIC_SITE_MODE=production)
+// render nothing; preview output is unchanged.
+import { resolveSiteMode } from '../lib/site-mode.mjs';
+
+interface Props { text?: string }
+const { text = 'HTML-first complete-route comparison. Local prototype only.' } = Astro.props;
+const preview = resolveSiteMode(import.meta.env.PUBLIC_SITE_MODE) === 'preview';
+---
+{preview && <div class="prototype-banner">{text}</div>}

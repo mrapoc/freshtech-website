@@ -1,0 +1,606 @@
+---
+// Port of pages/BusinessPremiumUpgradePage.tsx. The scenario cards and FAQ are
+// native details/summary (rule 3): the React version conditionally rendered
+// their body text only while open (useState), so the production baseline
+// never contains it. Making it always-present in the DOM is documented in
+// scripts/lib/standalone-differences.mjs under this route's text/headings keys.
+// LicenseComparator's basic/standard toggle only changes which of two static
+// panels is shown; the captured baseline used the component's default state
+// (Business Standard), so that is the only state rendered here -no JS needed
+// for parity. The "Upgrade My Licenses" control stays a <button> (the source
+// is a client-side navigate, not a link) with a tiny inline script sending the
+// visitor to /contact, keeping the link inventory identical to production.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+import SourceContact from '../components/SourceContact.astro';
+
+const breadcrumbItems = [
+  { label: 'Resources', href: '/resources' },
+  { label: 'Why Enroll Devices to Business Premium' }
+];
+
+const scenarios = [
+  {
+    title: "The New Starter's Laptop",
+    story: "A new team member joins with a brand new laptop. Someone manually sets up their email, installs Office, and shows them where to save files. Three months later, they're saving everything to their desktop, have no antivirus, and are accessing client data on an unencrypted device.",
+    withoutEnrollment: "Nobody knows the laptop isn't encrypted. When it's stolen from their car, client data is exposed. You only discover the security gap during the incident response.",
+    withEnrollment: "The laptop automatically enrolled when they signed in. Encryption was enforced, antivirus deployed, and files redirected to OneDrive. When reported stolen, you remotely wiped it in minutes.",
+    lesson: "New devices should configure themselves to your security standards automatically -not rely on whoever set it up remembering every step."
+  },
+  {
+    title: 'The Shadow IT Sprawl',
+    story: "Your team uses Microsoft 365 for email, but Sarah prefers Google Drive, Tom uses Dropbox, and accounts data lives in a shared folder on someone's PC. You're paying for OneDrive but nobody uses it consistently.",
+    withoutEnrollment: "Data is scattered everywhere. When Sarah leaves, her Google Drive goes with her. When Tom's Dropbox is breached, you don't even know company files were exposed. The accounts PC fails and nobody backed it up.",
+    withEnrollment: "Intune policies redirect everyone's Documents folder to OneDrive automatically. Conditional Access blocks access to company email unless files are saved to approved locations. Shadow IT eliminated at the source.",
+    lesson: "You can't protect data you don't know exists. Device enrollment brings visibility and control to where your data actually lives."
+  },
+  {
+    title: 'The Compromised Account',
+    story: 'A phishing email tricks your office manager into entering her Microsoft 365 password on a fake login page. The attacker now has her credentials and logs in from overseas.',
+    withoutEnrollment: "The attacker accesses emails, SharePoint, and OneDrive from their own device. They set up forwarding rules, download client data, and you don't notice for weeks.",
+    withEnrollment: "Conditional Access blocks the login attempt -it's from an unrecognised device and unusual location. Even with valid credentials, the attacker can't get in. You're alerted to the blocked attempt.",
+    lesson: "Passwords get stolen. With device enrollment, stolen passwords aren't enough -attackers need a compliant, enrolled device too."
+  },
+  {
+    title: 'The Compliance Question',
+    story: "Your accountancy firm wins a large client. Their due diligence questionnaire asks: 'How do you ensure devices accessing our data meet minimum security standards? Can you remotely wipe a lost device?'",
+    withoutEnrollment: "You can't honestly answer yes. You don't know which devices access client data, whether they're encrypted, or if you could wipe them. The client chooses a competitor who could demonstrate device management.",
+    withEnrollment: 'You provide screenshots from Intune showing device compliance status, encryption enforcement, and remote wipe capability. The client is reassured and signs the contract.',
+    lesson: "As clients become more security-conscious, proving device management isn't optional -it's a competitive advantage."
+  },
+  {
+    title: "The Leaver Who Didn't Leave",
+    story: "David resigns but keeps accessing company systems from his personal laptop for weeks after his last day. His account was disabled, but he'd saved his password in his browser and connected via a mail app that didn't check.",
+    withoutEnrollment: 'David continues accessing emails and files from his personal device. You have no visibility that this is happening. Sensitive information continues to leak.',
+    withEnrollment: "Conditional Access requires a compliant, enrolled device. David's personal laptop isn't enrolled, so even cached credentials don't work. Access terminated completely on his last day.",
+    lesson: "Disabling an account isn't enough when personal devices have cached access. Device-based policies ensure access truly ends when employment does."
+  }
+];
+
+const faqs = [
+  {
+    q: "What's the difference between Business Standard and Business Premium?",
+    a: "**Business Standard** (£10.30/user/month) gives you Office apps, email, and Teams -but no device management or advanced security. **Business Premium** (£18.10/user/month) adds Intune for device management, Defender for Business antivirus, Conditional Access for smart security policies, and more. The £7.80 difference replaces multiple third-party tools that would cost far more separately."
+  },
+  {
+    q: "What does 'enrolling a device' actually mean?",
+    a: "Enrolling a device registers it with Microsoft Intune so you can manage it centrally. Once enrolled, you can push security policies (like requiring encryption), deploy apps automatically, see device compliance status, and remotely wipe it if lost. The user experience barely changes -they just sign in with their work account and the device configures itself."
+  },
+  {
+    q: 'Will this slow down our computers or be intrusive?',
+    a: "No. Intune policies run silently in the background. Users won't notice anything different except that their new laptop 'just works' out of the box. We configure sensible defaults -not heavy-handed restrictions that frustrate staff. You get security without the friction."
+  },
+  {
+    q: 'What about personal devices (BYOD)?',
+    a: "You have options. You can require full enrollment (giving you complete management), or use 'app protection policies' that only manage company data within specific apps -leaving personal data untouched. Most SMBs we work with provide company devices, but BYOD is fully supported if that's your model."
+  },
+  {
+    q: "We're already using Google Workspace -does this still apply?",
+    a: "If you're on Google Workspace, you face the same device management challenges -you just solve them differently. However, many businesses use both (Google for some things, Microsoft for others). If you're considering consolidating, Business Premium gives you email, productivity apps, AND device management in one platform. We can help you evaluate whether consolidation makes sense."
+  },
+  {
+    q: 'How long does migration take?',
+    a: "For most SMBs, we can migrate from Standard to Premium and enroll devices within 1-2 weeks. The license upgrade itself is instant. Enrolling devices can often be done gradually -new devices enroll automatically, and existing devices can be enrolled during a scheduled 'security day' with minimal disruption."
+  },
+  {
+    q: 'What happens to our existing security tools?',
+    a: "Business Premium often replaces them entirely. Defender for Business replaces third-party antivirus. Built-in email filtering replaces separate spam tools. Conditional Access replaces standalone MFA tools. We'll audit your current stack and show you exactly what can be consolidated -typically saving money even with the Premium uplift."
+  },
+  {
+    q: 'Is this just for laptops, or mobile phones too?',
+    a: 'Both. Intune manages Windows, macOS, iOS, and Android devices. If staff access company email on their phones, those devices can be enrolled too -ensuring data is protected regardless of which device someone uses.'
+  }
+];
+
+const faqHtml = a => a.split(/(\*\*[^*]+\*\*)/g).map(part => (
+  part.startsWith('**') && part.endsWith('**') ? `<strong>${part.slice(2, -2)}</strong>` : part
+)).join('');
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Why Enroll Devices to Microsoft 365 Business Premium',
+  description: 'Discover why enrolling devices to Intune via Business Premium gives SMBs enterprise-grade security, visibility, and control -without enterprise complexity.',
+  author: { '@type': 'Organization', name: 'Fresh Tech', url: 'https://fresh-tech.uk' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Fresh Tech',
+    logo: { '@type': 'ImageObject', url: 'https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png' }
+  }
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(faq => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: { '@type': 'Answer', text: faq.a.replace(/\*\*([^*]+)\*\*/g, '$1') }
+  }))
+};
+
+const seo = {
+  path: '/upgrade-to-business-premium',
+  title: 'Why Enroll Devices to Business Premium | Intune & Autopilot Benefits',
+  description: 'Stop managing devices manually. Learn why enrolling devices to Microsoft 365 Business Premium with Intune gives you visibility, security, and control over company data.',
+  schema: [articleSchema, faqSchema],
+  breadcrumbs: breadcrumbItems.map(item => ({ name: item.label, item: item.href || '/upgrade-to-business-premium' }))
+};
+---
+
+<StandaloneShell name="upgrade-to-business-premium" seo={seo}>
+  <section class="bp-hero">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <span class="bp-badge">Control</span>
+      <h1 class="sa-display sa-display-light" style="--sa-size: 44px; --sa-size-mobile: 34px; margin-bottom: 16px">Take Control of Your Devices</h1>
+      <p class="sa-lead">Unmanaged devices are accessing your company data right now. Intune and Autopilot change that -giving you visibility, security, and control without the complexity.</p>
+    </div>
+  </section>
+
+  <div class="sa-wrap bp-crumbs">
+    <nav aria-label="Breadcrumb">
+      <ol class="bp-crumb-list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/resources">Resources</a></li>
+        <li aria-current="page">Why Enroll Devices to Business Premium</li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="sa-section sa-paper">
+    <div class="sa-wrap bp-intro-grid" style="--sa-max: 1000px">
+      <div>
+        <p class="sa-eyebrow">Essential Guide</p>
+        <h2 class="bp-h2">Does This Sound Familiar?</h2>
+        <blockquote class="bp-quote">
+          <p>"We've got a mix of everything -some stuff in SharePoint, some in Dropbox, a few people still use personal Gmail. I think most laptops have antivirus but I'm not certain. Oh, and we've just bought three new laptops for the team starting next month."</p>
+          <p class="bp-quote-attr"> - Conversation we have weekly</p>
+        </blockquote>
+        <p class="bp-body">Data scattered across platforms. New devices set up manually. No idea what's being saved where. This is the reality for most SMBs -and it's a security incident waiting to happen.</p>
+      </div>
+      <div class="bp-problem-card">
+        <h3 class="bp-h3-center">The Unmanaged Device Problem</h3>
+        <ul class="bp-problem-list">
+          <li><span class="bp-icon bp-icon-x" aria-hidden="true"></span>No visibility into which devices access data</li>
+          <li><span class="bp-icon bp-icon-x" aria-hidden="true"></span>Can't enforce encryption or security policies</li>
+          <li><span class="bp-icon bp-icon-x" aria-hidden="true"></span>Files saved locally never get backed up</li>
+          <li><span class="bp-icon bp-icon-x" aria-hidden="true"></span>No way to wipe a lost or stolen laptop</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep">
+    <div class="sa-wrap sa-center" style="--sa-max: 1100px">
+      <h2 class="bp-h2">What Changes When You Enroll Devices</h2>
+      <p class="bp-lede">Microsoft 365 Business Premium includes Intune and Autopilot -enterprise device management made simple for SMBs.</p>
+    </div>
+    <div class="sa-wrap bp-compare-grid" style="--sa-max: 1100px">
+      <div class="bp-compare-col bp-compare-bad">
+        <h3>Without Device Enrollment</h3>
+        <ul>
+          <li><strong>Manual Setup Every Time</strong><p>Each new laptop requires hours of manual configuration -and something always gets missed</p></li>
+          <li><strong>No Visibility</strong><p>You don't know which devices are encrypted, have antivirus, or are even accessing your data</p></li>
+          <li><strong>Files Trapped on Devices</strong><p>Staff save to Desktop or Documents locally -when the device fails, the files are gone</p></li>
+          <li><strong>Stolen Laptop = Data Breach</strong><p>No remote wipe capability. You just have to hope encryption was enabled (it probably wasn't)</p></li>
+          <li><strong>Shadow IT Everywhere</strong><p>Company data ends up in Dropbox, Google Drive, USB sticks -wherever users find convenient</p></li>
+        </ul>
+      </div>
+      <div class="bp-compare-col bp-compare-good">
+        <h3>With Device Enrollment (Intune)</h3>
+        <ul>
+          <li><strong>Zero-Touch Setup</strong><p>User signs in, device configures itself. Apps install, policies apply, security enforced -automatically</p></li>
+          <li><strong>Complete Visibility</strong><p>Dashboard shows every device, its compliance status, encryption state, and last check-in time</p></li>
+          <li><strong>Files Protected Automatically</strong><p>Known Folder Move redirects Desktop/Documents to OneDrive -files sync to the cloud without user action</p></li>
+          <li><strong>Remote Wipe Ready</strong><p>Laptop stolen? Wipe it remotely in minutes. Data protected even if device is lost</p></li>
+          <li><strong>Shadow IT Blocked</strong><p>Conditional Access ensures only compliant, enrolled devices can access company data</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper">
+    <div class="sa-wrap sa-center" style="--sa-max: 900px">
+      <h2 class="bp-h2">The Business Premium Advantage</h2>
+      <p class="bp-lede">These features work together to give you control without complexity.</p>
+    </div>
+    <div class="sa-wrap bp-feature-grid" style="--sa-max: 900px">
+      <div class="bp-feature-card">
+        <h3>Windows Autopilot</h3>
+        <p class="bp-feature-tag">Zero-touch deployment</p>
+        <p>New laptop? Ship it directly to the employee. When they sign in with their work account, the device automatically:</p>
+        <ul class="bp-check-list">
+          <li>Joins your organisation</li>
+          <li>Applies security policies</li>
+          <li>Installs required apps</li>
+          <li>Enables BitLocker encryption</li>
+          <li>Configures OneDrive backup</li>
+        </ul>
+        <p class="bp-feature-note bp-note-blue">No IT visit required. No manual setup checklist.</p>
+      </div>
+      <div class="bp-feature-card">
+        <h3>Conditional Access</h3>
+        <p class="bp-feature-tag">Smart security policies</p>
+        <p>Define rules for who can access what, from where, on which devices. For example:</p>
+        <ul class="bp-check-list">
+          <li>Block access from unmanaged devices</li>
+          <li>Block logins from high-risk countries</li>
+          <li>Require MFA for sensitive apps</li>
+          <li>Only allow compliant devices</li>
+          <li>Block risky sign-ins automatically</li>
+        </ul>
+        <p class="bp-feature-note bp-note-purple">Even stolen passwords won't get attackers in.</p>
+      </div>
+      <div class="bp-feature-card">
+        <h3>Intune Policies</h3>
+        <p class="bp-feature-tag">Standardised configuration</p>
+        <p>Push consistent settings to every device without touching them individually:</p>
+        <ul class="bp-check-list">
+          <li>WiFi passwords deployed silently</li>
+          <li>BitLocker encryption enforced</li>
+          <li>OneDrive Known Folder Move enabled</li>
+          <li>Windows Defender configured</li>
+          <li>Windows Updates managed</li>
+        </ul>
+        <p class="bp-feature-note bp-note-green">Every device meets your security baseline.</p>
+      </div>
+      <div class="bp-feature-card">
+        <h3>Defender for Business</h3>
+        <p class="bp-feature-tag">Enterprise-grade protection</p>
+        <p>Not just antivirus -a complete endpoint protection platform:</p>
+        <ul class="bp-check-list">
+          <li>Next-gen anti-malware</li>
+          <li>Attack surface reduction</li>
+          <li>Ransomware protection</li>
+          <li>Web content filtering</li>
+          <li>Centralised dashboard</li>
+        </ul>
+        <p class="bp-feature-note bp-note-red">Replaces Sophos, ESET, and similar -included in the license.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep">
+    <div class="sa-wrap sa-center" style="--sa-max: 820px">
+      <h2 class="bp-h2">Real-World Scenarios</h2>
+      <p class="bp-body">These situations happen in SMBs every day. The difference between crisis and non-event is device enrollment.</p>
+    </div>
+    <div class="sa-wrap bp-accordion-list" style="--sa-max: 820px">
+      {scenarios.map(scenario => (
+        <details class="bp-accordion">
+          <summary>
+            <span>{scenario.title}</span>
+            <span class="bp-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="bp-accordion-body">
+            <p class="bp-story">{scenario.story}</p>
+            <div class="bp-scenario-grid">
+              <div class="bp-scenario-bad">
+                <h3>Without Device Enrollment</h3>
+                <p>{scenario.withoutEnrollment}</p>
+              </div>
+              <div class="bp-scenario-good">
+                <h3>With Device Enrollment</h3>
+                <p>{scenario.withEnrollment}</p>
+              </div>
+            </div>
+            <p class="bp-lesson"><strong>Key Insight:</strong> {scenario.lesson}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper">
+    <div class="sa-wrap sa-center" style="--sa-max: 800px">
+      <h2 class="bp-h2">See the Value Gap</h2>
+      <p class="bp-body">The price difference between Standard and Premium is often less than what you're already paying for separate tools.</p>
+    </div>
+    <div class="sa-wrap" style="--sa-max: 800px">
+      <div class="bp-comparator">
+        <div class="bp-comparator-head">
+          <h3><span class="bp-icon bp-icon-refresh" aria-hidden="true"></span> License Upgrade Calculator</h3>
+          <p>Select your current license to see the value gap.</p>
+        </div>
+        <div class="bp-comparator-body">
+          <div class="bp-plan-toggle" data-license-comparator>
+            <button type="button" data-plan="basic" aria-pressed="false">Business Basic (£4.90)</button>
+            <button type="button" data-plan="standard" aria-pressed="true">Business Standard (£10.30)</button>
+          </div>
+          <div class="bp-comparator-grid">
+            <div class="bp-plan-col">
+              <h4>Current Setup</h4>
+              <div class="bp-plan-card">
+                <div class="bp-plan-name" data-current-name>Microsoft 365 Standard</div>
+                <div class="bp-plan-price" data-current-price>£10.30</div>
+                <ul class="bp-plan-list">
+                  <li class="bp-yes">Email &amp; Calendar</li>
+                  <li class="bp-yes">Web/Mobile Apps</li>
+                  <li class="bp-yes" data-desktop-apps>Desktop Apps (Word/Excel)</li>
+                  <li class="bp-no">No Device Management (Intune)</li>
+                  <li class="bp-no">No Advanced Phishing Protection</li>
+                  <li class="bp-no">No Conditional Access (Geo-block)</li>
+                </ul>
+              </div>
+            </div>
+            <div class="bp-plan-col bp-plan-col-highlight">
+              <p class="bp-plan-flag">Recommended Upgrade</p>
+              <h4>Business Premium</h4>
+              <div class="bp-plan-card bp-plan-card-highlight">
+                <div class="bp-plan-name">Business Premium</div>
+                <div class="bp-plan-price">£18.10</div>
+                <p class="bp-plan-gap" data-plan-gap>Difference: Only £7.80 / month</p>
+                <ul class="bp-plan-list">
+                  <li class="bp-yes"><strong>Everything</strong> in Standard</li>
+                  <li class="bp-yes"><strong>Intune:</strong> Wipe lost laptops remotely</li>
+                  <li class="bp-yes"><strong>Defender:</strong> Enterprise Antivirus included</li>
+                  <li class="bp-yes"><strong>Azure P1:</strong> Block hackers by country</li>
+                </ul>
+                <div class="bp-plan-savings">
+                  <p>To get these features separately with 3rd party tools would cost approx <strong>£15.00</strong> extra.</p>
+                  <p class="bp-savings-line" data-plan-savings>Upgrading saves you approx £7.20 per user vs buying separate tools!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sa-center">
+            <button type="button" class="sa-button" data-goto-contact>Upgrade My Licenses <span aria-hidden="true">→</span></button>
+            <p class="bp-fineprint">*Prices based on Microsoft UK RRP for Annual Commitment, paid monthly. Excludes VAT.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white">
+    <div class="sa-wrap sa-center" style="--sa-max: 1000px">
+      <h2 class="bp-h2">The Upgrade Path</h2>
+      <p class="bp-lede">Moving to Business Premium and enrolling devices is straightforward. Here's what to expect.</p>
+    </div>
+    <div class="sa-wrap bp-steps" style="--sa-max: 1000px">
+      <div class="bp-step">
+        <span class="bp-step-num">1</span>
+        <h3>License Upgrade</h3>
+        <p>We upgrade your Microsoft 365 licenses from Standard to Premium. Takes effect immediately.</p>
+      </div>
+      <div class="bp-step">
+        <span class="bp-step-num">2</span>
+        <h3>Configure Intune</h3>
+        <p>We deploy our tested security templates -policies for encryption, updates, OneDrive, and more.</p>
+      </div>
+      <div class="bp-step">
+        <span class="bp-step-num">3</span>
+        <h3>Enroll Devices</h3>
+        <p>Existing devices enroll during a scheduled rollout. New devices auto-enroll via Autopilot.</p>
+      </div>
+      <div class="bp-step">
+        <span class="bp-step-num">4</span>
+        <h3>Protected &amp; Visible</h3>
+        <p>You now have a dashboard showing every device, its compliance status, and the power to act.</p>
+      </div>
+    </div>
+    <div class="sa-wrap" style="--sa-max: 1000px">
+      <div class="bp-timeline">
+        <h3>Typical Timeline</h3>
+        <p>For most SMBs (10-50 users), the complete process takes <strong>1-2 weeks</strong> from license upgrade to all devices enrolled. Users experience minimal disruption -most of the work happens silently in the background.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep">
+    <div class="sa-wrap sa-center" style="--sa-max: 800px">
+      <h2 class="bp-h2">Frequently Asked Questions</h2>
+      <p class="bp-body">Common questions about upgrading and device enrollment</p>
+    </div>
+    <div class="sa-wrap bp-accordion-list" style="--sa-max: 800px">
+      {faqs.map(faq => (
+        <details class="bp-accordion bp-faq">
+          <summary>
+            <span>{faq.q}</span>
+            <span class="bp-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="bp-accordion-body">
+            <p set:html={faqHtml(faq.a)} />
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="sa-section sa-ink sa-center">
+    <div class="sa-wrap" style="--sa-max: 800px">
+      <h2 class="bp-h2 bp-h2-light">Ready to Take Control?</h2>
+      <p class="bp-cta-lede">Stop wondering which devices are accessing your data and whether they're secure. Let's get your devices enrolled and protected.</p>
+      <div class="bp-cta-actions">
+        <a class="sa-button" href="/contact">Discuss Your Upgrade</a>
+        <a class="sa-button sa-button-dark" href="/it-health-check">Take Our IT Health Check</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper">
+    <div class="sa-wrap sa-center" style="--sa-max: 1000px">
+      <h2 class="bp-h2">Related Reading</h2>
+      <div class="bp-related-grid">
+        <a class="bp-related-card" href="/microsoft-business-premium">
+          <h3>Why Business Premium?</h3>
+          <p>Feature comparison and cost analysis.</p>
+        </a>
+        <a class="bp-related-card" href="/technology/intune-autopilot">
+          <h3>Intune &amp; Autopilot Explained</h3>
+          <p>Technical deep-dive into device management.</p>
+        </a>
+        <a class="bp-related-card" href="/cloud-backup-necessity">
+          <h3>Cloud Backup Myth</h3>
+          <p>Why OneDrive sync isn't backup.</p>
+        </a>
+      </div>
+      <p class="bp-browse-all">
+        <a class="sa-link" href="/resources">Browse all resources <span aria-hidden="true">→</span></a>
+      </p>
+    </div>
+  </section>
+
+  <SourceContact />
+</StandaloneShell>
+
+<script>
+  document.querySelectorAll('[data-goto-contact]').forEach(button => {
+    button.addEventListener('click', () => { window.location.href = '/contact'; });
+  });
+
+  // Port of components/LicenseComparator.tsx's currentPlan toggle and derived
+  // figures (same PRICES and toFixed(2) rounding). Default stays Standard so
+  // the static baseline is unchanged; the buttons only update the DOM.
+  const PRICES = { basic: 4.90, standard: 10.30, premium: 18.10, security_stack: 15.00 };
+  const comparator = document.querySelector<HTMLElement>('[data-license-comparator]');
+  if (comparator) {
+    const buttons = [...comparator.querySelectorAll<HTMLButtonElement>('button[data-plan]')];
+    const nameEl = document.querySelector<HTMLElement>('[data-current-name]');
+    const priceEl = document.querySelector<HTMLElement>('[data-current-price]');
+    const desktopApps = document.querySelector<HTMLElement>('[data-desktop-apps]');
+    const gapEl = document.querySelector<HTMLElement>('[data-plan-gap]');
+    const savingsEl = document.querySelector<HTMLElement>('[data-plan-savings]');
+
+    const update = (plan: 'basic' | 'standard') => {
+      buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.plan === plan)));
+      const price = PRICES[plan];
+      if (nameEl) nameEl.textContent = `Microsoft 365 ${plan === 'basic' ? 'Basic' : 'Standard'}`;
+      if (priceEl) priceEl.textContent = `£${price.toFixed(2)}`;
+      if (desktopApps) desktopApps.hidden = plan !== 'standard';
+      const gap = (PRICES.premium - price).toFixed(2);
+      const savings = (price + PRICES.security_stack - PRICES.premium).toFixed(2);
+      if (gapEl) gapEl.textContent = `Difference: Only £${gap} / month`;
+      if (savingsEl) savingsEl.textContent = `Upgrading saves you approx £${savings} per user vs buying separate tools!`;
+    };
+
+    buttons.forEach(button => button.addEventListener('click', () => update(button.dataset.plan as 'basic' | 'standard')));
+  }
+</script>
+
+<style>
+  .bp-hero { padding: 96px 0 48px; background: var(--ink); color: var(--paper); }
+  .bp-badge { display: inline-block; margin-bottom: 20px; padding: 6px 16px; border: 1px solid var(--paper); background: var(--yellow); color: var(--ink); font: 800 12px/1.2 'SA Archivo Narrow', sans-serif; letter-spacing: .1em; text-transform: uppercase; transform: rotate(-2deg); }
+  .bp-crumbs { padding: 28px 0 0; }
+  .bp-crumb-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: 14px; color: #46545f; }
+  .bp-crumb-list li + li::before { content: '/'; margin-right: 6px; color: #9ca3af; }
+  .bp-crumb-list li { display: flex; align-items: center; gap: 6px; }
+  .bp-crumb-list a { color: inherit; font-weight: 600; }
+  .bp-crumb-list li[aria-current] { color: var(--ink); font-weight: 700; }
+
+  .bp-h2 { margin: 0 0 16px; color: var(--ink); font: 400 30px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; }
+  .bp-h2-light { color: var(--paper); }
+  .bp-h3-center { margin: 0 0 16px; text-align: center; font-size: 18px; font-weight: 800; }
+  .bp-lede, .bp-body { max-width: 65ch; margin: 0 auto 8px; color: #4b5563; font-size: 17px; line-height: 1.6; }
+  .bp-body { text-align: left; margin: 16px 0; }
+
+  .bp-intro-grid { display: grid; gap: 32px; align-items: center; }
+  .bp-quote { margin: 20px 0; padding: 16px; border-left: 4px solid var(--yellow); background: #fff7e6; border-radius: 0 8px 8px 0; }
+  .bp-quote p { margin: 0; color: #4b5563; font-size: 14px; font-style: italic; }
+  .bp-quote-attr { margin-top: 8px !important; color: #92600a; font-weight: 700; font-size: 12px; font-style: normal !important; }
+  .bp-problem-card { padding: 24px; border-radius: 16px; background: var(--white); box-shadow: 0 12px 30px rgba(15,25,35,.12); }
+  .bp-problem-list { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .bp-problem-list li { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; background: #fef2f2; font-size: 14px; color: #374151; }
+  .bp-icon { display: inline-block; width: 16px; height: 16px; flex-shrink: 0; }
+  .bp-icon-x::before { content: '✕'; color: #ef4444; font-weight: 700; }
+  .bp-icon-refresh::before { content: '⟳'; }
+
+  .bp-compare-grid { display: grid; gap: 24px; margin-top: 32px; }
+  .bp-compare-col { padding: 28px; border-radius: 16px; }
+  .bp-compare-col h3 { margin: 0 0 20px; font-size: 20px; font-weight: 800; }
+  .bp-compare-col ul { display: flex; flex-direction: column; gap: 16px; margin: 0; padding: 0; list-style: none; }
+  .bp-compare-col li strong { display: block; margin-bottom: 4px; font-size: 15px; }
+  .bp-compare-col li p { margin: 0; color: #4b5563; font-size: 14px; }
+  .bp-compare-bad { background: var(--white); border: 1px solid var(--hairline); }
+  .bp-compare-bad h3 { color: #b91c1c; }
+  .bp-compare-good { background: #f0fdf4; border: 2px solid #86efac; }
+  .bp-compare-good h3 { color: #15803d; }
+
+  .bp-feature-grid { display: grid; gap: 24px; margin-top: 32px; }
+  .bp-feature-card { padding: 28px; border-radius: 16px; background: var(--white); box-shadow: 0 6px 20px rgba(15,25,35,.08); }
+  .bp-feature-card h3 { margin: 0 0 4px; font-size: 19px; }
+  .bp-feature-tag { margin: 0 0 12px; color: #6b7280; font-size: 13px; }
+  .bp-feature-card > p { margin: 0 0 12px; color: #4b5563; font-size: 15px; }
+  .bp-check-list { display: flex; flex-direction: column; gap: 6px; margin: 0 0 14px; padding: 0; list-style: none; font-size: 14px; color: #374151; }
+  .bp-check-list li::before { content: '✓ '; color: #22c55e; font-weight: 700; }
+  .bp-feature-note { margin: 0; font-weight: 700; font-size: 14px; }
+  .bp-note-blue { color: var(--primary-dark); }
+  .bp-note-purple { color: #7c3aed; }
+  .bp-note-green { color: #15803d; }
+  .bp-note-red { color: #b91c1c; }
+
+  .bp-accordion-list { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+  .bp-accordion { border: 1px solid var(--hairline); border-radius: 14px; background: var(--white); overflow: hidden; }
+  .bp-accordion summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 22px; cursor: pointer; font-weight: 700; color: var(--primary-dark); list-style: none; }
+  .bp-accordion summary::-webkit-details-marker { display: none; }
+  .bp-chevron::before { content: '▾'; color: #9ca3af; }
+  .bp-accordion[open] .bp-chevron::before { content: '▴'; }
+  .bp-accordion-body { padding: 0 22px 22px; }
+  .bp-story { padding-left: 14px; border-left: 3px solid var(--hairline); color: #374151; font-style: italic; }
+  .bp-scenario-grid { display: grid; gap: 14px; margin: 16px 0; }
+  .bp-scenario-bad, .bp-scenario-good { padding: 14px; border-radius: 10px; font-size: 14px; }
+  .bp-scenario-bad { background: #fef2f2; border: 1px solid #fecaca; }
+  .bp-scenario-good { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .bp-scenario-bad h3, .bp-scenario-good h3 { margin: 0 0 6px; font-size: 14px; }
+  .bp-scenario-bad h3 { color: #b91c1c; }
+  .bp-scenario-good h3 { color: #15803d; }
+  .bp-scenario-bad p, .bp-scenario-good p { margin: 0; color: #374151; }
+  .bp-lesson { margin: 0; padding: 14px; border-radius: 10px; background: #fef3c7; color: #92400e; font-size: 14px; }
+  .bp-faq summary { color: var(--primary-dark); }
+  .bp-faq .bp-accordion-body p { margin: 0; color: #374151; line-height: 1.6; }
+
+  .bp-comparator { margin-top: 24px; border: 2px solid var(--hairline); border-radius: 18px; background: var(--white); overflow-wrap: anywhere; }
+  .bp-comparator > :first-child { border-radius: 16px 16px 0 0; }
+  .bp-comparator * { min-width: 0; }
+  .bp-comparator-head { padding: 22px; background: var(--ink); color: var(--paper); text-align: center; }
+  .bp-comparator-head h3 { margin: 0 0 4px; font-size: 22px; font-family: 'SA Bungee', 'SA Archivo', sans-serif; font-weight: 400; }
+  .bp-comparator-head p { margin: 0; color: #cbd5e1; font-size: 14px; }
+  .bp-comparator-body { padding: 28px; }
+  .bp-plan-toggle { display: flex; justify-content: center; gap: 4px; margin-bottom: 28px; padding: 4px; border-radius: 10px; background: #f3f4f6; width: fit-content; margin-inline: auto; }
+  .bp-plan-toggle button { padding: 8px 16px; border: 0; border-radius: 8px; background: transparent; font-weight: 700; font-size: 13px; color: #4b5563; cursor: pointer; }
+  .bp-plan-toggle button[aria-pressed='true'] { background: var(--white); color: var(--primary-dark); box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+  .bp-comparator-grid { display: grid; gap: 24px; align-items: start; }
+  .bp-plan-col h4 { margin: 0 0 12px; text-align: center; font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #6b7280; }
+  .bp-plan-col-highlight { position: relative; padding-top: 14px; }
+  .bp-plan-flag { position: absolute; top: 0; left: 50%; transform: translateX(-50%); margin: 0; padding: 4px 12px; border-radius: 999px; background: #22c55e; color: var(--ink); font-size: 10px; font-weight: 800; white-space: nowrap; }
+  .bp-plan-col-highlight h4 { color: var(--primary-dark); }
+  .bp-plan-card { padding: 24px; border-radius: 14px; background: #f9fafb; border: 1px solid var(--hairline); text-align: center; }
+  .bp-plan-card-highlight { background: #eff6ff; border: 2px solid var(--primary); }
+  .bp-plan-name { font-weight: 700; font-size: 18px; color: #374151; }
+  .bp-plan-price { margin: 4px 0 12px; font-family: 'SA Bungee', 'SA Archivo', sans-serif; font-size: 28px; color: var(--ink); }
+  .bp-plan-card-highlight .bp-plan-price { color: var(--primary-dark); }
+  .bp-plan-gap { margin: 0 0 12px; color: var(--primary-dark); font-weight: 700; font-size: 12px; }
+  .bp-plan-list { display: flex; flex-direction: column; gap: 8px; margin: 0 0 16px; padding: 0; list-style: none; text-align: left; font-size: 14px; }
+  .bp-plan-list li::before { content: '✓ '; color: #22c55e; font-weight: 700; }
+  .bp-plan-list li.bp-no { color: #b91c1c; }
+  .bp-plan-list li.bp-no::before { content: '✕ '; color: #b91c1c; }
+  .bp-plan-savings { padding: 12px; border: 1px solid #bfdbfe; border-radius: 10px; background: var(--white); font-size: 12px; }
+  .bp-plan-savings p { margin: 0 0 4px; color: #6b7280; }
+  .bp-savings-line { color: #16a34a; font-weight: 700; }
+  .bp-fineprint { margin: 14px 0 0; color: #46545f; font-size: 11px; }
+
+  .bp-steps { display: grid; gap: 24px; margin-top: 32px; text-align: center; }
+  .bp-step-num { display: inline-grid; width: 32px; height: 32px; margin-bottom: 10px; place-items: center; border-radius: 50%; background: var(--primary-dark); color: var(--white); font-size: 14px; font-weight: 700; }
+  .bp-step h3 { margin: 0 0 8px; font-size: 16px; }
+  .bp-step p { margin: 0; color: #4b5563; font-size: 14px; }
+  .bp-timeline { margin-top: 40px; padding: 24px; border: 1px solid #bfdbfe; border-radius: 14px; background: #eff6ff; }
+  .bp-timeline h3 { margin: 0 0 8px; font-size: 17px; color: #1e3a8a; }
+  .bp-timeline p { margin: 0; color: #374151; }
+
+  .bp-cta-lede { max-width: 65ch; margin: 0 auto 28px; color: #d1d5db; font-size: 17px; }
+  .bp-cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+
+  .bp-related-grid { display: grid; gap: 20px; margin: 28px 0; text-align: left; }
+  .bp-related-card { display: block; padding: 22px; border-radius: 14px; background: var(--white); border: 1px solid var(--hairline); text-decoration: none; color: inherit; }
+  .bp-related-card h3 { margin: 0 0 6px; font-size: 17px; color: var(--ink); }
+  .bp-related-card p { margin: 0; color: #4b5563; font-size: 14px; }
+  .bp-browse-all { margin: 0; }
+
+  @media (min-width: 768px) {
+    .bp-intro-grid { grid-template-columns: 1fr 1fr; }
+    .bp-compare-grid, .bp-comparator-grid { grid-template-columns: 1fr 1fr; }
+    .bp-feature-grid { grid-template-columns: 1fr 1fr; }
+    .bp-steps { grid-template-columns: repeat(4, 1fr); }
+    .bp-scenario-grid { grid-template-columns: 1fr 1fr; }
+    .bp-related-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

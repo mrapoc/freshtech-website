@@ -1,0 +1,55 @@
+{
+  "name": "fresh-tech-html-first-slice",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "extract": "node scripts/extract-pricing.mjs && node scripts/extract-services.mjs && node scripts/extract-case-studies.mjs && node scripts/extract-locations.mjs && node scripts/extract-industries.mjs && node scripts/extract-blog.mjs && node scripts/extract-service-locations.mjs && node scripts/extract-technology.mjs && node scripts/extract-guides.mjs && node scripts/extract-problems.mjs && node scripts/extract-comparisons.mjs && node scripts/extract-team.mjs && node scripts/extract-standalone-data.mjs && node scripts/extract-legal.mjs && node scripts/extract-testimonials.mjs",
+    "test": "node --test src/lib/site-mode.test.mjs scripts/lib/literal-reader.test.mjs scripts/lib/case-study-reader.test.mjs scripts/lib/location-reader.test.mjs scripts/lib/pricing-css-scope.test.mjs scripts/lib/emitted-html-quality.test.mjs src/lib/case-study-display.test.mjs src/lib/inline-markdown.test.mjs src/lib/legal-markdown.test.mjs src/lib/homepage-display.test.mjs src/lib/homepage-seo.test.mjs src/lib/location-seo.test.mjs scripts/lib/industry-reader.test.mjs src/lib/industry-seo.test.mjs scripts/lib/blog-reader.test.mjs scripts/lib/blog-rendered-text.test.mjs src/lib/blog-markdown.test.mjs src/lib/blog-display.test.mjs src/lib/cloudinary-image.test.mjs src/lib/blog-seo.test.mjs scripts/lib/service-location-reader.test.mjs scripts/lib/service-location-inventory.test.mjs src/lib/rich-text.test.mjs src/lib/service-location-display.test.mjs src/lib/service-location-seo.test.mjs scripts/lib/technology-reader.test.mjs src/lib/tech-rich-text.test.mjs src/lib/technology-display.test.mjs src/lib/technology-seo.test.mjs scripts/lib/guide-reader.test.mjs src/lib/guide-markdown.test.mjs src/lib/guide-seo.test.mjs scripts/lib/problem-reader.test.mjs src/lib/problem-display.test.mjs src/lib/problem-seo.test.mjs scripts/lib/problem-inventory.test.mjs scripts/problem-output-check.test.mjs scripts/stage-problem-fixture.test.mjs scripts/lib/testimonial-reader.test.mjs src/lib/testimonial-display.test.mjs scripts/lib/testimonial-fixture.test.mjs scripts/lib/problem-browser-network.test.mjs scripts/lib/comparison-reader.test.mjs src/lib/comparison-display.test.mjs scripts/lib/team-reader.test.mjs src/lib/team-display.test.mjs scripts/lib/quality-browser-images.test.mjs scripts/lib/navigation-aborts.test.mjs src/lib/recruitment.test.mjs scripts/lib/proof-endpoints.test.mjs scripts/lib/standalone-forms.test.mjs",
+    "dev": "npm run extract && astro dev",
+    "build": "node scripts/build.mjs",
+    "verify:browser": "node scripts/browser-check.mjs",
+    "verify:pricing-browser": "node scripts/pricing-browser-check.mjs",
+    "verify:case-studies-browser": "node scripts/case-studies-browser-check.mjs",
+    "verify:homepage-browser": "node scripts/homepage-browser-check.mjs",
+    "verify:locations-browser": "node scripts/locations-browser-check.mjs",
+    "test:consent": "node --experimental-strip-types --test src/scripts/consent.test.ts",
+    "test:pricing": "node --test src/lib/website-proof.test.mjs",
+    "test:homepage-enhance": "node --experimental-strip-types --test src/scripts/homepage-enhance.test.ts",
+    "test:contact": "node --experimental-strip-types --test src/scripts/contact-form.test.ts",
+    "test:guides-enhance": "node --experimental-strip-types --test src/scripts/guide-enhance.test.ts",
+    "test:standalone": "node --experimental-strip-types --test src/scripts/email-checker.test.ts",
+    "test:problems": "node --experimental-strip-types --test src/scripts/testimonials.test.ts src/scripts/problem-view.test.ts",
+    "verify:contact-browser": "node scripts/contact-browser-check.mjs",
+    "verify:consent-browser": "node scripts/consent-browser-check.mjs",
+    "verify:consent-ui": "node scripts/consent-ui-check.mjs",
+    "verify:fonts": "node scripts/font-browser-check.mjs",
+    "package:worker": "node scripts/package-worker-source.mjs",
+    "test:package": "node --test scripts/package-worker-source.test.mjs",
+    "measure:live-baseline": "node scripts/measure-live-baseline.mjs",
+    "check:quality": "node scripts/check-emitted-html-quality.mjs",
+    "verify:industries-browser": "node scripts/industries-browser-check.mjs",
+    "verify:blog-browser": "node scripts/blog-browser-check.mjs",
+    "verify:service-locations-browser": "node scripts/service-locations-browser-check.mjs",
+    "verify:technology-browser": "node scripts/technology-browser-check.mjs",
+    "verify:guides-browser": "node scripts/guide-browser-check.mjs",
+    "verify:problems-browser": "node scripts/problems-browser-check.mjs",
+    "verify:comparisons-browser": "node scripts/comparisons-browser-check.mjs",
+    "verify:team-browser": "node scripts/team-browser-check.mjs",
+    "verify:standalone-browser": "node scripts/standalone-browser-check.mjs",
+    "capture:standalone": "node scripts/capture-standalone-baseline.mjs",
+    "test:proof": "node --test src/lib/website-proof.test.mjs src/lib/google-rating.test.mjs",
+    "verify:proof-browser": "node scripts/website-proof-browser-check.mjs"
+  },
+  "dependencies": {
+    "astro": "7.3.2"
+  },
+  "devDependencies": {
+    "es-module-lexer": "2.3.2",
+    "ultrahtml": "1.7.0",
+    "typescript": "5.9.3"
+  }
+}

@@ -1,0 +1,339 @@
+{
+  "route": "/it-health-check",
+  "source": "pages-v2/ITHealthCheckPageV2.tsx",
+  "sourceSha256": "ea222f8fbd93d545b80dd1303b239e9d04b193ffd35a225e7932bb704090a9ca",
+  "capturedAt": "2026-09-16T12:23:10.757Z",
+  "head": {
+    "title": "Free IT Health Check: Find What's at Risk | Fresh Tech IT Support",
+    "description": "Get a free, no-obligation IT health check. We audit your security, backups, M365 setup, hardware and total IT spend. Plain-English report, yours to keep.",
+    "canonical": "https://fresh-tech.uk/it-health-check",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Free IT Health Check: Find What's at Risk",
+        "description": "Get a free, no-obligation IT health check. We audit your security, backups, M365 setup, hardware and total IT spend. Plain-English report, yours to keep.",
+        "url": "https://fresh-tech.uk/it-health-check",
+        "provider": {
+          "@id": "https://fresh-tech.uk/#localbusiness"
+        },
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": [
+          "LocalBusiness",
+          "ProfessionalService"
+        ],
+        "@id": "https://fresh-tech.uk/#localbusiness",
+        "name": "Fresh Tech IT Support",
+        "description": "Managed IT Support and Cybersecurity services for businesses in Shropshire, Herefordshire, and the West Midlands.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/",
+        "telephone": "+441584517234",
+        "email": "hello@fresh-tech.uk",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.368,
+          "longitude": -2.717
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          },
+          {
+            "@type": "City",
+            "name": "Ludlow"
+          },
+          {
+            "@type": "City",
+            "name": "Shrewsbury"
+          },
+          {
+            "@type": "City",
+            "name": "Hereford"
+          },
+          {
+            "@type": "City",
+            "name": "Telford"
+          },
+          {
+            "@type": "City",
+            "name": "Worcester"
+          },
+          {
+            "@type": "City",
+            "name": "Leominster"
+          },
+          {
+            "@type": "City",
+            "name": "Ross-on-Wye"
+          },
+          {
+            "@type": "City",
+            "name": "Bridgnorth"
+          },
+          {
+            "@type": "City",
+            "name": "Malvern"
+          },
+          {
+            "@type": "City",
+            "name": "Ledbury"
+          },
+          {
+            "@type": "City",
+            "name": "Oswestry"
+          },
+          {
+            "@type": "City",
+            "name": "Welshpool"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.368,
+            "longitude": -2.717
+          },
+          "geoRadius": "55000"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed IT Support",
+              "url": "https://fresh-tech.uk/services/managed-it-support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Security",
+              "url": "https://fresh-tech.uk/services/cybersecurity"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Essentials Certification Support",
+              "url": "https://fresh-tech.uk/services/cyber-essentials"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microsoft 365 & Cloud Solutions",
+              "url": "https://fresh-tech.uk/services/cloud-solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud Backup & Disaster Recovery",
+              "url": "https://fresh-tech.uk/services/backup-disaster-recovery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Phone Systems",
+              "url": "https://fresh-tech.uk/services/cloud-phone-systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Procurement",
+              "url": "https://fresh-tech.uk/services/hardware-procurement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic IT Projects",
+              "url": "https://fresh-tech.uk/services/strategic-projects"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed Print",
+              "url": "https://fresh-tech.uk/services/managed-print"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "IT Health Check",
+            "item": "https://fresh-tech.uk/it-health-check"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "Find out what's at risk. Before something breaks."
+      ],
+      [
+        2,
+        "The eight things we check"
+      ],
+      [
+        2,
+        "Four steps. About a week, end-to-end."
+      ],
+      [
+        2,
+        "Get the report"
+      ],
+      [
+        2,
+        "Prefer to talk first?"
+      ]
+    ],
+    "links": [
+      [
+        "#form",
+        "Request a free health check ↓"
+      ],
+      [
+        "/contact",
+        "Book a 20-min call →"
+      ]
+    ],
+    "images": [],
+    "text": "100% free · no obligationPlain English report Find out what's at risk. Before something breaks. A free, no-obligation audit of your security, backups, Microsoft 365 setup, hardware fleet and total IT spend. We deploy a read-only scanner for 24–48 hours, then send you a plain-English report. No sales follow-up unless you ask. The report is yours to keep, even if you stay with your current provider. Request a free health check ↓ 8 Areas we audit 24–48h Scanner deploy window £0 Cost, genuinely What we audit The eight things we check No fluff, no upsell trap. Just the things that actually matter for a 5–50-person business. 🔐 Security posture MFA coverage, password policies, account hygiene, who has admin and why. 💾 Backup + recovery What's backed up, how often, when it was last tested, and whether you'd actually recover from a ransomware hit. 🛡️ Endpoint protection Antivirus + threat detection on every device, patching cadence, Windows version coverage, encryption status. ☁️ Microsoft 365 health Licence right-sizing (most clients are over-paying), Conditional Access, retention policies, secure-score gaps. 📦 Hardware fleet Age, warranty status, end-of-life devices, machines that should be retired. 🌐 Network + connectivity Broadband contract terms, failover, Wi-Fi blackspots, what's plugged into what. 📋 Compliance posture Cyber Essentials readiness, GDPR documentation, sector-specific obligations. 💸 Total IT spend audit Everything you're paying for: software, hardware, support, licences. We find the leaks. The process Four steps. About a week, end-to-end. 01 Quick chat 20 minutes. We agree what we'll look at and what we won't. 02 Remote audit We deploy a read-only scanner across your devices for 24–48 hours. No agent left behind. 03 Plain-English report Plain language, ranked by risk and impact. Yours to keep regardless of what you do next. 04 Optional follow-up If you'd like us to fix any of it, we'll quote. No pressure. Many businesses just want the report. Request your check Get the report Fill in your details and we'll be in touch within one business day to schedule the audit window. What you'll receive Plain-English PDF report (10–15 pages typical) Risk register ranked by impact + likelihood Quick-win list (things to fix this month) Strategic recommendations (12-month roadmap) Your name Work email Company How many staff use IT? 1–5 5–10 10–25 25–50 50+ Request the audit → We only use your details to schedule the audit and send you the report. Or just have a chat Prefer to talk first? A 20-minute call works just as well as a form. No sales script. Book a 20-min call → Last reviewed May 2026 · Sam James"
+  }
+}

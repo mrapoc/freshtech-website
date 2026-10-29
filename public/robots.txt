@@ -1,0 +1,50 @@
+User-agent: *
+Allow: /
+Disallow: /blog/scheduled
+
+# Ensure Google Images can crawl media
+User-agent: Googlebot-Image
+Allow: /
+
+# AI crawlers are intentionally welcome here: both the search/citation bots AND
+# the training crawlers. We want Fresh Tech to surface in AI answers (ChatGPT,
+# Gemini, Claude, Copilot, Perplexity, Apple Intelligence), and we're happy for
+# content to be used for model training if it helps that visibility. These are
+# already covered by "User-agent: *" above; listed explicitly for clarity.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+Sitemap: https://fresh-tech.uk/sitemap.xml

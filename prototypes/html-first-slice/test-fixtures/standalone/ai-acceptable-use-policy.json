@@ -1,0 +1,339 @@
+{
+  "route": "/ai-acceptable-use-policy",
+  "source": "pages-v2/AIAcceptableUsePolicyPageV2.tsx",
+  "sourceSha256": "f6e0690163e5beb983755b21ca82fdba5e97f8dac4b4cc90decac83c99917ffe",
+  "capturedAt": "2026-09-16T12:23:11.427Z",
+  "head": {
+    "title": "Free AI Acceptable Use Policy Template | Fresh Tech IT Support",
+    "description": "Free, ready-to-edit AI Acceptable Use Policy template for UK small businesses. Covers data classes, approved tools, deepfakes, BYOD, output checks and IP.",
+    "canonical": "https://fresh-tech.uk/ai-acceptable-use-policy",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "article",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Free AI Acceptable Use Policy Template",
+        "description": "Free, ready-to-edit AI Acceptable Use Policy template for UK small businesses. Covers data classes, approved tools, deepfakes, BYOD, output checks and IP.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/ai-acceptable-use-policy",
+        "author": {
+          "@id": "https://fresh-tech.uk/#organization"
+        },
+        "publisher": {
+          "@id": "https://fresh-tech.uk/#organization"
+        },
+        "mainEntityOfPage": "https://fresh-tech.uk/ai-acceptable-use-policy"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "AI Acceptable Use Policy",
+            "item": "https://fresh-tech.uk/ai-acceptable-use-policy"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "AI Acceptable Use Policy template."
+      ],
+      [
+        2,
+        "AI is already in your business. Decide on the terms."
+      ],
+      [
+        2,
+        "1. Our approach to AI"
+      ],
+      [
+        2,
+        "2. Personal responsibility"
+      ],
+      [
+        2,
+        "3. Key definitions"
+      ],
+      [
+        2,
+        "4. Scope of policy"
+      ],
+      [
+        2,
+        "5. Authorised and prohibited software"
+      ],
+      [
+        2,
+        "6. Requesting new tools"
+      ],
+      [
+        2,
+        "7. Data classification protocol"
+      ],
+      [
+        2,
+        "8. Regional and industry regulations"
+      ],
+      [
+        2,
+        "9. Client contract requirements"
+      ],
+      [
+        2,
+        "10. Meeting recorders and extensions"
+      ],
+      [
+        2,
+        "11. Monitoring and privacy"
+      ],
+      [
+        2,
+        "12. AI hallucinations and output verification"
+      ],
+      [
+        2,
+        "13. Intellectual property and copyright"
+      ],
+      [
+        2,
+        "14. Automation workflows"
+      ],
+      [
+        2,
+        "15. Voice cloning and deepfakes"
+      ],
+      [
+        2,
+        "16. Financial verification"
+      ],
+      [
+        2,
+        "17. AI-assisted decisions"
+      ],
+      [
+        2,
+        "18. Transparency and disclosure"
+      ],
+      [
+        2,
+        "19. Mobile and personal device usage (BYOD)"
+      ],
+      [
+        2,
+        "20. AI training requirements"
+      ],
+      [
+        2,
+        "21. Vendor and contractor compliance"
+      ],
+      [
+        2,
+        "22. Termination and data retention"
+      ],
+      [
+        2,
+        "23. Ethics and prohibited content"
+      ],
+      [
+        2,
+        "24. Security integrity"
+      ],
+      [
+        2,
+        "25. Incident reporting"
+      ],
+      [
+        2,
+        "26. Policy review and updates"
+      ],
+      [
+        2,
+        "27. Policy enforcement and acknowledgment"
+      ],
+      [
+        2,
+        "We can help tailor this to your business"
+      ]
+    ],
+    "links": [
+      [
+        "#section-1",
+        "1.Our approach to AI"
+      ],
+      [
+        "#section-2",
+        "2.Personal responsibility"
+      ],
+      [
+        "#section-3",
+        "3.Key definitions"
+      ],
+      [
+        "#section-4",
+        "4.Scope of policy"
+      ],
+      [
+        "#section-5",
+        "5.Authorised and prohibited software"
+      ],
+      [
+        "#section-6",
+        "6.Requesting new tools"
+      ],
+      [
+        "#section-7",
+        "7.Data classification protocol"
+      ],
+      [
+        "#section-8",
+        "8.Regional and industry regulations"
+      ],
+      [
+        "#section-9",
+        "9.Client contract requirements"
+      ],
+      [
+        "#section-10",
+        "10.Meeting recorders and extensions"
+      ],
+      [
+        "#section-11",
+        "11.Monitoring and privacy"
+      ],
+      [
+        "#section-12",
+        "12.AI hallucinations and output verification"
+      ],
+      [
+        "#section-13",
+        "13.Intellectual property and copyright"
+      ],
+      [
+        "#section-14",
+        "14.Automation workflows"
+      ],
+      [
+        "#section-15",
+        "15.Voice cloning and deepfakes"
+      ],
+      [
+        "#section-16",
+        "16.Financial verification"
+      ],
+      [
+        "#section-17",
+        "17.AI-assisted decisions"
+      ],
+      [
+        "#section-18",
+        "18.Transparency and disclosure"
+      ],
+      [
+        "#section-19",
+        "19.Mobile and personal device usage (BYOD)"
+      ],
+      [
+        "#section-20",
+        "20.AI training requirements"
+      ],
+      [
+        "#section-21",
+        "21.Vendor and contractor compliance"
+      ],
+      [
+        "#section-22",
+        "22.Termination and data retention"
+      ],
+      [
+        "#section-23",
+        "23.Ethics and prohibited content"
+      ],
+      [
+        "#section-24",
+        "24.Security integrity"
+      ],
+      [
+        "#section-25",
+        "25.Incident reporting"
+      ],
+      [
+        "#section-26",
+        "26.Policy review and updates"
+      ],
+      [
+        "#section-27",
+        "27.Policy enforcement and acknowledgment"
+      ],
+      [
+        "/contact",
+        "Book a 20-min call →"
+      ]
+    ],
+    "images": [],
+    "text": "Free templateFor your business, not ours AI Acceptable Use Policy template. A battle-tested AI policy template you can adapt for your own business. Copy it, fill in the [PLACEHOLDER] fields, deploy. This is not Fresh Tech's internal policy. It's a free starting point for businesses who want to give their team clear rules on AI use without paying a consultant to write one from scratch. Copy full text Print / Save as PDF Browser tip: in the print dialog, \"Save as PDF\" gives you a clean download. What's inside 27 sections covering every common AI risk Data classification protocol (Public / Internal / Restricted) Deepfake + voice-clone fraud guidance BYOD + meeting-recorder rules Vendor + contractor compliance Plain English, UK-flavoured, ready to edit Why your business needs one AI is already in your business. Decide on the terms. ChatGPT, Copilot, Gemini: your team is using them whether you have a policy or not. Without clear rules, you risk: 🕳️ Data leaks Client data pasted into ChatGPT becomes part of the public training pool. ©️ Copyright trouble AI-generated content can replicate protected styles or trademarks without warning. 📑 Compliance breach Regulated industries have strict rules on where data can be processed. Public AI tools often violate them. 🎭 Deepfake fraud Voice-cloning is now used to authorise fake wire transfers from the \"CEO\". Contents 1.Our approach to AI2.Personal responsibility3.Key definitions4.Scope of policy5.Authorised and prohibited software6.Requesting new tools7.Data classification protocol8.Regional and industry regulations9.Client contract requirements10.Meeting recorders and extensions11.Monitoring and privacy12.AI hallucinations and output verification13.Intellectual property and copyright14.Automation workflows15.Voice cloning and deepfakes16.Financial verification17.AI-assisted decisions18.Transparency and disclosure19.Mobile and personal device usage (BYOD)20.AI training requirements21.Vendor and contractor compliance22.Termination and data retention23.Ethics and prohibited content24.Security integrity25.Incident reporting26.Policy review and updates27.Policy enforcement and acknowledgment Version 1.0. Replace the [PLACEHOLDER] fields throughout (e.g. [YOUR IT CONTACT]) with your own company details before distributing. 🧠 1. Our approach to AI Artificial Intelligence offers real opportunities for productivity, creativity and efficiency. We want everyone in the business to benefit from these tools and to do the best work of their careers with them. However, AI also introduces new risks. Data leakage, copyright issues and misinformation can threaten our business, our clients and our reputation if tools are used carelessly. This policy exists to make sure we use AI safely and responsibly. It is not here to slow anyone down. It is here to protect the business so we can continue to innovate without putting our hard work at risk. If you find a tool that makes your job easier, we want to hear about it. Just ask before you use it so we can check it is safe. 🙋 2. Personal responsibility You are responsible for the accuracy, legality and privacy of any work you submit, regardless of whether AI was involved in producing it. AI is a tool, not an employee. Using AI does not excuse errors, bias or copyright infringement. You must verify all AI-generated outputs before they leave your desk. Think of AI as a junior assistant. It is fast, eager and helpful, but it does not know our business context, our clients or our ethical standards the way you do. Your professional judgment is the final filter. 📖 3. Key definitions Generative AI: Artificial intelligence that creates new content (text, images, code) in response to prompts. Examples: ChatGPT, Microsoft Copilot, Midjourney. Hallucination: When AI confidently generates false, misleading or nonsensical information as though it were fact. Training Data: Information fed into an AI model to teach it. If company data is used as training data by a public AI tool, that data may become part of the public model. Shadow IT: The use of unauthorised or unvetted software by employees without IT department approval. Jailbreaking / Prompt Injection: Using specific inputs to trick AI into bypassing its safety filters or security rules. PII (Personally Identifiable Information): Any data that could identify a specific individual: names, National Insurance numbers, addresses, phone numbers. Anonymisation: Removing or masking sensitive details from a document before sharing it with an AI tool. Deepfake: Synthetic media (video, audio, image) created by AI to convincingly impersonate a real person. API: A software bridge that allows two applications to exchange data. Automation tools like Zapier and Power Automate use APIs. Human Oversight: A process requiring human review and approval before an AI-generated decision is finalised. BYOD: Employees using personal devices for work purposes. 🔍 4. Scope of policy This policy applies to all forms of AI usage within the business, including but not limited to: Web-based tools: ChatGPT, Claude, Gemini and similar platforms. Browser extensions: Grammar checkers, page summarisers, writing assistants. Operating system features: AI features built into Windows, macOS, iOS or Android (e.g. Copilot in Windows, Apple Intelligence). Meeting recorders: Automated transcription and note-taking tools. AI features and tools pre-installed on company devices are also covered by this policy. 🛡️ 5. Authorised and prohibited software To protect against data leakage, we restrict which AI tools may be used for business purposes. Unvetted tools expose the company to Shadow IT risks, where data may be used to train public models or stored on insecure servers outside our control. Rules: • You may only use AI tools that have been formally approved and set up by the IT department. • Subscriptions to unapproved AI tools will not be reimbursed. • Any AI tool, browser extension or plugin that is not on the Authorised Software List is prohibited. We do not maintain a \"banned apps\" list because new tools appear daily. Unless a tool has been vetted and added to the Authorised List, it may not be used for company business. Refer to Appendix A for the current Authorised AI Software List. 📋 6. Requesting new tools Innovation is encouraged. If you would like to request an AI tool to be added to the Authorised Software List, contact [YOUR IT CONTACT]. They will perform an AI Vendor Review covering privacy, security and data governance to ensure the tool is safe for your environment. 🗂️ 7. Data classification protocol You must classify data before entering it into any AI tool. Use the following guide: PUBLIC DATA: Safe to Use Information already in the public domain. No restrictions. Examples: Marketing copy, general industry research, brainstorming. INTERNAL DATA: Use with Caution Internal business documents that are not confidential. Anonymisation required before input. Examples: Internal memos, process documentation, draft emails. RESTRICTED DATA: Never Input into AI Any data that would cause harm if leaked. Examples: Client names, National Insurance numbers, home addresses, bank account details, credit card numbers, passwords, API keys. If you are ever unsure how to classify a document, contact your IT department before proceeding. ⚖️ 8. Regional and industry regulations Processing data subject to specific privacy or industry regulations requires a compliance review by IT before use with any AI tool. Most standard AI tools do not automatically meet regulatory standards. Many regulations require data to remain within a specific country or require strict audit logs that public AI tools do not provide. Just because a tool is popular does not mean it is compliant with the laws governing your industry. You are responsible for adhering to the regulations relevant to your role. If you have questions about compliance, speak to your IT or legal team. 📄 9. Client contract requirements Client contracts come first. Before using AI on any client project, verify that the relevant Master Services Agreement (MSA) does not prohibit the use of AI. If a contract forbids AI usage, you must not use it regardless of the data classification. 🎙️ 10. Meeting recorders and extensions Meeting Recorders: Third-party AI bots (e.g. Otter.ai, Fireflies) are prohibited from joining meetings unless authorised by IT. If an unauthorised bot joins a meeting, the host must remove it immediately. Browser Extensions: Installing browser extensions that use AI features is prohibited unless deployed by the IT department. These extensions often require full read-access to web traffic, including private emails and banking portals. 👁️ 11. Monitoring and privacy Company-provided AI accounts are company property. The business reserves the right to audit, monitor and review all prompts, inputs and outputs generated on company AI accounts to ensure compliance with this policy. Company AI accounts are monitored and should not be treated as private. ⚠️ 12. AI hallucinations and output verification AI models frequently hallucinate: they confidently present incorrect information as fact. You are required to fact-check 100% of AI-generated claims against a primary source. Never rely on AI for: • Legal statutes or case law • Mathematical calculations • Factual citations or historical dates If you make a business decision based on AI output, you must validate the underlying data first. ©️ 13. Intellectual property and copyright AI-generated content occupies a complex legal grey area. Copyright Risks: Do not use AI to generate content that copies the distinct style of existing copyrighted works or deliberately reproduces protected trademarks. Brand Representation: Be cautious using AI to generate photos, videos or audio representing your brand. AI often introduces subtle errors (misspelled logos, physical anomalies) that can damage professional reputation. Code Generation: Using AI to generate software code is prohibited unless you are qualified to audit the code for security vulnerabilities. Ensure AI-generated code does not inadvertently incorporate open-source code that could create legal issues. 🔁 14. Automation workflows Creating automated workflows (e.g. via Zapier, Power Automate, Make.com) that automatically send company data to an AI API without prior IT review is prohibited. A misconfigured automation can accidentally leak thousands of emails or files in minutes. Even if the AI tool is approved, the API connection must be secured by IT. 🎤 15. Voice cloning and deepfakes Using AI to clone, simulate or mimic the voice or likeness of any person, including staff, contractors, suppliers or public figures, is strictly prohibited unless explicitly authorised in writing by company leadership. This includes using text-to-speech tools trained on a specific individual's voice samples. 💷 16. Financial verification Deepfake technology is now used to commit wire fraud. Any urgent request for funds (wire transfers, gift cards, invoice payments) or credential changes received via voice, video or email requires secondary verification through a known, trusted channel. If you receive an unexpected call from a senior figure requesting money, hang up and call them back on their known internal number to verify. 🧑‍⚖️ 17. AI-assisted decisions AI tools lack human judgment, ethical reasoning and real-world context. They frequently hallucinate or rely on biased training data while sounding completely authoritative. A human must review and approve all AI-assisted decisions. This applies to any professional judgment, including: Hiring and termination decisions Employee performance evaluations Financial approvals Strategic business planning Professional advice (legal, medical, financial) 🪧 18. Transparency and disclosure Transparency is key to maintaining trust. External Disclosure: If AI is used to generate content for a client deliverable (report, code, image, article), you must disclose the use of AI unless your contract states otherwise. Internal Disclosure: When submitting work to a manager, flag if the content was AI-assisted to ensure proper review. Watermarking: Where technically feasible, AI-generated images should retain their metadata or visible watermarks indicating their artificial origin. 📱 19. Mobile and personal device usage (BYOD) Using AI apps on personal devices to process company data is prohibited. You may not copy company emails, files or chat logs into AI apps (e.g. the ChatGPT mobile app) on a personal device. Mobile access to AI tools is only permitted via a company-managed work profile or approved apps installed by IT. 🎓 20. AI training requirements Access to company AI tools is conditional on competence. Access is typically granted upon successful completion of required AI training programmes, including AI Security Awareness, AI Usability Training, and Ethics modules. The company reserves the right to revoke AI access for any employee who fails to complete required annual training. 🤝 21. Vendor and contractor compliance Security standards extend to the supply chain. Contractors, vendors and freelancers must use company-approved and provisioned AI tools when working with company data. Use of personal or free AI accounts by contractors is prohibited unless explicit written permission is granted by the IT department. All vendors should sign this AI Acceptable Use Policy as part of their onboarding process. 🔒 22. Termination and data retention All prompts, inputs and outputs generated using company AI accounts are the exclusive property of the business. Upon termination of employment, IT will archive the employee's AI account to ensure business continuity. Employees may not delete, export or transfer AI chat history to a personal account prior to departure. 🚫 23. Ethics and prohibited content AI tools may not be used to generate content that violates the company's Code of Conduct or Harassment Policy. Prohibited uses include: • Generating discriminatory, sexually explicit, hateful or harassing content • Facilitating cyberattacks, creating phishing emails or generating malicious software 🔐 24. Security integrity Attempting to bypass the security filters, content moderation protocols or safety guardrails of any AI tool, commonly known as \"jailbreaking\" or \"prompt injection\", is strictly prohibited. Manipulating an AI tool to ignore its safety instructions is a violation of this policy. 📞 25. Incident reporting If you accidentally input restricted data into an AI tool, or suspect an unauthorised bot has recorded a meeting, report it immediately. Self-reporting accidental errors is encouraged. Early reporting allows rapid remediation and protects the entire team. To report an issue, open an emergency security ticket or call [YOUR IT CONTACT] immediately. 🔄 26. Policy review and updates Due to the rapid pace of AI advancement, this policy is a living document. It should be reviewed and updated at least every six months, or upon the release of significant new AI capabilities, to ensure it addresses emerging risks. Employees should be notified of any major updates. Continued use of company systems after an update constitutes agreement to the new terms. ⚖️ 27. Policy enforcement and acknowledgment These guidelines exist to protect employees, clients and the company's reputation. Mistakes happen, but wilful disregard for these safety measures is a serious issue. Violations will be investigated. Accidental errors, especially self-reported ones, are typically treated as learning opportunities. Deliberate violations or negligence will be met with appropriate disciplinary action. Acknowledgment: All employees should read and confirm they understand this policy. Employees acknowledge that AI technology evolves rapidly and that it is their responsibility to seek clarification from IT or their manager if they are ever unsure about the safety of a specific tool or action. Appendix A: Authorised AI Software List List the AI tools your business has formally approved here. Common starter items: Microsoft Copilot in M365, ChatGPT Enterprise / Team, Anthropic Claude (via API or Team plan), Otter.ai (with IT-approved meeting policy). Update this list as part of every policy review. Need a hand? We can help tailor this to your business If your sector has specific compliance obligations (legal, healthcare, finance), we'll tune this template and the supporting M365 controls to match. Free 20-min call to scope it. Book a 20-min call →"
+  }
+}

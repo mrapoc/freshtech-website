@@ -1,0 +1,162 @@
+/* Root-slug problem routes (/slow-computers and siblings), mirroring
+   pages/ProblemPage.tsx. src/pages/[slug].astro imports this with ?inline and
+   renders it once in <head> for problem routes only, so no other family loads
+   it. Scoped font families use font-display: optional (the service-location
+   pattern) over the same six existing font assets and unicode ranges, so a slow
+   font never swaps in mid-document and never moves the layout; the route
+   preloads the Bungee subset for the H1 so the fast path paints the display
+   face. The nested shared testimonials and contact blocks are re-pointed at
+   the same aliases below so nothing inside the problem main can late-swap
+   through the global Bungee / Archivo faces. Colours are the prototype V2
+   primitives plus the red / orange / green symptom, cause and solution tints of
+   the React page. No route data lives here.
+   Motion: nothing animates beyond a hover colour, so reduced-motion needs no
+   special handling; the FAQ chevrons swap by display, not by transform. */
+@font-face { font-family: 'Problem Archivo'; font-style: normal; font-weight: 400 800; font-stretch: 100%; font-display: optional; src: url('/fonts/archivo-v25-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Problem Archivo'; font-style: normal; font-weight: 400 800; font-stretch: 100%; font-display: optional; src: url('/fonts/archivo-v25-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Problem Archivo Narrow'; font-style: normal; font-weight: 600 700; font-display: optional; src: url('/fonts/archivo-narrow-v35-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Problem Archivo Narrow'; font-style: normal; font-weight: 600 700; font-display: optional; src: url('/fonts/archivo-narrow-v35-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Problem Bungee'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/bungee-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Problem Bungee'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/bungee-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+.pb-page { background: var(--paper); color: var(--ink); font-family: 'Problem Archivo', system-ui, sans-serif; }
+.pb-container { width: min(calc(100% - 40px), 1100px); margin-inline: auto; }
+.pb-copy-container { width: min(calc(100% - 40px), 860px); margin-inline: auto; }
+.pb-page :where(.pb-card-grid, .pb-actions) > * { min-width: 0; }
+
+/* Hero */
+.pb-hero { padding: 40px 0 56px; background-color: var(--ink); background-image: radial-gradient(rgba(255,255,255,.05) 1.5px, transparent 1.5px); background-size: 14px 14px; color: var(--paper); }
+.pb-hero[data-variant='emergency'] { background-color: #8a1c1c; }
+.pb-breadcrumbs { margin: 0 0 18px; font-size: 14px; }
+.pb-breadcrumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 0; padding: 0; list-style: none; color: #d0d4d7; }
+.pb-breadcrumbs li { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.pb-breadcrumbs li + li::before { content: ''; flex: 0 0 auto; width: 4px; height: 4px; border-radius: 50%; background: currentColor; opacity: .6; }
+.pb-breadcrumbs a { display: inline-flex; align-items: center; min-height: 32px; padding: 4px 0; color: inherit; text-decoration: none; }
+.pb-breadcrumbs a:hover, .pb-breadcrumbs a:focus-visible { color: var(--paper); text-decoration: underline; }
+.pb-breadcrumbs [aria-current='page'] { color: var(--paper); font-weight: 600; overflow-wrap: anywhere; }
+.pb-hero h1 { max-width: 24ch; margin: 0 0 18px; color: var(--paper); font: 400 clamp(26px, 6.5vw, 44px)/1.05 'Problem Bungee', 'Problem Archivo', system-ui, sans-serif; letter-spacing: 0; overflow-wrap: anywhere; }
+.pb-hero-copy { max-width: 66ch; margin: 0 0 32px; color: #d0d4d7; font-size: 18px; line-height: 1.65; }
+.pb-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.pb-actions-centre { justify-content: center; }
+.pb-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 13px 24px; border: 2px solid var(--paper); font-size: 15px; font-weight: 700; line-height: 1.3; text-align: center; text-decoration: none; transition: background-color 150ms ease; }
+.pb-button svg { flex: 0 0 auto; }
+.pb-button-primary { background: var(--accent); color: var(--ink); box-shadow: 4px 4px 0 var(--yellow); }
+.pb-button-primary:hover { background: #f06a38; }
+.pb-button-secondary { background: transparent; color: var(--paper); }
+.pb-button-secondary:hover { background: rgba(255,255,255,.12); }
+.pb-button-emergency { background: var(--white); border-color: var(--white); color: #8a1c1c; box-shadow: 4px 4px 0 rgba(0,0,0,.35); }
+.pb-button-emergency:hover { background: #fbeceb; }
+
+/* Sections */
+.pb-section { padding: 56px 0; border-bottom: 1px solid var(--hairline); }
+.pb-section-heading { margin-bottom: 32px; text-align: center; }
+.pb-section-heading h2 { margin: 0 0 12px; color: var(--ink); font: 400 clamp(22px, 6vw, 34px)/1.1 'Problem Bungee', 'Problem Archivo', system-ui, sans-serif; overflow-wrap: anywhere; }
+.pb-section-heading p { max-width: 52ch; margin: 0 auto; color: #53606a; font-size: 16px; line-height: 1.6; }
+
+/* Symptoms */
+.pb-symptoms { background: var(--white); }
+.pb-symptom-card { padding: 24px; border: 2px solid #e9b8b0; background: #fdf3f1; }
+.pb-symptom-list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.pb-symptom-list li { display: flex; align-items: flex-start; gap: 12px; color: #26313a; font-size: 16px; line-height: 1.55; }
+.pb-symptom-list svg { flex: 0 0 auto; margin-top: 1px; color: #b3261e; }
+
+/* Cause and solution cards */
+.pb-causes { background: var(--paper-deep); }
+.pb-solutions { background: var(--white); }
+.pb-card-grid { display: grid; gap: 18px; }
+.pb-card { padding: 24px 22px; border: 2px solid var(--ink); background: var(--white); box-shadow: 5px 5px 0 var(--ink); }
+.pb-solutions .pb-card { background: #eef6f0; }
+.pb-card-icon { display: grid; width: 48px; height: 48px; margin-bottom: 14px; place-items: center; border: 2px solid var(--ink); }
+.pb-causes .pb-card-icon { background: #fbe3cf; color: #8f3a06; }
+.pb-solutions .pb-card-icon { background: #d7ecdd; color: #1f5b40; }
+.pb-card-icon svg { display: block; }
+.pb-card h3 { margin: 0 0 6px; color: var(--ink); font: 800 17px/1.25 'Problem Archivo', system-ui, sans-serif; overflow-wrap: anywhere; }
+.pb-card p { margin: 0; color: #46545f; font-size: 14px; line-height: 1.55; }
+
+/* Content card with RichText */
+.pb-content { background: var(--paper-deep); }
+.pb-content-card { padding: 28px; border: 2px solid var(--ink); background: var(--white); box-shadow: 6px 6px 0 var(--ink); }
+.pb-rich { color: #26313a; font-size: 16px; line-height: 1.75; }
+.pb-rich p, .pb-rich ul, .pb-rich ol { margin: 0 0 16px; }
+.pb-rich > :last-child { margin-bottom: 0; }
+.pb-rich ul, .pb-rich ol { padding-left: 24px; }
+.pb-rich li { margin: 0 0 4px; }
+.pb-rich strong { color: var(--ink); font-weight: 800; }
+.pb-rich a { color: var(--primary-dark); font-weight: 700; }
+
+/* FAQ: native details, one open at a time via the shared name attribute */
+.pb-faqs { background: var(--white); }
+.pb-faq-list { display: grid; gap: 12px; }
+.pb-faq-list details { border: 2px solid var(--hairline); background: var(--paper); }
+.pb-faq-list summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 48px; padding: 14px 20px; cursor: pointer; list-style: none; color: var(--primary-dark); font-size: 16px; font-weight: 700; line-height: 1.4; transition: background-color 150ms ease; }
+.pb-faq-list summary::-webkit-details-marker { display: none; }
+.pb-faq-list summary:hover { background: var(--paper-deep); }
+.pb-faq-list summary span { min-width: 0; overflow-wrap: anywhere; }
+.pb-faq-chevron { flex: 0 0 auto; color: #6b7780; }
+.pb-faq-list details:not([open]) > summary .pb-chevron-up { display: none; }
+.pb-faq-list details[open] > summary .pb-chevron-down { display: none; }
+.pb-faq-list details[open] > summary .pb-chevron-up { color: var(--accent); }
+.pb-faq-answer { padding: 0 20px 18px; color: #46545f; font-size: 15px; line-height: 1.65; }
+
+/* Closing call to action */
+.pb-final { padding: 56px 0 64px; border-top: 4px solid var(--accent); background-color: var(--primary-dark); color: var(--paper); text-align: center; }
+.pb-final[data-variant='emergency'] { border-top-color: var(--yellow); background-color: #8a1c1c; }
+.pb-final h2 { margin: 0 0 12px; color: var(--paper); font: 800 clamp(26px, 6vw, 34px)/1.1 'Problem Archivo', system-ui, sans-serif; overflow-wrap: anywhere; }
+.pb-final-copy { max-width: 46ch; margin: 0 auto 28px; color: rgba(251,246,236,.88); font-size: 18px; line-height: 1.6; }
+
+/* Nested shared sections (SourceTestimonials, SourceContact) rendered inside
+   the problem main. Only the family names change: the testimonials block's
+   'Archivo' body and both headings' global h2 'Bungee' face are re-pointed at
+   the optional-display aliases above so they cannot late-swap. The contact
+   block's own system-ui body never touched a global alias and is left alone.
+   Selectors are scoped to the specific shared classes (never a bare .pb-page
+   h2) so no other heading rule is disturbed. */
+.pb-page .source-testimonials { font-family: 'Problem Archivo', system-ui, sans-serif; }
+.pb-page .source-testimonials-heading, .pb-page .source-contact-heading { font-family: 'Problem Bungee', 'Problem Archivo', system-ui, sans-serif; }
+
+/* Chrome outside the problem main, reached through the body marker BaseLayout
+   sets only for this family (body[data-page-family='problems']). Measured on
+   the PC: the header .phone inherits the global swap-display Archivo and its
+   late swap shortens the header and moves main up; the ContactForm h2/h3 and
+   footer headings inherit the global h1,h2,h3 Bungee face and the same late
+   swap grows them; footer body text swaps and rewraps. Each rule changes only
+   font-family, re-pointing the same face at its optional-display alias with
+   the fallback stack the global rule already declares, so the global
+   stylesheet and the shared contact styles stay untouched. The known
+   Problem-specific heading fonts (.pb-hero h1, .pb-section-heading h2,
+   .pb-card h3, .pb-final h2) are not affected: none of these selectors
+   reaches them. */
+body[data-page-family='problems'] { font-family: 'Problem Archivo', system-ui, sans-serif; }
+body[data-page-family='problems'] .strap { font-family: 'Problem Archivo Narrow', 'Problem Archivo', sans-serif; }
+body[data-page-family='problems'] .mobile-menu nav p, body[data-page-family='problems'] .nav-panel > p { font-family: 'Problem Archivo Narrow', sans-serif; }
+body[data-page-family='problems'] .contact-form-card h2, body[data-page-family='problems'] .contact-form-card h3,
+body[data-page-family='problems'] .footer-cta h2, body[data-page-family='problems'] .site-footer h3,
+body[data-page-family='problems'] .cookie-body h2, body[data-page-family='problems'] .cookie-settings h2 { font-family: 'Problem Bungee', 'Problem Archivo', system-ui, sans-serif; }
+
+@media (max-width: 479px) {
+  /* Bungee caps advance roughly .8em; the longest H1 word must fit a 280px column whole. */
+  .pb-hero h1 { max-width: none; font-size: clamp(20px, calc((100vw - 40px) / 12), 44px); }
+  .pb-section-heading h2 { font-size: clamp(20px, calc((100vw - 40px) / 12), 34px); }
+  .pb-actions > .pb-button { flex: 1 1 100%; }
+}
+
+@media (min-width: 768px) {
+  .pb-container { width: min(calc(100% - 64px), 1100px); }
+  .pb-copy-container { width: min(calc(100% - 64px), 860px); }
+  .pb-hero { padding: 56px 0 64px; }
+  .pb-section { padding: 72px 0; }
+  .pb-section-heading { margin-bottom: 40px; }
+  .pb-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pb-content-card { padding: 40px; }
+  .pb-final { padding: 72px 0 80px; }
+}
+
+@media (min-width: 1024px) {
+  .pb-hero { padding: 72px 0 80px; }
+  .pb-cause-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pb-solution-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pb-button, .pb-faq-list summary { transition: none; }
+}

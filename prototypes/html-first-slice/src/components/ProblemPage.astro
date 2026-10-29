@@ -1,0 +1,156 @@
+---
+// Copy and structure mirror pages/ProblemPage.tsx: hero with breadcrumb
+// (Home > Resources > h1), intro and calls to action; the symptom list; the
+// cause cards; the solution cards; the RichText content card; the FAQs; and the
+// closing call to action. The ransomware-recovery record is the source's
+// emergency variant (red hero and closing band, one call-now action instead of
+// contact + phone / contact + pricing). Deliberate differences from the React
+// page: the in-view fade animations are omitted, so the whole body is present
+// and visible without JavaScript, and the FAQs are native <details> sharing a
+// name so at most one is open, as the React openFaq state allowed.
+// The Testimonials and Contact sections that follow the closing call to action
+// in the React page arrive through the named slots at the end: the dispatcher
+// passes SourceTestimonials (reviews plus the partner logos) and SourceContact.
+import ProblemIcon from './ProblemIcon.astro';
+import RichText from './RichText.astro';
+import { CALL_NOW_LABEL, CONTACT_HREF, HERO_CALL_LABEL, PHONE_HREF, PRICING_HREF, PRICING_LABEL, breadcrumbItems, iconName, isEmergency } from '../lib/problem-display.mjs';
+
+interface Card { title: string; desc: string; icon: string }
+interface Faq { q: string; a: string }
+interface Page {
+  slug: string; title: string; metaDesc: string; h1: string; intro: string; symptoms: string[];
+  causes: Card[]; solutions: Card[]; content: string; faqs: Faq[]; cta: string;
+}
+interface Props { page: Page }
+const { page } = Astro.props;
+const emergency = isEmergency(page);
+const variant = emergency ? 'emergency' : 'standard';
+const crumbs = breadcrumbItems(page);
+---
+
+<main id="main-content" class="pb-page" data-problem-page={page.slug} data-variant={variant} tabindex="-1">
+  <section class="pb-hero" data-variant={variant}>
+    <div class="pb-copy-container">
+      <nav class="pb-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          {crumbs.map(([label, href]) => (
+            <li>{href ? <a href={href}>{label}</a> : <span aria-current="page">{label}</span>}</li>
+          ))}
+        </ol>
+      </nav>
+      <h1>{page.h1}</h1>
+      <p class="pb-hero-copy">{page.intro}</p>
+      <div class="pb-actions">
+        {emergency ? (
+          <a class="pb-button pb-button-emergency" href={PHONE_HREF}><ProblemIcon name="Phone" size={20} />{CALL_NOW_LABEL}</a>
+        ) : (
+          <>
+            <a class="pb-button pb-button-primary" href={CONTACT_HREF}>{page.cta}</a>
+            <a class="pb-button pb-button-secondary" href={PHONE_HREF}>{HERO_CALL_LABEL}</a>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-section pb-symptoms">
+    <div class="pb-copy-container">
+      <header class="pb-section-heading">
+        <h2>Does This Sound Familiar?</h2>
+        <p>Common signs you're experiencing this issue</p>
+      </header>
+      <div class="pb-symptom-card">
+        <ul class="pb-symptom-list">
+          {page.symptoms.map(symptom => (
+            <li><ProblemIcon name="XCircle" /><span>{symptom}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-section pb-causes">
+    <div class="pb-container">
+      <header class="pb-section-heading">
+        <h2>What's Causing This?</h2>
+        <p>Understanding the root causes helps find the right solution</p>
+      </header>
+      <div class="pb-card-grid pb-cause-grid">
+        {page.causes.map(cause => (
+          <article class="pb-card">
+            <span class="pb-card-icon"><ProblemIcon name={iconName(cause.icon)} /></span>
+            <h3>{cause.title}</h3>
+            <p>{cause.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-section pb-solutions">
+    <div class="pb-container">
+      <header class="pb-section-heading">
+        <h2>How We Can Help</h2>
+        <p>Practical solutions to resolve your issues</p>
+      </header>
+      <div class="pb-card-grid pb-solution-grid">
+        {page.solutions.map(solution => (
+          <article class="pb-card">
+            <span class="pb-card-icon"><ProblemIcon name={iconName(solution.icon)} /></span>
+            <h3>{solution.title}</h3>
+            <p>{solution.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-section pb-content">
+    <div class="pb-copy-container">
+      <div class="pb-content-card">
+        <div class="pb-rich"><RichText text={page.content} /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-section pb-faqs">
+    <div class="pb-copy-container">
+      <header class="pb-section-heading">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common questions about this issue</p>
+      </header>
+      <div class="pb-faq-list">
+        {page.faqs.map(faq => (
+          <details name="problem-faq">
+            <summary>
+              <span>{faq.q}</span>
+              <ProblemIcon name="ChevronDown" size={20} class="pb-faq-chevron pb-chevron-down" />
+              <ProblemIcon name="ChevronUp" size={20} class="pb-faq-chevron pb-chevron-up" />
+            </summary>
+            <div class="pb-rich pb-faq-answer"><RichText text={faq.a} /></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-final" data-variant={variant}>
+    <div class="pb-copy-container">
+      <h2>Ready to Fix This?</h2>
+      <p class="pb-final-copy">Let's get your IT working properly</p>
+      <div class="pb-actions pb-actions-centre">
+        {emergency ? (
+          <a class="pb-button pb-button-emergency" href={PHONE_HREF}><ProblemIcon name="Phone" size={20} />{CALL_NOW_LABEL}</a>
+        ) : (
+          <>
+            <a class="pb-button pb-button-primary" href={CONTACT_HREF}>{page.cta}</a>
+            <a class="pb-button pb-button-secondary" href={PRICING_HREF}>{PRICING_LABEL}<ProblemIcon name="ArrowRight" size={16} /></a>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <slot name="testimonials" />
+  <slot name="contact" />
+</main>

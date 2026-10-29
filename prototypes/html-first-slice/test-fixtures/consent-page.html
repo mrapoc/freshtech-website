@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <title>Consent fixture (synthetic)</title>
+  <!-- Synthetic local page used only by scripts/consent-browser-check.mjs.
+       Mirrors the minimal integration the layout owner will wire into BaseLayout. -->
+</head>
+<body>
+  <p id="status">no decision</p>
+  <button id="accept" type="button">Accept</button>
+  <button id="reject" type="button">Reject</button>
+  <button id="settings" type="button">Cookie settings</button>
+  <script type="module">
+    import { createConsentController } from '/consent.js';
+    const controller = createConsentController();
+    window.__consent = controller;
+    window.__events = [];
+    controller.onConsentChanged((s) => window.__events.push(['consent', s.analytics]));
+    controller.onOpenSettings(() => window.__events.push(['open-settings']));
+    document.getElementById('accept').addEventListener('click', () => controller.setConsent(true));
+    document.getElementById('reject').addEventListener('click', () => controller.setConsent(false));
+    document.getElementById('settings').addEventListener('click', () => controller.openCookieSettings());
+    document.getElementById('status').textContent = JSON.stringify(controller.getConsent());
+    window.__autoArmed = controller.autoArm();
+  </script>
+</body>
+</html>

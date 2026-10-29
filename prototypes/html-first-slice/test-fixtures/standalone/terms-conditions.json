@@ -1,0 +1,155 @@
+{
+  "route": "/terms-conditions",
+  "source": "pages-v2/TermsPageV2.tsx",
+  "sourceSha256": "c94c19716628f47b9a23da25987e3a8085ed622d73971ad9f001d2355968e9af",
+  "capturedAt": "2026-09-16T12:23:02.027Z",
+  "head": {
+    "title": "Terms & Conditions | Fresh Tech IT Support",
+    "description": "Website terms of use and managed services contract terms for Fresh Tech IT Support: governing law, liability, intellectual property. Ludlow, Shropshire.",
+    "canonical": "https://fresh-tech.uk/terms-conditions",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "article",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Terms & Conditions",
+        "description": "Website terms of use and managed services contract terms for Fresh Tech IT Support: governing law, liability, intellectual property. Ludlow, Shropshire.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/terms-conditions",
+        "author": {
+          "@id": "https://fresh-tech.uk/#organization"
+        },
+        "publisher": {
+          "@id": "https://fresh-tech.uk/#organization"
+        },
+        "mainEntityOfPage": "https://fresh-tech.uk/terms-conditions"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Terms & Conditions",
+            "item": "https://fresh-tech.uk/terms-conditions"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "The legal bit."
+      ],
+      [
+        2,
+        "1. Introduction"
+      ],
+      [
+        2,
+        "2. Intellectual property"
+      ],
+      [
+        2,
+        "3. Restrictions"
+      ],
+      [
+        2,
+        "4. Managed services agreement"
+      ],
+      [
+        2,
+        "5. Limitation of liability"
+      ],
+      [
+        2,
+        "6. Governing law"
+      ],
+      [
+        2,
+        "Looking for the Managed Services Agreement?"
+      ]
+    ],
+    "links": [
+      [
+        "/terms-of-business",
+        "Terms of Business"
+      ],
+      [
+        "mailto:hello@fresh-tech.uk",
+        "hello@fresh-tech.uk"
+      ],
+      [
+        "/terms-of-business",
+        "Terms of Business"
+      ],
+      [
+        "/dpa",
+        "Data Processing Terms"
+      ]
+    ],
+    "images": [],
+    "text": "Terms & Conditions The legal bit. Website terms for fresh-tech.uk. Managed-service terms are issued separately as part of your contract. 1. Introduction Welcome to Fresh Tech. These terms outline the rules and regulations for the use of our website. By accessing this site we assume you accept these terms. Do not continue to use Fresh Tech if you do not agree. 2. Intellectual property Other than content you own, FRESH PCS CONSULTANCY LTD and its licensors own all intellectual property rights and materials contained on this website. You are granted limited licence only for the purposes of viewing the material contained here. 3. Restrictions You are specifically restricted from all of the following: Publishing any website material in any other media. Selling, sublicensing or otherwise commercialising any website material. Publicly performing or showing any website material. Using this website in any way that is or may be damaging to it. Using this website in any way that impacts other users' access. 4. Managed services agreement These terms relate specifically to use of this website. Clients engaging Fresh Tech for IT support services do so under our Terms of Business. 5. Limitation of liability In no event shall FRESH PCS CONSULTANCY LTD, nor any of its officers, directors and employees, be held liable for anything arising out of or in any way connected with your use of this website. 6. Governing law These terms are governed by and interpreted in accordance with the laws of the United Kingdom. You submit to the non-exclusive jurisdiction of the courts located in the UK for the resolution of any disputes. Got a question about the terms? Email hello@fresh-tech.uk. Looking for the Managed Services Agreement? Read our published service terms and the data processing terms that form part of them. Terms of BusinessData Processing Terms"
+  }
+}

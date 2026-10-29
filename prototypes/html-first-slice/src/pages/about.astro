@@ -1,0 +1,231 @@
+---
+// Port of pages-v2/AboutPageV2.tsx. The team cards' hover-reveal bio is CSS
+// only (no JS): the bio text is always present in the DOM so it is never
+// hidden from anyone (including keyboard/touch users who can't hover), and
+// the masked/unmasked photo swap still happens on :hover/:focus. That is a
+// visual difference from production (bio was hover-only there) rather than a
+// content one, so no text is added or removed and no diff entry is needed.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+
+const seo = {
+  path: '/about',
+  title: 'About Us: Locally-Owned IT Support in Ludlow',
+  description: 'Locally-owned IT support in Ludlow since 2014. No call centres, no ticket queues, just real engineers who know your business. Serving Shropshire and Herefordshire.',
+  type: 'profile',
+};
+
+const values = [
+  { label: 'We answer', stat: 'By name. Not a bot.' },
+  { label: 'Talk to us', stat: 'Discuss your support.' },
+  { label: "We're local", stat: 'Ludlow, since 2014.' },
+  { label: "We're certified", stat: 'Cyber Essentials + MS Partner.' },
+];
+
+const timeline = [
+  { year: '2014', title: 'Founded in Ludlow', desc: 'Sam started Fresh Tech after watching local businesses get ignored by national IT firms with slow response times and no local knowledge. Initially break-fix support, turning up when things broke.' },
+  { year: '2017', title: 'Moved to managed services', desc: 'Switched from break-fix to a subscription model: better for clients (predictable costs, things prevented not just fixed), better for us (we could plan ahead).' },
+  { year: '2020', title: 'Remote-first pivot', desc: 'Within two weeks of the first lockdown, every client was securely working from home. Not one lost a working day.' },
+  { year: '2022', title: 'Cyber Essentials certified', desc: 'Became certified practitioners and started helping clients achieve the accreditation, now a core part of what we offer.' },
+  { year: '2026', title: 'Twelve years in', desc: "Still locally owned, still based in Ludlow, still answering the phone ourselves. We're proud of that." },
+];
+
+const badges = [
+  { emoji: '🛡️', label: 'Cyber Essentials Certified', sub: 'NCSC-approved scheme' },
+  { emoji: '🔷', label: 'Microsoft Partner', sub: 'Cloud & productivity solutions' },
+  { emoji: '⭐', label: 'Customer reviews', sub: 'Read feedback on Google' },
+  { emoji: '📅', label: 'Since November 2014', sub: '12 years serving Shropshire' },
+];
+
+const team = [
+  {
+    name: 'Sam James', role: 'Founder & Director', power: 'Uptime Avenger',
+    masked: 'https://res.cloudinary.com/djkmeg5se/image/upload/w_500,f_auto,q_auto:good/f_auto,q_auto/sam-superhero-masked.png?v=2',
+    unmasked: 'https://res.cloudinary.com/djkmeg5se/image/upload/w_500,f_auto,q_auto:good/f_auto,q_auto/sam-superhero-unmasked.png?v=2',
+    bio: "Started Fresh Tech in 2014 after watching local businesses get burned by national IT firms who didn't know Shropshire and didn't care to. Built the kind of support he'd have wanted to hire. Fixes servers. Makes excellent coffee.",
+  },
+  {
+    name: 'Matthew Morgan', role: 'Senior Engineer', power: 'Network Whisperer',
+    masked: 'https://res.cloudinary.com/djkmeg5se/image/upload/w_500,f_auto,q_auto:good/f_auto,q_auto/matt-superhero-masked.png?v=2',
+    unmasked: 'https://res.cloudinary.com/djkmeg5se/image/upload/w_500,f_auto,q_auto:good/f_auto,q_auto/matt-superhero-unmasked.png?v=2',
+    bio: 'Deep network and infrastructure knowledge, fast on-site across the region. Probably diagnosed your problem before you\'ve finished explaining it. Specialises in M365, connectivity, and anything that involves a patch panel.',
+  },
+];
+---
+
+<StandaloneShell name="about" seo={seo} activePage="About">
+  <section class="sa-hero">
+    <div class="sa-wrap sa-about-hero">
+      <div>
+        <p class="sa-tag">Est. November 2014</p>
+        <h1 class="sa-display sa-display-light" style="--sa-size: 46px; --sa-size-mobile: 34px; margin-bottom: 20px">The IT team you wish you'd hired five years ago.</h1>
+        <p class="sa-lead">We're a small team of engineers based in Ludlow, Shropshire. Locally owned, employee-led, no call centres. We fix things fast, explain things plainly, and answer the phone ourselves.</p>
+        <a class="sa-button" href="/contact">Book a 20-min call →</a>
+      </div>
+      <div class="sa-photo-wrap">
+        <div class="sa-photo-card">
+          <img src="https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto,w_900/v1778511802/team-photo-1.jpg" srcset="https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto,w_480/v1778511802/team-photo-1.jpg 480w, https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto,w_640/v1778511802/team-photo-1.jpg 640w, https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto,w_720/v1778511802/team-photo-1.jpg 720w, https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto,w_900/v1778511802/team-photo-1.jpg 900w, https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto,w_1280/v1778511802/team-photo-1.jpg 1280w" sizes="(min-width: 768px) min(calc(50vw - 60px), 560px), calc(100vw - 68px)" alt="Sam James and Matthew Morgan, Fresh Tech engineers, Ludlow" width="900" height="600" fetchpriority="high" />
+          <div class="sa-photo-caption">The Fresh Tech Team</div>
+        </div>
+        <span class="sa-photo-tag">Ludlow, SY8</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-values">
+    <div class="sa-wrap sa-values-grid">
+      {values.map(v => <div class="sa-value"><div class="sa-value-label">{v.label}</div><div class="sa-value-stat">{v.stat}</div></div>)}
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper sa-rule">
+    <div class="sa-wrap sa-mission">
+      <div>
+        <p class="sa-eyebrow">Our mission</p>
+        <h2 class="sa-h2">Why we exist</h2>
+      </div>
+      <div>
+        <p class="sa-lg">Traditional IT support is usually slow, impersonal, or confusing. You raise a ticket, it goes into a queue, someone in a call centre picks it up eventually. Meanwhile your staff can't work.</p>
+        <p class="sa-body">We built Fresh Tech to do the opposite. Local engineers who know your setup, a phone that gets answered, pricing that doesn't have a "call us for a quote" footnote.</p>
+        <p class="sa-body sa-body-strong">Our sweet spot is businesses with 5–50 staff in Shropshire, Herefordshire and the Welsh Borders. Big enough to need proper IT. Small enough to want a human relationship.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap">
+      <p class="sa-eyebrow">The team</p>
+      <h2 class="sa-h2" style="margin-bottom: 12px">Behind the mask</h2>
+      <p class="sa-sub2" style="margin-bottom: 40px">Hover a card to reveal the real people behind the IT. We're engineers first, but we enjoy a good pun.</p>
+      <div class="sa-team-row">
+        {team.map(t => (
+          <div class="sa-team-card">
+            <img class="sa-team-photo sa-team-photo-masked" src={t.masked} alt={`${t.name}, masked`} width="500" height="750" loading="lazy" decoding="async" />
+            <img class="sa-team-photo sa-team-photo-unmasked" src={t.unmasked} alt={t.name} width="500" height="750" loading="lazy" decoding="async" />
+            <div class="sa-team-info">
+              <div class="sa-team-top">
+                <div><div class="sa-team-name">{t.name}</div><div class="sa-team-role">{t.role}</div></div>
+                <div class="sa-team-power">{t.power}</div>
+              </div>
+              <div class="sa-team-bio">{t.bio}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white sa-rule">
+    <div class="sa-wrap sa-origin">
+      <div>
+        <p class="sa-eyebrow">The origin story</p>
+        <h2 class="sa-h2" style="margin-bottom: 24px">How we got here</h2>
+        <div class="sa-timeline">
+          {timeline.map(t => (
+            <div class="sa-timeline-item">
+              <span class="sa-timeline-year">{t.year}</span>
+              <div class="sa-timeline-title">{t.title}</div>
+              <div class="sa-timeline-desc">{t.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div class="sa-quote-card">
+          <div class="sa-quote-mark">"</div>
+          <p>We built Fresh Tech to be the IT company we would want to hire. One that answers the phone, speaks plainly, and doesn't disappear when something goes wrong.</p>
+          <div class="sa-quote-attr"><span class="sa-quote-avatar">👤</span><div><div class="sa-quote-name">Sam James</div><div class="sa-quote-role">Founder, Fresh Tech · Ludlow, 2014</div></div></div>
+        </div>
+        <div class="sa-badges">
+          {badges.map(b => <div class="sa-badge"><span>{b.emoji}</span><div><div class="sa-badge-label">{b.label}</div><div class="sa-badge-sub">{b.sub}</div></div></div>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap sa-mission">
+      <div>
+        <p class="sa-eyebrow">In the community</p>
+        <h2 class="sa-h2">Giving some of it back</h2>
+      </div>
+      <div>
+        <p class="sa-lg">We designed and built a new website for Triffid Explorer Scout Unit in Ludlow, and gave it to them. No invoice: what changed hands was our time rather than anyone's money.</p>
+        <p class="sa-body">We should be straight about the connection: Sam is one of the unit's leaders, so this was not a cold approach. It did mean we knew exactly what the unit needed, which is usually the hard part of a project like this.</p>
+        <p class="sa-body sa-body-strong">It is already doing its job. Young people have signed up to the unit after finding it through the new site, which is the only measure of success that counts here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <p class="sa-eyebrow">Next step</p>
+      <h2 class="sa-h2">Ready to talk?</h2>
+      <p class="sa-lg sa-center-lead">A 20-minute call is enough to tell you whether we're a good fit, and we'll tell you honestly if we're not.</p>
+      <div class="sa-btn-row">
+        <a class="sa-button" href="/contact">Book a 20-min call →</a>
+        <a class="sa-button sa-button-outline" href="tel:+441584517234">01584 517 234</a>
+      </div>
+      <div class="sa-fine">No commitment. No sales script. Mon–Fri, 9am–5pm.</div>
+    </div>
+  </section>
+</StandaloneShell>
+
+<style>
+  .sa-about-hero { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center; }
+  @media (min-width: 768px) { .sa-about-hero { grid-template-columns: 1fr 1fr; gap: 64px; } }
+  .sa-tag { display: inline-block; background: var(--yellow); color: var(--ink); border: 2px solid var(--paper); padding: 6px 16px; font: 400 12px 'SA Bungee', sans-serif; letter-spacing: 0.08em; margin-bottom: 24px; transform: rotate(-2deg); }
+  .sa-lead { color: rgba(255,255,255,0.75); font-size: 18px; line-height: 1.65; margin: 0 0 28px; max-width: 42ch; }
+  .sa-photo-wrap { position: relative; }
+  .sa-photo-card { position: relative; background: var(--white); padding: 12px 12px 52px; border: 2px solid var(--paper); }
+  .sa-photo-card img { width: 100%; height: auto; display: block; }
+  .sa-photo-caption { position: absolute; bottom: 14px; left: 0; right: 0; text-align: center; font: 400 17px 'SA Bungee', sans-serif; color: var(--ink); }
+  .sa-photo-tag { position: absolute; bottom: -14px; right: -10px; background: var(--accent); color: var(--ink); border: 3px solid var(--ink); padding: 8px 16px; font: 400 12px 'SA Bungee', sans-serif; transform: rotate(6deg); }
+  .sa-values { background: var(--primary-dark); }
+  .sa-values-grid { display: grid; grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 768px) { .sa-values-grid { grid-template-columns: repeat(4, 1fr); } }
+  .sa-value { padding: 22px 24px; border-right: 1px solid rgba(255,255,255,0.15); }
+  .sa-value:nth-child(2n) { border-right: none; }
+  @media (min-width: 768px) { .sa-value { border-right: 1px solid rgba(255,255,255,0.15); } .sa-value:last-child { border-right: none; } .sa-value:nth-child(2n) { border-right: 1px solid rgba(255,255,255,0.15); } .sa-value:nth-child(4) { border-right: none; } }
+  .sa-value-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #d9dee2; font-weight: 700; margin-bottom: 4px; }
+  .sa-value-stat { font: 400 17px 'SA Bungee', sans-serif; color: var(--white); }
+  .sa-h2 { color: var(--ink); font: 400 32px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; margin: 0 0 12px; }
+  .sa-mission { display: grid; grid-template-columns: 1fr; gap: 28px; }
+  @media (min-width: 768px) { .sa-mission { grid-template-columns: 1fr 2fr; gap: 64px; } }
+  .sa-lg { font-size: 19px; line-height: 1.65; color: rgba(15,25,35,0.65); max-width: 56ch; margin: 0 0 18px; }
+  .sa-body { font-size: 16px; line-height: 1.7; color: rgba(15,25,35,0.65); max-width: 56ch; margin: 0 0 18px; }
+  .sa-body-strong { color: var(--ink); font-weight: 600; margin-bottom: 0; }
+  .sa-sub2 { color: rgba(15,25,35,0.62); font-size: 16px; max-width: 52ch; margin: 0; line-height: 1.6; }
+  .sa-team-row { display: flex; gap: 28px; flex-wrap: wrap; }
+  .sa-team-card { position: relative; width: 300px; height: 440px; border: 2px solid var(--ink); overflow: hidden; box-shadow: 3px 3px 0 0 var(--ink); background: var(--primary); }
+  .sa-team-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: opacity 300ms; }
+  .sa-team-photo-unmasked { opacity: 0; }
+  .sa-team-card:hover .sa-team-photo-masked, .sa-team-card:focus-within .sa-team-photo-masked { opacity: 0; }
+  .sa-team-card:hover .sa-team-photo-unmasked, .sa-team-card:focus-within .sa-team-photo-unmasked { opacity: 1; }
+  .sa-team-info { position: absolute; bottom: 0; left: 0; right: 0; z-index: 5; background: linear-gradient(to top, var(--ink) 0%, rgba(15,25,35,0.95) 55%, transparent 100%); padding: 24px 20px 20px; }
+  .sa-team-top { display: flex; justify-content: space-between; gap: 10px; }
+  .sa-team-name { font: 400 20px 'SA Bungee', sans-serif; color: var(--paper); }
+  .sa-team-role { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-weight: 700; margin-top: 4px; }
+  .sa-team-power { background: var(--yellow); color: var(--ink); border: 2px solid var(--ink); padding: 4px 9px; font: 400 10px 'SA Bungee', sans-serif; height: fit-content; }
+  .sa-team-bio { color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.6; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 12px; }
+  .sa-origin { display: grid; grid-template-columns: 1fr; gap: 40px; }
+  @media (min-width: 768px) { .sa-origin { grid-template-columns: 1fr 1fr; gap: 64px; } }
+  .sa-timeline { position: relative; padding-left: 26px; border-left: 3px solid var(--primary); display: flex; flex-direction: column; gap: 28px; }
+  .sa-timeline-year { display: inline-block; background: var(--accent); color: var(--ink); padding: 2px 10px; font: 400 12px 'SA Bungee', sans-serif; margin-bottom: 6px; }
+  .sa-timeline-title { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+  .sa-timeline-desc { color: rgba(15,25,35,0.62); font-size: 14px; line-height: 1.6; }
+  .sa-quote-card { background: var(--paper); border: 2px solid var(--ink); padding: 36px; box-shadow: 5px 5px 0 0 var(--ink); margin-bottom: 24px; }
+  .sa-quote-mark { font: 400 60px/0.8 'SA Bungee', sans-serif; color: var(--primary); margin-bottom: 16px; }
+  .sa-quote-card p { font-size: 18px; line-height: 1.65; color: var(--ink); font-style: italic; margin: 0 0 20px; }
+  .sa-quote-attr { border-top: 1px solid var(--hairline); padding-top: 16px; display: flex; align-items: center; gap: 16px; }
+  .sa-quote-avatar { width: 48px; height: 48px; flex-shrink: 0; background: var(--paper-deep); border: 2px solid var(--hairline); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .sa-quote-name { font-weight: 700; font-size: 15px; }
+  .sa-quote-role { font-size: 13px; color: rgba(15,25,35,0.62); }
+  .sa-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .sa-badge { background: var(--paper); border: 1px solid var(--hairline); padding: 16px; display: flex; gap: 12px; }
+  .sa-badge-label { font-weight: 700; font-size: 13px; }
+  .sa-badge-sub { font-size: 12px; color: #46545f; margin-top: 2px; }
+  .sa-center-lead { margin-left: auto; margin-right: auto; }
+  .sa-btn-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+  .sa-button-outline { background: transparent; color: var(--ink); box-shadow: none; }
+  .sa-fine { margin-top: 20px; font-size: 13px; color: #46545f; }
+</style>

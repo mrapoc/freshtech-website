@@ -1,0 +1,625 @@
+{
+  "route": "/faq",
+  "source": "pages/FaqPage.tsx",
+  "sourceSha256": "b2c7a3937ecb30179fa623971c19ec3b0d03e6c54ff371b62fe27b27f98c0278",
+  "capturedAt": "2026-09-16T12:23:09.296Z",
+  "head": {
+    "title": "Frequently Asked Questions | Fresh Tech IT Support",
+    "description": "Common questions about our IT support, pricing, and service areas. Get instant answers or contact our team.",
+    "canonical": "https://fresh-tech.uk/faq",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": [
+          "LocalBusiness",
+          "ProfessionalService"
+        ],
+        "@id": "https://fresh-tech.uk/#localbusiness",
+        "name": "Fresh Tech IT Support",
+        "description": "Managed IT Support and Cybersecurity services for businesses in Shropshire, Herefordshire, and the West Midlands.",
+        "image": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+        "url": "https://fresh-tech.uk/",
+        "telephone": "+441584517234",
+        "email": "hello@fresh-tech.uk",
+        "priceRange": "££",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.368,
+          "longitude": -2.717
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Shropshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Herefordshire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Worcestershire"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Powys"
+          },
+          {
+            "@type": "City",
+            "name": "Ludlow"
+          },
+          {
+            "@type": "City",
+            "name": "Shrewsbury"
+          },
+          {
+            "@type": "City",
+            "name": "Hereford"
+          },
+          {
+            "@type": "City",
+            "name": "Telford"
+          },
+          {
+            "@type": "City",
+            "name": "Worcester"
+          },
+          {
+            "@type": "City",
+            "name": "Leominster"
+          },
+          {
+            "@type": "City",
+            "name": "Ross-on-Wye"
+          },
+          {
+            "@type": "City",
+            "name": "Bridgnorth"
+          },
+          {
+            "@type": "City",
+            "name": "Malvern"
+          },
+          {
+            "@type": "City",
+            "name": "Ledbury"
+          },
+          {
+            "@type": "City",
+            "name": "Oswestry"
+          },
+          {
+            "@type": "City",
+            "name": "Welshpool"
+          }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.368,
+            "longitude": -2.717
+          },
+          "geoRadius": "55000"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed IT Support",
+              "url": "https://fresh-tech.uk/services/managed-it-support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Security",
+              "url": "https://fresh-tech.uk/services/cybersecurity"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cyber Essentials Certification Support",
+              "url": "https://fresh-tech.uk/services/cyber-essentials"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Microsoft 365 & Cloud Solutions",
+              "url": "https://fresh-tech.uk/services/cloud-solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cloud Backup & Disaster Recovery",
+              "url": "https://fresh-tech.uk/services/backup-disaster-recovery"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Phone Systems",
+              "url": "https://fresh-tech.uk/services/cloud-phone-systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware Procurement",
+              "url": "https://fresh-tech.uk/services/hardware-procurement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Strategic IT Projects",
+              "url": "https://fresh-tech.uk/services/strategic-projects"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Managed Print",
+              "url": "https://fresh-tech.uk/services/managed-print"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast remote response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Faq",
+            "item": "https://fresh-tech.uk/faq"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are your support hours?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Our standard helpdesk is open 9:00 AM to 5:00 PM, Monday to Friday (closed weekends & bank holidays). Our monitoring runs 24/7 so we catch critical issues even outside hours. If you need guaranteed out-of-hours cover, talk to us about our premium options."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you visit our office?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Our managed support is delivered remotely, which is how most issues are fixed fastest. If an issue cannot be fixed remotely, we can arrange an onsite visit, which is billed separately."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What areas do you cover?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We primarily support businesses in Shropshire, Herefordshire, Worcestershire, and Powys. Our main hubs are Ludlow, Shrewsbury, Hereford, and Telford."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I contact you when I have an issue?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can call our helpdesk directly, email, or log a ticket through our client portal. Most clients prefer to call or email - we respond to both quickly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What size businesses do you support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We typically work with businesses between 5 and 100 employees. Smaller than 5 is often better served by ad-hoc support. Larger than 100 often has in-house IT and may need us for specific projects."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is antivirus included?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. All our managed plans include next-generation antivirus (EDR) as standard."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer staff training?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We provide phishing simulation and security awareness training to help your staff spot scams."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you help us get Cyber Essentials certified?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. We handle the entire process from gap analysis to certification. We guarantee you'll pass first time."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if we get hacked?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We have incident response procedures. We'll isolate affected systems, investigate the breach, restore from backups if needed, and help you report to regulators if required."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the assessment work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We start with a Gap Analysis to audit your current security against the standard. We fix any issues found. Then, we work with our assessment partner who will only submit your application once a pass is guaranteed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if we fail?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You won't. Our process is designed so that the final submission only happens after a 'pre-marking' stage. If there are issues, we fix them before the official submission."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you do the technical audit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For Cyber Essentials Plus, we prepare you for the audit. The actual audit is done by an independent certification body to ensure impartiality, but we are there holding your hand (digitally) the whole time."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it difficult to switch IT providers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. We handle the entire process. We talk to your old provider, get the passwords, and migrate everything. You don't have to have awkward conversations."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will there be downtime when we switch?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rarely. We plan the transition carefully to ensure your email and systems stay online throughout the handover."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does the switch take?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Typically 2-4 weeks from signing to full handover. We never rush - we'd rather do it right."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if our current provider won't cooperate?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We've dealt with this before. We know how to reset passwords, prove domain ownership, and gain access without their help if necessary."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What do you need from us to get started?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Just access to your Microsoft 365 admin portal, a list of your devices, and 30 minutes for a kickoff call. We handle the rest."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why 'From' pricing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Every business is unique. A simple office with 5 laptops is cheaper to support than a factory with complex servers. Our 'From' prices give you a realistic baseline."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are there hidden costs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. We quote for projects upfront. Our monthly fee covers all day-to-day remote support. Onsite visits, when needed, are billed separately."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you charge for site visits?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Managed support is delivered remotely. When an issue cannot be fixed remotely, we arrange an onsite visit, which is billed separately."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What's included in your monthly fee?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Unlimited remote support, proactive monitoring, patch management, security tools, backup monitoring, and regular account reviews. Basically, everything you need for peace of mind."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can we cancel if we're not happy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Our contracts are typically 12 months. If you're unhappy in the first 30 days, talk to us - we'll make it right or let you go."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you fix printers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We fix connectivity issues (e.g., getting it on the network). For hardware faults, we liaise with the manufacturer or your managed print provider on your behalf."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is your SLA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We have a standard 1-hour response SLA for critical issues, but our average is under 15 minutes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you support Macs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We support mixed Windows/Mac environments. Most of our clients are Windows-based, but we're comfortable with Apple devices too."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you help with new computer purchases?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We can spec, source, and set up new hardware. Devices arrive ready to use - just log in and start working."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does a managed print service cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It depends on your print volumes, which is why we start with a free print audit. The hardware is a one-off purchase (or spread over 10 interest-free monthly payments). The ongoing service is a simple cost-per-page covering all toner, parts, and engineer callouts. Most businesses find the total cost is significantly lower than ad-hoc toner purchases."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if we don't print enough to justify managed print?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Then we'll tell you. If your print volumes are low and your current setup works fine, managed print may not make sense. That's exactly what the print audit establishes - we only recommend it if the numbers genuinely stack up."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "We're currently in a lease contract. Can you help?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We can review your existing contract, identify the notice period and renewal date, and advise on the most cost-effective exit strategy. Even if the end date is years away, getting it in the diary now means you won't miss the cancellation window."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does the service agreement include?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Everything except paper. Toner, parts, consumables, labour, callouts, and support are all included in the cost-per-page charge. It's a 12-month rolling agreement - no 5-year lock-ins, no automatic renewals, and you can leave with reasonable notice."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is the print audit really free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We deploy monitoring software that runs in the background for around a month. We analyse the data and present findings. If improvements can be made, we show you the numbers. If your setup is already in good shape, that's the end of it. No obligation, no pressure."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are your printers secure?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Business-grade managed printers include secure print release (documents only print when you authenticate at the device), encrypted storage, access controls, and managed firmware updates. We ensure print devices are properly secured as part of the setup."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "The Knowledge Base"
+      ],
+      [
+        2,
+        "Most Asked Questions"
+      ],
+      [
+        3,
+        "How quickly do you respond?"
+      ],
+      [
+        3,
+        "Is cybersecurity included?"
+      ],
+      [
+        3,
+        "Can we switch from our current provider?"
+      ],
+      [
+        2,
+        "Still Have Questions?"
+      ],
+      [
+        2,
+        "Explore More Resources"
+      ],
+      [
+        2,
+        "Signal for Help"
+      ],
+      [
+        3,
+        "Send a Signal"
+      ]
+    ],
+    "links": [
+      [
+        "/onboarding",
+        "See how it works"
+      ],
+      [
+        "tel:01584517234",
+        "Call Us 01584 517 234 Mon-Fri 9am-5pm"
+      ],
+      [
+        "mailto:hello@fresh-tech.uk",
+        "Email Us hello@fresh-tech.uk Usually reply within 2 hours"
+      ],
+      [
+        "/contact",
+        "Book a Call Free 15-min consultation No obligation"
+      ],
+      [
+        "/blog",
+        "Read Our Blog"
+      ],
+      [
+        "/case-studies",
+        "View Case Studies"
+      ],
+      [
+        "/it-health-check",
+        "IT Health Check"
+      ],
+      [
+        "/onboarding",
+        "Thinking of switching providers? See how easy it is"
+      ],
+      [
+        "tel:01584517234",
+        "01584 517 234"
+      ],
+      [
+        "mailto:support@fresh-tech.uk",
+        "support@fresh-tech.uk"
+      ],
+      [
+        "tel:01584517234",
+        "01584 517 234"
+      ]
+    ],
+    "images": [],
+    "text": "FAQ The Knowledge Base Even superheroes have questions. Here are the answers to the most common ones we get asked. 32+ Questions Answered 6 Topic Categories <15m Avg Response Time 24/7 Huntress SOC Monitoring Most Asked Questions The answers everyone wants to know first. How quickly do you respond? Our average response time is under 15 minutes for urgent issues. We prioritise critical faults that stop you from working. Is cybersecurity included? Yes. All our managed plans include next-gen antivirus (EDR), email filtering, and our 24/7 SOC powered by Huntress: real human threat hunters watching your environment around the clock, not just an automated alert dashboard. Can we switch from our current provider? Absolutely. We handle the entire transition. We talk to your old provider, get the passwords, and migrate everything without disruption. See our onboarding process.See how it works General IT Support3 Cyber Security2 Pricing & Costs2 Onboarding2 All Topics General IT Support Cyber Security & Compliance Cyber Essentials Process Onboarding & Transition Performance & Cost Service & Coverage Managed Print General IT SupportWhat are your support hours? Our standard helpdesk is open 9:00 AM to 5:00 PM, Monday to Friday (closed weekends & bank holidays). Our monitoring runs 24/7 so we catch critical issues even outside hours. If you need guaranteed out-of-hours cover, talk to us about our premium options. General IT SupportDo you visit our office? Our managed support is delivered remotely, which is how most issues are fixed fastest. If an issue cannot be fixed remotely, we can arrange an onsite visit, which is billed separately. General IT SupportWhat areas do you cover? We primarily support businesses in Shropshire, Herefordshire, Worcestershire, and Powys. Our main hubs are Ludlow, Shrewsbury, Hereford, and Telford. General IT SupportHow do I contact you when I have an issue? You can call our helpdesk directly, email, or log a ticket through our client portal. Most clients prefer to call or email - we respond to both quickly. General IT SupportWhat size businesses do you support? We typically work with businesses between 5 and 100 employees. Smaller than 5 is often better served by ad-hoc support. Larger than 100 often has in-house IT and may need us for specific projects. Cyber Security & ComplianceIs antivirus included? Yes. All our managed plans include next-generation antivirus (EDR) as standard. Cyber Security & ComplianceDo you offer staff training? Yes. We provide phishing simulation and security awareness training to help your staff spot scams. Cyber Security & ComplianceCan you help us get Cyber Essentials certified? Absolutely. We handle the entire process from gap analysis to certification. We guarantee you'll pass first time. Cyber Security & ComplianceWhat happens if we get hacked? We have incident response procedures. We'll isolate affected systems, investigate the breach, restore from backups if needed, and help you report to regulators if required. Cyber Essentials ProcessHow does the assessment work? We start with a Gap Analysis to audit your current security against the standard. We fix any issues found. Then, we work with our assessment partner who will only submit your application once a pass is guaranteed. Cyber Essentials ProcessWhat happens if we fail? You won't. Our process is designed so that the final submission only happens after a 'pre-marking' stage. If there are issues, we fix them before the official submission. Cyber Essentials ProcessDo you do the technical audit? For Cyber Essentials Plus, we prepare you for the audit. The actual audit is done by an independent certification body to ensure impartiality, but we are there holding your hand (digitally) the whole time. Onboarding & TransitionIs it difficult to switch IT providers? No. We handle the entire process. We talk to your old provider, get the passwords, and migrate everything. You don't have to have awkward conversations. Onboarding & TransitionWill there be downtime when we switch? Rarely. We plan the transition carefully to ensure your email and systems stay online throughout the handover. Onboarding & TransitionHow long does the switch take? Typically 2-4 weeks from signing to full handover. We never rush - we'd rather do it right. Onboarding & TransitionWhat if our current provider won't cooperate? We've dealt with this before. We know how to reset passwords, prove domain ownership, and gain access without their help if necessary. Onboarding & TransitionWhat do you need from us to get started? Just access to your Microsoft 365 admin portal, a list of your devices, and 30 minutes for a kickoff call. We handle the rest. Performance & CostWhy 'From' pricing? Every business is unique. A simple office with 5 laptops is cheaper to support than a factory with complex servers. Our 'From' prices give you a realistic baseline. Performance & CostAre there hidden costs? No. We quote for projects upfront. Our monthly fee covers all day-to-day remote support. Onsite visits, when needed, are billed separately. Performance & CostDo you charge for site visits? Yes. Managed support is delivered remotely. When an issue cannot be fixed remotely, we arrange an onsite visit, which is billed separately. Performance & CostWhat's included in your monthly fee? Unlimited remote support, proactive monitoring, patch management, security tools, backup monitoring, and regular account reviews. Basically, everything you need for peace of mind. Performance & CostCan we cancel if we're not happy? Our contracts are typically 12 months. If you're unhappy in the first 30 days, talk to us - we'll make it right or let you go. Service & CoverageDo you fix printers? We fix connectivity issues (e.g., getting it on the network). For hardware faults, we liaise with the manufacturer or your managed print provider on your behalf. Service & CoverageWhat is your SLA? We have a standard 1-hour response SLA for critical issues, but our average is under 15 minutes. Service & CoverageDo you support Macs? Yes. We support mixed Windows/Mac environments. Most of our clients are Windows-based, but we're comfortable with Apple devices too. Service & CoverageCan you help with new computer purchases? Yes. We can spec, source, and set up new hardware. Devices arrive ready to use - just log in and start working. Managed PrintHow much does a managed print service cost? It depends on your print volumes, which is why we start with a free print audit. The hardware is a one-off purchase (or spread over 10 interest-free monthly payments). The ongoing service is a simple cost-per-page covering all toner, parts, and engineer callouts. Most businesses find the total cost is significantly lower than ad-hoc toner purchases. Managed PrintWhat if we don't print enough to justify managed print? Then we'll tell you. If your print volumes are low and your current setup works fine, managed print may not make sense. That's exactly what the print audit establishes - we only recommend it if the numbers genuinely stack up. Managed PrintWe're currently in a lease contract. Can you help? Yes. We can review your existing contract, identify the notice period and renewal date, and advise on the most cost-effective exit strategy. Even if the end date is years away, getting it in the diary now means you won't miss the cancellation window. Managed PrintWhat does the service agreement include? Everything except paper. Toner, parts, consumables, labour, callouts, and support are all included in the cost-per-page charge. It's a 12-month rolling agreement - no 5-year lock-ins, no automatic renewals, and you can leave with reasonable notice. Managed PrintIs the print audit really free? Yes. We deploy monitoring software that runs in the background for around a month. We analyse the data and present findings. If improvements can be made, we show you the numbers. If your setup is already in good shape, that's the end of it. No obligation, no pressure. Managed PrintAre your printers secure? Yes. Business-grade managed printers include secure print release (documents only print when you authenticate at the device), encrypted storage, access controls, and managed firmware updates. We ensure print devices are properly secured as part of the setup. Still Have Questions? Can't find what you're looking for? Our team is standing by to help. Call Us 01584 517 234 Mon-Fri 9am-5pm Email Us hello@fresh-tech.uk Usually reply within 2 hours Book a Call Free 15-min consultation No obligation Explore More Resources Guides, case studies, and tools to help your business. Read Our BlogView Case StudiesIT Health Check Signal for Help Ready to banish tech headaches? Fill out the form or book a chat directly. We respond faster than a speeding bullet (usually under 15 minutes). ✓ Trusted by local businesses for over 10 years Thinking of switching providers? See how easy it is Call The Batphone 01584 517 234 Email HQ hello@fresh-tech.uk Face-to-Face Book an Intro Call with Sam Send a Signal Step 1 of 3 Name Email Phone (optional) How can we help? We typically respond within 15 minutes during business hours (Mon-Fri, 9am-5pm). Send Message Existing Client? Email support@fresh-tech.uk or call 01584 517 234 for urgent help."
+  }
+}

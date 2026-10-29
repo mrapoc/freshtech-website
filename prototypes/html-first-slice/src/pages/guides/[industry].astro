@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CookieConsent from '../../components/CookieConsent.astro';
+import GuidePage from '../../components/GuidePage.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import { guides } from '../../generated/guides-data.mjs';
+import { guideSeo } from '../../lib/guide-seo.mjs';
+import '../../styles/guides.css';
+import PrototypeBanner from '../../components/PrototypeBanner.astro';
+
+// The route inventory is the validated `industryGuides` record from
+// data/industryGuides.ts (scripts/extract-guides.mjs), keyed by its source
+// key, so /guides/engineering and /guides/legal keep their source slugs even
+// though the matching industry pages live under aliases elsewhere.
+export function getStaticPaths() {
+  return guides.map(guide => ({ params: { industry: guide.slug }, props: { guide } }));
+}
+
+const { guide } = Astro.props;
+const seo = guideSeo(guide);
+// robots is deliberately not passed: BaseLayout's preview noindex stays.
+const headingFontPreloads = /[Ā-ỿⱠ-ꟿ]/u.test(guide.title)
+  ? ['/fonts/bungee-latin.woff2', '/fonts/bungee-latin-ext.woff2']
+  : ['/fonts/bungee-latin.woff2'];
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonical={seo.canonical} image={seo.image} ogType={seo.ogType} schemas={seo.schemas} preloadFonts={headingFontPreloads}>
+  <PrototypeBanner />
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <SiteNav activePage="" />
+  <GuidePage guide={guide} />
+  <SiteFooter />
+  <CookieConsent />
+</BaseLayout>
+
+<script src="../../scripts/enhance.ts"></script>
+<script src="../../scripts/guide-enhance.ts"></script>

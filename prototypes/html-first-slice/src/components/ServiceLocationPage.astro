@@ -1,0 +1,124 @@
+---
+// Copy and structure mirror pages-v2/ServiceLocationPageV2.tsx: hero with
+// breadcrumb, location badge, H1, intro and calls to action; the review panel;
+// the four benefit cards; the RichText content card with the local-context
+// note; native <details> FAQs; county hub, service and location links; and the
+// closing call to action. Two deliberate differences from the React page: the
+// review panel stays visible at every width instead of disappearing below
+// 768px, and the pin/phone emoji are replaced by an inline SVG and plain text.
+import InlineMarkdown from './InlineMarkdown.astro';
+import RichText from './RichText.astro';
+import ServiceLocationIcon from './ServiceLocationIcon.astro';
+import { accentTone, badgeText, iconName } from '../lib/service-location-display.mjs';
+
+interface Benefit { title: string; desc: string; icon: string }
+interface Faq { q: string; a: string }
+interface Page {
+  slug: string; service: string; location: string; isCounty: boolean; title: string; metaDesc: string; h1: string; intro: string;
+  content: string; benefits: Benefit[]; localContext: string; faqs: Faq[]; relatedService: string; relatedLocation: string;
+}
+interface Props { page: Page; countyHub: { slug: string; location: string } | null }
+const { page, countyHub } = Astro.props;
+---
+
+<main id="main-content" class="sl-page" data-service-location-page={page.slug} data-county={page.isCounty ? 'true' : 'false'} tabindex="-1">
+  <section class="sl-hero">
+    <div class="sl-container sl-hero-grid">
+      <div>
+        <nav class="sl-breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href={`/services/${page.relatedService}`}>{page.service}</a></li>
+            <li><span aria-current="page">{page.location}</span></li>
+          </ol>
+        </nav>
+        <p class="sl-badge">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+            <circle cx="12" cy="10" r="2.5"></circle>
+          </svg>
+          {badgeText(page)}
+        </p>
+        <h1>{page.h1}</h1>
+        <p class="sl-hero-copy">{page.intro}</p>
+        <div class="sl-actions">
+          <a class="sl-primary-button" href="/contact">Book a 20-min call <span aria-hidden="true">→</span></a>
+          <a class="sl-secondary-button" href="tel:+441584517234">01584 517 234</a>
+        </div>
+      </div>
+      <aside class="sl-review-panel" aria-label="Customer reviews">
+        <strong>Reviews</strong>
+        <span>Read customer feedback on Google</span>
+        <p>Ludlow HQ ·<br />Engineers across the Welsh Borders</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sl-section sl-benefits">
+    <div class="sl-container">
+      <header class="sl-section-heading">
+        <p class="sl-eyebrow">Why local matters</p>
+        <h2>Why {page.location} businesses choose Fresh Tech</h2>
+      </header>
+      <div class="sl-benefit-grid">
+        {page.benefits.map((benefit, index) => (
+          <article class="sl-benefit-card" data-tone={accentTone(index)}>
+            <span class="sl-benefit-icon"><ServiceLocationIcon name={iconName(benefit.icon)} /></span>
+            <h3>{benefit.title}</h3>
+            <p>{benefit.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sl-section sl-content">
+    <div class="sl-copy-container">
+      <div class="sl-content-card">
+        <div class="sl-rich"><RichText text={page.content} /></div>
+        <div class="sl-local-context">
+          <p class="sl-local-label">Local expertise</p>
+          <p>{page.localContext}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sl-section sl-faqs">
+    <div class="sl-faq-container">
+      <header class="sl-section-heading">
+        <p class="sl-eyebrow">{page.service} in {page.location}</p>
+        <h2>Common questions</h2>
+      </header>
+      <div class="sl-faq-list">
+        {page.faqs.map(faq => (
+          <details>
+            <summary><span><InlineMarkdown text={faq.q} /></span><b aria-hidden="true">+</b></summary>
+            <div class="sl-rich sl-faq-answer"><RichText text={faq.a} /></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sl-section sl-related">
+    <nav class="sl-container sl-related-links" aria-label="Related pages">
+      {countyHub && <a class="sl-related-hub" href={`/${countyHub.slug}`} data-county-hub={countyHub.slug}>{page.service} across {countyHub.location} <span aria-hidden="true">→</span></a>}
+      <a href={`/services/${page.relatedService}`}>See {page.service} details <span aria-hidden="true">→</span></a>
+      <a href={`/locations/${page.relatedLocation}`}>All services in {page.location} <span aria-hidden="true">→</span></a>
+    </nav>
+  </section>
+
+  <section class="sl-final">
+    <div class="sl-faq-container">
+      <p class="sl-eyebrow sl-eyebrow-light">Ready to talk?</p>
+      <h2>{page.service} for {page.location} businesses</h2>
+      <p class="sl-final-copy">20 minutes. No sales pitch. We'll tell you honestly whether we're a fit.</p>
+      <div class="sl-actions sl-actions-centre">
+        <a class="sl-primary-button" href="/contact">Book a 20-min call <span aria-hidden="true">→</span></a>
+        <a class="sl-secondary-button" href="tel:+441584517234">01584 517 234</a>
+      </div>
+    </div>
+  </section>
+</main>

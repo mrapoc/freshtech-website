@@ -1,0 +1,227 @@
+---
+// Port of pages/FaqPage.tsx with components/Faq.tsx (detailed). Questions come
+// from data/content.ts via src/generated/standalone-data.mjs and use native
+// <details>. Search and category pills work with a small script and every
+// answer stays visible without JavaScript (the search box only appears once the
+// script runs). The quick-nav items are links to the list rather than buttons. The trailing <Contact/> is ported via SourceContact.astro (see its
+// own header comment); see STANDALONE_DIFFERENCES['/faq'] for the resulting
+// heading/link/text differences against the production ContactForm.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+import SourceContact from '../components/SourceContact.astro';
+
+import { faqCategories } from '../generated/standalone-data.mjs';
+
+const totalQuestions = faqCategories.reduce((sum, cat) => sum + cat.items.length, 0);
+const allFaqs = faqCategories.flatMap(cat => cat.items);
+
+const featured = [
+  { q: 'How quickly do you respond?', a: 'Response priorities depend on the issue and your agreed support terms. Contact us to discuss the cover your business needs.' },
+  { q: 'Is cybersecurity included?', a: 'Yes. All our managed plans include next-gen antivirus (EDR), email filtering, and our 24/7 SOC powered by Huntress: real human threat hunters watching your environment around the clock, not just an automated alert dashboard.' },
+  { q: 'Can we switch from our current provider?', a: 'Absolutely. We handle the entire transition. We talk to your old provider, get the passwords, and migrate everything without disruption. See our onboarding process.', link: '/onboarding' },
+];
+
+const categoryNav = [
+  { name: 'General IT Support', count: 3 },
+  { name: 'Cyber Security', count: 2 },
+  { name: 'Pricing & Costs', count: 2 },
+  { name: 'Onboarding', count: 2 },
+];
+
+const seo = {
+  path: '/faq',
+  title: 'Frequently Asked Questions',
+  description: 'Common questions about our IT support, pricing, and service areas. Get instant answers or contact our team.',
+  faqs: allFaqs,
+};
+---
+
+<StandaloneShell name="faq" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap sa-center" style="--sa-max: 760px">
+      <p class="sa-eyebrow sa-eyebrow-light">FAQ</p>
+      <h1 class="sa-display sa-display-light" style="--sa-size: 46px; --sa-size-mobile: 34px; margin-bottom: 16px">The Knowledge Base</h1>
+      <p class="sa-lead sa-center-lead">Even superheroes have questions. Here are the answers to the most common ones we get asked.</p>
+    </div>
+  </section>
+
+  <section class="sa-stats">
+    <div class="sa-wrap sa-stats-grid">
+      <div><div class="sa-stat-num">{totalQuestions}+</div><div class="sa-stat-label">Questions Answered</div></div>
+      <div><div class="sa-stat-num">6</div><div class="sa-stat-label">Topic Categories</div></div>
+      <div><div class="sa-stat-num">&lt;15m</div><div class="sa-stat-label">Avg Response Time</div></div>
+      <div><div class="sa-stat-num">24/7</div><div class="sa-stat-label">Huntress SOC Monitoring</div></div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper">
+    <div class="sa-wrap">
+      <div class="sa-center" style="margin-bottom: 36px">
+        <h2 class="sa-h2">Most Asked Questions</h2>
+        <p class="sa-sub">The answers everyone wants to know first.</p>
+      </div>
+      <div class="sa-grid-3">
+        {featured.map(f => (
+          <div class="sa-card">
+            <h3>{f.q}</h3>
+            <p>{f.a}{f.link && <a href={f.link}>See how it works</a>}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white sa-rule">
+    <div class="sa-wrap sa-quicknav">
+      {categoryNav.map(c => <Fragment><a class="sa-quicknav-item" href="#faq-list"><span>{c.name}</span><span>{c.count}</span></a>{" "}</Fragment>)}
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper sa-rule" id="faq-list">
+    <div class="sa-wrap" style="--sa-max: 900px">
+      <div class="sa-faq-controls" data-faq-controls>
+        <noscript><style>.sa-faq-search[hidden] { display: none !important; }</style></noscript>
+        <input id="faq-search" class="sa-faq-search" type="search" aria-label="Search the FAQs" placeholder="Search for answers (e.g., 'price', 'security', 'contract')" data-faq-search hidden />
+      </div>
+      <div class="sa-faq-pills" data-faq-pills>
+        <button type="button" class="sa-faq-pill" data-faq-category="All" aria-pressed="true">All Topics</button>
+        {faqCategories.map(cat => <button type="button" class="sa-faq-pill" data-faq-category={cat.title} aria-pressed="false">{cat.title}</button>)}
+      </div>
+      <div class="sa-faq-items" data-faq-items>
+        {faqCategories.flatMap(cat => cat.items.map(item => (
+          <details class="sa-faq-item" data-faq-item data-category={cat.title}>
+            <summary><span class="sa-faq-cat">{cat.title}</span><span class="sa-faq-q">{item.q}</span></summary>
+            <p class="sa-faq-a">{item.a}</p>
+          </details>
+        )))}
+      </div>
+      <div class="sa-faq-empty" data-faq-empty hidden>
+        <p>No answers found matching "<span data-faq-term></span>". Try a different keyword.</p>
+        <button type="button" class="sa-faq-clear" data-faq-clear>Clear Search</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-ink">
+    <div class="sa-wrap sa-center" style="--sa-max: 800px">
+      <h2 class="sa-h2 sa-h2-light">Still Have Questions?</h2>
+      <p class="sa-lead sa-center-lead">Can't find what you're looking for? Our team is standing by to help.</p>
+      <div class="sa-grid-3" style="margin-top: 32px">
+        <a class="sa-contact-tile" href="tel:01584517234">
+          <div>Call Us</div>
+          <div>01584 517 234</div>
+          <div>Mon-Fri 9am-5pm</div>
+        </a>
+        <a class="sa-contact-tile" href="mailto:hello@fresh-tech.uk">
+          <div>Email Us</div>
+          <div>hello@fresh-tech.uk</div>
+          <div>Usually reply within 2 hours</div>
+        </a>
+        <a class="sa-contact-tile sa-contact-tile-accent" href="/contact">
+          <div>Book a Call</div>
+          <div>Free 15-min consultation</div>
+          <div>No obligation</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 700px">
+      <h2 class="sa-h2">Explore More Resources</h2>
+      <p class="sa-sub">Guides, case studies, and tools to help your business.</p>
+      <div class="sa-resource-row"><a href="/blog">Read Our Blog</a><a href="/case-studies">View Case Studies</a><a href="/it-health-check">IT Health Check</a></div>
+    </div>
+  </section>
+
+  <SourceContact />
+</StandaloneShell>
+
+<script>
+  const root = document.querySelector('[data-faq-items]');
+  const search = document.querySelector<HTMLInputElement>('[data-faq-search]');
+  const pills = document.querySelector<HTMLElement>('[data-faq-pills]');
+  const empty = document.querySelector<HTMLElement>('[data-faq-empty]');
+  if (root && search && pills && empty) {
+    const items = [...root.querySelectorAll<HTMLDetailsElement>('[data-faq-item]')];
+    let category = 'All';
+    const update = () => {
+      const term = search.value;
+      const needle = term.toLowerCase();
+      let shown = 0;
+      for (const item of items) {
+        const text = (item.querySelector('.sa-faq-q')?.textContent ?? '') + ' ' + (item.querySelector('.sa-faq-a')?.textContent ?? '');
+        const visible = term ? text.toLowerCase().includes(needle) : category === 'All' || item.dataset.category === category;
+        item.hidden = !visible;
+        if (visible) shown++;
+      }
+      pills.hidden = Boolean(term);
+      empty.hidden = shown > 0;
+      const echo = empty.querySelector('[data-faq-term]');
+      if (echo) echo.textContent = term;
+    };
+    search.hidden = false;
+    search.addEventListener('input', update);
+    pills.addEventListener('click', event => {
+      const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-faq-category]');
+      if (!button) return;
+      category = button.dataset.faqCategory ?? 'All';
+      for (const pill of pills.querySelectorAll('[data-faq-category]')) pill.setAttribute('aria-pressed', String(pill === button));
+      update();
+    });
+    empty.querySelector('[data-faq-clear]')?.addEventListener('click', () => { search.value = ''; update(); search.focus(); });
+  }
+</script>
+
+<style>
+  .sa-center-lead { text-align: center; margin-left: auto; margin-right: auto; max-width: 50ch; }
+  .sa-stats { background: var(--ink); color: var(--paper); padding: 40px 20px; border-bottom: 4px solid var(--primary-dark); }
+  .sa-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; text-align: center; }
+  @media (min-width: 768px) { .sa-stats-grid { grid-template-columns: repeat(4, 1fr); } }
+  .sa-stat-num { font: 400 32px/1 'SA Bungee', sans-serif; color: var(--yellow); margin-bottom: 6px; }
+  .sa-stat-label { font-size: 13px; color: rgba(255,255,255,0.7); }
+  .sa-h2 { color: var(--ink); font: 400 30px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; margin: 0 0 12px; }
+  .sa-h2-light { color: var(--paper); }
+  .sa-sub { color: rgba(15,25,35,0.62); font-size: 16px; max-width: 46ch; margin: 0 auto; line-height: 1.6; }
+  .sa-grid-3 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 768px) { .sa-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+  .sa-card { background: var(--white); border: 1px solid var(--hairline); padding: 26px 22px; }
+  .sa-card h3 { font: 700 18px/1.3 'SA Archivo', sans-serif; margin: 0 0 10px; color: var(--ink); }
+  .sa-card p { font-size: 14px; color: rgba(15,25,35,0.65); line-height: 1.65; margin: 0; }
+  .sa-card p a { color: var(--primary-dark); font-weight: 700; margin-left: 4px; }
+  .sa-quicknav { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .sa-quicknav-item { display: flex; align-items: center; gap: 8px; background: var(--paper-deep); border: 1px solid var(--hairline); padding: 10px 18px; font-size: 14px; font-weight: 700; color: var(--ink); }
+  .sa-quicknav-item span:last-child { background: var(--white); color: var(--primary-dark); font-size: 11px; padding: 2px 7px; border: 1px solid var(--hairline); }
+  .sa-faq-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 28px; }
+  .sa-faq-pill { background: var(--white); border: 1px solid var(--hairline); padding: 8px 16px; font-size: 13px; font-weight: 700; color: var(--ink); }
+  .sa-faq-items { display: flex; flex-direction: column; gap: 10px; }
+  .sa-faq-item { background: var(--white); border: 1px solid var(--hairline); }
+  .sa-faq-item summary { padding: 16px 20px; cursor: pointer; list-style: none; }
+  .sa-faq-item summary::-webkit-details-marker { display: none; }
+  .sa-faq-cat { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #5f6b75; font-weight: 700; margin-bottom: 4px; }
+  .sa-faq-q { font-weight: 700; font-size: 16px; color: var(--ink); }
+  .sa-faq-a { margin: 0; padding: 0 20px 18px; color: rgba(15,25,35,0.65); font-size: 15px; line-height: 1.65; }
+  .sa-contact-tile { display: block; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); padding: 22px; text-decoration: none; text-align: center; color: var(--paper); }
+  .sa-contact-tile div:first-child { font-weight: 700; font-size: 17px; margin-bottom: 6px; }
+  .sa-contact-tile div:nth-child(2) { color: var(--yellow); font-size: 14px; margin-bottom: 6px; }
+  .sa-contact-tile div:last-child { font-size: 12px; color: rgba(255,255,255,0.5); }
+  .sa-contact-tile-accent { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+  .sa-contact-tile-accent div:first-child { color: var(--ink); }
+  .sa-contact-tile-accent div:nth-child(2) { color: var(--ink); }
+  .sa-contact-tile-accent div:last-child { color: var(--ink); }
+  .sa-resource-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+  .sa-resource-row a { display: inline-flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--hairline); padding: 12px 20px; color: var(--ink); font-weight: 600; text-decoration: none; }
+  .sa-resource-row a:hover { border-color: var(--primary-dark); color: var(--primary-dark); }
+  .sa-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .sa-faq-controls { margin-bottom: 20px; }
+  /* Keeps its space while hidden so the reveal does not shift the page; the
+     <noscript> rule collapses it without JavaScript. */
+  .sa-faq-search[hidden] { display: inline-block; visibility: hidden; }
+  .sa-faq-search { width: 100%; padding: 14px 16px; border: 2px solid var(--hairline); background: var(--white); color: var(--ink); font: inherit; font-size: 17px; }
+  .sa-faq-search:focus-visible { outline: 3px solid var(--primary-dark); outline-offset: 2px; }
+  button.sa-faq-pill { cursor: pointer; font-family: inherit; }
+  button.sa-faq-pill[aria-pressed='true'] { background: var(--primary-dark); border-color: var(--primary-dark); color: var(--white); }
+  button.sa-faq-pill:focus-visible, .sa-faq-clear:focus-visible, a.sa-quicknav-item:focus-visible { outline: 3px solid var(--primary-dark); outline-offset: 2px; }
+  a.sa-quicknav-item { color: inherit; text-decoration: none; }
+  .sa-faq-empty { padding: 32px 0; color: #46545f; text-align: center; }
+  .sa-faq-clear { margin-top: 8px; border: 0; background: none; color: var(--primary-dark); font: inherit; font-weight: 700; cursor: pointer; }
+</style>

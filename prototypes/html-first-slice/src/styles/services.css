@@ -1,0 +1,114 @@
+/* /services listing and /services/[slug] detail. Also imported (before
+   case-studies.css) by the case-study routes, which reuse the service hero,
+   content-section, closing-section, listing-stats and hero-stat primitives.
+   Shared primitives (.eyebrow, h1, .hero-actions, .primary-button,
+   .secondary-button, .section-intro, .section-heading, .tick-list,
+   .last-reviewed) stay in global.css. */
+.hero-facts > *, .group-grid > *, .card-grid > * { min-width: 0; }
+.service-hero { padding: 56px 20px 64px; background-color: var(--ink); background-image: radial-gradient(rgba(255,255,255,.05) 1.4px, transparent 1.4px); background-size: 13px 13px; color: var(--paper); }
+.service-hero .eyebrow { color: var(--primary); }
+.service-hero-grid { max-width: 1100px; margin: 0 auto; display: grid; gap: 36px; align-items: center; }
+.service-hero-grid > * { min-width: 0; }
+.service-hero h1 { margin-bottom: 18px; font-size: clamp(34px, 7vw, 52px); overflow-wrap: anywhere; }
+.tagline { max-width: 44ch; margin: 0 0 12px; color: rgba(255,255,255,.75); font-size: 20px; line-height: 1.55; font-weight: 600; }
+.service-desc { max-width: 50ch; margin: 0 0 32px; color: rgba(255,255,255,.6); font-size: 16px; line-height: 1.65; }
+.hero-facts { display: grid; gap: 16px; }
+.hero-stat, .hero-price { padding: 26px 30px; }
+.hero-stat { border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.07); }
+.hero-stat strong, .hero-price strong { display: block; font: 400 44px/1 'Bungee', sans-serif; }
+.hero-stat strong { color: var(--yellow); }
+.hero-stat span, .hero-price > span:not(.price-label) { display: block; margin-top: 6px; color: rgba(255,255,255,.62); font-size: 12px; line-height: 1.4; }
+.hero-price { position: relative; border: 2px solid var(--white); background: var(--accent); }
+.price-label { position: absolute; top: -13px; right: 16px; padding: 4px 12px; border: 2px solid var(--ink); background: var(--yellow); color: var(--ink); font: 400 11px/1.2 'Bungee', sans-serif; transform: rotate(3deg); }
+.hero-price > span:not(.price-label), .hero-price a { color: var(--ink); }
+.hero-price a { display: inline-block; margin-top: 14px; font-size: 13px; }
+.hero-quote { padding: 24px 30px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); }
+.quote-label { display: block; margin-bottom: 6px; color: rgba(255,255,255,.6); font: 700 11px/1.3 'Archivo Narrow', sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.hero-quote > span:not(.quote-label) { display: block; color: rgba(255,255,255,.85); font-size: 15px; line-height: 1.55; }
+.hero-quote a { display: inline-block; margin-top: 14px; color: var(--white); font-size: 13px; font-weight: 700; }
+.content-section { padding: 64px 20px; border-bottom: 1px solid var(--hairline); }
+.included-section, .questions-section { background: var(--paper); }
+.process-section, .closing-section { background: var(--paper-deep); }
+.two-column, .questions-grid { max-width: 1100px; margin: 0 auto; display: grid; gap: 38px; }
+.two-column > *, .questions-grid > * { min-width: 0; }
+.content-section h2, .closing-section h2 { margin: 0 0 16px; font-size: clamp(30px, 5vw, 38px); line-height: 1; }
+.outcomes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 15px; }
+.outcomes article { min-height: 145px; padding: 25px 21px; border: 1px solid var(--hairline); background: white; box-shadow: 0 4px 16px rgba(15,25,35,.06); }
+.outcomes article.featured { background: var(--ink); color: white; }
+.outcomes strong { display: block; margin-bottom: 8px; color: var(--primary-dark); font: 400 clamp(25px, 7vw, 36px)/1 'Bungee', sans-serif; }
+.outcomes .featured strong { color: var(--yellow); }
+.outcomes span { display: block; color: rgba(15,25,35,.66); font-size: 13px; line-height: 1.4; }
+.outcomes .featured span { color: rgba(255,255,255,.64); }
+.process-grid { max-width: 1100px; margin-left: auto; margin-right: auto; }
+.process-grid { display: grid; gap: 18px; }
+.process-grid article { position: relative; min-height: 210px; padding: 27px 23px; border: 1px solid var(--hairline); background: white; box-shadow: 0 4px 16px rgba(15,25,35,.06); }
+.process-grid h3 { max-width: 10ch; margin: 0 0 12px; font-size: 17px; line-height: 1.05; }
+.process-grid p { margin: 0; color: rgba(15,25,35,.65); font-size: 14px; line-height: 1.65; }
+.step-number { position: absolute; top: 15px; right: 17px; color: #647078; font: 400 38px/1 'Bungee', sans-serif; }
+.faq-list details { border-bottom: 1px solid var(--hairline); }
+.faq-list summary { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 0; cursor: pointer; list-style: none; font-weight: 700; line-height: 1.4; }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary span { color: var(--primary-dark); font: 400 22px/1 'Bungee', sans-serif; transition: transform 180ms ease; }
+.faq-list details[open] summary span { transform: rotate(45deg); }
+.faq-list details p { max-width: 60ch; margin: 0; padding: 0 0 18px; color: rgba(15,25,35,.67); line-height: 1.65; }
+.related-label { margin: 0 0 15px; color: rgba(15,25,35,.65); font: 700 11px/1.2 'Archivo Narrow', sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.related-links { display: grid; gap: 10px; }
+.related-links a { display: flex; justify-content: space-between; padding: 14px 17px; border: 1px solid var(--hairline); background: white; font-size: 14px; font-weight: 600; text-decoration: none; }
+.related-links .all-services { border-style: dashed; color: rgba(15,25,35,.65); }
+.question-card { margin-top: 28px; padding: 27px; background: var(--ink); color: white; }
+.question-card h3 { margin: 0 0 10px; font-size: 21px; line-height: 1.08; }
+.question-card p { color: rgba(255,255,255,.65); line-height: 1.6; }
+.question-card a { display: inline-flex; padding: 11px 19px; border: 2px solid white; background: var(--accent); color: var(--ink); font-weight: 700; text-decoration: none; }
+.closing-section { padding: 64px 20px; text-align: center; }
+.closing-section > * { max-width: 720px; margin-left: auto; margin-right: auto; }
+.closing-section > p:not(.eyebrow):not(.last-reviewed) { max-width: 44ch; color: rgba(15,25,35,.67); font-size: 17px; line-height: 1.65; }
+.closing-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 28px; margin-bottom: 18px; }
+.closing-actions a { padding: 14px 24px; border: 2px solid var(--ink); font-weight: 700; text-decoration: none; }
+.closing-section small { color: rgba(15,25,35,.65); }
+/* /services listing */
+.listing-hero h1 { font-size: clamp(34px, 6vw, 46px); line-height: 1; }
+.listing-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.listing-stats .hero-stat { padding: 20px 18px; }
+.listing-stats .hero-stat strong { font-size: 32px; }
+.listing-stats .hero-stat span { margin-top: 4px; color: rgba(255,255,255,.55); font: 700 10px/1.4 'Archivo Narrow', sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+/* The hero is the first <section>, so the first group is the even sibling and takes paper, matching the React alternation. */
+.group-section:nth-of-type(even) { background: var(--paper); }
+.group-section:nth-of-type(odd) { background: var(--paper-deep); }
+.group-grid { max-width: 1100px; margin: 0 auto; display: grid; gap: 24px; align-items: start; }
+.group-intro h2 { margin: 0 0 10px; font-size: 24px; line-height: 1.05; }
+.group-intro p:last-child { margin: 0; color: rgba(15,25,35,.67); font-size: 14px; line-height: 1.65; }
+.card-grid { display: grid; gap: 14px; }
+.service-card { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 24px; border: 1px solid var(--hairline); background: white; color: var(--ink); text-decoration: none; box-shadow: 0 2px 8px rgba(15,25,35,.05); transition: border-color 180ms, box-shadow 180ms; }
+.service-card:hover, .service-card:focus-visible { border-color: var(--primary); box-shadow: 3px 3px 0 var(--primary); }
+.service-card h3 { display: flex; justify-content: space-between; gap: 8px; margin: 0; font-size: 17px; line-height: 1.1; }
+.service-card h3 span { color: var(--hairline); font-size: 18px; }
+.service-card:hover h3, .service-card:hover h3 span { color: var(--primary); }
+.service-card p { flex-grow: 1; margin: 0; color: rgba(15,25,35,.62); font-size: 13px; line-height: 1.55; }
+.service-card small { margin-top: 4px; color: var(--primary-dark); font: 700 11px/1.3 'Archivo Narrow', sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.card-tag { position: absolute; top: -11px; right: 14px; padding: 3px 10px; border: 2px solid var(--ink); background: var(--yellow); color: var(--ink); font: 400 10px/1.2 'Bungee', sans-serif; white-space: nowrap; transform: rotate(2deg); box-shadow: 2px 2px 0 var(--ink); }
+.card-tag.free { background: #2e7d5b; color: white; }
+.listing-closing { background-color: var(--ink); background-image: radial-gradient(rgba(255,255,255,.05) 1.4px, transparent 1.4px); background-size: 14px 14px; color: var(--paper); }
+.listing-closing .eyebrow { color: rgba(255,255,255,.58); }
+.listing-closing > p:not(.eyebrow) { color: rgba(255,255,255,.6); font-size: 16px; }
+.listing-closing .closing-actions a { border-color: rgba(255,255,255,.3); color: var(--paper); }
+.listing-closing .closing-actions a.primary-button { border-color: white; color: var(--ink); }
+
+@media (min-width: 768px) {
+  .service-hero { padding: 72px 32px 80px; }
+  .service-hero-grid { grid-template-columns: 1.2fr .8fr; gap: 64px; }
+  .content-section, .closing-section { padding: 72px 32px; }
+  .two-column { grid-template-columns: 1fr 1fr; gap: 64px; }
+  .process-grid { grid-template-columns: repeat(4, 1fr); }
+  .questions-grid { grid-template-columns: 1.4fr 1fr; gap: 64px; }
+  .listing-hero .service-hero-grid { grid-template-columns: 1fr 1fr; }
+  .group-grid { grid-template-columns: 260px 1fr; gap: 48px; }
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 480px) {
+  .outcomes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .card-grid { grid-template-columns: repeat(3, 1fr); }
+}

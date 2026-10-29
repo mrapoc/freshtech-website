@@ -1,0 +1,65 @@
+---
+// Styles live in src/styles/contact-form.css, imported as a Vite ?inline string
+// (minified, not hoisted into the page bundle) and emitted below only when this
+// component actually renders. A scoped <style> or side-effect import would be
+// hoisted onto every page that merely imports the component, even when the
+// markup is conditionally absent. Every selector in that file is namespaced to
+// .contact-form-card so nothing leaks outside the component.
+import contactFormCss from '../styles/contact-form.css?inline';
+import { resolveSiteMode } from '../lib/site-mode.mjs';
+
+interface Props { submissionMode?: 'disabled' | 'enabled' | 'test' }
+const { submissionMode: requestedMode = 'disabled' } = Astro.props;
+// Production builds always accept enquiries; the browser script still limits
+// submission to fresh-tech.uk and www.fresh-tech.uk.
+const submissionMode = resolveSiteMode(import.meta.env.PUBLIC_SITE_MODE) === 'production' ? 'enabled' : requestedMode;
+const available = submissionMode === 'enabled' || submissionMode === 'test';
+---
+
+<style is:inline set:html={contactFormCss}></style>
+<section class="contact-form-card" aria-labelledby="message-heading">
+  <div class="section-kicker">Send a message</div>
+  <h2 id="message-heading">Tell us what you need help with</h2>
+  <p>Share the basics and we can start with the right context. Please do not include passwords or other sensitive information.</p>
+  {!available ? (
+    <div class="submission-disabled" data-contact-disabled role="status">
+      <h3>Online messages are disabled in this preview</h3>
+      <p>This preview cannot send enquiries. Call <a href="tel:+441584517234">01584 517 234</a> or email <a href="mailto:hello@fresh-tech.uk">hello@fresh-tech.uk</a>.</p>
+    </div>
+  ) : (
+    <div data-contact-root>
+      <form data-contact-form data-submission-mode={submissionMode} action="/api/send-email" method="post" novalidate>
+        <div class="field"><label for="contact-name">Name</label><input id="contact-name" name="name" type="text" autocomplete="name" maxlength="100" required /></div>
+        <div class="field"><label for="contact-email">Email</label><input id="contact-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required /></div>
+        <div class="field"><label for="contact-phone">Phone <span>(optional)</span></label><input id="contact-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" /></div>
+        <fieldset data-qualification>
+          <legend>A little more context <span>(optional)</span></legend>
+          <div class="field-grid">
+            <div class="field"><label for="contact-company-size">Team size</label><select id="contact-company-size" name="companySize"><option value="">Choose if useful</option><option value="1-5">1–5 people</option><option value="6-20">6–20 people</option><option value="21-50">21–50 people</option><option value="51-100">51–100 people</option><option value="100+">More than 100 people</option></select></div>
+            <div class="field"><label for="contact-pain-point">Main IT concern</label><select id="contact-pain-point" name="painPoint"><option value="">Choose if useful</option><option>Slow support</option><option>Security concerns</option><option>Unreliable systems</option><option>Rising costs</option><option>Changing IT provider</option><option>Something else</option></select></div>
+          </div>
+        </fieldset>
+        <div class="field"><label for="contact-message">How can we help?</label><textarea id="contact-message" name="message" rows="7" maxlength="5000" required></textarea></div>
+        <div class="trap" aria-hidden="true"><label for="contact-hp">Leave this empty</label><input id="contact-hp" name="ft_hp" type="text" tabindex="-1" autocomplete="off" data-1p-ignore data-lpignore="true" /></div>
+        <label class="consent"><input name="privacyConsent" type="checkbox" required /><span>I agree that Fresh Tech may use these details to respond to my enquiry. Read the <a href="/privacy-policy">privacy policy</a>.</span></label>
+        <div class="form-error" data-contact-error role="alert" aria-live="assertive" tabindex="-1" hidden>
+          <h3>We could not accept your message</h3><p data-contact-error-text></p>
+          <div class="error-actions"><button type="button" data-contact-retry>Try again</button><a href="tel:+441584517234">Call 01584 517 234</a></div>
+        </div>
+        <button class="submit" type="submit" data-contact-submit disabled><span data-submit-label>Send message</span></button>
+        <p class="js-note">JavaScript is needed to send this secure form. You can still call or email us using the details on this page.</p>
+        <noscript><p class="noscript-note">Online submission is unavailable without JavaScript. Call 01584 517 234 or email hello@fresh-tech.uk.</p></noscript>
+      </form>
+      <section class="form-success" data-contact-success role="status" aria-live="polite" hidden>
+        <h3 data-success-heading tabindex="-1">Thanks. Your message has been submitted.</h3>
+        <p>If the matter is urgent during business hours, call <a href="tel:+441584517234">01584 517 234</a>.</p>
+        <button type="button" data-contact-another>Send another message</button>
+      </section>
+    </div>
+  )}
+</section>
+
+{available && <script>
+  import { enhanceContactForm } from '../scripts/contact-form';
+  enhanceContactForm(document.querySelector('[data-contact-root]') ?? document);
+</script>}

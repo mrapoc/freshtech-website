@@ -1,0 +1,186 @@
+---
+import WebsiteProof from './WebsiteProof.astro';
+// Native Astro port of pages-v2/PricingPageV2.tsx in source section order:
+// hero, live stat strip, tiers, universal inclusions, SLA, add-ons (off-tier,
+// M365 licences, domain renewal), comparison, objections, free review, final
+// CTA. Copy, tier data and claims are parity inputs copied verbatim from the
+// production route; prices and the minimum come from the extracted data.
+import PricingHero from './PricingHero.astro';
+import { pricing } from '../generated/pricing-data.mjs';
+const rates = pricing.rates;
+const TIERS = pricing.tiers;
+const UNIVERSAL_INCLUSIONS = pricing.universalInclusions;
+const SLA_ROWS = pricing.slaRows;
+
+const COMPARISON = [
+  { label: 'In-house IT person', price: '£45k+', unit: 'per year', note: 'Salary, NI, pension, training, sick cover', light: false },
+  { label: 'Break-fix IT support', price: '£80–150', unit: 'per hour', note: 'Unpredictable. No monitoring. Slow.', light: false },
+  { label: 'Fresh Tech managed', price: `£${rates.Standard}–${rates.Premium}`, unit: 'per user/month', note: 'A whole team of engineers. Every protection included.', light: true },
+];
+
+const OBJECTIONS = pricing.objections;
+const AGREEMENT_QUESTION = '"We don\'t want to be locked in."';
+
+const exampleUsers = 20;
+const exampleYear = exampleUsers * rates.Plus * 12;
+---
+
+<main id="main-content" tabindex="-1" class="pricing-page">
+  <PricingHero />
+
+  <div class="proof-container" data-section="live-stats"><WebsiteProof id="pricing-proof" contact /></div>
+
+  <section class="tiers-section" id="tiers" data-section="tiers" aria-labelledby="tiers-title">
+    <div class="pricing-container">
+      <div class="section-heading">
+        <p class="eyebrow">The plans</p>
+        <h2 id="tiers-title">Choose your level of cover</h2>
+        <p>All three include remote support from the same named engineers. Onsite visits are billed separately when an issue cannot be fixed remotely. These packages apply to new contracts; existing customers keep the cover in their signed agreement.</p>
+      </div>
+      <div class="tier-grid">
+        {TIERS.map(tier => (
+          <article class:list={['tier-card', { highlight: tier.highlight }]} data-tier-card={tier.name}>
+            {tier.sticker && <span class="tier-sticker">{tier.sticker}</span>}
+            <p class="eyebrow">{tier.name}</p>
+            <p class="tier-price"><strong>£{tier.price}</strong> <span>/ user / month</span></p>
+            {tier.minimum && <p class="tier-minimum">{tier.minimum}</p>}
+            <p class="tier-note">{tier.note}</p>
+            <ul class="tick-list tier-features">
+              {tier.features.map(feature => <li><svg class="tick" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="currentColor" fill-opacity="0.15" /><path d="M4.5 8l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>{feature}</li>)}
+            </ul>
+            <a class="tier-cta" href="/contact">{tier.highlight ? 'Book a call' : 'Talk to us'} <span aria-hidden="true">→</span></a>
+          </article>
+        ))}
+      </div>
+      <p class="projects-note"><span><strong>Projects quoted separately.</strong> Office moves, server migrations, large infrastructure upgrades: always a fixed price before we start. No surprise invoices.</span></p>
+    </div>
+  </section>
+
+  <section class="inclusions-section" data-section="inclusions" aria-labelledby="inclusions-title">
+    <div class="pricing-container">
+      <div class="section-heading">
+        <p class="eyebrow">Included on every plan</p>
+        <h2 id="inclusions-title">The foundation. On all three tiers.</h2>
+        <p>These aren't optional add-ons. They're the floor: what every client gets on Standard, Plus, and Premium. Most national IT providers charge separately for at least four of these.</p>
+      </div>
+      <ul class="inclusion-list">
+        {UNIVERSAL_INCLUSIONS.map(({ title, desc }) => (
+          <li><svg class="tick" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="currentColor" fill-opacity="0.15" /><path d="M4.5 8l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg><div><h3>{title}</h3><p>{desc}</p></div></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sla-section" data-section="sla" aria-labelledby="sla-title">
+    <div class="pricing-container">
+      <div class="section-heading">
+        <p class="eyebrow">How fast we respond</p>
+        <h2 id="sla-title">Same SLA on every plan</h2>
+        <p>Response and resolution targets are <strong>identical</strong> on Standard, Plus, and Premium. What Premium buys you is <em>queue position within the same priority</em>: first-touch privilege, not faster SLA. We think that's the honest way to sell it.</p>
+      </div>
+      <div class="sla-table-wrap">
+        <table class="sla-table">
+          <thead><tr><th scope="col">Priority</th><th scope="col" class="sla-type">Type</th><th scope="col">Response</th><th scope="col">Resolution</th></tr></thead>
+          <tbody>
+            {SLA_ROWS.map(row => (
+              <tr><th scope="row">{row.priority}</th><td class="sla-type">{row.type}</td><td><span class="sla-type-inline">{row.type}: </span>{row.response}</td><td>{row.resolution}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="addons-section" data-section="add-ons" aria-label="Off-tier options, licences and domain renewal">
+    <div class="pricing-container addon-grid">
+      <article class="addon-card">
+        <p class="eyebrow">Off-tier · Lite</p>
+        <h3>£10/user/month: cloud account only</h3>
+        <p>For users who only need Microsoft 365 admin (provisioning, password resets, MFA, mailboxes, distribution lists, Teams/SharePoint membership): no device, app or onsite support.</p>
+        <p class="addon-small">Includes Huntress identity threat detection. Best for board members, contractors, or occasional users on an otherwise managed account.</p>
+      </article>
+      <article class="addon-card">
+        <p class="eyebrow">Microsoft 365 licences</p>
+        <h3>Sold separately. No markup.</h3>
+        <p>M365 licences are invoiced separately at standard Microsoft rates. We resell them as a Microsoft Cloud Solution Provider (CSP): no markup, no resale margin.</p>
+        <p class="addon-small">You see exactly what Microsoft charges, on your bill. Need a Premium vs Standard sanity-check? See our <a href="/microsoft-business-premium">Business Premium comparison</a>.</p>
+      </article>
+    </div>
+    <div class="pricing-container domain-block">
+      <p class="eyebrow">Why we absorb your domain renewal</p>
+      <h3>Saves you money. Keeps your email safe. One less admin task.</h3>
+      <p>Most clients pay £25–40/year through retail registrars like GoDaddy or 123-reg for a domain that costs us £8–12 wholesale. Including standard renewals in your plan saves you that money, gives us proper DNS control to keep your email secure, and means you've got one less annual admin task to remember.</p>
+      <p class="domain-small">Premium TLDs (.io, .ai, .agency, .london) and short/aftermarket domains are billed at cost: no markup, no surprises. <strong>Your domain stays registered in your name.</strong> If you ever leave, it goes with you.</p>
+    </div>
+  </section>
+
+  <section class="comparison-section" data-section="comparison" aria-labelledby="comparison-title">
+    <div class="pricing-container">
+      <div class="section-heading">
+        <p class="eyebrow">The numbers</p>
+        <h2 id="comparison-title">Compare the real cost</h2>
+        <p>Most businesses compare us to other IT companies. The sharper comparison is against the alternatives.</p>
+      </div>
+      <div class="comparison-grid">
+        {COMPARISON.map(item => (
+          <article class:list={['comparison-card', { light: item.light }]}>
+            <p class="comparison-label">{item.label}</p>
+            <p class="comparison-price">{item.price}</p>
+            <p class="comparison-unit">{item.unit}</p>
+            <p class="comparison-note">{item.note}</p>
+            {item.light && <span class="best-value">Best value</span>}
+          </article>
+        ))}
+      </div>
+      <div class="example-strip">
+        <div>
+          <p class="eyebrow">{exampleUsers}-user business example</p>
+          <p>In-house IT: <strong>£45,000+/year</strong> · Fresh Tech Plus ({exampleUsers} users × £{rates.Plus}): <strong class="highlight-yellow">£{exampleYear.toLocaleString('en-GB')}/year</strong> · Saving: <strong class="highlight-green">£{(45000 - exampleYear).toLocaleString('en-GB')}/year</strong></p>
+        </div>
+        <a class="example-cta" href="/contact">Get your estimate <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="objections-section" data-section="objections" aria-labelledby="objections-title">
+    <div class="pricing-container">
+      <div class="section-heading">
+        <p class="eyebrow">Before you decide</p>
+        <h2 id="objections-title">The three blockers. Addressed.</h2>
+      </div>
+      <div class="objection-grid">
+        {OBJECTIONS.map(({ q, a }) => (
+          <article class="objection-card"><h3>{q}</h3>{q === AGREEMENT_QUESTION
+            ? <p>Unless your signed Proposal says otherwise, support runs on a 30-day rolling agreement with 30 days' notice. End within the first 30 days and the first month's fee is refunded. Your signed Proposal takes priority. Read the <a href="/terms-of-business">Terms of Business</a>.</p>
+            : <p>{a}</p>}</article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="review-section" data-section="free-review" aria-labelledby="review-title">
+    <div class="pricing-container review-grid">
+      <div>
+        <p class="eyebrow">Free service</p>
+        <h2 id="review-title">Not sure what you're paying for?</h2>
+        <p class="review-lede">Send us your current IT invoice. We'll give you an honest breakdown of what you're paying for, what's missing, and what a fair price looks like. <strong>even if we're not the right option.</strong></p>
+        <p class="review-small">PDF invoices only · Handled securely · No sales calls · Genuinely no obligation</p>
+      </div>
+      <div class="review-action">
+        <a class="review-cta" href="/contact?ref=spend-review">Request a free review <span aria-hidden="true">→</span></a>
+        <p class="review-small">Usually takes us 24 hours</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-section" data-section="final-cta" aria-labelledby="final-title">
+    <div class="final-inner">
+      <p class="eyebrow">Ready?</p>
+      <h2 id="final-title">20 minutes. That's all it takes.</h2>
+      <p>Tell us your setup. We'll give you an exact price and tell you honestly whether we're a fit.</p>
+      <a class="final-cta" href="/contact">Book a 20-min call <span aria-hidden="true">→</span></a>
+      <p class="final-small">Mon–Fri, 9am–5pm · 01584 517 234 · hello@fresh-tech.uk</p>
+    </div>
+    <p class="last-reviewed">Last reviewed May 2026 · Sam James</p>
+  </section>
+</main>

@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import Homepage from '../components/Homepage.astro';
+import { heroImage } from '../lib/homepage-data.mjs';
+import { homepageSeo } from '../lib/homepage-seo.mjs';
+import { PREVIEW_ROBOTS, resolveSiteMode } from '../lib/site-mode.mjs';
+const seo = homepageSeo();
+const robots = resolveSiteMode(import.meta.env.PUBLIC_SITE_MODE) === 'production' ? seo.robots : PREVIEW_ROBOTS;
+---
+<BaseLayout title={seo.title} description={seo.description} canonical={seo.canonical} image={seo.image} ogType={seo.ogType} schemas={seo.schemas} robots={robots} preloadFonts={['/fonts/bungee-latin.woff2', '/fonts/archivo-v25-latin.woff2']} pageFamily="home">
+  {/* The photo is immediately visible in the two-column layout. Mobile loading
+      follows the browser's lazy-image threshold after the first screen paints. */}
+  <link slot="head" rel="preload" as="image" imagesrcset={heroImage.srcset} imagesizes={heroImage.sizes} media="(min-width: 900px)" fetchpriority="high" />
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <SiteNav activePage="Home" />
+  <Homepage />
+  <SiteFooter />
+  <CookieConsent compact />
+</BaseLayout>
+
+<script src="../scripts/enhance.ts"></script>

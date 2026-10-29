@@ -1,0 +1,54 @@
+---
+// Copy and labels mirror pages-v2/ServicesPageV2.tsx. Groups, cards and hero
+// stats come from the generated listing data; nothing here is hand-authored
+// claim text beyond that source.
+import { serviceGroups, listingStats } from '../generated/services-data.mjs';
+---
+
+<main id="main-content" tabindex="-1" class="listing-page">
+  <section class="service-hero listing-hero">
+    <div class="service-hero-grid">
+      <div>
+        <p class="eyebrow">What we do</p>
+        <h1>All the IT your business needs. One place. One fee.</h1>
+        <p class="service-desc">Every service on this page is either included in your monthly plan or quoted at a fixed price before we start. No hourly rates, no "that's extra" surprises.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="/pricing">See pricing <span aria-hidden="true">→</span></a>
+          <a class="secondary-button" href="/contact">Book a call</a>
+        </div>
+      </div>
+      <div class="listing-stats">
+        {listingStats.map(({ n, l }) => <div class="hero-stat"><strong>{n}</strong><span>{l}</span></div>)}
+      </div>
+    </div>
+  </section>
+
+  {serviceGroups.map(({ group, lede, services }, index) => (
+    <section class="content-section group-section" data-group={group}>
+      <div class="group-grid">
+        <div class="group-intro">
+          <p class="eyebrow">{`Group ${String(index + 1).padStart(2, '0')}`}</p>
+          <h2>{group}</h2>
+          <p>{lede}</p>
+        </div>
+        <div class="card-grid">
+          {services.map(item => (
+            <a class="service-card" href={item.href} data-slug={item.slug}>
+              {item.tag && <span class:list={['card-tag', { free: item.tag === 'Free' }]}>{item.tag}</span>}
+              <h3>{item.name}<span aria-hidden="true">→</span></h3>
+              <p>{item.desc}</p>
+              <small>{item.price}</small>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="closing-section listing-closing">
+    <p class="eyebrow">Not sure what you need?</p>
+    <h2>Start with a free IT health check</h2>
+    <p>Tell us what you have. We'll tell you what's missing, what's at risk, and what a sensible plan looks like.</p>
+    <div class="closing-actions"><a class="primary-button" href="/it-health-check">Free IT health check <span aria-hidden="true">→</span></a><a href="/pricing">See pricing</a></div>
+  </section>
+</main>

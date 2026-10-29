@@ -1,0 +1,56 @@
+---
+import { navigation } from '../generated/navigation-data.mjs';
+interface Props { activePage?: string }
+const { activePage = 'Pricing' } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="strap desktop-only">
+    <span>Serving Shropshire · Herefordshire · Welsh Borders · Est. 2014</span>
+    <span>Helpdesk hours · Mon–Fri, 9am–5pm</span>
+  </div>
+  <div class="nav-inner">
+    <a class="brand" href="/" aria-label="Fresh Tech home">
+      <img src="/images/fresh-tech-logo.webp" alt="Fresh Tech" width="200" height="145" />
+    </a>
+
+    <nav class="desktop-nav desktop-only" aria-label="Main navigation">
+      {navigation.main.map(({ label, href }) => <a href={href} aria-current={label === activePage ? 'page' : undefined}>{label}</a>)}
+      <details class="nav-disclosure" data-disclosure data-nav-group="sectors">
+        <summary>Sectors <span aria-hidden="true">⌄</span></summary>
+        <div class="nav-panel">
+          <p>We work with</p>
+          {navigation.sectors.map(({ label, href }) => <a href={href}>{label}</a>)}
+          <a href="/industries">View all sectors</a>
+        </div>
+      </details>
+      <details class="nav-disclosure" data-disclosure data-nav-group="resources">
+        <summary>Resources <span aria-hidden="true">⌄</span></summary>
+        <div class="nav-panel">
+          <p>Read, watch, download</p>
+          {navigation.resources.map(({ label, href, desc, tag }) => <a href={href} aria-current={label === activePage ? 'page' : undefined}><strong>{label}{tag && <small>{tag}</small>}</strong><span>{desc}</span></a>)}
+        </div>
+      </details>
+    </nav>
+
+    <div class="desktop-actions desktop-only">
+      <a class="phone" href="tel:+441584517234">01584 517 234</a>
+      <a class="nav-cta" href="/contact">Book a 20-min call</a>
+    </div>
+
+    <div class="mobile-actions mobile-only">
+      <a class="phone" href="tel:+441584517234">01584 517 234</a>
+      <details class="mobile-menu" data-mobile-menu>
+        <summary aria-label="Open menu"><span></span><span></span><span></span></summary>
+        <nav aria-label="Mobile navigation">
+          {navigation.main.map(({ label, href }) => <a href={href} aria-current={label === activePage ? 'page' : undefined}>{label}</a>)}
+          <a href="/industries">Sectors</a>
+          <a href="/blog">Resources</a>
+          <p>More resources</p>
+          {navigation.mobileResources.map(({ label, href }) => <a href={href} aria-current={label === activePage ? 'page' : undefined}>{label}</a>)}
+          <a class="mobile-cta" href="/contact">Book a 20-min call</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>

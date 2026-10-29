@@ -1,0 +1,211 @@
+{
+  "route": "/glossary",
+  "source": "pages/GlossaryPage.tsx",
+  "sourceSha256": "d57b6f1a575b8c871bb75da2a4c1a9e9be71239b23a8d3b13b54576c28ecf4d6",
+  "capturedAt": "2026-09-16T12:23:05.044Z",
+  "head": {
+    "title": "IT Glossary - Jargon-Free Technology Guide | Fresh Tech",
+    "description": "Plain English explanations of common IT and cybersecurity terms. EDR, RMM, MDM, SIEM - decoded without the jargon. Your guide to understanding business technology.",
+    "canonical": "https://fresh-tech.uk/glossary",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ogType": "website",
+    "ogImage": "https://res.cloudinary.com/djkmeg5se/image/upload/w_1200,h_630,c_fill,f_auto,q_auto/fresh-tech-superheroes-saving-data.webp",
+    "schemas": [
+      {
+        "@context": "https://schema.org",
+        "@type": "DefinedTermSet",
+        "name": "IT Glossary - Jargon-Free Technology Guide",
+        "description": "Plain English explanations of common IT and cybersecurity terms. No jargon, no fluff - just clear answers to help you understand your business technology.",
+        "hasDefinedTerm": [
+          {
+            "@type": "DefinedTerm",
+            "name": "EDR (Endpoint Detection & Response)",
+            "description": "EDR watches for behaviour, stopping ransomware instantly."
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "Application Control (Ringfencing)",
+            "description": "We block everything by default. Only approved apps can run."
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "RMM (Remote Monitoring & Management)",
+            "description": "We fix issues in the background before you notice them."
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "SIEM (Security Information & Event Management)",
+            "description": "SIEM collects logs from everywhere and alerts us to anomalies."
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "MDM (Mobile Device Management)",
+            "description": "We can remotely wipe corporate data without touching personal photos."
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "VPN (Virtual Private Network)",
+            "description": "Modern cloud apps are encrypted by default. VPNs are now mainly for accessing on-premise servers."
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "ZTNA (Zero Trust Network Access)",
+            "description": "Zero Trust verifies every connection, granting only the specific access needed, continuously."
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://fresh-tech.uk/#organization",
+        "name": "Fresh Tech IT Support",
+        "legalName": "Fresh PCS Consultancy Ltd",
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "UK Companies House",
+            "value": "09296207"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "VAT",
+            "value": "GB199976510"
+          }
+        ],
+        "url": "https://fresh-tech.uk",
+        "logo": "https://res.cloudinary.com/djkmeg5se/image/upload/f_auto,q_auto/fresh-tech-logo.png",
+        "description": "Business IT support for SMEs across Shropshire, Herefordshire and the wider UK. Fast onsite response, proactive security, and jargon-free service.",
+        "foundingDate": "2014",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Sam James"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "28 Livesey Avenue",
+          "addressLocality": "Ludlow",
+          "addressRegion": "Shropshire",
+          "postalCode": "SY8 1HN",
+          "addressCountry": "GB"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+441584517234",
+          "contactType": "customer service",
+          "email": "hello@fresh-tech.uk",
+          "availableLanguage": [
+            "English"
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/freshtechuk",
+          "https://www.linkedin.com/company/fresh-tech-uk"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fresh-tech.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Glossary",
+            "item": "https://fresh-tech.uk/glossary"
+          }
+        ]
+      }
+    ]
+  },
+  "content": {
+    "headings": [
+      [
+        1,
+        "IT Glossary"
+      ],
+      [
+        3,
+        "EDR (Endpoint Detection & Response)"
+      ],
+      [
+        3,
+        "Application Control (Ringfencing)"
+      ],
+      [
+        3,
+        "RMM (Remote Monitoring & Management)"
+      ],
+      [
+        3,
+        "SIEM (Security Information & Event Management)"
+      ],
+      [
+        3,
+        "MDM (Mobile Device Management)"
+      ],
+      [
+        3,
+        "VPN (Virtual Private Network)"
+      ],
+      [
+        3,
+        "ZTNA (Zero Trust Network Access)"
+      ],
+      [
+        2,
+        "Want to Go Deeper?"
+      ],
+      [
+        2,
+        "Signal for Help"
+      ],
+      [
+        3,
+        "Send a Signal"
+      ]
+    ],
+    "links": [
+      [
+        "/",
+        "Home"
+      ],
+      [
+        "/resources",
+        "Resources"
+      ],
+      [
+        "/technology",
+        "Browse Technology Explainers"
+      ],
+      [
+        "/contact",
+        "Ask Us a Question"
+      ],
+      [
+        "/onboarding",
+        "Thinking of switching providers? See how easy it is"
+      ],
+      [
+        "tel:01584517234",
+        "01584 517 234"
+      ],
+      [
+        "mailto:support@fresh-tech.uk",
+        "support@fresh-tech.uk"
+      ],
+      [
+        "tel:01584517234",
+        "01584 517 234"
+      ]
+    ],
+    "images": [],
+    "text": "Home Resources IT Glossary IT Glossary Technology is full of acronyms and jargon. We believe you shouldn't need a computer science degree to understand what your IT company is talking about. Here's our plain English guide to the terms that matter for your business. EDR (Endpoint Detection & Response) Is antivirus enough? The risk: Traditional AV misses 60% of modern attacks. What we do: EDR watches for behaviour, stopping ransomware instantly. Application Control (Ringfencing) Who controls what runs? The risk: Users can accidentally run malware or bad scripts. What we do: We block everything by default. Only approved apps can run. RMM (Remote Monitoring & Management) How do you fix things so fast? The risk: Waiting for things to break causes downtime. What we do: We fix issues in the background before you notice them. SIEM (Security Information & Event Management) Who watches the logs? The risk: Hackers can hide in your logs for months without you knowing. What we do: SIEM collects logs from everywhere and alerts us to anomalies. MDM (Mobile Device Management) What if a phone is lost? The risk: Company data on a lost phone is a GDPR breach. What we do: We can remotely wipe corporate data without touching personal photos. VPN (Virtual Private Network) Do I need a VPN to work remotely? The risk: Without encryption, data on public WiFi was exposed to eavesdroppers. What we do: Modern cloud apps are encrypted by default. VPNs are now mainly for accessing on-premise servers. ZTNA (Zero Trust Network Access) What replaces traditional VPN? The risk: VPNs grant full network access once connected - one compromised device exposes everything. What we do: Zero Trust verifies every connection, granting only the specific access needed, continuously. Want to Go Deeper? Each of these technologies has a dedicated explainer page with detailed information on how it works, why it matters, and how we deploy it for your business. Browse Technology ExplainersAsk Us a Question Signal for Help Ready to banish tech headaches? Fill out the form or book a chat directly. We respond faster than a speeding bullet (usually under 15 minutes). ✓ Trusted by local businesses for over 10 years Thinking of switching providers? See how easy it is Call The Batphone 01584 517 234 Email HQ hello@fresh-tech.uk Face-to-Face Book an Intro Call with Sam Send a Signal Step 1 of 3 Name Email Phone (optional) How can we help? We typically respond within 15 minutes during business hours (Mon-Fri, 9am-5pm). Send Message Existing Client? Email support@fresh-tech.uk or call 01584 517 234 for urgent help."
+  }
+}

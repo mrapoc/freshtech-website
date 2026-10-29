@@ -1,0 +1,112 @@
+---
+// Port of pages-v2/FoundationMonitoringPageV2.tsx.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+
+const seo = {
+  path: '/foundation-monitoring',
+  title: 'Foundation Monitoring: Protected Without Full Commitment',
+  description: 'Protection without the full management. 24/7 monitoring, Huntress EDR and patching from £10/device + £30/site. For not-yet-managed organisations.',
+  type: 'service',
+};
+
+const INCLUDED = ['24/7 monitoring of every device', 'Huntress endpoint EDR (Endpoint Detection & Response)', 'Patch automation (Windows + third-party apps)', 'Software bundle + RMM agent installed', 'Monthly alert summary report'];
+const NOT_INCLUDED = ['Human labour on alerts, billed at our standard block-hour rate', 'No proactive maintenance visits', 'No onsite call-outs', 'No Microsoft 365 administration', 'No new starter / leaver handling'];
+---
+
+<StandaloneShell name="foundation-monitoring" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap fm-hero-grid" style="--sa-max: 1100px">
+      <div>
+        <p class="sa-eyebrow sa-eyebrow-light">Off-tier · Foundation Monitoring</p>
+        <h1 class="sa-display sa-display-light" style="--sa-size: 50px; --sa-size-mobile: 36px; margin-bottom: 20px">Protected. Without the full commitment.</h1>
+        <p class="sa-lead" style="max-width: 50ch">Foundation Monitoring is for organisations that want the safety net of a managed service, without paying for the full management yet.</p>
+        <p class="fm-sub" style="max-width: 50ch">We deploy our monitoring stack, watch your environment 24/7, and send you a monthly summary. When something needs human attention, we'll quote you for it, no surprise invoices.</p>
+        <div class="fm-cta-row"><a class="sa-button" href="/contact">Talk to us about Foundation →</a><a class="sa-button fm-btn-outline" href="/pricing">Compare with our managed plans →</a></div>
+      </div>
+      <div class="fm-price-panel">
+        <div class="fm-price">£10</div>
+        <div class="fm-price-unit">per device, per month</div>
+        <div class="fm-price">+ £30</div>
+        <div class="fm-price-unit" style="margin-bottom: 0">per site, per month</div>
+        <div class="fm-price-note">Indicative: we'll confirm exact pricing once we know your environment.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper sa-rule">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <p class="sa-eyebrow">Honest scope</p>
+      <h2 class="sa-display" style="--sa-size: 36px; margin-bottom: 12px">What's in. What's not.</h2>
+      <p class="fm-intro">Foundation Monitoring deliberately leaves things out. That's how the price works. We tell you exactly what you're paying for, and what you're not.</p>
+      <div class="fm-split">
+        <div class="fm-panel fm-panel-green">
+          <p class="fm-panel-tag fm-tag-green">What you get</p>
+          <h2 class="fm-panel-h">Included</h2>
+          <div class="fm-list">
+            {INCLUDED.map(item => (
+              <div class="fm-list-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#2E7D5B" fill-opacity="0.15"></circle><path d="M4.5 8l2.5 2.5 4.5-5" stroke="#2E7D5B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>{item}</span></div>
+            ))}
+          </div>
+        </div>
+        <div class="fm-panel fm-panel-red">
+          <p class="fm-panel-tag fm-tag-red">What you don't get</p>
+          <h2 class="fm-panel-h">Not included</h2>
+          <div class="fm-list">
+            {NOT_INCLUDED.map(item => (
+              <div class="fm-list-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#C03F35" fill-opacity="0.12"></circle><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#C03F35" stroke-width="2" stroke-linecap="round"></path></svg><span>{item}</span></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap sa-prose" style="--sa-max: 900px">
+      <p class="sa-eyebrow">Honest positioning</p>
+      <h2 class="sa-display" style="--sa-size: 32px; margin-bottom: 16px">Who Foundation is, and isn't, for</h2>
+      <p style="max-width: 64ch"><strong>It's for organisations</strong> that want professional monitoring and threat detection but aren't ready (or don't yet need) to outsource day-to-day IT. Charities running on volunteer admins. Small offices with a competent internal helper. Businesses between IT providers.</p>
+      <p style="max-width: 64ch"><strong>It's not for organisations</strong> that need someone to pick up the phone when Outlook breaks, or that need help setting up a new starter, or that want monthly proactive maintenance. For that, you want <a class="sa-link" href="/pricing">Standard, Plus or Premium</a>.</p>
+      <p class="fm-italic" style="max-width: 64ch; margin-bottom: 0">Most Foundation clients eventually upgrade to Standard once we've shown them what we're seeing in their environment. That's fine. There's no upgrade fee, no contract reset, we just move you across.</p>
+    </div>
+  </section>
+
+  <section class="sa-section sa-ink sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <p class="sa-eyebrow sa-eyebrow-light">Want to start here?</p>
+      <h2 class="sa-display sa-display-light" style="--sa-size: 36px; margin-bottom: 16px">Foundation Monitoring in 7 days</h2>
+      <p class="sa-lead fm-cta-lead">Quick scope call. Light onboarding. Monitoring active inside a week. No long contract, 30 days notice each side.</p>
+      <a class="sa-button" href="/contact">Book a 20-min call →</a>
+    </div>
+    <p class="fm-reviewed">Last reviewed May 2026 · Sam James</p>
+  </section>
+</StandaloneShell>
+
+<style>
+  .fm-hero-grid { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center; }
+  @media (min-width: 768px) { .fm-hero-grid { grid-template-columns: 1.2fr 0.8fr; gap: 64px; } }
+  .fm-sub { margin: 0 0 32px; color: #9ba3aa; font-size: 15px; line-height: 1.65; }
+  .fm-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .fm-btn-outline { background: transparent; color: var(--paper); border: 2px solid rgba(255,255,255,0.3); box-shadow: none; }
+  .fm-btn-outline:hover { background: rgba(255,255,255,0.08); }
+  .fm-price-panel { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); padding: 32px; text-align: center; }
+  .fm-price { font: 400 38px/1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--yellow); }
+  .fm-price-unit { font-size: 13px; color: #9ba3aa; margin-top: 4px; margin-bottom: 24px; }
+  .fm-price-note { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 12px; color: #8a929a; line-height: 1.5; }
+  .fm-intro { color: rgba(15,25,35,.78); font-size: 16px; margin: 0 0 40px; max-width: 60ch; line-height: 1.6; }
+  .fm-split { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 768px) { .fm-split { grid-template-columns: 1fr 1fr; } }
+  .fm-panel { background: var(--white); padding: 28px; border: 2px solid; }
+  .fm-panel-green { border-color: #2E7D5B; box-shadow: 4px 4px 0 0 #2E7D5B; }
+  .fm-panel-red { border-color: #C8443A; box-shadow: 4px 4px 0 0 #C8443A; }
+  .fm-panel-tag { font: 700 11px/1 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .14em; margin: 0 0 10px; }
+  .fm-tag-green { color: #256B4E; }
+  .fm-tag-red { color: #C03F35; }
+  .fm-panel-h { font: 400 22px/1.1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--ink); margin: 0 0 16px; }
+  .fm-list { display: flex; flex-direction: column; gap: 12px; }
+  .fm-list-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--ink); line-height: 1.5; }
+  .fm-list-item svg { flex-shrink: 0; margin-top: 2px; }
+  .fm-italic { font-size: 15px; color: rgba(15,25,35,.78); line-height: 1.65; font-style: italic; }
+  .fm-cta-lead { max-width: 44ch; margin-inline: auto; margin-bottom: 28px; color: #b9c0c6; }
+  .fm-reviewed { text-align: center; padding: 20px 16px 24px; font: 700 11px/1.3 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .14em; color: #c7cdd2; margin: 0; }
+</style>

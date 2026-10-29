@@ -1,0 +1,187 @@
+---
+// Port of pages-v2/OnboardingPageV2.tsx. The FAQ accordion becomes native
+// <details>/<summary> so it works without JavaScript. React only renders an
+// answer once its accordion item is opened, so the captured production
+// baseline has no answer text, only the question and the "+" toggle glyph;
+// the native version keeps every answer in the DOM (native disclosure, not
+// JS-gated), which is documented as a text difference below.
+import StandaloneShell from '../layouts/StandaloneShell.astro';
+
+const seo = {
+  path: '/onboarding',
+  title: 'Switching IT Provider: Zero Downtime, No Hassle',
+  description: "Switching IT provider? Fresh Tech makes it seamless: zero downtime, we handle the credential transfer, your staff won't notice. Based in Ludlow, Shropshire.",
+  type: 'service',
+};
+
+const STATS = [
+  { n: 'Zero', l: 'Unplanned outages during any client migration' },
+  { n: '30 days', l: 'Typical time from first call to fully switched' },
+  { n: '100%', l: 'Success rate on credential handovers (inc. difficult providers)' },
+];
+
+const FEARS = [
+  { icon: '🔒', fear: "We're locked into a contract", reality: "Most IT contracts have a notice period, often 30–90 days. We can help you review yours and plan the switch for when the timing is right. We've never advised someone to break a contract." },
+  { icon: '⏱️', fear: 'Switching will cause downtime', reality: 'We run both systems in parallel. Your team keeps working during the entire transition. Most clients say the changeover was invisible: they just noticed support got faster.' },
+  { icon: '📁', fear: 'Getting our data and licences back', reality: "Your data, passwords, and licences belong to you, not your IT company. If they're reluctant to hand over credentials, we know how to navigate that. We've dealt with uncooperative providers many times." },
+  { icon: '🤷', fear: 'Our staff will struggle with the change', reality: 'We introduce ourselves to your team in the first week. One number, one email, same support. Most staff notice nothing except the calls get answered faster.' },
+  { icon: '💸', fear: "There'll be hidden setup costs", reality: 'No setup fee. No migration charge. No "discovery phase" invoice. We price on a per-user per-month basis from day one. That\'s it.' },
+];
+
+const STEPS = [
+  { day: 'Week 1', title: 'We audit what you have', desc: 'Remote scan of your devices, licences, and security posture. You get a plain-English report, yours to keep regardless.' },
+  { day: 'Week 2', title: 'Notice served (by you)', desc: 'You serve notice to your existing provider. We help you draft the letter if needed and check what notice period applies.' },
+  { day: 'Weeks 2–4', title: 'Credential handover', desc: 'We request admin credentials, licence keys, and domain access from your outgoing provider. If they stall, we have workarounds.' },
+  { day: 'Weeks 3–5', title: 'Parallel running', desc: 'Our monitoring, backups, and security tools go onto every device while your old provider is still technically in place. No gap in coverage.' },
+  { day: 'Final week', title: 'Cutover', desc: "On the agreed date we take full control. Your team gets a 5-minute briefing: here's who to call, here's the new email, here's what changes. That's it." },
+  { day: 'Month 2+', title: 'Business as usual', desc: "You call us by name. We pick up. You stop thinking about IT. That's the goal." },
+];
+
+const FAQS = [
+  { q: 'We have a complicated setup: servers, remote workers, a VoIP system. Can you handle it?', a: "Yes. Complex setups are the norm, not the exception. We audit everything upfront so we know exactly what we're dealing with before we make any commitments. If something is genuinely outside our scope we'll tell you in the first week." },
+  { q: "Our current IT company has been with us for years. Won't it be awkward?", a: "It's a business relationship, not a friendship. You're entitled to choose your IT provider. We handle the professional side of the transition, including formal notice, credential requests, and licence transfers, so you don't have to have that conversation yourself." },
+  { q: 'What if our staff are used to the way things work with the current provider?', a: "We'll match anything that's working and improve what isn't. We introduce ourselves to the whole team in the first week: quick briefing, new contact details, and that's it. Most staff say the main difference is their calls get answered faster." },
+  { q: 'Can we talk to you before committing to anything?', a: "Yes, that's the whole point of the first call. 20 minutes. No sales script. We'll tell you honestly if switching makes sense for your situation, including if it doesn't." },
+];
+---
+
+<StandaloneShell name="onboarding" seo={seo}>
+  <section class="sa-hero">
+    <div class="sa-wrap ob-hero-grid" style="--sa-max: 1100px">
+      <div>
+        <p class="sa-eyebrow sa-eyebrow-light">Switching IT provider</p>
+        <h1 class="sa-display sa-display-light" style="--sa-size: 46px; --sa-size-mobile: 36px; margin-bottom: 20px">Thinking about switching? Here's the honest guide.</h1>
+        <p class="sa-lead" style="max-width: 48ch">Most businesses stay with a bad IT provider far longer than they should, because switching sounds complicated. It isn't. We've done it dozens of times.</p>
+        <p class="ob-sub" style="max-width: 46ch">This page explains how it actually works, what happens with your data and contracts, and what you can expect from us if you decide to make the move.</p>
+        <a class="sa-button" href="/contact">Book a 20-min call →</a>
+      </div>
+      <div class="ob-stats">
+        <p class="ob-stats-label">Our switching record</p>
+        {STATS.map(({ n, l }) => (
+          <div class="ob-stat">
+            <div class="ob-stat-n">{n}</div>
+            <div class="ob-stat-l">{l}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-paper sa-rule">
+    <div class="sa-wrap" style="--sa-max: 1100px">
+      <p class="sa-eyebrow">The blockers</p>
+      <h2 class="sa-display" style="--sa-size: 36px; margin-bottom: 8px">What's stopping you. Addressed.</h2>
+      <p class="ob-intro">These are the five reasons businesses stay with a bad IT provider. Here's the reality of each.</p>
+      <div class="ob-fears">
+        {FEARS.map(({ icon, fear, reality }) => (
+          <div class="ob-fear-row">
+            <div class="ob-fear-q">
+              <div class="ob-fear-icon">{icon}</div>
+              <div class="ob-fear-text">"{fear}"</div>
+            </div>
+            <div class="ob-fear-a">
+              <div class="ob-fear-tick">✓</div>
+              <div class="ob-fear-reality">{reality}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-white sa-rule">
+    <div class="sa-wrap ob-timeline-grid" style="--sa-max: 1100px">
+      <div>
+        <p class="sa-eyebrow">The process</p>
+        <h2 class="sa-display" style="--sa-size: 36px; margin-bottom: 16px">Step by step. No surprises.</h2>
+        <p class="ob-intro" style="margin-bottom: 24px; max-width: 42ch">This is exactly what a standard switch looks like. Most are complete within 30 days of the first call.</p>
+        <div class="ob-midcontract">
+          <div class="ob-midcontract-h">What if we're mid-contract?</div>
+          <p>We can start the process now and time the cutover to coincide with your contract end date. We'll help you review notice period requirements and plan accordingly. No reason to wait until you're miserable.</p>
+        </div>
+      </div>
+      <div class="ob-steps">
+        {STEPS.map(({ day, title, desc }) => (
+          <div class="ob-step">
+            <div class="ob-step-day">{day}</div>
+            <div class="ob-step-title">{title}</div>
+            <div class="ob-step-desc">{desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sa-section sa-deep sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <p class="sa-eyebrow">Questions</p>
+      <h2 class="sa-display" style="--sa-size: 36px">More switching questions</h2>
+    </div>
+    <div class="sa-wrap ob-faqs" style="--sa-max: 720px; margin-top: 40px">
+      {FAQS.map(({ q, a }) => (
+        <details class="ob-faq">
+          <summary>{q}<span class="ob-faq-plus">+</span></summary>
+          <div class="ob-faq-a">{a}</div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="sa-section sa-ink sa-rule">
+    <div class="sa-wrap sa-center" style="--sa-max: 720px">
+      <p class="sa-eyebrow sa-eyebrow-light">Ready to talk?</p>
+      <h2 class="sa-display sa-display-light" style="--sa-size: 44px; margin-bottom: 16px">It starts with one phone call.</h2>
+      <p class="sa-lead ob-cta-lead">20 minutes. No commitment. We'll tell you what switching would look like for your specific setup, and whether it's actually worth doing.</p>
+      <div class="ob-cta-row"><a class="sa-button" href="/contact">Book a 20-min call →</a><a class="sa-button ob-btn-outline" href="tel:+441584517234">01584 517 234</a></div>
+      <p class="ob-fineprint">30-day money-back guarantee · Zero downtime switch · Mon–Fri 9am–5pm</p>
+    </div>
+  </section>
+</StandaloneShell>
+
+<style>
+  .ob-hero-grid { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center; }
+  @media (min-width: 768px) { .ob-hero-grid { grid-template-columns: 1.2fr 0.8fr; gap: 64px; } }
+  .ob-sub { margin: 0 0 28px; color: #8a929a; font-size: 15px; line-height: 1.65; }
+  .ob-stats { display: flex; flex-direction: column; gap: 12px; }
+  .ob-stats-label { font: 700 11px/1 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .14em; color: #757d84; margin: 0 0 4px; }
+  .ob-stat { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); padding: 18px 22px; }
+  .ob-stat-n { font: 400 28px/1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--yellow); margin-bottom: 4px; }
+  .ob-stat-l { font: 700 10px/1.3 'SA Archivo Narrow', sans-serif; text-transform: uppercase; letter-spacing: .12em; color: #9ba3aa; }
+  .ob-intro { color: var(--ink); opacity: 0.62; font-size: 16px; margin: 0 0 40px; max-width: 52ch; line-height: 1.6; }
+  .ob-fears { display: flex; flex-direction: column; gap: 2px; }
+  .ob-fear-row { display: grid; grid-template-columns: 1fr; border: 1px solid var(--hairline); }
+  @media (min-width: 768px) { .ob-fear-row { grid-template-columns: 1fr 1fr; } }
+  .ob-fear-row:nth-child(odd) { background: var(--white); }
+  .ob-fear-row:nth-child(even) { background: var(--paper-deep); }
+  .ob-fear-q, .ob-fear-a { padding: 24px 28px; display: flex; gap: 12px; align-items: flex-start; }
+  .ob-fear-q { border-bottom: 1px solid var(--hairline); }
+  @media (min-width: 768px) { .ob-fear-q { border-bottom: none; border-right: 1px solid var(--hairline); } }
+  .ob-fear-icon { font-size: 22px; flex-shrink: 0; }
+  .ob-fear-text { font: 400 16px/1.2 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: #A8362D; }
+  .ob-fear-tick { color: #256B4E; font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .ob-fear-reality { font-size: 14px; color: var(--ink); opacity: 0.75; line-height: 1.65; }
+  .ob-timeline-grid { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: start; }
+  @media (min-width: 768px) { .ob-timeline-grid { grid-template-columns: 1fr 1.2fr; gap: 64px; } }
+  .ob-midcontract { background: var(--paper-deep); border: 1px solid var(--hairline); padding: 20px 24px; }
+  .ob-midcontract-h { font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+  .ob-midcontract p { font-size: 14px; color: var(--ink); opacity: 0.75; line-height: 1.65; margin: 0; }
+  .ob-steps { position: relative; padding-left: 28px; border-left: 3px solid var(--primary-dark); }
+  .ob-step { margin-bottom: 28px; }
+  .ob-step:last-child { margin-bottom: 0; }
+  .ob-step-day { display: inline-block; background: var(--accent); color: var(--ink); padding: 2px 10px; font: 400 11px 'SA Bungee', 'SA Archivo', system-ui, sans-serif; margin-bottom: 5px; }
+  .ob-step-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .ob-step-desc { color: var(--ink); opacity: 0.75; font-size: 13px; line-height: 1.6; }
+  .ob-faqs { display: flex; flex-direction: column; }
+  .ob-faq { border-bottom: 1px solid var(--hairline); }
+  .ob-faq summary { padding: 18px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: center; font-size: 15px; font-weight: 700; color: var(--ink); }
+  .ob-faq summary::-webkit-details-marker { display: none; }
+  .ob-faq-plus { font: 400 22px/1 'SA Bungee', 'SA Archivo', system-ui, sans-serif; color: var(--primary-dark); flex-shrink: 0; transition: transform 200ms; }
+  .ob-faq[open] .ob-faq-plus { transform: rotate(45deg); }
+  .ob-faq-a { padding: 0 0 18px; color: var(--ink); opacity: 0.75; font-size: 15px; line-height: 1.65; max-width: 60ch; }
+  .ob-cta-lead { max-width: 44ch; margin-inline: auto; margin-bottom: 32px; color: #b9c0c6; }
+  .ob-cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+  .ob-btn-outline { background: transparent; color: var(--paper); border: 2px solid rgba(255,255,255,0.35); box-shadow: none; }
+  .ob-btn-outline:hover { background: rgba(255,255,255,0.08); }
+  .ob-fineprint { font-size: 13px; color: #7c848b; margin: 0; }
+  @media (prefers-reduced-motion: reduce) { .ob-faq-plus { transition: none; } }
+</style>

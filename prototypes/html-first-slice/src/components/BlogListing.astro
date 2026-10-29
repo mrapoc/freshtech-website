@@ -1,0 +1,112 @@
+---
+// Copy and structure mirror pages-v2/BlogPageV2.tsx. Every post value comes
+// from the generated published records; section copy is copied verbatim. The
+// server renders every published card; blog-filters.ts reveals the chip
+// toolbar, upgrades the hero category links and hides non-matching cards.
+import { allCategories, badgeTextColour, colourFor, countLabel, featuredPosts, firstSentence, heroCategories, listingPosts } from '../lib/blog-display.mjs';
+
+interface Post { slug: string; title: string; category: string; date: string; readTime: string; authorName: string; authorInitials: string; excerpt: string }
+interface Props { posts: Post[] }
+const sorted = listingPosts(Astro.props.posts);
+const featured = featuredPosts(sorted);
+const categories = allCategories(sorted);
+const hero = heroCategories(sorted);
+const badgeStyle = (category: string) => `background:${colourFor(category)};color:${badgeTextColour(category)}`;
+---
+
+<main id="main-content" class="blog-page blog-listing" data-blog-page tabindex="-1">
+  <section class="blog-hero">
+    <div class="blog-container blog-hero-grid">
+      <div>
+        <div class="blog-hero-tags">
+          <span class="blog-sticker">IT insights</span>
+          <span class="blog-hero-note">No jargon · No upsell</span>
+        </div>
+        <h1>The IT blog nobody asked for.</h1>
+        <p class="blog-hero-copy">Practical advice for businesses with 5–50 staff across Shropshire and Herefordshire. Written by engineers who fix the problems, not a content team.</p>
+      </div>
+      <nav class="blog-category-browser" aria-label="Browse by category">
+        <a href="#all-articles" data-filter="All" aria-current="true"><span>All articles</span><b>{sorted.length}</b></a>
+        {hero.top.map(([category, count]) => (
+          <a href="#all-articles" data-filter={category}><span><i style={`background:${colourFor(category)}`} aria-hidden="true"></i>{category}</span><b>{count}</b></a>
+        ))}
+        {hero.remainder > 0 && <a class="blog-category-more" href="#all-articles">+{hero.remainder} more in the full list <span aria-hidden="true">↓</span></a>}
+      </nav>
+    </div>
+  </section>
+
+  {featured.length > 0 && (
+    <section class="blog-section blog-featured" data-blog-featured aria-labelledby="featured-heading">
+      <div class="blog-container">
+        <h2 id="featured-heading" class="blog-eyebrow">Featured articles</h2>
+        <div class="blog-featured-list">
+          {featured.map(post => (
+            <a class="blog-featured-card" href={`/blog/${post.slug}`} data-slug={post.slug}>
+              <div class="blog-featured-body">
+                <div class="blog-featured-tags"><span class="blog-badge" style={badgeStyle(post.category)}>{post.category}</span><span class="blog-featured-label">FEATURED</span></div>
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
+                <div class="blog-card-foot">
+                  <span class="blog-author-chip"><span class="blog-initials" aria-hidden="true">{post.authorInitials}</span><span class="blog-meta">{post.authorName} · {post.date} · {post.readTime}</span></span>
+                  <span class="blog-read">Read <span aria-hidden="true">→</span></span>
+                </div>
+              </div>
+              <div class="blog-featured-quote" aria-hidden="true">
+                <span class="blog-quote-mark">"</span>
+                <p>{firstSentence(post.excerpt)}</p>
+                <span class="blog-quote-time">{post.readTime}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section id="all-articles" class="blog-section blog-all" aria-labelledby="all-heading">
+    <div class="blog-container">
+      <div class="blog-all-header">
+        <div>
+          <p class="blog-eyebrow" data-filter-label>All articles</p>
+          <h2 id="all-heading" class="blog-count" data-filter-count aria-live="polite">{countLabel(sorted.length)}</h2>
+        </div>
+        <noscript><style>.blog-filters[hidden] { display: none !important; }</style></noscript>
+        <div class="blog-filters" data-blog-filters role="group" aria-label="Filter articles by category" hidden>
+          {categories.map(category => <button type="button" data-filter={category} aria-pressed={category === 'All' ? 'true' : 'false'}>{category}</button>)}
+        </div>
+      </div>
+
+      <div class="blog-grid" data-blog-grid>
+        {sorted.map(post => (
+          <a class="blog-card" href={`/blog/${post.slug}`} data-slug={post.slug} data-post-category={post.category}>
+            <span class="blog-card-tone" style={`background:${colourFor(post.category)}`} aria-hidden="true"></span>
+            <div class="blog-card-body">
+              <span class="blog-badge" style={badgeStyle(post.category)}>{post.category}</span>
+              <h3>{post.title}</h3>
+              <p>{post.excerpt}</p>
+              <div class="blog-card-foot">
+                <span class="blog-author-chip"><span class="blog-initials" aria-hidden="true">{post.authorInitials}</span><span class="blog-meta">{post.authorName} · {post.date} · {post.readTime}</span></span>
+                <span class="blog-read">Read <span aria-hidden="true">→</span></span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <p class="blog-empty" data-filter-empty hidden>No articles in this category yet. <a href="/contact">Got a question? Ask us directly <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <section class="blog-cta-strip">
+    <div class="blog-container blog-cta-grid">
+      <div>
+        <h2>IT problem you want a straight answer to?</h2>
+        <p>Call us. 01584 517 234. We pick up.</p>
+      </div>
+      <div class="blog-cta-actions">
+        <a class="blog-button-paper" href="/contact">Book a free call <span aria-hidden="true">→</span></a>
+        <a class="blog-button-outline" href="/services">Our services</a>
+      </div>
+    </div>
+  </section>
+</main>
