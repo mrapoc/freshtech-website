@@ -444,9 +444,15 @@ try {
     const target = guide.sections[guide.sections.length - 1];
     await page.locator(`#guide-section-${target.id} [data-guide-toggle]`).click();
     check(await page.locator(`#guide-body-${target.id}`).isHidden(), `${label}: could not collapse the TOC target section`);
-    await page.evaluate(() => scrollTo(0, 0));
+    // A reader tabs to the link before pressing Enter, so the reset and the
+    // focus scroll finish first. Fired together, the page's smooth scrolling
+    // raced the fragment jump and the focus scroll won on macOS Chromium.
+    await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
     const tocLink = page.locator(`.guide-toc a[href="#guide-section-${target.id}"]`);
-    await tocLink.focus(); await page.keyboard.press('Enter');
+    await tocLink.focus();
+    const focusScroll = await pollUntil(() => page.evaluate(() => scrollY), (y, prev) => prev !== null && y === prev);
+    check(focusScroll.ok, `${label}: scroll did not settle after focusing the TOC link (scrollY ${focusScroll.value})`);
+    await page.keyboard.press('Enter');
     const tocLanding = await settledLanding(page, target.id, `${label}: TOC`);
     check(tocLanding.hash === `#guide-section-${target.id}`, `${label}: TOC hash is ${tocLanding.hash}`);
     check(await page.locator(`#guide-section-${target.id} [data-guide-toggle]`).getAttribute('aria-expanded') === 'true' && await page.locator(`#guide-body-${target.id}`).isVisible(), `${label}: TOC did not reveal the collapsed target`);
