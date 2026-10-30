@@ -1,8 +1,9 @@
 # Fresh Tech native static migration
 
 This Astro application is the active native production site on Apache/20i,
-confirmed from public HTML on 22 September 2026. The root React application is
-the retained migration reference and rollback. The default build is a disabled,
+confirmed from public HTML on 22 September 2026. The React application it replaced
+was retired on 30 October 2026; references to React pages below are migration history.
+The default build is a disabled,
 noindex preview; `PUBLIC_SITE_MODE=production npm run build` emits release files
 to `dist-production`. Current builds contain 242 pages.
 
@@ -37,12 +38,12 @@ current production data and page component. The routes include the V2
 header/footer, consent controls, FAQ disclosure and every current conversion
 link. Production sources remain unchanged.
 
-Service catalogue, per-service content and navigation inventory are read with a
-fail-closed TypeScript compiler AST literal reader
-(`scripts/lib/literal-reader.mjs`, following the literal-only rules of the
-repository's `scripts/content-chunks.mjs`). It rejects expressions, spreads,
+The service catalogue is read from `data/content.ts` with a fail-closed
+TypeScript compiler AST literal reader (`scripts/lib/literal-reader.mjs`).
+Per-service content (`data/service-pages.json`) and the navigation inventory
+(`data/navigation.json`) are JSON. The extractor rejects expressions, spreads,
 computed keys, duplicate or unsafe object keys, missing or unexpected fields,
-and any mismatch between the catalogue slugs and the `SERVICE_CONTENT` keys.
+and any mismatch between the catalogue slugs and the per-service content keys.
 TypeScript 5.9.3 is pinned as an exact dev dependency for this reader only.
 The React page's `FALLBACK` content is deliberately not reproduced: a catalogue
 service without its own content entry fails the build instead of rendering
@@ -50,8 +51,7 @@ generic copy.
 
 The adjacent `/services` listing route is also included. Its four groups, every
 card (name, description, price, tag, href) and the four hero stats are read from
-`pages-v2/ServicesPageV2.tsx` by the same AST reader, which enforces the
-`ServiceGroup`/`ServiceItem` interface shapes, safe site-relative hrefs, unique
+`data/service-pages.json`, enforcing the group and card shapes, safe site-relative hrefs, unique
 hrefs and slugs, and source order. Cards under `/services/` must match a
 generated detail route and their slug; the two standalone cards (`IT Health
 Check` at `/it-health-check` and `Microsoft Business Premium` at
@@ -171,14 +171,9 @@ the extractor runs locally against the source records and logs only route count
 and slugs. Treat this prototype as local comparison work, never as publication
 approval or a production migration claim.
 
-The build uses the shared fail-closed TypeScript literal reader to extract the
-three plans, feature lists, universal inclusions, SLA rows, objections,
-calculator rates and monthly minimum from
-`../../pages-v2/PricingPageV2.tsx`. It fails if the plan cards and calculator
-rates diverge, rather than maintaining another pricing source by hand.
-The fail-closed extractor is suitable for this bounded experiment. A production
-migration should first move the values into a typed, framework-neutral data
-module instead of depending on source-text patterns.
+The build validates the three plans, feature lists, universal inclusions, SLA
+rows, objections, calculator rates and monthly minimum in `data/pricing.json`.
+It fails if the plan cards and calculator rates diverge.
 
 
 ## Why this shape
@@ -331,7 +326,7 @@ rejection, then fulfils only the exact GA4 and Clarity script URLs with inert lo
 stubs after acceptance so verification never contacts analytics vendors. The
 seasonal provider and legacy title-announcement side effects are out of scope.
 
-Navigation inventory is extracted from `components-v2/SiteNavV2.tsx` during the
+Navigation inventory is extracted from `data/navigation.json` during the
 build. The desktop main links, Sectors and Resources disclosures and the mobile
 resource inventory therefore fail verification if the production source changes.
 Browser evidence retains an unmodified viewport screenshot for each size. The

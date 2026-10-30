@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { buildTechnologyData, isSafeImageSource, readServiceCatalogue, readTechExplainers, readTechnologyDirectory, readTechnologyListing } from './technology-reader.mjs';
+import { buildTechnologyData, isSafeImageSource, readServiceCatalogue, readTechExplainers, readTechnologyPages } from './technology-reader.mjs';
 
 const explainer = (overrides = {}) => {
   const fields = {
@@ -19,10 +19,9 @@ const explainer = (overrides = {}) => {
 };
 const explainerSource = body => `export const techExplainers: Record<string, any> = { ${body} };`;
 const servicesSource = body => `export const services: any[] = [ ${body} ];`;
-const landingSource = (pages, categories = "['Cyber Security', 'IT Management']") => `import { Monitor } from 'lucide-react';\nconst techPages = [${pages}];\nconst categories = ${categories};\nexport const TechnologyLandingPage = () => null;`;
-const card = (slug, category = 'Cyber Security', overrides = '') => `{ slug: '${slug}', title: 'Card ${slug}', desc: 'Card copy.', icon: Monitor, bgColor: 'bg-blue-100', textColor: 'text-blue-600', hoverBg: 'group-hover:bg-blue-600', category: '${category}'${overrides} }`;
-const directorySource = entries => `import { Shield } from 'lucide-react';\nconst allTechPages = [${entries}];\nexport const TechExplainerPage = () => null;`;
-const entry = (slug, overrides = '') => `{ slug: '${slug}', title: 'Entry ${slug}', icon: Shield, color: 'blue'${overrides} }`;
+const card = (slug, category = 'Cyber Security') => ({ slug, title: `Card ${slug}`, desc: 'Card copy.', category });
+const entry = slug => ({ slug, title: `Entry ${slug}` });
+const pages = ({ cards = [card('rmm')], categories = ['Cyber Security', 'IT Management'], directory = [entry('rmm')] } = {}) => ({ listing: { pages: cards, categories }, directory });
 
 test('projects techExplainers records in source order and drops benefit icons', () => {
   const [record] = readTechExplainers('fixture.ts', explainerSource(`alpha: ${explainer()}`));
@@ -61,29 +60,24 @@ test('rejects unsafe keys, wrong fields, empty arrays, duplicates and unsafe ric
   assert.throws(() => readTechExplainers('fixture.ts', explainerSource(`alpha: { ...${explainer()} }`)), /Only plain property assignments|spread/i);
 });
 
-test('reads the listing cards and categories, ignoring lucide icon identifiers', () => {
-  const listing = readTechnologyListing('fixture.tsx', landingSource(`${card('rmm', 'IT Management')}, ${card('mfa')}`));
-  assert.deepEqual(listing.categories, ['Cyber Security', 'IT Management']);
-  assert.deepEqual(listing.pages, [
+test('reads the listing cards, category order and explainer directory', () => {
+  const data = readTechnologyPages(pages({ cards: [card('rmm', 'IT Management'), card('mfa')], directory: [entry('rmm'), entry('mfa')] }));
+  assert.deepEqual(data.listing.categories, ['Cyber Security', 'IT Management']);
+  assert.deepEqual(data.listing.pages, [
     { slug: 'rmm', title: 'Card rmm', desc: 'Card copy.', category: 'IT Management' },
     { slug: 'mfa', title: 'Card mfa', desc: 'Card copy.', category: 'Cyber Security' },
   ]);
-  assert.throws(() => readTechnologyListing('fixture.tsx', landingSource(card('rmm', 'Unknown'))), /not in categories/);
-  assert.throws(() => readTechnologyListing('fixture.tsx', landingSource(`${card('rmm')}, ${card('rmm')}`)), /duplicate slug/);
-  assert.throws(() => readTechnologyListing('fixture.tsx', landingSource(card('rmm', 'Cyber Security', ", extra: 'x'"))), /unexpected field extra/);
-  assert.throws(() => readTechnologyListing('fixture.tsx', landingSource(card('rmm').replace('icon: Monitor', "icon: 'Monitor'"))), /must be an icon identifier/);
-  assert.throws(() => readTechnologyListing('fixture.tsx', landingSource(card('rmm').replace('icon: Monitor, ', ''))), /missing field icon/);
-  assert.throws(() => readTechnologyListing('fixture.tsx', landingSource(card('rmm').replace("title: 'Card rmm'", 'title: label'))), /Non-literal expression/);
-  assert.throws(() => readTechnologyListing('fixture.tsx', landingSource(card('rmm'), "['Cyber Security', 'Cyber Security']")), /duplicate/);
-  assert.throws(() => readTechnologyListing('fixture.tsx', `const techPages = [${card('rmm')}]; const techPages = []; const categories = ['Cyber Security'];`), /exactly once/);
-});
-
-test('reads the explainer directory with icon identifiers ignored', () => {
-  assert.deepEqual(readTechnologyDirectory('fixture.tsx', directorySource(`${entry('rmm')}, ${entry('mfa')}`)), [{ slug: 'rmm', title: 'Entry rmm' }, { slug: 'mfa', title: 'Entry mfa' }]);
-  assert.throws(() => readTechnologyDirectory('fixture.tsx', directorySource(`${entry('rmm')}, ${entry('rmm')}`)), /duplicate slug/);
-  assert.throws(() => readTechnologyDirectory('fixture.tsx', directorySource(entry('rmm', ", extra: 1"))), /unexpected field extra/);
-  assert.throws(() => readTechnologyDirectory('fixture.tsx', directorySource(`...shared`)), /spread|object literals/i);
-  assert.throws(() => readTechnologyDirectory('fixture.tsx', directorySource('')), /no entries/);
+  assert.deepEqual(data.directory, [{ slug: 'rmm', title: 'Entry rmm' }, { slug: 'mfa', title: 'Entry mfa' }]);
+  assert.throws(() => readTechnologyPages(pages({ cards: [card('rmm', 'Unknown')] })), /not in categories/);
+  assert.throws(() => readTechnologyPages(pages({ cards: [card('rmm'), card('rmm')] })), /duplicate slug/);
+  assert.throws(() => readTechnologyPages(pages({ cards: [{ ...card('rmm'), extra: 'x' }] })), /unexpected|exactly/i);
+  assert.throws(() => readTechnologyPages(pages({ cards: [{ ...card('rmm'), title: 1 }] })), /must be a/);
+  assert.throws(() => readTechnologyPages(pages({ cards: [card('Not A Slug')] })), /safe route segment/);
+  assert.throws(() => readTechnologyPages(pages({ categories: ['Cyber Security', 'Cyber Security'] })), /duplicate/);
+  assert.throws(() => readTechnologyPages(pages({ directory: [entry('rmm'), entry('rmm')] })), /duplicate slug/);
+  assert.throws(() => readTechnologyPages(pages({ directory: [{ ...entry('rmm'), color: 'blue' }] })), /unexpected|exactly/i);
+  assert.throws(() => readTechnologyPages(pages({ directory: [] })), /directory/);
+  assert.throws(() => readTechnologyPages({ ...pages(), extra: [] }), /unexpected|exactly/i);
 });
 
 test('reads only slug and title from the service catalogue without evaluating other members', () => {

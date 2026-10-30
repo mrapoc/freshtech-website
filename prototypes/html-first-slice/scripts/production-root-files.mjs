@@ -1,5 +1,5 @@
 // Writes the production root files into a production build directory:
-// sitemap.xml and rss.xml from the root React generators (editorial holds
+// sitemap.xml and rss.xml from the root generators in scripts/ (editorial holds
 // respected), robots.txt and the IndexNow key file copied from the root public
 // folder. Native images, fonts, icons and manifest live in this application's
 // public folder and are also copied by Astro.
@@ -20,7 +20,7 @@ export async function writeProductionRootFiles(distDir) {
   // The sitemap generator already excludes held and future-dated posts.
   await generateSitemap(resolve(distDir, 'sitemap.xml'));
 
-  // Same feed as the React build (scheduled posts only, for Publer), minus held posts.
+  // Scheduled posts only (for Publer), minus held posts.
   const scheduled = extractBlogPosts().filter(post => isFuturePost(post.date) && !holds.has(post.slug));
   await writeFile(resolve(distDir, 'rss.xml'), generateRSS(scheduled, true), 'utf8');
 

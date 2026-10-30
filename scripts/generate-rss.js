@@ -138,39 +138,3 @@ ${items}
   </channel>
 </rss>`;
 };
-
-// Main execution
-const main = () => {
-  console.log('Generating RSS feed for Publer...');
-
-  const posts = extractBlogPosts();
-  console.log(`Found ${posts.length} total posts`);
-
-  // Filter to ONLY future scheduled posts - prevents Publer from posting existing content
-  const scheduledPosts = posts.filter(p => isFuturePost(p.date));
-  const publishedCount = posts.length - scheduledPosts.length;
-
-  console.log(`${publishedCount} already published (excluded from RSS)`);
-  console.log(`${scheduledPosts.length} scheduled for future (included in RSS)`);
-
-  if (scheduledPosts.length === 0) {
-    console.log('⚠️  No scheduled posts found - RSS feed will be empty');
-  }
-
-  // Generate RSS with only scheduled posts
-  const rss = generateRSS(scheduledPosts, true);
-
-  const outputPath = path.join(__dirname, '../public/rss.xml');
-  fs.writeFileSync(outputPath, rss);
-
-  console.log(`✅ RSS feed generated: public/rss.xml`);
-  console.log(`   Posts will be scheduled for ${DEFAULT_POST_HOUR}:${String(DEFAULT_POST_MINUTE).padStart(2, '0')} UTC`);
-  if (scheduledPosts.length > 0) {
-    console.log(`   Publer will auto-post on each post's scheduled date`);
-  }
-};
-
-// Run only as a script; the native production build imports the helpers above.
-if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
-  main();
-}

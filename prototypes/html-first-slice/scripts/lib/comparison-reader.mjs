@@ -1,7 +1,5 @@
-import { createHash } from 'node:crypto';
 import { assertArray, assertExactKeys, assertPlainObject, assertString, parseSource, topLevelConstLiteral } from './literal-reader.mjs';
 import { isAllowedInlineHref } from '../../src/lib/inline-markdown.mjs';
-import { readServiceLocationRoutes } from './service-location-reader.mjs';
 
 // Fail-closed projection of data/content.ts `comparisonPages` onto the fields
 // pages/ComparisonPage.tsx renders. Every field in the source record type is
@@ -14,7 +12,6 @@ export const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 export const REQUIRED_FIELDS = ['slug', 'title', 'metaDesc', 'h1', 'intro', 'options', 'comparisonRows', 'verdict', 'content', 'faqs', 'cta'];
 export const STRING_FIELDS = ['slug', 'title', 'metaDesc', 'h1', 'intro', 'verdict', 'content', 'cta'];
 export const OPTION_FIELDS = ['name', 'desc', 'pros', 'cons', 'bestFor', 'icon'];
-export const ROUTE_COMPONENT = 'ComparisonPage';
 
 function validateInlineLinks(value, label) {
   for (const match of value.matchAll(/\[[^\]]*\]\(([^)]*)\)/g)) {
@@ -84,31 +81,4 @@ export function readComparisons(fileName, source) {
     titles.add(titleKey);
     return page;
   });
-}
-
-// The native template restates fixed copy and the Recommended rule from the
-// React component, which data validation cannot see. Fail closed when that
-// component changes: SHA-256 of pages/ComparisonPage.tsx with CRLF normalised
-// to LF. Update the digest only after re-reviewing the template against it.
-export const COMPARISON_SOURCE_FILE = 'pages/ComparisonPage.tsx';
-export const REVIEWED_COMPARISON_SOURCE_SHA256 = 'ca9757369dd91b9f077830443bc6721524d0717f616584f045695b72b0f32b7c';
-export const comparisonSourceDigest = source => createHash('sha256').update(source.replace(/\r\n/g, '\n'), 'utf8').digest('hex');
-export function assertComparisonSource(source, expected = REVIEWED_COMPARISON_SOURCE_SHA256) {
-  const actual = comparisonSourceDigest(source);
-  if (actual !== expected) throw new Error(`${COMPARISON_SOURCE_FILE} has changed since the native comparison template was reviewed (SHA-256 ${actual}). Re-review the template, then update REVIEWED_COMPARISON_SOURCE_SHA256.`);
-  return actual;
-}
-
-export function readComparisonRoutes(fileName, source) {
-  return readServiceLocationRoutes(fileName, source, ROUTE_COMPONENT);
-}
-
-export function assertComparisonRouteInventory(pages, routes) {
-  const slugs = pages.map(page => page.slug);
-  const missing = slugs.filter(slug => !routes.includes(slug));
-  const unexpected = routes.filter(slug => !slugs.includes(slug));
-  if (missing.length || unexpected.length) {
-    throw new Error(`App.tsx ${ROUTE_COMPONENT} routes differ from comparisonPages. Not routed: [${missing.join(', ')}]. Routed without a record: [${unexpected.join(', ')}]`);
-  }
-  return slugs;
 }

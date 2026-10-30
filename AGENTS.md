@@ -1,58 +1,36 @@
 # Fresh Tech Website: project guide
 
 Marketing site for Fresh Tech, an MSP (managed IT support) serving Shropshire,
-Herefordshire, Worcestershire and Powys. Lead-gen focused. Deep architecture
-lives in [ARCHITECTURE.md](ARCHITECTURE.md) and [README.md](README.md); this
-file is the operating guide: read it before making changes.
+Herefordshire, Worcestershire and Powys. Lead-gen focused. Architecture lives in
+[ARCHITECTURE.md](ARCHITECTURE.md), commands in [DEVELOPMENT.md](DEVELOPMENT.md);
+this file is the operating guide: read it before making changes.
 
 ## Stack
-- Production is the native **Astro 7 / Apache / 20i** site in `prototypes/html-first-slice/`, confirmed by public HTML on 22 September 2026.
-- The root React 19 / Vite application and Netlify configuration remain the retained migration reference and rollback. Its build commands do not build the live Astro site.
-- Native pages emit static HTML. Small PHP handlers live under `server/api/` in the native application; private configuration stays outside `public_html`.
+- Production is the **Astro 7** static site in `prototypes/html-first-slice/`, served by **Apache with small PHP handlers on 20i**.
+- Pages emit static HTML. PHP handlers live under `server/api/` in that project; private configuration stays outside `public_html`.
+- The repository root holds shared content (`data/`, `content/`), the Apache routing source (`hosting/routing.json`), the sitemap/RSS generators, and the gate, packaging and deploy scripts in `scripts/`. The root `package.json` only provides Playwright for the browser gate and the Cloudinary upload helper.
+- The former React/Vite app and its Netlify rollback were retired on 30 October 2026. They remain in this repository's Git history and the private `mrapoc/freshtech-website-archive`.
 
 ## Content is data-driven: this is the most important thing
-Almost every page is generated from data files, not bespoke components:
-- `data/content.ts`: the master file: `services`, `industryPages`, `caseStudies`, `blogPosts`, `locationsData`, `techExplainers`, `problemPages`, `teamMembers`.
+Almost every page is generated from data files, not bespoke markup:
+- `data/content.ts`: the master file: `services`, `industryPages`, `caseStudies`, `blogPosts`, `locationsData`, `techExplainers`, `problemPages`, `serviceLocationPages`, `comparisonPages`, `teamMembers`, testimonials.
 - `data/industryGuides.ts`: `industryGuides` (the `/guides/*` pages).
+- `data/pricing.json`, `data/service-pages.json`, `data/navigation.json`, `data/technology-pages.json`: pricing, per-service copy and the services listing, site navigation, and the technology listing.
+- `content/*.md`: legal documents (see [LEGAL-PAGES.md](LEGAL-PAGES.md)).
 
-Keep `data/content.ts` as independent exported literal records. The production
-build splits those records into separate modules; executable expressions and
-cross-record references are rejected. Full builds enforce generated-page byte,
-heading, canonical and sitemap checks. See DEVELOPMENT.md before changing limits.
+The build never executes these files. `scripts/extract-*.mjs` in the Astro project read them
+fail-closed (literal values only in `.ts`; exact fields everywhere) into the gitignored
+`src/generated/`. Keep `data/content.ts` as exported literal records: expressions, spreads
+and cross-record references fail the build. Adding a record adds its route and checks.
+Services, industries, case studies, blog, team, locations, technology and guides reach
+the sitemap automatically; problem, comparison, service-location and standalone pages
+need a `staticRoutes` entry in `scripts/generate-sitemap.js`. The production output
+check fails on any emitted page missing from the sitemap. A new page type also needs its
+Astro route in `src/pages/` and its own checks (see below).
 
-For native production, add the relevant source record and implement or extend its
-Astro route in `prototypes/html-first-slice/src/pages/`. Follow DEVELOPMENT.md and
-the static quality contract; production output checks require sitemap coverage.
-Changing `App.tsx` alone does not add a native production route.
+## Production site
 
-**Retained React routing only:** to add a page, add an entry to the relevant record/array. A matching dynamic
-route (`/technology/:slug`, `/services/:slug`, `/locations/:city`, etc.) in
-[App.tsx](App.tsx) renders it. The sitemap, RSS feed and prerender list **all
-auto-derive from these same data files**, so a new data entry flows through
-automatically. Standalone pages (their own route, no `:slug`) must be added in
-three places: `App.tsx`, `scripts/generate-sitemap.js` (`staticRoutes`), and
-`scripts/prerender.js` (`getAllRoutes`).
-
-**Gotcha:** sitemap and prerender route lists must stay in sync. The 4
-incident-response pages (`/business-email-compromise`, `/email-account-hacked`,
-`/data-breach-discovered`, `/laptop-stolen-lost`) were prerendered but missing
-from the sitemap (fixed 2026-06-15). When adding a standalone page, check both.
-
-## Retained React v2 convention
-Top conversion routes render their **V2** ports from `pages-v2/` and
-`components-v2/`; `Layout` dispatches to `LayoutV2` chrome. When editing one of
-these pages, edit the `*V2` version (the non-v2 file in `pages/` may be dead).
-Check `App.tsx` imports to see which version a route actually uses.
-
-## Retained React build & checks
-- `npm run dev`: local dev (Vite, port 5173).
-- `npm run build:no-prerender`: fast build (sitemap + rss + vite). Use for verifying.
-- `npm run build`: full build incl. Playwright prerender. The retained Netlify configuration invokes this build; it does not deploy the current Apache site.
-- Prerender waits on the canonical tag reflecting the route before snapshotting: don't break that logic in `scripts/prerender.js`.
-
-## Native production site
-
-`prototypes/html-first-slice/` is the active Astro site. Run its checks and build
+`prototypes/html-first-slice/` is the Astro site. Run its checks and build
 there; use `PUBLIC_SITE_MODE=production` for release output in `dist-production`.
 Read the subproject README and [static quality contract](docs/seo/static-quality-contract.md)
 before changing its pages, components, styles or source data. New routes must
@@ -71,11 +49,12 @@ Releases deploy automatically from the site owner's Mac once merged to `main`
 - Per-page SEO via the `SEO` component (title, meta description, canonical, JSON-LD). Keep titles ≤ ~60 chars, descriptions ~150–160.
 - GSC is a **domain property** (`sc-domain:fresh-tech.uk`) → Sitemaps API and URL-prefix features don't work via the service account; URL Inspection + Search Analytics do.
 - **Google discovery:** use the sitemap for ordinary marketing and article pages. Google's Indexing API only supports verified `JobPosting` or `BroadcastEvent` within `VideoObject`; it is not a general recrawl API. `gsc:submit` requires explicit eligible URLs and `--eligible-type`, and supports a credential-free `--dry-run`. Do not submit ordinary sitemap URLs or interpret notification acceptance as indexing proof.
-- **Retained Netlify deployment only:** its configuration runs `indexnow-submit.mjs --new-vs-live` for IndexNow engines, non-fatally. Google does not use IndexNow; its discovery remains sitemap/link based. IndexNow key file: `public/2b725a5296b158e1900494bc69ec6024.txt` (public verification token). Manual use: `npm run indexnow:submit`. Live submissions still require authorisation.
+- **IndexNow** (Bing and others, not Google): `npm run indexnow:submit` reads the production build's sitemap; live submissions require authorisation. The key file `public/2b725a5296b158e1900494bc69ec6024.txt` is a public verification token shipped with the site.
 - The connected `gsc` MCP: `check_alerts` is ranking-only; there is no coverage-report API: inspect URLs individually for indexing status.
-- Native release packaging (`scripts/package-static-production.mjs`) generates Apache
-  `.htaccess`. Verify its redirects and real HTTP status codes for production changes.
-- **Retained React/Netlify redirects only:** redirects live in both `netlify.toml` (edge 301s: authoritative for bots) and `data/legacyRedirects.ts` (client-side fallback). The SPA catch-all returns HTTP 200, so unknown URLs are a soft-404 risk; don't flip it to 404 without first porting the client-side-only redirects to the edge.
+- **Redirects and security headers** live in `hosting/routing.json`. Release packaging
+  (`scripts/package-static-production.mjs`) compiles them into the Apache `.htaccess`.
+  Order matters (first match wins); unknown paths return 404. Verify redirects and real
+  HTTP status codes for production changes.
 
 ## Content rules (non-negotiable)
 - **UK spelling.** Voice: plain-English, analogy-led, no jargon, no hype. Match the tone of existing `techExplainers`/blog entries.
@@ -96,10 +75,9 @@ name competitors. Secrets stay in private configuration, never in Git.
 
 ## Don't
 - Don't re-block AI crawlers in `public/robots.txt`. Training **and** search/citation crawlers (GPTBot, Google-Extended, ClaudeBot, CCBot, Applebot-Extended, etc.) are intentionally **allowed** (Sam's decision, 2026-06-15) to maximise AI-answer visibility. The earlier "block training" stance was reversed.
-- Don't commit `dist/` (untracked) or the build-regenerated `public/sitemap.xml`/`rss.xml` date churn unless the change is intentional.
+- Don't commit build output (`dist/`, `dist-production/`, `src/generated/`, `.artifacts/`).
 - Don't put secrets in the repo. The GSC service-account key path is local
-  (`GSC_KEY_FILE`); native PHP private configuration stays outside `public_html`.
-  Netlify environment configuration belongs to the retained rollback only.
+  (`GSC_KEY_FILE`); PHP private configuration stays outside `public_html`.
 
 ## Workspace standard
 

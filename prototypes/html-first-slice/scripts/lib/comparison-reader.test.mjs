@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { assertComparisonRouteInventory, assertComparisonSource, comparisonSourceDigest, readComparisonRoutes, readComparisons } from './comparison-reader.mjs';
+import { readComparisons } from './comparison-reader.mjs';
 
 // Synthetic fixtures only. Field shapes follow pages/ComparisonPage.tsx, not any
 // real record in data/content.ts.
@@ -19,7 +19,6 @@ const record = (key, overrides = {}) => {
   return `{ ${Object.entries(fields).filter(([, value]) => value !== undefined).map(([name, value]) => `${name}: ${value}`).join(', ')} }`;
 };
 const source = body => `export const comparisonPages: Record<string, any> = { ${body} };`;
-const routesSource = routes => `const ComparisonPage = lazy(() => import('./x'));\nexport default function App() { return (<Routes>${routes}<Route path="/slow" element={<ProblemPage />} /></Routes>); }`;
 
 test('reads records in source order and keeps every rendered field', () => {
   const pages = readComparisons('fixture.ts', source(`"a-vs-b": ${record('a-vs-b')}, "c-vs-d": ${record('c-vs-d')}`));
@@ -52,20 +51,4 @@ test('rejects unsafe links in every RichText field', () => {
   assert.throws(() => readComparisons('fixture.ts', source(`alpha: ${record('alpha', { verdict: "'[bad](javascript:alert(1))'" })}`)), /verdict contains a disallowed/);
   assert.throws(() => readComparisons('fixture.ts', source(`alpha: ${record('alpha', { content: "'[bad](//evil.test)'" })}`)), /content contains a disallowed/);
   assert.throws(() => readComparisons('fixture.ts', source(`alpha: ${record('alpha', { faqs: "[{ q: 'Q', a: '[bad](data:text/plain,x)' }]" })}`)), /faqs\[0\]\.a contains a disallowed/);
-});
-
-test('route inventory reads only ComparisonPage routes and must equal the record keys', () => {
-  const routes = readComparisonRoutes('App.tsx', routesSource('<Route path="/a-vs-b" element={<ComparisonPage />} /><Route path="/c-vs-d" element={<ComparisonPage />} />'));
-  assert.deepEqual(routes, ['a-vs-b', 'c-vs-d']);
-  const pages = readComparisons('fixture.ts', source(`"a-vs-b": ${record('a-vs-b')}, "c-vs-d": ${record('c-vs-d')}`));
-  assert.deepEqual(assertComparisonRouteInventory(pages, ['c-vs-d', 'a-vs-b']), ['a-vs-b', 'c-vs-d']);
-  assert.throws(() => assertComparisonRouteInventory(pages, ['a-vs-b']), /Not routed: \[c-vs-d\]/);
-  assert.throws(() => assertComparisonRouteInventory(pages, ['a-vs-b', 'c-vs-d', 'e-vs-f']), /Routed without a record: \[e-vs-f\]/);
-});
-
-test('the React component drift guard normalises line endings and fails closed on any change', () => {
-  const source = 'export const ComparisonPage = () => null;\n';
-  const digest = comparisonSourceDigest(source);
-  assert.equal(assertComparisonSource(source.replace(/\n/g, '\r\n'), digest), digest);
-  assert.throws(() => assertComparisonSource(source + ' ', digest), /has changed since the native comparison template was reviewed/);
 });

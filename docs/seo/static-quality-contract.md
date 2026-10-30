@@ -1,8 +1,7 @@
 # Static website quality contract
 
 This contract applies to every current and future native Astro page, shared
-component and content entry. The production React site remains separate until
-the migration and deployment gates pass. Sam's target is 100 for Performance,
+component and content entry. Sam's target is 100 for Performance,
 Accessibility, Best Practices and SEO on mobile and desktop.
 
 ## What must be enforced

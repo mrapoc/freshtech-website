@@ -1,0 +1,115 @@
+{
+  "main": [
+    {
+      "label": "Services",
+      "href": "/services"
+    },
+    {
+      "label": "Pricing",
+      "href": "/pricing"
+    },
+    {
+      "label": "Why Trust Us",
+      "href": "/why-trust-us"
+    },
+    {
+      "label": "About",
+      "href": "/about"
+    }
+  ],
+  "sectors": [
+    {
+      "label": "Solicitors & Legal",
+      "href": "/industries/solicitors"
+    },
+    {
+      "label": "Accountants",
+      "href": "/industries/accountants"
+    },
+    {
+      "label": "Manufacturing",
+      "href": "/industries/manufacturing"
+    },
+    {
+      "label": "Healthcare",
+      "href": "/industries/healthcare"
+    },
+    {
+      "label": "Charities",
+      "href": "/industries/charities"
+    },
+    {
+      "label": "Agriculture",
+      "href": "/industries/agriculture"
+    }
+  ],
+  "resources": [
+    {
+      "label": "Blog",
+      "href": "/blog",
+      "desc": "Plain-English IT advice"
+    },
+    {
+      "label": "Case Studies",
+      "href": "/case-studies",
+      "desc": "Real client outcomes"
+    },
+    {
+      "label": "Free Email Security Check",
+      "href": "/email-security-check",
+      "desc": "SPF, DKIM & DMARC, instant",
+      "tag": "Free"
+    },
+    {
+      "label": "Free IT Health Check",
+      "href": "/it-health-check",
+      "desc": "8-area audit, plain report",
+      "tag": "Free"
+    },
+    {
+      "label": "Free AI Use Policy Template",
+      "href": "/ai-acceptable-use-policy",
+      "desc": "27 sections, copy + edit",
+      "tag": "Free"
+    },
+    {
+      "label": "Business Premium guide",
+      "href": "/microsoft-business-premium",
+      "desc": "Is the upgrade worth it?"
+    }
+  ],
+  "mobileResources": [
+    {
+      "label": "Blog",
+      "href": "/blog"
+    },
+    {
+      "label": "Case Studies",
+      "href": "/case-studies"
+    },
+    {
+      "label": "Free Email Security Check",
+      "href": "/email-security-check"
+    },
+    {
+      "label": "Free IT Health Check",
+      "href": "/it-health-check"
+    },
+    {
+      "label": "Free AI Policy Template",
+      "href": "/ai-acceptable-use-policy"
+    },
+    {
+      "label": "Switching provider",
+      "href": "/onboarding"
+    },
+    {
+      "label": "Careers",
+      "href": "/careers"
+    },
+    {
+      "label": "Refer a business",
+      "href": "/refer"
+    }
+  ]
+}

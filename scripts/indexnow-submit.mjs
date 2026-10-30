@@ -3,6 +3,9 @@
  * Free, no auth: the key is verified by a public key file at the domain root.
  *
  * Usage:
+ * Reads the production build's sitemap: run PUBLIC_SITE_MODE=production npm run build
+ * in prototypes/html-first-slice first.
+ *
  *   node scripts/indexnow-submit.mjs                # submit all sitemap URLs
  *   node scripts/indexnow-submit.mjs --new-vs-live  # only URLs new since the live sitemap
  *   node scripts/indexnow-submit.mjs --dry-run      # show what would be sent
@@ -24,7 +27,7 @@ const newVsLive = args.includes('--new-vs-live');
 const dryRun = args.includes('--dry-run');
 
 function localUrls() {
-  const xml = fs.readFileSync(path.join(__dirname, '../public/sitemap.xml'), 'utf-8');
+  const xml = fs.readFileSync(path.join(__dirname, '../prototypes/html-first-slice/dist-production/sitemap.xml'), 'utf-8');
   return (xml.match(/<loc>([^<]+)<\/loc>/g) || []).map(m => m.replace(/<\/?loc>/g, ''));
 }
 async function liveUrls() {

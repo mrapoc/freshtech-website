@@ -2,17 +2,17 @@
 import assert from 'node:assert/strict';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
-import { parseNetlifyRouting } from './generate-apache-static-config.mjs';
+import { parseRouting } from './generate-apache-static-config.mjs';
 const origin = 'https://preview.fresh-tech.uk';
 const arg = name => { const index = process.argv.indexOf(name); return index < 0 ? undefined : process.argv[index + 1]; };
-const redirects = parseNetlifyRouting(await readFile(new URL('../netlify.toml', import.meta.url), 'utf8')).redirects.filter(row => row.status === 301);
+const { redirects } = parseRouting(await readFile(new URL('../hosting/routing.json', import.meta.url), 'utf8'));
 const matchPath = (pattern, path) => new RegExp('^' + pattern.split('*').map(part => part.replace(/[.+?^${}()|[\]\\]/g, '\\$&')).join('.*') + '$').test(path);
 const stamp = String(Date.now());
 const probes = redirects.map(row => {
   const path = row.from.replaceAll('*', 'migration-probe');
   const query = new URLSearchParams({ __routing_probe: stamp });
-  if (row.query) query.set(Object.keys(row.query)[0], '');
-  const first = redirects.find(candidate => matchPath(candidate.from, path) && (!candidate.query || Object.keys(candidate.query).every(key => query.has(key))));
+  if (row.query) query.set(row.query, '');
+  const first = redirects.find(candidate => matchPath(candidate.from, path) && (!candidate.query || query.has(candidate.query)));
   assert.ok(first, `No expected redirect for ${path}`);
   return { path: `${path}?${query}`, status: 301, location: `${origin}${first.to}${first.query ? '' : `?${query}`}` };
 });

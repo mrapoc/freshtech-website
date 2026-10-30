@@ -1,6 +1,5 @@
 import { assertArray, assertExactKeys, assertPlainObject, assertString, parseSource, topLevelConstLiteral } from './literal-reader.mjs';
 import { isAllowedInlineHref } from '../../src/lib/inline-markdown.mjs';
-import { readServiceLocationRoutes } from './service-location-reader.mjs';
 
 // Fail-closed projection of data/content.ts `problemPages` onto the fields
 // pages/ProblemPage.tsx renders. Every field in the source record type is
@@ -11,8 +10,6 @@ import { readServiceLocationRoutes } from './service-location-reader.mjs';
 export const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 export const REQUIRED_FIELDS = ['slug', 'title', 'metaDesc', 'h1', 'intro', 'symptoms', 'causes', 'solutions', 'content', 'faqs', 'cta'];
 export const STRING_FIELDS = ['slug', 'title', 'metaDesc', 'h1', 'intro', 'content', 'cta'];
-// The React component that owns every problem route in App.tsx.
-export const ROUTE_COMPONENT = 'ProblemPage';
 
 function validateInlineLinks(value, label) {
   for (const match of value.matchAll(/\[[^\]]*\]\(([^)]*)\)/g)) {
@@ -75,24 +72,4 @@ export function readProblems(fileName, source) {
     titles.add(titleKey);
     return page;
   });
-}
-
-// Root-slug routes owned by the ProblemPage component in App.tsx, in source
-// order. The service-location route reader already walks the TSX AST for an
-// arbitrary component name, so it is reused rather than duplicated.
-export function readProblemRoutes(fileName, source) {
-  return readServiceLocationRoutes(fileName, source, ROUTE_COMPONENT);
-}
-
-// The React routes are hand-listed while the data is keyed: both must agree
-// exactly, otherwise a record would be built here that production never serves
-// (or a production route would have no native output).
-export function assertProblemRouteInventory(pages, routes) {
-  const slugs = pages.map(page => page.slug);
-  const missing = slugs.filter(slug => !routes.includes(slug));
-  const unexpected = routes.filter(slug => !slugs.includes(slug));
-  if (missing.length || unexpected.length) {
-    throw new Error(`App.tsx ${ROUTE_COMPONENT} routes differ from problemPages. Not routed: [${missing.join(', ')}]. Routed without a record: [${unexpected.join(', ')}]`);
-  }
-  return slugs;
 }

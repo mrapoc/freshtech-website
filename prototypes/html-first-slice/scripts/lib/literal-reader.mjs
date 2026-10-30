@@ -1,8 +1,7 @@
 import ts from 'typescript';
 
-// Fail-closed literal reader built on the repository's scripts/content-chunks.mjs
-// rules: only string, template-without-substitution, numeric, signed numeric,
-// boolean and null literals, arrays of those, and object literals whose members
+// Fail-closed literal reader: only string, template-without-substitution,
+// numeric, signed numeric, boolean and null literals, arrays of those, and object literals whose members
 // are plain (non-computed) property assignments. Anything else (identifiers,
 // spreads, calls, template substitutions, shorthand/method members, computed
 // keys) throws instead of being evaluated.
@@ -89,18 +88,6 @@ export function topLevelConstLiteral(file, name) {
   if (!(statement.declarationList.flags & ts.NodeFlags.Const)) throw new Error(`${name} must be a const declaration`);
   if (!declaration.initializer) throw new Error(`${name} has no initializer`);
   return literalValue(file, declaration.initializer);
-}
-
-// Returns the property names declared on a top-level `interface NAME { ... }`.
-export function interfaceMembers(file, name) {
-  const matches = file.statements.filter(statement => ts.isInterfaceDeclaration(statement) && statement.name.text === name);
-  if (matches.length !== 1) throw new Error(`${file.fileName} must declare interface ${name} exactly once`);
-  return matches[0].members.map(member => {
-    if (!ts.isPropertySignature(member) || !(ts.isIdentifier(member.name) || ts.isStringLiteral(member.name))) {
-      throw new Error(`Interface ${name} must contain only named property signatures`);
-    }
-    return { name: member.name.text, optional: Boolean(member.questionToken) };
-  });
 }
 
 export function assertPlainObject(value, label) {

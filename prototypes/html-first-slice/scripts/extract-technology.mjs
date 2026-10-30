@@ -5,8 +5,7 @@ import {
   buildTechnologyData,
   readServiceCatalogue,
   readTechExplainers,
-  readTechnologyDirectory,
-  readTechnologyListing,
+  readTechnologyPages,
 } from './lib/technology-reader.mjs';
 
 // Projects the technology family onto src/generated/technology-data.mjs.
@@ -15,9 +14,8 @@ import {
 //   `services` slug/title catalogue used to resolve related-service links.
 //   `--source PATH` substitutes an approved projection file that declares the
 //   same two exports, for workers that must not read the canonical file.
-// - pages/TechnologyLandingPage.tsx: `techPages` cards and `categories`.
-// - pages/TechExplainerPage.tsx: `allTechPages`, the "More Technology
-//   Explained" directory.
+// - data/technology-pages.json: the /technology cards and category order, and
+//   the "More Technology Explained" directory.
 // The generated module is build output and is not committed.
 const projectDir = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const rootDir = resolve(projectDir, '..', '..');
@@ -44,26 +42,24 @@ function parseArguments(argv) {
 const { source } = parseArguments(process.argv.slice(2));
 const contentPath = source ? resolve(process.cwd(), source) : resolve(rootDir, 'data', 'content.ts');
 const contentLabel = source ? source.replaceAll('\\', '/') : 'data/content.ts';
-const landingPath = resolve(rootDir, 'pages', 'TechnologyLandingPage.tsx');
-const explainerPagePath = resolve(rootDir, 'pages', 'TechExplainerPage.tsx');
+const pagesPath = resolve(rootDir, 'data', 'technology-pages.json');
 
 const contentSource = await readFile(contentPath, 'utf8');
 const explainers = readTechExplainers(contentLabel, contentSource);
 const services = readServiceCatalogue(contentLabel, contentSource);
-const listing = readTechnologyListing('pages/TechnologyLandingPage.tsx', await readFile(landingPath, 'utf8'));
-const directory = readTechnologyDirectory('pages/TechExplainerPage.tsx', await readFile(explainerPagePath, 'utf8'));
+const { listing, directory } = readTechnologyPages(JSON.parse(await readFile(pagesPath, 'utf8')));
 
 const data = buildTechnologyData({ explainers, listing, directory, services });
 
 await mkdir(dirname(outputPath), { recursive: true });
 await writeFile(outputPath,
-  `// Generated from ${contentLabel}, pages/TechnologyLandingPage.tsx and pages/TechExplainerPage.tsx. Do not edit.\n` +
+  `// Generated from ${contentLabel} and data/technology-pages.json. Do not edit.\n` +
   `// Records are inherited parity data, not newly verified copy.\n` +
   `export const techExplainers = ${JSON.stringify(data.techExplainers, null, 2)};\n` +
   `export const techSlugs = ${JSON.stringify(data.techSlugs)};\n` +
   `export const technologyListing = ${JSON.stringify(data.technologyListing, null, 2)};\n` +
   `export const technologyDirectory = ${JSON.stringify(data.technologyDirectory, null, 2)};\n` +
-  `// Explainer routes with no card on /technology (still emitted, as the React route is).\n` +
+  `// Explainer routes with no card on /technology (still emitted).\n` +
   `export const unlistedSlugs = ${JSON.stringify(data.unlistedSlugs)};\n`, 'utf8');
 
 const unresolved = data.techExplainers

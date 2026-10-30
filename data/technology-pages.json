@@ -1,0 +1,181 @@
+{
+  "listing": {
+    "pages": [
+      {
+        "slug": "rmm",
+        "title": "What is RMM?",
+        "desc": "How we monitor your systems 24/7 and fix issues before you notice them.",
+        "category": "IT Management"
+      },
+      {
+        "slug": "edr-mdr",
+        "title": "EDR & MDR Explained",
+        "desc": "Why traditional antivirus isn't enough and how we go beyond it.",
+        "category": "Cyber Security"
+      },
+      {
+        "slug": "application-control",
+        "title": "Application Control",
+        "desc": "How blocking unknown software stops ransomware in its tracks.",
+        "category": "Cyber Security"
+      },
+      {
+        "slug": "admin-rights",
+        "title": "Why No Admin Rights?",
+        "desc": "The security reason behind removing local admin - and how we make it painless.",
+        "category": "Cyber Security"
+      },
+      {
+        "slug": "itdr",
+        "title": "Identity Protection (ITDR)",
+        "desc": "Protecting your Microsoft 365 accounts from hackers who log in, not break in.",
+        "category": "Cyber Security"
+      },
+      {
+        "slug": "conditional-access",
+        "title": "Conditional Access",
+        "desc": "Smart rules that control who can access your data and when.",
+        "category": "Microsoft 365"
+      },
+      {
+        "slug": "intune-autopilot",
+        "title": "Intune & Autopilot",
+        "desc": "Modern device management that keeps laptops secure and easy to deploy.",
+        "category": "Microsoft 365"
+      },
+      {
+        "slug": "ncsc",
+        "title": "The NCSC",
+        "desc": "UK's National Cyber Security Centre and their guidance for businesses.",
+        "category": "Compliance"
+      },
+      {
+        "slug": "patching",
+        "title": "Why Patching Matters",
+        "desc": "Understanding why keeping software updated is critical for security.",
+        "category": "IT Management"
+      },
+      {
+        "slug": "end-of-life",
+        "title": "End of Life Devices",
+        "desc": "The hidden risks of running outdated Windows and what to do about it.",
+        "category": "IT Management"
+      },
+      {
+        "slug": "business-networking",
+        "title": "Business Networking",
+        "desc": "From WiFi to cabling - what makes a reliable business network.",
+        "category": "Infrastructure"
+      },
+      {
+        "slug": "cloud-vs-onpremise",
+        "title": "Cloud vs On-Premise",
+        "desc": "Which is right for your business and what are the trade-offs?",
+        "category": "Infrastructure"
+      },
+      {
+        "slug": "zero-trust",
+        "title": "Zero Trust Security",
+        "desc": "The modern security model that assumes breaches will happen.",
+        "category": "Cyber Security"
+      },
+      {
+        "slug": "mfa",
+        "title": "MFA Explained",
+        "desc": "Why passwords alone aren't enough and how multi-factor authentication works.",
+        "category": "Cyber Security"
+      },
+      {
+        "slug": "phishing",
+        "title": "Phishing Attacks",
+        "desc": "How to spot email scams and protect your business from social engineering.",
+        "category": "Cyber Security"
+      },
+      {
+        "slug": "email-authentication",
+        "title": "SPF, DKIM & DMARC",
+        "desc": "The three DNS records that stop criminals sending email as your business.",
+        "category": "Cyber Security"
+      },
+      {
+        "slug": "vpn",
+        "title": "VPN & Zero Trust Networking",
+        "desc": "Do you still need a VPN? How modern alternatives like Zero Trust keep you secure.",
+        "category": "Infrastructure"
+      }
+    ],
+    "categories": [
+      "Cyber Security",
+      "Microsoft 365",
+      "IT Management",
+      "Infrastructure",
+      "Compliance"
+    ]
+  },
+  "directory": [
+    {
+      "slug": "rmm",
+      "title": "What is RMM?"
+    },
+    {
+      "slug": "edr-mdr",
+      "title": "EDR & MDR"
+    },
+    {
+      "slug": "application-control",
+      "title": "Application Control"
+    },
+    {
+      "slug": "admin-rights",
+      "title": "Admin Rights"
+    },
+    {
+      "slug": "itdr",
+      "title": "Identity Protection"
+    },
+    {
+      "slug": "conditional-access",
+      "title": "Conditional Access"
+    },
+    {
+      "slug": "intune-autopilot",
+      "title": "Intune & Autopilot"
+    },
+    {
+      "slug": "ncsc",
+      "title": "The NCSC"
+    },
+    {
+      "slug": "patching",
+      "title": "Why Patching Matters"
+    },
+    {
+      "slug": "end-of-life",
+      "title": "End of Life Devices"
+    },
+    {
+      "slug": "business-networking",
+      "title": "Business Networking"
+    },
+    {
+      "slug": "cloud-vs-onpremise",
+      "title": "Cloud vs On-Premise"
+    },
+    {
+      "slug": "zero-trust",
+      "title": "Zero Trust"
+    },
+    {
+      "slug": "mfa",
+      "title": "MFA Explained"
+    },
+    {
+      "slug": "phishing",
+      "title": "Phishing"
+    },
+    {
+      "slug": "vpn",
+      "title": "VPN & Zero Trust"
+    }
+  ]
+}

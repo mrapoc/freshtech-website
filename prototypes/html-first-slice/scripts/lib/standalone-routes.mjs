@@ -1,6 +1,6 @@
-// Standalone React routes ported one by one to native Astro pages. `source` is
-// the component App.tsx renders for the route; its digest is recorded with the
-// production baseline so a later React change forces a re-capture and review.
+// Standalone routes ported one by one from the retired React site to native
+// Astro pages. `source` names the React component each was ported from, as
+// recorded in its test-fixtures/standalone baseline.
 export const STANDALONE_ROUTES = Object.freeze([
   { route: '/privacy-policy', name: 'privacy-policy', source: 'pages-v2/PrivacyPolicyPageV2.tsx' },
   { route: '/terms-conditions', name: 'terms-conditions', source: 'pages-v2/TermsPageV2.tsx' },

@@ -1,7 +1,7 @@
 import { readFile, stat } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { extractPage, sourceDigest } from './lib/standalone-baseline.mjs';
+import { extractPage } from './lib/standalone-baseline.mjs';
 import { STANDALONE_DIFFERENCES } from './lib/standalone-differences.mjs';
 import { STANDALONE_ROUTES } from './lib/standalone-routes.mjs';
 import { applyPublicProofReview } from './lib/public-proof-review.mjs';
@@ -9,8 +9,7 @@ import { substituteRetainedHead } from './lib/retained-react-head.mjs';
 
 // Parity gate for native standalone pages. Each ported route (a dist page whose
 // single <main> carries data-standalone-page) is compared with the production
-// React baseline captured by capture-standalone-baseline.mjs:
-//   - the React component must be unchanged since capture (SHA-256);
+// baseline captured from the production React site before it was retired:
 //   - head title, description, canonical, og:type, og:image and the JSON-LD graph are equal;
 //   - robots is the preview noindex default;
 //   - main headings, links, images and normalised visible text are equal after
@@ -19,7 +18,6 @@ import { substituteRetainedHead } from './lib/retained-react-head.mjs';
 // Routes not yet ported are listed, never silently passed.
 // Usage: node scripts/standalone-output-check.mjs [dist-dir]
 const projectDir = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const repoDir = resolve(projectDir, '..', '..');
 const distDir = resolve(process.argv[2] ?? 'dist');
 const MARKER = 'data-standalone-page';
 let assertions = 0;
@@ -48,8 +46,6 @@ for (const entry of STANDALONE_ROUTES) {
   // Baselines were captured with the retired superheroes social image; the
   // current site-wide default is substituted (og:image and LocalBusiness image).
   const fixture = JSON.parse(substituteRetainedHead(await readFile(resolve(projectDir, 'test-fixtures', 'standalone', `${entry.name}.json`), 'utf8')));
-  const digest = sourceDigest(await readFile(resolve(repoDir, entry.source), 'utf8'));
-  expect(digest === fixture.sourceSha256, `${route}: ${entry.source} changed since the baseline was captured; review the port and re-capture`);
   const native = extractPage(html);
   const differences = STANDALONE_DIFFERENCES[route] ?? {};
   const baseline = structuredClone(fixture);

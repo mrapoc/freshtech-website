@@ -1,4 +1,4 @@
-import { assertArray, assertExactKeys, assertPlainObject, assertString, parseSource, topLevelConstLiteral, ts } from './literal-reader.mjs';
+import { assertArray, assertExactKeys, assertPlainObject, assertString, parseSource, topLevelConstLiteral } from './literal-reader.mjs';
 import { isAllowedInlineHref } from '../../src/lib/inline-markdown.mjs';
 
 // Fail-closed projection of data/content.ts `serviceLocationPages` onto the
@@ -9,8 +9,6 @@ import { isAllowedInlineHref } from '../../src/lib/inline-markdown.mjs';
 export const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 export const REQUIRED_FIELDS = ['service', 'location', 'isCounty', 'title', 'metaDesc', 'h1', 'intro', 'content', 'benefits', 'localContext', 'faqs', 'relatedService', 'relatedLocation'];
 export const STRING_FIELDS = ['service', 'location', 'title', 'metaDesc', 'h1', 'intro', 'content', 'localContext', 'relatedService', 'relatedLocation'];
-// The React component that owns every service-location route in App.tsx.
-export const ROUTE_COMPONENT = 'ServiceLocationPage';
 
 function validateInlineLinks(value, label) {
   for (const match of value.matchAll(/\[[^\]]*\]\(([^)]*)\)/g)) {
@@ -74,45 +72,4 @@ export function readServiceLocations(fileName, source) {
     titles.add(titleKey);
     return page;
   });
-}
-
-// Root-slug routes owned by the ServiceLocationPage component in App.tsx:
-// every `<Route path="/x" element={<ServiceLocationPage />} />`, in source
-// order. Read from the TSX AST, so an expression path or a different element
-// shape fails instead of being guessed.
-export function readServiceLocationRoutes(fileName, source, componentName = ROUTE_COMPONENT) {
-  const file = parseSource(fileName, source);
-  const paths = [];
-  const jsxName = node => (ts.isJsxSelfClosingElement(node) || ts.isJsxOpeningElement(node)) && ts.isIdentifier(node.tagName) ? node.tagName.text : null;
-  const attribute = (node, name) => node.attributes.properties.find(property => ts.isJsxAttribute(property) && ts.isIdentifier(property.name) && property.name.text === name);
-  const visit = node => {
-    if (jsxName(node) === 'Route') {
-      const element = attribute(node, 'element');
-      const rendered = element?.initializer && ts.isJsxExpression(element.initializer) ? element.initializer.expression : null;
-      if (rendered && jsxName(rendered) === componentName) {
-        const path = attribute(node, 'path');
-        if (!path?.initializer || !ts.isStringLiteral(path.initializer)) throw new Error(`${fileName}: a ${componentName} route has a non-literal path`);
-        if (!path.initializer.text.startsWith('/') || !SLUG_PATTERN.test(path.initializer.text.slice(1))) throw new Error(`${fileName}: ${componentName} route ${path.initializer.text} is not a root slug`);
-        paths.push(path.initializer.text.slice(1));
-      }
-    }
-    ts.forEachChild(node, visit);
-  };
-  visit(file);
-  if (!paths.length) throw new Error(`${fileName} declares no ${componentName} routes`);
-  if (new Set(paths).size !== paths.length) throw new Error(`${fileName} declares duplicate ${componentName} routes`);
-  return paths;
-}
-
-// The React routes are hand-listed while the data is keyed: both must agree
-// exactly, otherwise a record would be built here that production never serves
-// (or a production route would have no native output).
-export function assertRouteInventory(pages, routes) {
-  const slugs = pages.map(page => page.slug);
-  const missing = slugs.filter(slug => !routes.includes(slug));
-  const unexpected = routes.filter(slug => !slugs.includes(slug));
-  if (missing.length || unexpected.length) {
-    throw new Error(`App.tsx ServiceLocationPage routes differ from serviceLocationPages. Not routed: [${missing.join(', ')}]. Routed without a record: [${unexpected.join(', ')}]`);
-  }
-  return slugs;
 }

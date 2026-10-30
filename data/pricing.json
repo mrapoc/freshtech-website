@@ -1,0 +1,123 @@
+{
+  "rates": {
+    "Standard": 40,
+    "Plus": 60,
+    "Premium": 90
+  },
+  "minimumMonthly": 200,
+  "tiers": [
+    {
+      "name": "Standard",
+      "price": "40",
+      "highlight": false,
+      "minimum": "£200/month minimum",
+      "note": "9–5 reactive support, remote-first. The essentials, done properly.",
+      "features": [
+        "Unlimited remote support, 9am–5pm working days",
+        "Microsoft 365 admin (users, mailboxes, Teams, SharePoint, permissions)",
+        "Annual technology business review",
+        "One primary device per user + share of one site included",
+        "Onsite visits when remote resolution is not possible, billed separately",
+        "Same SLA as Plus and Premium (see below)"
+      ]
+    },
+    {
+      "name": "Plus",
+      "price": "60",
+      "highlight": true,
+      "sticker": "Most popular",
+      "minimum": "£200/month minimum",
+      "note": "Everything in Standard, plus priority handling, starter and leaver management, and a half-yearly roadmap.",
+      "features": [
+        "Everything in Standard",
+        "Half-yearly business review + 12-month roadmap headlines",
+        "Priority queue placement vs Standard (same SLA)",
+        "New starter & leaver handling included"
+      ]
+    },
+    {
+      "name": "Premium",
+      "price": "90",
+      "highlight": false,
+      "note": "For businesses that want extended hours, project work bundled, and first-touch privilege.",
+      "features": [
+        "Everything in Plus",
+        "Extended cover hours (8am–6pm, best-effort)",
+        "First-touch queue privilege (within same SLA priority)",
+        "2 hours of quarterly project work bundled",
+        "Quarterly review with vendor + licence rationalisation",
+        "20% off any additional block-hour work"
+      ]
+    }
+  ],
+  "universalInclusions": [
+    {
+      "title": "Microsoft 365 backup",
+      "desc": "Independent third-party backup of mail, OneDrive, SharePoint and Teams. Microsoft doesn't fully protect this by default."
+    },
+    {
+      "title": "Huntress EDR + identity threat detection",
+      "desc": "24/7 managed threat hunting on every endpoint and every M365 identity. Real humans, not just alerts."
+    },
+    {
+      "title": "Cyber Essentials maintenance + evidence pack",
+      "desc": "Year-round controls and annual evidence pack ready for assessment. Certification fee set by IASME based on company size."
+    },
+    {
+      "title": "Cloudflare DNS management",
+      "desc": "We manage your DNS so a web host or marketing agency can't silently break your email or domain."
+    },
+    {
+      "title": "DMARC management",
+      "desc": "Full DMARC policy management: protects your domain reputation and is increasingly required for inbox deliverability."
+    },
+    {
+      "title": "Basic shared webhosting",
+      "desc": "Simple business website hosting if you need it, no extra contract, no separate invoice."
+    },
+    {
+      "title": "Domain renewal absorbed (standard TLDs)",
+      "desc": "We cover the annual renewal cost of standard TLDs (.co.uk, .com, .uk, .org, .net, .net.uk, .me.uk). Premium TLDs billed at cost, no markup. Domain stays registered in your name; if you leave, it goes with you."
+    }
+  ],
+  "slaRows": [
+    {
+      "priority": "P1",
+      "type": "Critical",
+      "response": "30 min",
+      "resolution": "8 working hours"
+    },
+    {
+      "priority": "P2",
+      "type": "High",
+      "response": "1 hour",
+      "resolution": "1 business day"
+    },
+    {
+      "priority": "P3",
+      "type": "Medium",
+      "response": "4 hours",
+      "resolution": "3 business days"
+    },
+    {
+      "priority": "P4",
+      "type": "Low",
+      "response": "1 business day",
+      "resolution": "5 business days"
+    }
+  ],
+  "objections": [
+    {
+      "q": "\"Switching providers sounds like a nightmare.\"",
+      "a": "We coordinate everything with your outgoing IT company. Your staff won't notice a thing; they'll just start getting faster responses. Zero downtime. We've done this dozens of times."
+    },
+    {
+      "q": "\"We don't want to be locked in.\"",
+      "a": "12-month agreements with a 30-day money-back guarantee. Not happy in the first month? Full refund, no questions asked. We keep clients by being good, not by trapping them."
+    },
+    {
+      "q": "\"How do we know you'll actually respond quickly?\"",
+      "a": "Available helpdesk averages are shown on the contact page. Contact us to discuss the response commitments included in your support agreement."
+    }
+  ]
+}
