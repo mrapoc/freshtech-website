@@ -219,7 +219,13 @@ try {
     await page.keyboard.press('ArrowRight');
     await page.keyboard.press('ArrowRight');
     await page.keyboard.press('ArrowRight');
-    const moved = await region.evaluate(element => new Promise(done => setTimeout(() => done(element.scrollLeft), 400)));
+    // Smooth scrolling can start late on a loaded machine, so wait for movement
+    // (up to 5 seconds) instead of reading once after a fixed delay.
+    const moved = await region.evaluate(element => new Promise(done => {
+      const started = performance.now();
+      const read = () => element.scrollLeft > 0 || performance.now() - started > 5000 ? done(element.scrollLeft) : setTimeout(read, 50);
+      read();
+    }));
     check(moved > 0, `${label}: table region did not scroll from the keyboard`);
     return true;
   };
