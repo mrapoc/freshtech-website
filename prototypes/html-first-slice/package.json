@@ -45,7 +45,7 @@
     "verify:proof-browser": "node scripts/website-proof-browser-check.mjs"
   },
   "dependencies": {
-    "astro": "7.3.2"
+    "astro": "7.3.3"
   },
   "devDependencies": {
     "es-module-lexer": "2.3.2",
