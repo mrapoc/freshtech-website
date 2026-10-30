@@ -6,7 +6,8 @@ import { RECRUITMENT, canAcceptApplications } from '../src/lib/recruitment.mjs';
 // Output contract for the published advert and the recruitment privacy notice.
 // The notice is final independently of whether applications are open, and its
 // effective date is read from src/lib/recruitment.mjs so the two cannot drift.
-// A closed advert must stay visibly closed with no CV route of any kind. An
+// A closed advert must stay visibly closed, thank applicants and show no pay,
+// terms or CV route of any kind. An
 // open advert may carry exactly one CV route in its main content: the
 // dedicated recruitment mailbox configured as the listing URL, never a
 // personal or general inbox and never an on-page form.
@@ -18,8 +19,10 @@ const main = html => html.match(/<main[\s\S]*?<\/main>/)?.[0] ?? '';
 const copy = visible(career);
 const notice = visible(privacy);
 
-// Agreed job terms, verbatim.
-for (const required of ['£30,000', '£35,000', "You don't need to live in Ludlow", 'Shropshire, north Herefordshire', '37.5 hours', '25 days', '3% of qualifying earnings', '55p', '25p', 'basic DBS check paid for by Fresh Tech', 'after a conditional offer', 'valid for UK driving', 'personal phone']) assert.ok(copy.includes(required), `Missing agreed term: ${required}`);
+const applyOpen = canAcceptApplications(RECRUITMENT.applications);
+// Agreed job terms, verbatim, while the advert is open. A closed advert keeps
+// the role description but drops pay and terms.
+if (applyOpen) for (const required of ['£30,000', '£35,000', "You don't need to live in Ludlow", 'Shropshire, north Herefordshire', '37.5 hours', '25 days', '3% of qualifying earnings', '55p', '25p', 'basic DBS check paid for by Fresh Tech', 'after a conditional offer', 'valid for UK driving', 'personal phone']) assert.ok(copy.includes(required), `Missing agreed term: ${required}`);
 assert.ok(career.includes('href="/recruitment-privacy"'), 'Advert must link the recruitment privacy notice');
 assert.ok(privacy.includes('href="/careers"'), 'Notice must link back to the advert');
 
@@ -46,14 +49,15 @@ for (const forbidden of ['Draft notice', 'Not yet in force', 'draft', 'still bei
 assert.ok(!notice.includes('verified LinkedIn') && !notice.includes('checked its application and access settings'), 'Do not claim LinkedIn settings are verified');
 
 // Application state: a route only once the source declares a validated listing.
-if (!canAcceptApplications(RECRUITMENT.applications)) {
-  assert.ok(copy.includes('Applications opening shortly'), 'Closed advert must say applications are opening shortly');
+if (!applyOpen) {
+  assert.ok(copy.includes('Applications have closed') && copy.includes('Thank you to everyone who took the time to apply'), 'Closed advert must say applications have closed and thank applicants');
+  for (const hidden of ['£', RECRUITMENT.salary, '37.5 hours', '3% of qualifying earnings', 'Email your application']) assert.ok(!copy.includes(hidden), `Closed advert must not show: ${hidden}`);
   assert.ok(!career.includes('Apply on LinkedIn →'), 'No apply button while closed');
   assert.ok(!/href="https?:\/\/(?:[a-z]+\.)?linkedin\.com\/jobs/.test(main(career)), 'No LinkedIn job link while closed');
   assert.deepEqual(advertMailtos, [], 'No email route for CVs while applications are closed');
 } else {
   assert.ok(career.includes(RECRUITMENT.applications.listingUrl), 'Open advert must link the validated listing');
-  assert.ok(!copy.includes('Applications opening shortly'), 'Open advert must not say opening shortly');
+  assert.ok(!copy.includes('Applications have closed'), 'Open advert must not say applications have closed');
   assert.deepEqual(advertMailtos, [RECRUITMENT.applications.listingUrl], "The advert's only CV route is the configured recruitment mailbox");
 }
-console.log(`Recruitment output contract passed: advert ${canAcceptApplications(RECRUITMENT.applications) ? 'open' : 'closed'}, final privacy notice, agreed terms, ${canAcceptApplications(RECRUITMENT.applications) ? 'one mailbox CV route' : 'no collection route'}.`);
+console.log(`Recruitment output contract passed: advert ${applyOpen ? 'open' : 'closed'}, final privacy notice, ${applyOpen ? 'agreed terms, one mailbox CV route' : 'pay and terms withheld, no collection route'}.`);
