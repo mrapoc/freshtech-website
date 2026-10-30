@@ -57,7 +57,7 @@ generated detail route and their slug; the two standalone cards (`IT Health
 Check` at `/it-health-check` and `Microsoft Business Premium` at
 `/microsoft-business-premium`) plus the `Free IT health check` CTA point at
 routes this prototype does not build. Hero, group and closing copy is copied
-verbatim from the source component. The `13`, `£40`, `14min` and `0` hero stats
+verbatim from the source component. The `13`, `£40`, `24/7` and `0` hero stats
 and every card price are inherited parity inputs, not new claims.
 
 ## Case-study routes
@@ -157,7 +157,7 @@ filtering and after returning to All, the single active `Case Studies` entry in
 the Resources disclosure or mobile menu, horizontal overflow, browser errors and
 a card click landing on its generated detail route. It measures representative
 badge, attribution and small-label colour combinations against 4.5:1. A representative detail
-(the first record with `shortStats`, a testimonial and technology tags) is
+(the first record with `shortStats`, technology tags and, when any record has one, a testimonial) is
 checked for structure, back link, related order, active navigation, conversion
 links, pre-consent vendor requests and the cookie notice; every route is swept
 at both widths for status, H1, template, overflow and errors, and the swept

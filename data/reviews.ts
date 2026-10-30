@@ -13,13 +13,13 @@
 
 export const googleReviewsConfig = {
   // Current review count from Google Business Profile
-  reviewCount: 42,
+  reviewCount: 44,
 
   // Current rating (should always be 5.0 if only showing 5-star)
   rating: 5.0,
 
   // Last time this was updated (for tracking freshness)
-  lastUpdated: "2026-01-02",
+  lastUpdated: "2026-10-29",
 
   // Google Place ID for Fresh Tech Ludlow
   placeId: "ChIJ6a1VcjVqcEgR2_jkYe5Em5A",
@@ -41,27 +41,22 @@ export const googleReviewsConfig = {
  */
 export const featuredGoogleReviews = [
   {
-    author: "Carole Aveson",
-    company: "CAA Administration Services",
+    author: "Nick Bromley Accountancy",
     rating: 5,
-    text: "Well all I can say is a big shout out to Sam James BSc at Fresh Tech for literally swooping into rescue my computer from being hacked within seconds.",
-    date: "2024-06",
-    source: "Google"
-  },
-  {
-    author: "Lindsey Pearce",
-    company: "Pearce Cycles",
-    rating: 5,
-    text: "Fresh Tech's proactive approach has been particularly beneficial for Pearce Cycles. Not only do they resolve our current issues efficiently, but they also anticipate potential problems before they arise.",
-    date: "2024-05",
+    text: "Sam and Matt are amazing. They genuinely care about delivering the best service. We have been using the services of Fresh Tech for a number of years now, on an ad-hoc basis for some services and a recurring basis for others. As our business grows we know that we won't need to look elsewhere for managed IT services - Fresh Tech will be more than capable of servicing our needs, and most likely deliver additional services that we don't currently utilise. Thanks both!",
     source: "Google"
   },
   {
     author: "Helen Graham",
-    company: "The Ludlow Nut Company",
+    company: "Ludlow Nut Co Ltd",
     rating: 5,
-    text: "We have been working with Sam and the Fresh Tech team for over 5 years. The response time and service we receive is excellent. Sam is always willing to give unbiased advice and is extremely knowledgeable!",
-    date: "2024-04",
+    text: "We are very pleased with the service offered by Fresh Tech. Having just upgraded all our computers to Windows 11, we are very happy with the efficiency, knowledge and attitude of Sam & Matt, making the whole process very streamlined and pain-free!",
+    source: "Google"
+  },
+  {
+    author: "Shropshire Lettings",
+    rating: 5,
+    text: "Great IT company who offer fast and friendly support. Would recommend to businesses small and large.",
     source: "Google"
   }
 ];

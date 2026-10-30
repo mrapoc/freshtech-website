@@ -296,15 +296,15 @@ verifyCaseStudyHead('/case-studies', readHead(csListingHtml), {
 // Listing content: source copy, featured pair, card order, sector filters.
 const studies = displayStudies(caseStudies);
 for (const value of [
-  'Client stories', 'With written consent · No embellishment', 'Real businesses.', 'Real results.',
-  "Every story here has a named client, a verified outcome, and a number we can stand behind. We don't publish case studies until the client is happy to put their name to them.",
-  'Book a call', 'See pricing', 'Published case studies', 'With named client consent', '5yrs+', 'Avg client relationship', 'Not a revolving door',
+  'Client stories', 'From the businesses we support', 'Real jobs.', 'Real fixes.',
+  'Stories from jobs we have done. Where a client is named, the story is theirs. Where the client is not named, the story is based on a real job and some details are illustrative.',
+  'Book a call', 'See pricing', 'Published case studies', 'Based on real jobs', '2014', 'Supporting businesses since', 'Based in Ludlow',
   'Reviews', 'Customer feedback', 'Selected client stories', 'Support', 'Contact our helpdesk', 'Mon–Fri, 9am–5pm',
   'Featured stories', 'All case studies', `${studies.length} stories`, "Sectors we've worked in", "Don't see your sector? Call us anyway.",
   "We support any business with 5–50 staff across Shropshire, Herefordshire and the Welsh Borders. If we're not the right fit we'll say so.", 'Book a 20-min call',
   ...coverageSectors(),
 ]) csExpect(csListingText.includes(decodeText(value)), `/case-studies: missing source copy: ${value}`);
-csExpect(/<h1>Real businesses\.<br\s*\/?>Real results\.<\/h1>/.test(csListingHtml), '/case-studies: H1 is not the source heading');
+csExpect(/<h1>Real jobs\.<br\s*\/?>Real fixes\.<\/h1>/.test(csListingHtml), '/case-studies: H1 is not the source heading');
 csExpect(!csListingHtml.includes('data-reactroot') && !csListingHtml.includes('<astro-island'), '/case-studies: unexpectedly contains framework hydration markup');
 const featuredSlugs = [...csListingHtml.matchAll(/<a class="cs-featured-card" href="\/case-studies\/([^"]+)" data-slug="[^"]+"/g)].map(match => match[1]);
 csExpect(featuredSlugs.join(',') === caseStudySlugs.slice(0, 2).join(','), `/case-studies: featured cards [${featuredSlugs.join(', ')}] are not the first two source entries`);
@@ -353,6 +353,7 @@ for (const study of caseStudies) {
     csExpect(!html.includes('class="content-section cs-result-section"') && !html.includes('class="cs-risk"'), `${label}: result block rendered without shortStats`);
   }
   csExpect(study.testimonial ? html.includes('class="cs-testimonial"') && text.includes(decodeText(study.testimonial)) : !html.includes('class="cs-testimonial"'), `${label}: testimonial branch does not match source`);
+  csExpect(study.disclosure ? html.includes('class="cs-disclosure"') && text.includes(decodeText(study.disclosure)) : !html.includes('class="cs-disclosure"'), `${label}: disclosure branch does not match source`);
   csExpect(study.image ? html.includes(`<img src="${study.image}"`) : !html.includes('class="content-section cs-image-section"'), `${label}: image branch does not match source`);
   const stackItems = (html.match(/<ul class="cs-stack"[^>]*>([\s\S]*?)<\/ul>/)?.[1].match(/<li>/g) || []).length;
   csExpect(stackItems === (study.techStack?.length ?? 0), `${label}: techStack tags do not match source`);

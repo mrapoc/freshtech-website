@@ -32,8 +32,8 @@ interface ServiceContent {
 
 const FALLBACK: ServiceContent = {
   tagline: 'One flat fee. One number to call.',
-  heroStat: { num: '14min', label: 'Avg response · live from helpdesk' },
-  priceFrom: 35,
+  heroStat: { num: '24/7', label: 'Proactive device monitoring' },
+  priceFrom: 40,
   priceNote: 'per user / month · all-inclusive',
   includes: [
     'Unlimited helpdesk: phone, email, remote',
@@ -47,14 +47,14 @@ const FALLBACK: ServiceContent = {
   howItWorks: [
     { step: '01', title: 'We audit your setup', desc: 'Remote scan of every device, security posture, and licences. You get a plain-English report, yours to keep.' },
     { step: '02', title: 'We set up monitoring', desc: 'Remote monitoring tools on every device. We see problems before your team does, and fix most before anyone notices.' },
-    { step: '03', title: 'You call. We answer.',  desc: 'One number. A real person in Ludlow picks up. Avg wait under 1 minute. Avg first response under 15 minutes.' },
+    { step: '03', title: 'You call. We answer.',  desc: 'One number. A real person in Ludlow picks up.' },
     { step: '04', title: 'We review and plan',    desc: 'Quarterly strategy calls. Renewals, upgrades and risks tracked for you.' },
   ],
   outcomes: [
-    { stat: 'Zero',  label: 'Unplanned outages for clients on proactive monitoring' },
-    { stat: '14min', label: 'Average first response: measured, not promised' },
-    { stat: '£34k+', label: 'Saved vs equivalent in-house IT (20-user example)' },
-    { stat: '5yrs+', label: 'Average client relationship length' },
+    { stat: '24/7',  label: 'Proactive monitoring on every device' },
+    { stat: 'Ludlow', label: 'A real person picks up, no call centre' },
+    { stat: 'From £40', label: 'Per user per month, with a worked example on our pricing page' },
+    { stat: 'Quarterly', label: 'Strategy reviews, renewals and risks tracked' },
   ],
   faqs: [
     ["What's the contract length?", '12 months, with a 30-day money-back guarantee in the first month. After the initial term, rolling quarterly.'],
@@ -65,8 +65,8 @@ const FALLBACK: ServiceContent = {
 const SERVICE_CONTENT: Record<string, ServiceContent> = {
   'managed-it-support': {
     tagline: 'Your outsourced IT department.',
-    heroStat: { num: 'Zero', label: 'Unplanned outages for clients on proactive monitoring' },
-    priceFrom: 35,
+    heroStat: { num: '24/7', label: 'Proactive monitoring on every device' },
+    priceFrom: 40,
     priceNote: 'per user / month · all-inclusive',
     includes: [
       'Unlimited helpdesk: call, email, chat. No ticking clock',
@@ -84,10 +84,10 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
       { step: '04', title: 'Review + plan',         desc: 'Quarterly strategy calls. Renewals, upgrades and risks tracked for you so your roadmap matches your business plans.' },
     ],
     outcomes: [
-      { stat: 'Zero',  label: 'Unplanned outages on proactive monitoring' },
-      { stat: '14min', label: 'Average first response: measured, not promised' },
+      { stat: '24/7',  label: 'Remote monitoring for disk, drive and security alerts' },
+      { stat: 'Ludlow', label: 'A real person picks up, no call centre' },
       { stat: 'Fixed', label: 'Monthly fee: we only profit when systems run perfectly' },
-      { stat: '5yrs+', label: 'Average client relationship length' },
+      { stat: 'Quarterly', label: 'Strategy reviews with Sam or Matt' },
     ],
     faqs: [
       ['Why a managed model and not break-fix?',
@@ -120,7 +120,7 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
       { step: '04', title: '3AM lockdown',        desc: "If an attacker compromises an account at 3am from another country, ITDR (Identity Threat Detection & Response) spots the anomaly and locks the account before any damage is done." },
     ],
     outcomes: [
-      { stat: '99%',  label: 'Of account-compromise attacks stopped by Conditional Access' },
+      { stat: 'Rules', label: 'Conditional Access sign-in policies where Business Premium is licensed' },
       { stat: 'MFA',  label: 'On every account from day one' },
       { stat: '24/7', label: 'Security team watching, day and night' },
       { stat: '0',    label: 'Successful ransomware events on protected clients' },
@@ -144,21 +144,21 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
       'Pre-assessment to fix any issues before the official audit',
       'All five technical controls covered: firewalls, secure configuration, user access, malware protection, patch management',
       'Policy pack: ready-made password, access and mobile-device policies',
-      'Free cyber insurance on certification (UK businesses, subject to revenue limits)',
+      'Included cyber liability cover through the IASME scheme for eligible UK organisations under £20m turnover that certify the whole organisation',
       'Blockmark digital trust badge for your website + email footer',
       'Cyber Essentials Plus available: hands-on technical audit by external assessor',
       'Annual re-certification managed for you',
     ],
     howItWorks: [
-      { step: '01', title: 'Scope + audit',  desc: "We agree the scope and run a pre-assessment. Most businesses fail at the first attempt without this, we don't." },
+      { step: '01', title: 'Scope + audit',  desc: 'We agree the scope and run a pre-assessment, so issues are found before the official assessment.' },
       { step: '02', title: 'Fix the gaps',    desc: 'Common issues: missing MFA, out-of-date software, default admin accounts, unencrypted laptops. We remediate everything.' },
       { step: '03', title: 'Submit',         desc: 'We assemble the evidence pack and submit on your behalf via our accredited assessor partner.' },
       { step: '04', title: 'Maintain',       desc: 'Annual re-certification managed for you. We track all five controls in the background.' },
     ],
     outcomes: [
       { stat: '80%',       label: 'Of common attacks blocked by the controls (NCSC figure)' },
-      { stat: 'First-try', label: 'Guaranteed-pass service when we manage prep' },
-      { stat: 'Free',      label: 'Cyber insurance on certification (terms apply)' },
+      { stat: 'Gaps first', label: 'Issues fixed before we submit for you' },
+      { stat: 'Cover',     label: 'Included cyber liability cover for eligible organisations (IASME scheme terms)' },
       { stat: '5',         label: 'Technical controls: we help you nail all of them' },
     ],
     faqs: [
@@ -167,7 +167,7 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
       ['Do we have to write all the policies?',
         "No. We provide ready-made, CE-compliant templates for Password Policies, Access Control and Mobile Device usage. You don't write a thing; we adapt them to your business and you sign them off."],
       ['What if we fail?',
-        "We won't let you. The pre-assessment catches issues before the official audit. We work with you until you pass; that's the guarantee."],
+        "We prepare you alongside our certification partner and only submit when you're ready to pass. If anything is still flagged, we work with you on the fix."],
     ],
   },
 

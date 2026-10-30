@@ -9,8 +9,8 @@ const studies = displayStudies(caseStudies);
 const featured = studies.filter(study => study.featured);
 const sectors = allSectors(studies);
 const heroStats = [
-  { num: `${studies.length}`, label: 'Published case studies', sub: 'With named client consent' },
-  { num: '5yrs+', label: 'Avg client relationship', sub: 'Not a revolving door' },
+  { num: `${studies.length}`, label: 'Published case studies', sub: 'Based on real jobs' },
+  { num: '2014', label: 'Supporting businesses since', sub: 'Based in Ludlow' },
   { num: 'Reviews', label: 'Customer feedback', sub: 'Selected client stories' },
   { num: 'Support', label: 'Contact our helpdesk', sub: 'Mon–Fri, 9am–5pm' },
 ];
@@ -22,10 +22,10 @@ const heroStats = [
       <div>
         <div class="cs-hero-tags">
           <span class="cs-sticker">Client stories</span>
-          <span class="cs-hero-note">With written consent · No embellishment</span>
+          <span class="cs-hero-note">From the businesses we support</span>
         </div>
-        <h1>Real businesses.<br />Real results.</h1>
-        <p class="service-desc">Every story here has a named client, a verified outcome, and a number we can stand behind. We don't publish case studies until the client is happy to put their name to them.</p>
+        <h1>Real jobs.<br />Real fixes.</h1>
+        <p class="service-desc">Stories from jobs we have done. Where a client is named, the story is theirs. Where the client is not named, the story is based on a real job and some details are illustrative.</p>
         <div class="hero-actions">
           <a class="primary-button" href="/contact">Book a call <span aria-hidden="true">→</span></a>
           <a class="secondary-button" href="/pricing">See pricing</a>

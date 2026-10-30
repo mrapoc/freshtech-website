@@ -146,6 +146,7 @@ output { min-width: 52px; color: var(--white); font: 400 28px/1 'Bungee', sans-s
 .pricing-page .example-strip { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px 40px; align-items: center; margin-top: 24px; padding: 26px 24px; background: var(--ink); color: #e1e4e6; }
 .pricing-page .example-strip p { margin: 0; font-size: 15px; line-height: 1.6; }
 .pricing-page .example-strip .eyebrow { margin-bottom: 6px; color: #d5d9dc; }
+.pricing-page .example-strip .example-assumptions { max-width: 72ch; margin-top: 8px; color: #d5d9dc; font-size: 13px; }
 .pricing-page .highlight-yellow { color: var(--yellow); }
 .pricing-page .highlight-green { color: #8de0b4; }
 .pricing-page .example-cta { flex: 0 1 auto; min-width: 0; max-width: 100%; padding: 13px 22px; border: 2px solid var(--white); background: var(--accent); color: var(--ink); font-weight: 700; text-decoration: none; }

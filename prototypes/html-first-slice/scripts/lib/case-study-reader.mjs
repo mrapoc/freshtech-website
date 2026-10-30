@@ -7,7 +7,7 @@ import { isAllowedInlineHref } from '../../src/lib/inline-markdown.mjs';
 
 export const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 export const REQUIRED_FIELDS = ['id', 'slug', 'client', 'industry', 'title', 'challenge', 'solution', 'result', 'outcome'];
-export const OPTIONAL_STRING_FIELDS = ['testimonial', 'contactName', 'image'];
+export const OPTIONAL_STRING_FIELDS = ['testimonial', 'contactName', 'image', 'disclosure'];
 export const OPTIONAL_FIELDS = [...OPTIONAL_STRING_FIELDS, 'techStack', 'shortStats'];
 export const SHORT_STATS_FIELDS = ['risk', 'strategy', 'victory'];
 // An image must be an absolute https URL or a site-relative path built from

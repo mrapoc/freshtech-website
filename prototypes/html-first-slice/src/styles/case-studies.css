@@ -112,6 +112,7 @@ body[data-page-family='case-studies'] .card-tag { font-family: 'CS Bungee', sans
 .cs-detail-client { color: var(--yellow); font: 400 11px/1.4 'CS Bungee', sans-serif; letter-spacing: .06em; }
 .cs-detail-hero h1 { max-width: none; margin-bottom: 16px; font-size: clamp(32px, 6vw, 46px); line-height: 1; overflow-wrap: anywhere; }
 .cs-outcome { max-width: 54ch; margin: 0; color: rgba(255,255,255,.78); font-size: 18px; font-weight: 600; line-height: 1.6; }
+.cs-disclosure { max-width: 54ch; margin: 16px 0 0; color: rgba(255,255,255,.72); font-size: 14px; font-style: italic; line-height: 1.5; }
 .cs-outcome-box { padding: 28px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.07); text-align: center; }
 .cs-box-label { display: block; margin-bottom: 8px; color: rgba(255,255,255,.62); font: 700 11px/1.4 'CS Archivo Narrow', sans-serif; letter-spacing: .12em; text-transform: uppercase; }
 .cs-outcome-box strong { display: block; color: var(--yellow); font: 400 clamp(24px, 5vw, 32px)/1 'CS Bungee', sans-serif; overflow-wrap: anywhere; }

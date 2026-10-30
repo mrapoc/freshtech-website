@@ -21,40 +21,40 @@ export interface GoogleReviewsData {
 
 // Fallback reviews — shown when API is unavailable (e.g. missing env vars on localhost)
 // IMPORTANT: These must NOT overlap with trustTestimonials in WhyTrustUsPage.tsx
-// (which uses: Hendra Healthcare, Advanced Pest Management, Ludlow Nut Company, Jaques Int)
+// (which uses: Nick Bromley Accountancy, Helen Graham, Stephen Jaques, Iain Urquhart)
 const fallbackReviews: GoogleReview[] = [
   {
-    author: 'Carole Aveson',
+    author: "Shropshire Lettings",
     rating: 5,
-    text: 'A big shout out to Sam James at Fresh Tech for literally swooping in to rescue my computer from being hacked within seconds. Thank goodness I outsource to companies who know what they are doing.',
-    relativeTime: 'Selected customer review',
+    text: "Great IT company who offer fast and friendly support. Would recommend to businesses small and large.",
+    relativeTime: 'Google review',
     time: 0,
     profilePhoto: null,
   },
   {
-    author: 'Lindsey Pearce',
+    author: "Markus Motum",
     rating: 5,
-    text: "Fresh Tech's proactive approach has been particularly beneficial for Pearce Cycles. Not only do they resolve our current issues efficiently, but they also anticipate potential problems before they arise.",
-    relativeTime: 'Selected customer review',
+    text: "An excellent company to work with. Sam and the team have strong technical expertise and the reliability to get a job done.",
+    relativeTime: 'Google review',
     time: 0,
     profilePhoto: null,
   },
   {
-    author: 'Julia Hughes',
+    author: "Karen Fleming",
     rating: 5,
-    text: 'From day one, the team at Fresh Tech has been consistently reliable and responsive. They are always just a call or email away, ready to tackle any IT issue we encounter.',
-    relativeTime: 'Selected customer review',
+    text: "Sam and his team are very responsive to my cries for help, and always resolve our IT issues quickly and efficiently.",
+    relativeTime: 'Google review',
     time: 0,
     profilePhoto: null,
   },
   {
-    author: 'Rupert Williams',
+    author: "Andrew Davis",
     rating: 5,
-    text: 'We wholeheartedly recommend Fresh Tech to any business looking for reliable, expert, and friendly IT support. Their service has not just been a support function but a key driver in our success.',
-    relativeTime: 'Selected customer review',
+    text: "Really good support - very quick to respond.",
+    relativeTime: 'Google review',
     time: 0,
     profilePhoto: null,
-  },
+  }
 ];
 
 // --- Review filtering logic ---
