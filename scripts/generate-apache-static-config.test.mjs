@@ -7,10 +7,11 @@ import test from 'node:test';
 import {
   compileApacheStaticConfig,
   createUploadManifest,
-  parseNetlifyRouting,
+  parseRouting,
 } from './generate-apache-static-config.mjs';
 
-const source = await readFile(new URL('../netlify.toml', import.meta.url), 'utf8');
+const source = await readFile(new URL('../hosting/routing.json', import.meta.url), 'utf8');
+const edit = change => { const config = JSON.parse(source); change(config); return JSON.stringify(config); };
 
 test('Google aggregate has one exact production route and no preview handler', () => {
   const production = compileApacheStaticConfig(source, { mode: 'production' });
@@ -31,13 +32,12 @@ test('native pictures and icons receive a bounded cache lifetime', () => {
   }
 });
 
-test('parses the complete ordered Netlify routing contract', () => {
-  const config = parseNetlifyRouting(source);
-  assert.equal(config.redirects.length, 99);
-  assert.equal(config.redirects.filter(({ status }) => status === 301).length, 98);
-  assert.deepEqual(config.redirects[0].query, { wordfence_lh: ':val' });
-  assert.deepEqual(config.redirects.at(-1), { from: '/*', to: '/index.html', status: 200 });
-  assert.deepEqual(config.headers.map(({ for: path }) => path), ['/*', '/assets/*', '/index.html']);
+test('parses the complete ordered routing contract', () => {
+  const config = parseRouting(source);
+  assert.equal(config.redirects.length, 98);
+  assert.deepEqual(config.redirects[0], { from: '/', to: '/', query: 'wordfence_lh' });
+  assert.ok(config.redirects.every(rule => rule.from !== '/*'), 'no catch-all fallback');
+  assert.deepEqual(Object.keys(config.cacheControl).sort(), ['html', 'immutable']);
 });
 
 test('preserves redirect order, including intentionally shadowed wildcard rules', () => {
@@ -45,7 +45,7 @@ test('preserves redirect order, including intentionally shadowed wildcard rules'
   assert.ok(output.indexOf('# 48: /wp-content/* -> /') < output.indexOf('# 50: /wp-content/uploads/* -> /resources'));
   assert.ok(output.includes('RewriteRule ^wp-content/.*$ https://fresh-tech.uk/ [R=301,END,NE]'));
   assert.ok(output.includes('RewriteRule ^.*-sitemap\\.xml$ https://fresh-tech.uk/sitemap.xml [R=301,END,NE]'));
-  const legacySection = output.split('# Ordered legacy redirects translated from netlify.toml.')[1].split('# Canonicalise remaining')[0];
+  const legacySection = output.split('# Ordered legacy redirects from hosting/routing.json.')[1].split('# Canonicalise remaining')[0];
   assert.equal((legacySection.match(/\[R=301,/g) ?? []).length, 98);
   assert.ok(output.indexOf('RewriteRule ^home/$ https://fresh-tech.uk/ [R=301,END,NE]') < output.indexOf('# Canonicalise remaining'));
 });
@@ -85,7 +85,7 @@ test('uses static directory indexes and leaves unknown paths to Apache 404 handl
   assert.match(output, /RewriteCond %\{REQUEST_FILENAME\}\/index\.html -f/);
   assert.match(output, /RewriteRule \^\(\.\+\)\$ \/\$1\/index\.html \[END\]/);
   assert.doesNotMatch(output, /RewriteRule .* \/index\.html \[R?=?(?:200)?/);
-  assert.match(output, /Netlify SPA fallback is intentionally omitted/);
+  assert.match(output, /no catch-all fallback, so unknown paths return 404/);
 });
 
 test('emits exact security and cache headers, with preview indexing protection', () => {
@@ -166,32 +166,37 @@ test('builds a hash manifest from public files and rejects unsafe or unversioned
 
 test('fails closed when redirect semantics drift', () => {
   assert.throws(
-    () => compileApacheStaticConfig(source.replace('to = "/blog"', 'to = "//example.test"'), { mode: 'production' }),
+    () => compileApacheStaticConfig(edit(config => { config.redirects[3].to = '//example.test'; }), { mode: 'production' }),
     /destination must be a canonical literal site path/,
   );
   assert.throws(
-    () => compileApacheStaticConfig(source.replace('status = 301', 'status = 302'), { mode: 'production' }),
-    /only forced 301 redirects/,
+    () => compileApacheStaticConfig(edit(config => { config.redirects[3].status = 302; }), { mode: 'production' }),
+    /unsupported key status/,
   );
   assert.throws(
-    () => compileApacheStaticConfig(source.replace('X-Frame-Options = "DENY"', 'X-Frame-Options = "SAMEORIGIN"'), { mode: 'production' }),
-    /semantics changed/,
+    () => compileApacheStaticConfig(edit(config => { config.redirects[0].query = 'other'; }), { mode: 'production' }),
+    /WordPress query redirect contract changed/,
   );
   assert.throws(
-    () => compileApacheStaticConfig(source.replace('force = true', 'force = false'), { mode: 'production' }),
-    /only forced 301 redirects/,
+    () => compileApacheStaticConfig(edit(config => { config.redirects[5].query = 'id'; }), { mode: 'production' }),
+    /only the first three redirects/,
   );
   assert.throws(
-    () => compileApacheStaticConfig(source.replace('  force = true', '  force = true\n  conditions = "unknown"'), { mode: 'production' }),
-    /unsupported redirect key/,
+    () => compileApacheStaticConfig(edit(config => { config.headers['Content-Security-Policy'] = "default-src *"; }), { mode: 'production' }),
+    /owned by STATIC_SITE_HEADERS/,
   );
+  assert.throws(
+    () => compileApacheStaticConfig(edit(config => { delete config.cacheControl.html; }), { mode: 'production' }),
+    /exactly html and immutable/,
+  );
+  assert.throws(() => compileApacheStaticConfig('{', { mode: 'production' }), /not valid JSON/);
   assert.throws(() => compileApacheStaticConfig(source, { mode: 'live' }), /mode must be preview or production/);
 });
 
- test('preserves former client-only industry aliases at the edge', () => {
-  const config = parseNetlifyRouting(source);
+test('preserves former client-only industry aliases at the edge', () => {
+  const config = parseRouting(source);
   for (const [from, to] of [['/industries/engineering', '/industries/manufacturing'], ['/industries/legal', '/industries/solicitors']]) {
-    assert.deepEqual(config.redirects.find(rule => rule.from === from), { from, to, status: 301, force: true });
+    assert.deepEqual(config.redirects.find(rule => rule.from === from), { from, to });
   }
   const output = compileApacheStaticConfig(source, { mode: 'preview' });
   assert.ok(output.includes('RewriteRule ^industries/engineering$ https://preview.fresh-tech.uk/industries/manufacturing [R=301,END,NE]'));

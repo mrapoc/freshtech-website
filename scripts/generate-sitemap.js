@@ -324,9 +324,9 @@ async function getDynamicRoutes() {
   return routes;
 }
 
-// Generate XML sitemap. outputPath defaults to the React public folder; the
-// native production build passes its own output directory.
-export async function generateSitemap(outputPath = path.join(__dirname, '../public/sitemap.xml')) {
+// Generate the XML sitemap at outputPath (the native production build passes
+// its own output directory).
+export async function generateSitemap(outputPath) {
   console.log('🗺️  Generating sitemap...');
 
   const dynamicRoutes = await getDynamicRoutes();
@@ -361,11 +361,4 @@ ${route.lastmod ? `    <lastmod>${route.lastmod}</lastmod>\n` : ''}    <changefr
   console.log(`✅ Sitemap generated with ${uniqueRoutes.length} URLs`);
   console.log(`   Output: ${outputPath}`);
   return uniqueRoutes;
-}
-
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  generateSitemap().catch(error => {
-    console.error(error);
-    process.exitCode = 1;
-  });
 }

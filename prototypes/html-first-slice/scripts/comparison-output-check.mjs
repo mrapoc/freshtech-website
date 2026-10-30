@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 import { parse } from 'ultrahtml';
 import { decodeEntities, normalise } from './lib/blog-rendered-text.mjs';
-import { assertComparisonRouteInventory, readComparisonRoutes, readComparisons } from './lib/comparison-reader.mjs';
+import { readComparisons } from './lib/comparison-reader.mjs';
 import { inventoryIsClean, mainMarker, problemInventory } from './lib/problem-inventory.mjs';
 import { readTestimonialData } from './lib/testimonial-reader.mjs';
 import { FIXTURE_MODE, TESTIMONIALS_FIXTURE_ENV, resolveTestimonialsFixtureMode, syntheticTestimonialData } from './lib/testimonial-fixture.mjs';
@@ -15,7 +15,7 @@ import { DEFAULT_SOCIAL_IMAGE } from '../src/lib/social-image.mjs';
 // Focused checker for the emitted root-slug comparison family
 // (pages/ComparisonPage.tsx ported by src/components/ComparisonPage.astro).
 // Expectations come from the fail-closed source projection read at run time
-// (data/content.ts and App.tsx), the retained React Organization fixture and
+// (data/content.ts), the retained React Organization fixture and
 // inline restatements of the React page's literals, table, recommendation rule,
 // schema objects and components/SEO.tsx head formula. Nothing here imports the
 // comparison display or SEO modules under test. The shared RichText,
@@ -113,7 +113,7 @@ const repoDir = resolve(projectDir, '..', '..');
 
 const contentSource = await readFile(resolve(repoDir, 'data', 'content.ts'), 'utf8');
 const comparisons = readComparisons('data/content.ts', contentSource);
-const slugs = assertComparisonRouteInventory(comparisons, readComparisonRoutes('App.tsx', await readFile(resolve(repoDir, 'App.tsx'), 'utf8')));
+const slugs = comparisons.map(page => page.slug);
 const reviewSource = fixtureMode ? syntheticTestimonialData() : readTestimonialData('data/content.ts', contentSource);
 const retained = await loadRetainedReactHead();
 const organization = retained.schemas[2];

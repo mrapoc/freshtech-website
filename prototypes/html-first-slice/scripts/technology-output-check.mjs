@@ -10,12 +10,10 @@ import { DEFAULT_SOCIAL_IMAGE } from '../src/lib/social-image.mjs';
 // tokeniser or the SEO helper the templates render from. Expectations come
 // from three places only:
 // - the generated data (src/generated/technology-data.mjs), the approved
-//   source projection of data/content.ts and the two React pages;
+//   source projection of data/content.ts and data/technology-pages.json;
 // - fixed UI copy, CTA targets, schema constants and the head formula restated
-//   below from pages/TechnologyLandingPage.tsx, pages/TechExplainerPage.tsx,
-//   components/Contact.tsx and components/SEO.tsx, and re-verified at run time
-//   as literals present in those React sources so a copy change upstream fails
-//   here;
+//   below, originally from the retired React pages (pages/TechnologyLandingPage.tsx,
+//   pages/TechExplainerPage.tsx, components/Contact.tsx, components/SEO.tsx);
 // - a small oracle of components/RichText.tsx block and inline semantics
 //   (paragraph split, list detection, link/strong/em markers) used to derive
 //   the decoded text and element counts a fragment must carry.
@@ -23,17 +21,10 @@ import { DEFAULT_SOCIAL_IMAGE } from '../src/lib/social-image.mjs';
 // (ultrahtml through scripts/lib/blog-rendered-text.mjs), so entity encoding
 // and whitespace minification cannot cause false failures.
 const projectDir = resolve(import.meta.dirname, '..');
-const rootDir = resolve(projectDir, '..', '..');
-const react = {
-  landing: await readFile(resolve(rootDir, 'pages', 'TechnologyLandingPage.tsx'), 'utf8'),
-  explainer: await readFile(resolve(rootDir, 'pages', 'TechExplainerPage.tsx'), 'utf8'),
-  contact: await readFile(resolve(rootDir, 'components', 'Contact.tsx'), 'utf8'),
-  seo: await readFile(resolve(rootDir, 'components', 'SEO.tsx'), 'utf8'),
-};
 
 const baseUrl = 'https://fresh-tech.uk';
 const listingCanonical = `${baseUrl}/technology`;
-// components/SEO.tsx constants (restated; verified against the source below).
+// Site head constants (restated from the retired components/SEO.tsx).
 const seoConstants = {
   longSuffix: ' | Fresh Tech IT Support', shortSuffix: ' | Fresh Tech', titleMax: 65,
   defaultImage: DEFAULT_SOCIAL_IMAGE,
@@ -110,48 +101,6 @@ const techHeadings = main => (main.match(/<section[^>]*class="[^"]*\btech-sectio
 // The shared contact section is the last child of <main>; slicing to </main>
 // tolerates whatever nesting the root component uses.
 const contactOf = main => { const start = main.search(/<section[^>]*\bid="contact"[^>]*>/); return start === -1 ? null : main.slice(start, main.lastIndexOf('</main>')); };
-
-// --- Restated constants must still be literals in the React sources ------------
-// JSX text collapses runs of whitespace, so both sides are normalised; TS string
-// escapes for apostrophes are unescaped before comparison.
-const sourceHas = (source, literal) => normalise(source.replaceAll("\\'", "'")).includes(normalise(literal));
-const requireLiterals = (label, source, literals) => {
-  for (const literal of literals) expect(sourceHas(source, literal), `${label} no longer contains the restated literal: ${literal}`);
-};
-requireLiterals('pages/TechnologyLandingPage.tsx', react.landing, [
-  `title="${listingCopy.rawTitle}"`, `description="${listingCopy.description}"`, `canonical="${listingCanonical}"`,
-  `title="${listingCopy.title}"`, `highlightText="${listingCopy.highlight}"`, listingCopy.introHeading, listingCopy.intro, listingCopy.topicsHeading, listingCopy.topicsSub,
-  listingCopy.readGuide, listingCopy.ctaHeading, listingCopy.ctaBody, listingCopy.ctaPrimary.label, `to="${listingCopy.ctaPrimary.href}"`, listingCopy.ctaSecondary.label, `to="${listingCopy.ctaSecondary.href}"`,
-  'if (categoryPages.length === 0) return null',
-]);
-requireLiterals('pages/TechExplainerPage.tsx', react.explainer, [
-  "label: 'Technology Explained', href: '/technology'", `<span className="text-accent font-medium">${explainerCopy.eyebrow}</span>`,
-  explainerCopy.heroPrimary.label, `href="${explainerCopy.heroPhone.href}"`, explainerCopy.heroPhone.label,
-  explainerCopy.whatHeading, explainerCopy.benefitsHeading, explainerCopy.risksHeading, explainerCopy.howHeading, explainerCopy.faqHeading,
-  'Common questions about {data.h1.toLowerCase()}', explainerCopy.relatedHeading, explainerCopy.moreHeading, explainerCopy.moreSub,
-  explainerCopy.ctaHeading, explainerCopy.ctaBody, explainerCopy.ctaPrimary.label, explainerCopy.ctaSecondary.label, `to="${explainerCopy.ctaSecondary.href}"`,
-  `"datePublished": "${explainerCopy.datePublished}"`, `"dateModified": "${explainerCopy.dateModified}"`, `"url": "${seoConstants.publisherLogo}"`,
-  '"inLanguage": "en-GB"', '"isAccessibleForFree": true', "faq.a.replace(/\\[([^\\]]+)\\]\\([^)]+\\)/g, '$1')",
-  '.filter(page => page.slug !== slug)', '.filter(Boolean)', 'schema={[articleSchema, faqSchema]}', 'canonical={`https://fresh-tech.uk/technology/${slug}`}',
-]);
-requireLiterals('components/Contact.tsx', react.contact, [
-  // The retained React reference still carries the retired timing claim. The
-  // native contact copy above is deliberately checked separately in every page.
-  'id="contact"', contactCopy.heading, 'Ready to banish tech headaches? Fill out the form or book a chat directly. We respond faster than a speeding bullet (usually under 15 minutes).', `✓ ${contactCopy.trust}`, contactCopy.onboarding.label, `to="${contactCopy.onboarding.href}"`,
-  'href={`tel:${contactDetails.phone.replace(/\\s/g, \'\')}`}', contactCopy.phoneLabel, contactCopy.emailLabel, `label="${contactCopy.email}"`, contactCopy.bookingLabel, contactCopy.booking, '<ContactForm />',
-]);
-requireLiterals('components/SEO.tsx', react.seo, [
-  `const longSuffix = '${seoConstants.longSuffix}'`, `const shortSuffix = '${seoConstants.shortSuffix}'`, `const TITLE_MAX = ${seoConstants.titleMax}`,
-  `image = "${seoConstants.defaultImage}"`, `"${seoConstants.noIndexRobots}"`, `'og:site_name', '${seoConstants.siteName}'`, `'og:locale', '${seoConstants.locale}'`,
-  `'twitter:card', '${seoConstants.twitterCard}'`, `'twitter:site', '${seoConstants.twitterHandle}'`, `'twitter:creator', '${seoConstants.twitterHandle}'`,
-  "const ORG_ID = `${baseUrl}/#organization`", "const LOCAL_BUSINESS_ID = `${baseUrl}/#localbusiness`", `"legalName": "${seoConstants.legalName}"`,
-  `"value": "${seoConstants.companiesHouse}"`, `"email": "${seoConstants.email}"`, `"telephone": "${seoConstants.telephone}"`, `"postalCode": "${seoConstants.postalCode}"`,
-  "'': 'Home'", '.map(w => w.charAt(0).toUpperCase() + w.slice(1))', '} else if (type === \'website\') {', 'schemasToInject.push(localBusinessSchema);',
-]);
-// "technology" and the explainer slugs must fall through to the title-case
-// fallback; a new SEGMENT_NAMES entry would change the breadcrumb schema.
-expect(!/^\s*'technology'\s*:/m.test(react.seo), 'components/SEO.tsx now maps the technology segment; the breadcrumb expectation must change');
-for (const slug of techSlugs) expect(!new RegExp(`^\\s*'${escapeRegExp(slug)}'\\s*:`, 'm').test(react.seo), `components/SEO.tsx now maps the ${slug} segment; the breadcrumb expectation must change`);
 
 // components/SEO.tsx head formula.
 const siteTitle = rawTitle => {

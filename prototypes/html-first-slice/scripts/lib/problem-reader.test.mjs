@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { assertProblemRouteInventory, readProblemRoutes, readProblems } from './problem-reader.mjs';
+import { readProblems } from './problem-reader.mjs';
 
 // Synthetic fixtures only. Field shapes follow pages/ProblemPage.tsx, not any
 // real record in data/content.ts.
@@ -19,7 +19,6 @@ const record = (key, overrides = {}) => {
   return `{ ${Object.entries(fields).filter(([, value]) => value !== undefined).map(([name, value]) => `${name}: ${value}`).join(', ')} }`;
 };
 const source = body => `export const problemPages: Record<string, any> = { ${body} };`;
-const routesSource = routes => `const ProblemPage = lazy(() => import('./x'));\nconst Other = lazy(() => import('./y'));\nexport default function App() { return (<Routes>${routes}<Route path="/other" element={<Other />} /><Route path="/it-support-x" element={<ServiceLocationPage />} /></Routes>); }`;
 
 test('reads records in source order and keeps every rendered field including icons', () => {
   const pages = readProblems('fixture.ts', source(`"slow-things": ${record('slow-things')}, "broken-things": ${record('broken-things')}`));
@@ -69,20 +68,4 @@ test('rejects unsafe links in every RichText field', () => {
   assert.throws(() => readProblems('fixture.ts', source(`alpha: ${record('alpha', { faqs: "[{ q: 'Q', a: '[bad](//evil.test)' }]" })}`)), /faqs\[0\]\.a contains a disallowed/);
   const pages = readProblems('fixture.ts', source(`alpha: ${record('alpha', { faqs: "[{ q: 'Q', a: 'See [this](https://www.ncsc.gov.uk/) and [that](/pricing).' }]" })}`));
   assert.equal(pages[0].faqs[0].a, 'See [this](https://www.ncsc.gov.uk/) and [that](/pricing).');
-});
-
-test('reads ProblemPage routes from App.tsx in source order and only for that component', () => {
-  const routes = readProblemRoutes('App.tsx', routesSource('<Route path="/slow-things" element={<ProblemPage />} /><Route path="/broken-things" element={<ProblemPage />} />'));
-  assert.deepEqual(routes, ['slow-things', 'broken-things']);
-  assert.throws(() => readProblemRoutes('App.tsx', routesSource('<Route path={`/${slug}`} element={<ProblemPage />} />')), /non-literal path/);
-  assert.throws(() => readProblemRoutes('App.tsx', routesSource('<Route path="/problems/slow" element={<ProblemPage />} />')), /not a root slug/);
-  assert.throws(() => readProblemRoutes('App.tsx', routesSource('<Route path="/a" element={<ProblemPage />} /><Route path="/a" element={<ProblemPage />} />')), /duplicate/);
-  assert.throws(() => readProblemRoutes('App.tsx', routesSource('')), /declares no ProblemPage routes/);
-});
-
-test('route inventory must equal the record keys exactly', () => {
-  const pages = readProblems('fixture.ts', source(`"slow-things": ${record('slow-things')}, "broken-things": ${record('broken-things')}`));
-  assert.deepEqual(assertProblemRouteInventory(pages, ['broken-things', 'slow-things']), ['slow-things', 'broken-things']);
-  assert.throws(() => assertProblemRouteInventory(pages, ['slow-things']), /Not routed: \[broken-things\]/);
-  assert.throws(() => assertProblemRouteInventory(pages, ['slow-things', 'broken-things', 'extra-things']), /Routed without a record: \[extra-things\]/);
 });

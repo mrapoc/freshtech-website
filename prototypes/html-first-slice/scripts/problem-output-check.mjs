@@ -6,7 +6,7 @@ import { gzipSync } from 'node:zlib';
 import { parse } from 'ultrahtml';
 import { decodeEntities, normalise } from './lib/blog-rendered-text.mjs';
 import { PROBLEM_MARKER, inventoryIsClean, mainMarker, problemInventory } from './lib/problem-inventory.mjs';
-import { assertProblemRouteInventory, readProblemRoutes, readProblems } from './lib/problem-reader.mjs';
+import { readProblems } from './lib/problem-reader.mjs';
 import { readTestimonialData } from './lib/testimonial-reader.mjs';
 import { FIXTURE_MODE, TESTIMONIALS_FIXTURE_ATTRIBUTE, TESTIMONIALS_FIXTURE_ENV, resolveTestimonialsFixtureMode, syntheticTestimonialData } from './lib/testimonial-fixture.mjs';
 import { loadRetainedReactHead } from './lib/retained-react-head.mjs';
@@ -14,7 +14,7 @@ import { loadRetainedReactHead } from './lib/retained-react-head.mjs';
 // Focused checker for the emitted root-slug problem family (pages/ProblemPage.tsx
 // ported by src/components/ProblemPage.astro). Expectations come from the
 // fail-closed source projection (scripts/lib/problem-reader.mjs over
-// data/content.ts and App.tsx, read here at run time rather than from the
+// data/content.ts, read here at run time rather than from the
 // generated module), the retained React Organization fixture, and inline
 // restatements of components/SEO.tsx, the React page's schema objects, its
 // literal copy and hrefs, and the components/RichText.tsx block rules. Nothing
@@ -403,8 +403,7 @@ async function main() {
   // --- Source projection at run time (never the generated module) -----------------
   const contentSource = await readFile(resolve(repoDir, 'data', 'content.ts'), 'utf8');
   const problems = readProblems('data/content.ts', contentSource);
-  const reactRoutes = readProblemRoutes('App.tsx', await readFile(resolve(repoDir, 'App.tsx'), 'utf8'));
-  const problemSlugs = assertProblemRouteInventory(problems, reactRoutes);
+  const problemSlugs = problems.map(page => page.slug);
   expect(problems.length > 0 && new Set(problemSlugs).size === problemSlugs.length, 'problemPages projection is empty or repeats a slug');
 
   // Shared testimonials: the synthetic fixture in fixture mode, otherwise the
@@ -597,7 +596,7 @@ async function main() {
     expect(schemaDifference === null, `${route}: JSON-LD differs from the React Article, FAQPage, Organization and breadcrumb graph at ${schemaDifference}`);
   }
 
-  console.log(`${problems.length} root-slug problem routes verified (${problemSlugs.join(', ')}): ${assertions} inventory, App.tsx route, chrome, content, RichText, call-to-action, shared-section, head and framework assertions passed; ${emergencyRoutes} emergency route(s); testimonials and logos compared exactly against the ${fixtureMode ? 'synthetic fixture' : 'run-time source projection'} (${shape.reviews} reviews, ${shape.tabs} tabs, ${shape.logos} logos); SourceContact contract verified`);
+  console.log(`${problems.length} root-slug problem routes verified (${problemSlugs.join(', ')}): ${assertions} inventory, chrome, content, RichText, call-to-action, shared-section, head and framework assertions passed; ${emergencyRoutes} emergency route(s); testimonials and logos compared exactly against the ${fixtureMode ? 'synthetic fixture' : 'run-time source projection'} (${shape.reviews} reviews, ${shape.tabs} tabs, ${shape.logos} logos); SourceContact contract verified`);
   if (oversized.length) console.warn(`Warning: ${oversized.length} route(s) exceed the ${HTML_GZIP_BUDGET}-byte gzip HTML budget enforced by check-emitted-html-quality (budget not raised):\n  ${oversized.join('\n  ')}`);
 }
 

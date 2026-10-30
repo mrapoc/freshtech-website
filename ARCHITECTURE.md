@@ -1,327 +1,93 @@
-# Fresh Tech Website Architecture
+# Fresh Tech website architecture
 
 ## Overview
 
-Fresh Tech Website is a Single Page Application (SPA) built with React 19 and TypeScript, deployed on Netlify. The site serves as the marketing presence for Fresh Tech MSP, targeting local businesses in Ludlow, Shropshire, and surrounding areas.
-
-## System Architecture
-
-```
-                                    ┌─────────────────────────────┐
-                                    │      Netlify CDN            │
-                                    │   (SSL, Edge Caching)       │
-                                    └─────────────┬───────────────┘
-                                                  │
-    ┌─────────────────────────────────────────────┼─────────────────────────────────────────────┐
-    │                               Static Site Hosting                                          │
-    │                                                                                            │
-    │  ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐                 │
-    │  │   index.html     │     │   assets/*.js    │     │   assets/*.css   │                 │
-    │  │   (SPA Entry)    │────▶│   (React App)    │────▶│   (TailwindCSS)  │                 │
-    │  └──────────────────┘     └────────┬─────────┘     └──────────────────┘                 │
-    │                                    │                                                     │
-    │                              React Router                                                │
-    │                                    │                                                     │
-    │         ┌──────────────────────────┼──────────────────────────┐                         │
-    │         │                          │                          │                         │
-    │         ▼                          ▼                          ▼                         │
-    │  ┌────────────┐           ┌────────────┐            ┌────────────┐                     │
-    │  │   Home     │           │   Pages    │            │ Components │                     │
-    │  │  (Eager)   │           │  (Lazy)    │            │  (Shared)  │                     │
-    │  └────────────┘           └────────────┘            └────────────┘                     │
-    │                                                                                          │
-    └────────────────────────────────────┬────────────────────────────────────────────────────┘
-                                         │
-                      ┌──────────────────┼──────────────────┐
-                      │                  │                  │
-                      ▼                  ▼                  ▼
-             ┌──────────────┐   ┌──────────────┐   ┌──────────────┐
-             │   Calendly   │   │   Tawk.to    │   │   Netlify    │
-             │   (Booking)  │   │ (Live Chat)  │   │  Functions   │
-             └──────────────┘   └──────────────┘   └──────────────┘
-                                                          │
-                                                          ▼
-                                                   ┌──────────────┐
-                                                   │  SMTP2GO     │
-                                                   │   (Email)    │
-                                                   └──────────────┘
-```
-
-## Component Architecture
-
-### Core Components
+The site is static HTML built by Astro 7 from content files, served by Apache on 20i.
+Three small PHP handlers provide the only server-side behaviour. Browser JavaScript is
+limited to progressive enhancements (consent banner, contact form, filters, the email
+checker); every page works without it.
 
 ```
-App.tsx
-├── ErrorBoundary
-└── Router (BrowserRouter/HashRouter)
-    └── Routes
-        └── Layout (wrapper)
-            ├── Header
-            ├── Navigation
-            ├── Main Content (page component)
-            ├── Footer
-            └── Floating Elements
-                ├── BackToTop
-                ├── CalendlyModal (lazy)
-                ├── ExitIntentSlide (lazy)
-                └── KeyboardShortcuts (lazy)
+data/*.ts, data/*.json, content/*.md          hosting/routing.json
+              │                                        │
+   prototypes/html-first-slice/scripts/extract-*.mjs   │
+   (read literals fail-closed, never execute)          │
+              │                                        │
+     src/generated/*.mjs (gitignored)                  │
+              │                                        │
+     astro build  ──▶  dist-production/                │
+              │        + sitemap.xml, rss.xml,         │
+              │          robots.txt, IndexNow key      │
+              │                                        │
+     output checks (every emitted page)                │
+              │                                        │
+     scripts/package-static-production.mjs  ◀──────────┘
+     (.htaccess, upload manifest, PHP handlers)
+              │
+     scripts/deploy-20i.mjs  ──▶  20i public_html
 ```
 
-### Component Categories
+## Content
 
-| Category | Count | Purpose |
-|----------|-------|---------|
-| Layout | 1 | Page wrapper with header/footer |
-| Pages | 32 | Route-level components |
-| Interactive | 6 | Quiz components |
-| UI | 30+ | Buttons, cards, forms, etc. |
-| SEO | 1 | Meta tags, structured data |
-| Utility | 8 | Analytics, modals, scrolling |
+`data/content.ts` and `data/industryGuides.ts` hold most of the content as exported literal
+records. `data/pricing.json`, `data/service-pages.json`, `data/navigation.json` and
+`data/technology-pages.json` hold pricing, per-service copy and the services listing, site
+navigation and the technology listing. `content/*.md` holds the legal documents, selected by
+`content/legal-pages.json`. `data/editorial-holds.json` keeps unapproved posts out of every
+output.
 
-## Data Flow
+The extractors in `prototypes/html-first-slice/scripts/` parse these files without running
+them (`scripts/lib/literal-reader.mjs` uses the TypeScript compiler's AST) and reject
+expressions, unexpected fields, unsafe links and slugs. They write projections to the
+gitignored `src/generated/`, which the Astro pages import.
 
-### Static Content Flow
+## Pages
 
-```
-data/*.ts  ──────▶  Page Component  ──────▶  UI Components
-   │                      │                        │
-   │                      │                        │
-   ▼                      ▼                        ▼
-[content.ts]        [Props passed]          [Rendered HTML]
-[industryGuides.ts]
-[reviews.ts]
-```
+Routes live in `prototypes/html-first-slice/src/pages/`. Record-driven families (services,
+case studies, locations, industries, blog, technology, guides, team) use a dynamic route per
+family. Problem, comparison and service-location pages share the root-slug dispatcher
+`src/pages/[slug].astro`. Standalone pages each have their own route.
 
-### User Interaction Flow
+The default build is a noindex preview in `dist/`, followed by family-specific output checks.
+`PUBLIC_SITE_MODE=production npm run build` writes the indexable release to `dist-production/`,
+adds the root files (`scripts/production-root-files.mjs` calls the root sitemap and RSS
+generators) and runs the production and emitted-HTML quality checks. See the
+[static quality contract](docs/seo/static-quality-contract.md).
 
-```
-User Action
-    │
-    ▼
-Event Handler
-    │
-    ├──────────────────────────────────────┐
-    │                                      │
-    ▼                                      ▼
-Local State Change                   External Action
-(useState/useEffect)                 (Analytics, API)
-    │                                      │
-    ▼                                      ▼
-Re-render Component              Netlify Function / 3rd Party
-```
+## Server side
 
-## Routing Architecture
+`prototypes/html-first-slice/server/api/` holds the PHP handlers:
 
-### Route Configuration
+| Handler | Route | Purpose |
+| --- | --- | --- |
+| `send-email.php` | `POST /api/send-email` | Contact form, sent through SMTP2GO |
+| `website-proof.php` | `/api/website-metrics`, `/api/website-feedback` | Serves the nightly public service snapshots |
+| `google-rating.php` | `/api/google-rating` | Serves the Google rating aggregate |
 
-All routes are defined in `App.tsx` using React Router v7:
+Their configuration and the snapshots live in the private folder outside `public_html`.
+The website never calls the reporting system directly.
 
-```typescript
-// Eager-loaded (critical path)
-import Home from './pages/Home';
+## Routing and headers
 
-// Lazy-loaded (code-split)
-const AboutPage = lazy(() => import('./pages/AboutPage'));
-const BlogPage = lazy(() => import('./pages/BlogPage'));
-// ... 30 more pages
-```
+`hosting/routing.json` lists the ordered legacy redirects (all 301s, first match wins), the
+global security headers and the two cache policies. `scripts/generate-apache-static-config.mjs`
+compiles it into the `.htaccess` for each release, adding the static-site Content Security
+Policy, the PHP routes, `www` to apex and trailing-slash canonicalisation. There is no
+catch-all, so unknown paths return 404.
 
-### Route Groups
+## Release
 
-| Group | Pattern | Example |
-|-------|---------|---------|
-| Core | `/about`, `/contact` | Static pages |
-| Services | `/services/:slug` | Service detail |
-| Blog | `/blog`, `/blog/:slug` | Blog listing/posts |
-| Industries | `/industries/:slug` | Industry pages |
-| Locations | `/locations/:slug` | Town-specific pages |
-| Resources | `/resources/*` | Guides, calculators |
+A scheduled job on the site owner's Mac (`scripts/deploy-20i-local.mjs`) deploys each new
+`main` commit: it checks out the commit, installs locked dependencies, runs
+`scripts/quality-gate.mjs` (unit and output contracts, the full build and the browser
+suite), builds the production output, packages it and uploads it over SFTP with
+`scripts/deploy-20i.mjs`. The upload refuses to overwrite files changed on the server
+outside a recorded release. The root `package.json` exists for the gate's Playwright
+browser; the site itself depends only on the Astro project's lockfile.
 
-### Legacy Redirects
+## History
 
-70+ WordPress URL redirects defined in `netlify.toml`:
-- `/news/*` → `/blog`
-- `/about-us` → `/about`
-- `/2023/*` → `/blog` (dated posts)
-- `/wp-admin/*` → `/` (security)
-
-## Build Architecture
-
-### Vite Configuration
-
-```typescript
-// vite.config.ts
-{
-  plugins: [
-    react(),           // React Fast Refresh
-    cleanHtmlPlugin(), // Remove dev script tags
-    criticalCssPlugin() // Inline critical CSS
-  ],
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'react-vendor': ['react-dom'],
-          'router': ['react-router'],
-          'icons': ['lucide-react'],
-          'content': ['./data/content.ts'],
-          'industry-guides': ['./data/industryGuides.ts']
-        }
-      }
-    }
-  }
-}
-```
-
-### Bundle Output
-
-| Chunk | Size | Contents |
-|-------|------|----------|
-| index.js | 88KB | Core React app |
-| react-vendor | ~40KB | React DOM |
-| router | ~20KB | React Router |
-| icons | ~50KB | Lucide icons |
-| content | ~420KB | Main content data |
-| industry-guides | ~100KB | Industry content |
-
-### Build Pipeline
-
-```
-1. Generate Sitemap (scripts/generate-sitemap.js)
-       │
-       ▼
-2. Generate RSS Feed (scripts/generate-rss.js)
-       │
-       ▼
-3. Vite Build
-   ├── TypeScript compilation
-   ├── React transformation
-   ├── TailwindCSS processing
-   ├── Code splitting
-   └── Asset optimization
-       │
-       ▼
-4. Critical CSS Inlining (Critters)
-       │
-       ▼
-5. Output to dist/
-```
-
-## SEO Architecture
-
-### SEO Component
-
-Every page uses the `SEO` component:
-
-```typescript
-<SEO
-  title="Page Title"
-  description="Meta description"
-  slug="/page-path"
-  type="website|article"
-  schema={structuredData}
-  breadcrumbs={[...]}
-/>
-```
-
-### Structured Data
-
-| Type | Usage |
-|------|-------|
-| LocalBusiness | Homepage |
-| Organization | About page |
-| WebSite | Site-wide |
-| FAQPage | FAQ sections |
-| Article | Blog posts |
-| BreadcrumbList | Navigation |
-
-## Security Architecture
-
-### Headers (netlify.toml)
-
-```toml
-X-Frame-Options = "DENY"
-X-XSS-Protection = "1; mode=block"
-X-Content-Type-Options = "nosniff"
-Referrer-Policy = "strict-origin-when-cross-origin"
-Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
-Content-Security-Policy = "..." # Strict CSP
-```
-
-### CSP Policy
-
-- `default-src 'self'`
-- `script-src` - Self, GTM, GA, Clarity, Calendly, Tawk.to
-- `style-src` - Self, Google Fonts, Calendly, Tawk.to
-- `img-src` - Self, Cloudinary, Unsplash, analytics pixels
-- `connect-src` - Self, Analytics, Calendly, Tawk.to
-- `frame-src` - Calendly, Tawk.to, Google Maps
-- `frame-ancestors 'none'`
-
-## Performance Optimizations
-
-### Code Splitting Strategy
-
-1. **Route-based**: All pages lazy-loaded except Home
-2. **Component-based**: Heavy modals lazy-loaded
-3. **Data-based**: Content files in separate chunks
-
-### Critical Rendering Path
-
-```
-1. index.html (0ms)
-      │
-      ▼
-2. Critical CSS inline (< 50ms)
-      │
-      ▼
-3. index.js loads (< 200ms)
-      │
-      ▼
-4. Home component renders (< 100ms)
-      │
-      ▼
-5. Non-critical CSS async (parallel)
-```
-
-### Caching Strategy
-
-| Asset Type | Cache Duration |
-|------------|----------------|
-| /assets/* | 1 year (immutable) |
-| /index.html | No cache |
-| Images | Browser default |
-
-## Technology Decisions
-
-| Decision | Rationale |
-|----------|-----------|
-| **React 19** | Latest features, Server Components ready |
-| **Vite** | Fast HMR, native ES modules, optimized builds |
-| **TailwindCSS** | Utility-first, small bundle, JIT |
-| **React Router v7** | Type-safe routing, lazy loading |
-| **Static content** | No CMS needed, fast builds, SEO friendly |
-| **Netlify** | Git integration, edge functions, CDN |
-| **Critters** | Critical CSS without runtime cost |
-
-## Future Considerations
-
-### Potential Improvements
-
-1. **Testing**: Add Vitest for unit tests, Playwright for E2E
-2. **CMS Integration**: Consider headless CMS for blog content
-3. **React Router lazy**: Use Router's native lazy instead of React.lazy
-4. **Image optimization**: Migrate to Cloudinary for all images
-5. **Analytics**: Server-side analytics for privacy
-
-### Scalability Notes
-
-- Content data in TypeScript files - works well up to ~50 pages
-- Beyond that, consider headless CMS or JSON files
-- Current bundle size (88KB main) is excellent
-- Legacy redirects may need periodic cleanup
-
----
-
-*Last Updated: January 2026*
+The site was a React 19 / Vite single-page app on Netlify until 22 September 2026, when the
+native Astro site went live. The React app and Netlify configuration were kept as a rollback
+until 30 October 2026, then removed. They remain in Git history and the private archive
+repository.

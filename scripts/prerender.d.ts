@@ -1,1 +1,0 @@
-export function getAllRoutes(): string[];

@@ -1,4 +1,3 @@
-import { createHash } from 'node:crypto';
 import { parse } from 'ultrahtml';
 import { decodeEntities, normalise } from './blog-rendered-text.mjs';
 
@@ -71,4 +70,3 @@ export function extractPage(html) {
   };
 }
 
-export const sourceDigest = source => createHash('sha256').update(source.replace(/\r\n/g, '\n'), 'utf8').digest('hex');

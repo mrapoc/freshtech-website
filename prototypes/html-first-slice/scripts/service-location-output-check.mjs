@@ -8,8 +8,8 @@ import { DEFAULT_SOCIAL_IMAGE } from '../src/lib/social-image.mjs';
 import { loadRetainedReactHead } from './lib/retained-react-head.mjs';
 
 // Focused checker for the emitted root-slug service-location family.
-// Expectations are derived from the generated records, an independent regex
-// read of App.tsx, the retained React Organization fixture, and inline
+// Expectations are derived from the generated records,
+// the retained React Organization fixture, and inline
 // restatements of the components/SEO.tsx head formula, the React page's schema
 // objects, its county-hub rule and the components/RichText.tsx block rules.
 // Nothing here imports the SEO, display or rich-text modules under test.
@@ -95,11 +95,8 @@ function readHead(html) {
   return { title, canonicals, metadata, schemas: schemaText ? JSON.parse(schemaText) : null };
 }
 
-// --- Inventory: records, App.tsx routes and emitted directories ----------------
-const appSource = await readFile(resolve(import.meta.dirname, '..', '..', '..', 'App.tsx'), 'utf8');
-const appRoutes = [...appSource.matchAll(/<Route\s+path="\/([a-z0-9-]+)"\s+element=\{<ServiceLocationPage\s*\/>\}\s*\/>/g)].map(match => match[1]);
-expect(appRoutes.length > 0 && new Set(appRoutes).size === appRoutes.length, 'App.tsx has no (or duplicate) ServiceLocationPage routes');
-expect(JSON.stringify([...appRoutes].sort()) === JSON.stringify([...serviceLocationSlugs].sort()), `App.tsx ServiceLocationPage routes differ from the extracted records. App: [${appRoutes.join(', ')}]`);
+// --- Inventory: records and emitted directories --------------------------------
+expect(serviceLocationSlugs.length > 0 && new Set(serviceLocationSlugs).size === serviceLocationSlugs.length, 'no (or duplicate) service-location slugs');
 expect(JSON.stringify(serviceLocations.map(page => page.slug)) === JSON.stringify(serviceLocationSlugs), 'generated slug list is not the record order');
 for (const slug of serviceLocationSlugs) expect(ROUTE_PREFIX.test(slug), `${slug}: not a service-prefixed root slug`);
 
@@ -217,5 +214,5 @@ for (const page of serviceLocations) {
   expect(JSON.stringify(head.schemas) === JSON.stringify(expectedSchemas), `${route}: JSON-LD differs from the React Service, FAQPage, Organization and breadcrumb graph`);
 }
 
-console.log(`${serviceLocations.length} root-slug service-location routes verified (${serviceLocationSlugs.join(', ')}): ${assertions} inventory, App.tsx route, content, RichText, related-link, head and framework assertions passed; ${hubLinks} town routes link to a county hub`);
+console.log(`${serviceLocations.length} root-slug service-location routes verified (${serviceLocationSlugs.join(', ')}): ${assertions} inventory, content, RichText, related-link, head and framework assertions passed; ${hubLinks} town routes link to a county hub`);
 if (oversized.length) console.warn(`Warning: ${oversized.length} route(s) exceed the ${HTML_GZIP_BUDGET}-byte gzip HTML budget enforced by check-emitted-html-quality (budget not raised):\n  ${oversized.join('\n  ')}`);

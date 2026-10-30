@@ -14,22 +14,12 @@
     {
       "cwd": ".",
       "runner": "npm",
-      "name": "lint"
-    },
-    {
-      "cwd": ".",
-      "runner": "npm",
       "name": "test"
     },
     {
       "cwd": ".",
       "runner": "npm",
-      "name": "build:no-prerender"
-    },
-    {
-      "cwd": ".",
-      "runner": "npm",
-      "name": "build"
+      "name": "quality-gate"
     },
     {
       "name": "test",

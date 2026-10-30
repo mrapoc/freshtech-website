@@ -3,23 +3,18 @@ import { lstat, mkdir, readFile, readdir, realpath, writeFile } from 'node:fs/pr
 import { dirname, extname, relative, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const EXPECTED_REDIRECTS = 99;
-const EXPECTED_PERMANENT_REDIRECTS = 98;
-const EXPECTED_SEMANTIC_HASH = 'cddac1db3c71f68bd38eaab6a318ef7081cb4844d12d552aae701be8a1ba3360';
 const PUBLIC_EXTENSIONS = new Set([
   '.avif', '.css', '.gif', '.html', '.ico', '.jpeg', '.jpg', '.js', '.json', '.mjs',
   '.otf', '.pdf', '.png', '.svg', '.ttf', '.txt', '.webmanifest', '.webp', '.woff', '.woff2', '.xml',
 ]);
 
-// The native static site needs far less than the React SPA's Netlify policy:
-// every executable script is an external same-origin module (enforced by
+// The site needs no inline script: every executable script is an external same-origin module (enforced by
 // prototypes/html-first-slice/scripts/production-output-check.mjs), so
 // script-src omits 'unsafe-inline'. Third parties are limited to Cloudinary
 // media, consent-gated GA4 and Clarity, the helpdesk metrics feed and Google
 // DNS-over-HTTPS for the email checker, and frames only from Blockmark's
 // certificate registry (the Cyber Essentials badge). Inline styles remain allowed: pages
 // inline their stylesheets and use style attributes for layout tokens.
-// netlify.toml keeps the React policy for the Netlify rollback site.
 export const STATIC_SITE_HEADERS = Object.freeze({
   'Content-Security-Policy': [
     "default-src 'self'",
@@ -42,117 +37,38 @@ export const STATIC_SITE_HEADERS = Object.freeze({
   'Cross-Origin-Resource-Policy': 'same-site',
 });
 
-function parseString(value, context) {
+const ROUTING_KEYS = ['redirects', 'headers', 'cacheControl'];
+const REDIRECT_KEYS = new Set(['from', 'to', 'query']);
+
+/**
+ * Parse and validate hosting/routing.json: ordered permanent redirects, the
+ * global security headers and the two Cache-Control policies. Every redirect
+ * is a 301. Order matters: Apache applies the first match, so specific
+ * sources must come before wildcards that would also match them.
+ */
+export function parseRouting(source) {
+  let config;
   try {
-    const parsed = JSON.parse(value);
-    if (typeof parsed !== 'string') throw new Error('not a string');
-    return parsed;
-  } catch {
-    throw new Error(`${context}: expected a double-quoted string`);
+    config = JSON.parse(source);
+  } catch (error) {
+    throw new Error(`routing source is not valid JSON: ${error.message}`);
   }
-}
-
-function parseQuery(value, context) {
-  const match = value.match(/^\{\s*([A-Za-z0-9_-]+)\s*=\s*("(?:[^"\\]|\\.)*")\s*\}$/);
-  if (!match) throw new Error(`${context}: unsupported query map`);
-  return { [match[1]]: parseString(match[2], context) };
-}
-
-function parseAssignment(line, context) {
-  const match = line.match(/^([A-Za-z0-9_-]+)\s*=\s*(.+)$/);
-  if (!match) throw new Error(`${context}: unsupported TOML syntax: ${line}`);
-  return [match[1], match[2]];
-}
-
-/** Parse the deliberately small netlify.toml subset used for redirects and headers. */
-export function parseNetlifyRouting(source) {
-  const redirects = [];
-  const headers = [];
-  let section = 'other';
-  let current = null;
-
-  const finish = () => {
-    if (section === 'redirect' && current) redirects.push(current);
-    if ((section === 'header' || section === 'header-values') && current) headers.push(current);
-    current = null;
-  };
-
-  for (const [offset, rawLine] of source.split(/\r?\n/).entries()) {
-    const lineNumber = offset + 1;
-    const line = rawLine.trim();
-    if (!line || line.startsWith('#')) continue;
-
-    if (line === '[[redirects]]') {
-      finish();
-      section = 'redirect';
-      current = {};
-      continue;
-    }
-    if (line === '[[headers]]') {
-      finish();
-      section = 'header';
-      current = { values: {} };
-      continue;
-    }
-    if (line === '[headers.values]') {
-      if (section !== 'header' || !current) {
-        throw new Error(`line ${lineNumber}: headers.values without a headers block`);
-      }
-      section = 'header-values';
-      continue;
-    }
-    if (line.startsWith('[')) {
-      finish();
-      section = 'other';
-      continue;
-    }
-    if (section === 'other') continue;
-
-    const [key, rawValue] = parseAssignment(line, `line ${lineNumber}`);
-    const target = section === 'header-values' ? current.values : current;
-    if (Object.hasOwn(target, key)) throw new Error(`line ${lineNumber}: duplicate ${key}`);
-
-    if (section === 'redirect') {
-      if (!['from', 'to', 'status', 'force', 'query'].includes(key)) {
-        throw new Error(`line ${lineNumber}: unsupported redirect key ${key}`);
-      }
-      if (key === 'from' || key === 'to') target[key] = parseString(rawValue, `line ${lineNumber}`);
-      else if (key === 'status') target[key] = Number(rawValue);
-      else if (key === 'force') target[key] = rawValue === 'true' ? true : rawValue === 'false' ? false : rawValue;
-      else target[key] = parseQuery(rawValue, `line ${lineNumber}`);
-    } else if (section === 'header') {
-      if (key !== 'for') throw new Error(`line ${lineNumber}: unsupported header key ${key}`);
-      target[key] = parseString(rawValue, `line ${lineNumber}`);
-    } else {
-      target[key] = parseString(rawValue, `line ${lineNumber}`);
-    }
+  if (!config || typeof config !== 'object' || Array.isArray(config) || Object.keys(config).join(',') !== ROUTING_KEYS.join(',')) {
+    throw new Error(`routing source must contain exactly ${ROUTING_KEYS.join(', ')}`);
   }
-  finish();
-  return { redirects, headers };
-}
-
-function assertSourceContract(config) {
-  if (config.redirects.length !== EXPECTED_REDIRECTS) {
-    throw new Error(`expected ${EXPECTED_REDIRECTS} redirect blocks, found ${config.redirects.length}`);
-  }
-
-  const fallback = config.redirects.at(-1);
-  if (fallback.from !== '/*' || fallback.to !== '/index.html' || fallback.status !== 200 || 'force' in fallback) {
-    throw new Error('the final redirect must remain the Netlify SPA fallback');
-  }
-
-  const permanent = config.redirects.slice(0, -1);
-  if (permanent.length !== EXPECTED_PERMANENT_REDIRECTS) throw new Error('unexpected permanent redirect count');
-  for (const [index, redirect] of permanent.entries()) {
+  const { redirects, headers, cacheControl } = config;
+  if (!Array.isArray(redirects) || !redirects.length) throw new Error('redirects must be a non-empty array');
+  for (const [index, redirect] of redirects.entries()) {
+    const label = `redirect ${index + 1}`;
+    if (!redirect || typeof redirect !== 'object' || Array.isArray(redirect)) throw new Error(`${label}: must be an object`);
+    for (const key of Object.keys(redirect)) if (!REDIRECT_KEYS.has(key)) throw new Error(`${label}: unsupported key ${key}`);
     if (typeof redirect.from !== 'string' || typeof redirect.to !== 'string') {
-      throw new Error(`redirect ${index + 1}: from and to are required`);
-    }
-    if (redirect.status !== 301 || redirect.force !== true) {
-      throw new Error(`redirect ${index + 1}: only forced 301 redirects are supported`);
+      throw new Error(`${label}: from and to are required`);
     }
     if (!/^\/(?:[a-z0-9.-]+(?:\/[a-z0-9.-]+)*)?$/.test(redirect.to) || redirect.to.split('/').some(part => part === '.' || part === '..')) {
-      throw new Error(`redirect ${index + 1}: destination must be a canonical literal site path`);
+      throw new Error(`${label}: destination must be a canonical literal site path`);
     }
+    if ('query' in redirect && !/^[A-Za-z0-9_-]+$/.test(redirect.query)) throw new Error(`${label}: query must be one parameter name`);
   }
 
   const queryContracts = [
@@ -161,29 +77,28 @@ function assertSourceContract(config) {
     ['s', '/blog'],
   ];
   for (const [index, [parameter, destination]] of queryContracts.entries()) {
-    const redirect = permanent[index];
-    if (redirect.from !== '/' || redirect.to !== destination || Object.keys(redirect.query ?? {})[0] !== parameter) {
+    const redirect = redirects[index];
+    if (redirect?.from !== '/' || redirect.to !== destination || redirect.query !== parameter) {
       throw new Error(`redirect ${index + 1}: WordPress query redirect contract changed`);
     }
   }
-  if (permanent.slice(3).some((redirect) => redirect.query)) {
+  if (redirects.slice(queryContracts.length).some((redirect) => 'query' in redirect)) {
     throw new Error('only the first three redirects may contain query matchers');
   }
 
-  const expectedHeaderPaths = ['/*', '/assets/*', '/index.html'];
-  if (config.headers.length !== expectedHeaderPaths.length) {
-    throw new Error(`expected ${expectedHeaderPaths.length} header blocks, found ${config.headers.length}`);
-  }
-  expectedHeaderPaths.forEach((path, index) => {
-    if (config.headers[index].for !== path || !Object.keys(config.headers[index].values).length) {
-      throw new Error(`header block ${index + 1}: expected ${path}`);
+  const strings = (value, label) => {
+    if (!value || typeof value !== 'object' || Array.isArray(value) || !Object.keys(value).length) throw new Error(`${label} must be a non-empty object`);
+    for (const [name, text] of Object.entries(value)) {
+      if (!/^[A-Za-z0-9-]+$/.test(name) || typeof text !== 'string' || !text) throw new Error(`${label}.${name} must be a non-empty string`);
     }
-  });
-
-  const semanticHash = createHash('sha256').update(JSON.stringify(config)).digest('hex');
-  if (semanticHash !== EXPECTED_SEMANTIC_HASH) {
-    throw new Error(`Netlify redirect or header semantics changed (${semanticHash}); review and update the Apache contract`);
+  };
+  strings(headers, 'headers');
+  if (Object.keys(headers).some(name => Object.hasOwn(STATIC_SITE_HEADERS, name))) {
+    throw new Error('headers must not set the policies owned by STATIC_SITE_HEADERS');
   }
+  strings(cacheControl, 'cacheControl');
+  if (Object.keys(cacheControl).sort().join(',') !== 'html,immutable') throw new Error('cacheControl must contain exactly html and immutable');
+  return config;
 }
 
 function apacheEscape(value) {
@@ -199,37 +114,31 @@ function routePattern(from) {
     .join('.*');
 }
 
-function queryCondition(query) {
-  const entries = Object.entries(query ?? {});
-  if (entries.length !== 1) throw new Error('query redirects must contain exactly one parameter');
-  const [name, value] = entries[0];
-  if (!/^:[A-Za-z0-9_-]+$/.test(value)) throw new Error(`unsupported query capture for ${name}`);
+function queryCondition(name) {
   return `RewriteCond %{QUERY_STRING} (^|&)${name}=[^&]*(&|$) [NC]`;
 }
 
-/** Compile reviewed Netlify routing into an Apache 2.4 per-directory configuration. */
+/** Compile reviewed routing into an Apache 2.4 per-directory configuration. */
 export function compileApacheStaticConfig(source, { mode, previewSendEmail = false }) {
   if (!['preview', 'production'].includes(mode)) throw new Error('mode must be preview or production');
   if (typeof previewSendEmail !== 'boolean') throw new Error('previewSendEmail must be a boolean');
   if (previewSendEmail && mode !== 'preview') throw new Error('previewSendEmail applies to preview mode only');
-  const config = parseNetlifyRouting(source);
-  assertSourceContract(config);
+  const config = parseRouting(source);
   // The 20i origin sees HTTP behind its TLS proxy. Never derive redirect scheme
   // or authority from that request, or HTTPS clients receive downgrade hops.
   const redirectOrigin = mode === 'preview' ? 'https://preview.fresh-tech.uk' : 'https://fresh-tech.uk';
 
   const sourceHash = createHash('sha256').update(source).digest('hex');
-  const permanent = config.redirects.slice(0, -1);
-  const globalHeaders = config.headers[0].values;
-  const assetCache = config.headers[1].values['Cache-Control'];
-  const htmlCache = config.headers[2].values['Cache-Control'];
-  if (!assetCache || !htmlCache) throw new Error('both Cache-Control policies are required');
+  const permanent = config.redirects;
+  const globalHeaders = config.headers;
+  const assetCache = config.cacheControl.immutable;
+  const htmlCache = config.cacheControl.html;
 
   const lines = [
     '# Generated by scripts/generate-apache-static-config.mjs. Do not edit.',
-    `# Source netlify.toml SHA-256: ${sourceHash}`,
+    `# Source hosting/routing.json SHA-256: ${sourceHash}`,
     '# HTTPS redirection is owned by the 20i Force HTTPS control.',
-    '# The Netlify SPA fallback is intentionally omitted so unknown paths return 404.',
+    '# There is no catch-all fallback, so unknown paths return 404.',
     '',
     'Options -Indexes -MultiViews',
     'DirectoryIndex index.html',
@@ -275,7 +184,7 @@ export function compileApacheStaticConfig(source, { mode, previewSendEmail = fal
     );
   }
   lines.push('');
-  lines.push('# Ordered legacy redirects translated from netlify.toml.');
+  lines.push('# Ordered legacy redirects from hosting/routing.json.');
 
   permanent.forEach((redirect, index) => {
     lines.push(`# ${index + 1}: ${redirect.from} -> ${redirect.to}`);
@@ -294,10 +203,9 @@ export function compileApacheStaticConfig(source, { mode, previewSendEmail = fal
     'RewriteCond %{REQUEST_FILENAME}/index.html -f',
     'RewriteRule ^(.+)$ /$1/index.html [END]',
     '',
-    '# Security headers translated from the global Netlify header block, with the',
+    '# Security headers from hosting/routing.json, with the',
     '# static-site Content-Security-Policy and site-isolation headers.',
   );
-  if (!globalHeaders['Content-Security-Policy']) throw new Error('the global Netlify header block must set a Content-Security-Policy');
   for (const [name, value] of Object.entries({ ...globalHeaders, ...STATIC_SITE_HEADERS })) {
     lines.push(`Header always set ${name} "${apacheEscape(value)}"`);
   }
@@ -388,13 +296,13 @@ async function main() {
     return index === -1 ? undefined : args[index + 1];
   };
   const mode = valueFor('--mode');
-  const sourcePath = valueFor('--source') ?? 'netlify.toml';
+  const sourcePath = valueFor('--source') ?? resolve(import.meta.dirname, '..', 'hosting', 'routing.json');
   const outputPath = valueFor('--out');
   const siteDirectory = valueFor('--site-dir');
   const manifestPath = valueFor('--manifest-out');
   const previewSendEmail = args.includes('--enable-preview-send-email');
   if (!mode || !outputPath || !siteDirectory || !manifestPath || args.some((arg) => arg.startsWith('--') && !['--mode', '--source', '--out', '--site-dir', '--manifest-out', '--enable-preview-send-email'].includes(arg))) {
-    throw new Error('usage: node scripts/generate-apache-static-config.mjs --mode preview|production --site-dir <static-output> --out <path> --manifest-out <path> [--source netlify.toml] [--enable-preview-send-email]');
+    throw new Error('usage: node scripts/generate-apache-static-config.mjs --mode preview|production --site-dir <static-output> --out <path> --manifest-out <path> [--source hosting/routing.json] [--enable-preview-send-email]');
   }
 
   const source = await readFile(resolve(sourcePath), 'utf8');

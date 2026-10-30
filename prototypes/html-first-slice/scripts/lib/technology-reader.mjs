@@ -1,25 +1,21 @@
 import { assertArray, assertExactKeys, assertPlainObject, assertString, literalValue, parseSource, topLevelConstLiteral, ts } from './literal-reader.mjs';
 import { isAllowedInlineHref } from '../../src/lib/inline-markdown.mjs';
 
-// Fail-closed readers for the technology family. Three production sources are
-// projected onto exactly what pages/TechExplainerPage.tsx and
-// pages/TechnologyLandingPage.tsx render:
+// Fail-closed readers for the technology family. Three sources are projected
+// onto exactly what the technology listing and explainer pages render:
 // - data/content.ts `techExplainers`: one record per /technology/[slug] route.
-//   Benefit `icon` strings are validated and dropped (the React page maps them
-//   to lucide components; no icon is rendered natively).
+//   Benefit `icon` strings are validated and dropped (no icon is rendered).
 // - data/content.ts `services`: only `slug` and `title` are evaluated, because
 //   the explainer page shows related services by title. Every other service
 //   property is left unevaluated so this reader never depends on their shape.
-// - pages/TechnologyLandingPage.tsx `techPages` + `categories` and
-//   pages/TechExplainerPage.tsx `allTechPages`: card inventories whose `icon`
-//   members are lucide identifiers. Those identifiers are accepted only on the
-//   `icon` key and discarded; every other member must be a literal.
+// - data/technology-pages.json: the /technology listing cards and category
+//   order, and the "More Technology Explained" directory on each explainer.
 // Nothing is executed. Text is preserved exactly as written in the source.
 export const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 export const EXPLAINER_REQUIRED_FIELDS = ['title', 'metaDesc', 'h1', 'intro', 'whatItIs', 'benefits', 'risks', 'howWeDoIt', 'faqs', 'relatedServices'];
 export const EXPLAINER_OPTIONAL_FIELDS = ['heroImage'];
-export const LISTING_PAGE_FIELDS = ['slug', 'title', 'desc', 'bgColor', 'textColor', 'hoverBg', 'category'];
-export const DIRECTORY_PAGE_FIELDS = ['slug', 'title', 'color'];
+export const LISTING_PAGE_FIELDS = ['slug', 'title', 'desc', 'category'];
+export const DIRECTORY_PAGE_FIELDS = ['slug', 'title'];
 const UNSAFE_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
 
 function describe(file, node) {
@@ -137,25 +133,6 @@ function propertyName(file, property) {
   return key;
 }
 
-// Object literal whose members are literals, except the listed keys which
-// must be bare identifiers (lucide icon components) and are discarded.
-function objectWithIdentifierMembers(file, node, identifierKeys, label) {
-  const literals = {};
-  const identifiers = {};
-  for (const property of node.properties) {
-    const key = propertyName(file, property);
-    if (Object.hasOwn(literals, key) || Object.hasOwn(identifiers, key)) throw new Error(`Duplicate object key ${key} at ${describe(file, property)}`);
-    if (identifierKeys.includes(key)) {
-      if (!ts.isIdentifier(property.initializer)) throw new Error(`${label}.${key} must be an icon identifier (${describe(file, property)})`);
-      identifiers[key] = property.initializer.text;
-      continue;
-    }
-    literals[key] = literalValue(file, property.initializer);
-  }
-  for (const key of identifierKeys) if (!Object.hasOwn(identifiers, key)) throw new Error(`${label} is missing field ${key}`);
-  return literals;
-}
-
 function uniqueSlugs(items, label) {
   const seen = new Set();
   for (const item of items) {
@@ -165,36 +142,27 @@ function uniqueSlugs(items, label) {
   return items;
 }
 
-// pages/TechnologyLandingPage.tsx: `techPages` cards and the `categories` order.
-export function readTechnologyListing(fileName, source) {
-  const file = parseSource(fileName, source);
-  const pages = arrayElements(file, topLevelConstNode(file, 'techPages'), 'techPages').map((element, index) => {
-    const label = `techPages[${index}]`;
-    const card = objectWithIdentifierMembers(file, element, ['icon'], label);
-    const source = textObject(card, LISTING_PAGE_FIELDS, label);
-    assertSlug(source.slug, `${label}.slug`);
-    return { slug: source.slug, title: source.title, desc: source.desc, category: source.category };
+// data/technology-pages.json: `listing` (cards and category order) and `directory`.
+export function readTechnologyPages(source) {
+  assertPlainObject(source, 'technology pages');
+  assertExactKeys(source, ['listing', 'directory'], 'technology pages');
+  assertExactKeys(source.listing, ['pages', 'categories'], 'listing');
+  const pages = assertArray(source.listing.pages, 'listing.pages').map((card, index) => {
+    const page = textObject(card, LISTING_PAGE_FIELDS, `listing.pages[${index}]`);
+    assertSlug(page.slug, `listing.pages[${index}].slug`);
+    return page;
   });
-  const categories = assertArray(topLevelConstLiteral(file, 'categories'), 'categories').map((category, index) => assertString(category, `categories[${index}]`));
-  if (new Set(categories).size !== categories.length) throw new Error('categories contains a duplicate');
+  const categories = assertArray(source.listing.categories, 'listing.categories').map((category, index) => assertString(category, `listing.categories[${index}]`));
+  if (new Set(categories).size !== categories.length) throw new Error('listing.categories contains a duplicate');
   for (const page of pages) {
-    if (!categories.includes(page.category)) throw new Error(`techPages.${page.slug} category "${page.category}" is not in categories`);
+    if (!categories.includes(page.category)) throw new Error(`listing card ${page.slug} category "${page.category}" is not in categories`);
   }
-  return { pages: uniqueSlugs(pages, 'techPages'), categories };
-}
-
-// pages/TechExplainerPage.tsx: `allTechPages`, the "More Technology Explained" grid.
-export function readTechnologyDirectory(fileName, source) {
-  const file = parseSource(fileName, source);
-  const pages = arrayElements(file, topLevelConstNode(file, 'allTechPages'), 'allTechPages').map((element, index) => {
-    const label = `allTechPages[${index}]`;
-    const card = objectWithIdentifierMembers(file, element, ['icon'], label);
-    const source = textObject(card, DIRECTORY_PAGE_FIELDS, label);
-    assertSlug(source.slug, `${label}.slug`);
-    return { slug: source.slug, title: source.title };
+  const directory = assertArray(source.directory, 'directory').map((entry, index) => {
+    const page = textObject(entry, DIRECTORY_PAGE_FIELDS, `directory[${index}]`);
+    assertSlug(page.slug, `directory[${index}].slug`);
+    return page;
   });
-  if (!pages.length) throw new Error('allTechPages has no entries');
-  return uniqueSlugs(pages, 'allTechPages');
+  return { listing: { pages: uniqueSlugs(pages, 'listing.pages'), categories }, directory: uniqueSlugs(directory, 'directory') };
 }
 
 // data/content.ts `services`: slug and title only. Other members are not evaluated.

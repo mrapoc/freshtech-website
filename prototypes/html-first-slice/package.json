@@ -40,7 +40,6 @@
     "verify:comparisons-browser": "node scripts/comparisons-browser-check.mjs",
     "verify:team-browser": "node scripts/team-browser-check.mjs",
     "verify:standalone-browser": "node scripts/standalone-browser-check.mjs",
-    "capture:standalone": "node scripts/capture-standalone-baseline.mjs",
     "test:proof": "node --test src/lib/website-proof.test.mjs src/lib/google-rating.test.mjs",
     "verify:proof-browser": "node scripts/website-proof-browser-check.mjs"
   },

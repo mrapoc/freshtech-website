@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { assertRouteInventory, readServiceLocationRoutes, readServiceLocations } from './service-location-reader.mjs';
+import { readServiceLocations } from './service-location-reader.mjs';
 
 // Synthetic fixtures only. Field shapes follow ServiceLocationPageV2, not any
 // real record in data/content.ts.
@@ -18,7 +18,6 @@ const record = (overrides = {}) => {
   return `{ ${Object.entries(fields).filter(([, value]) => value !== undefined).map(([name, value]) => `${name}: ${value}`).join(', ')} }`;
 };
 const source = body => `export const serviceLocationPages: Record<string, any> = { ${body} };`;
-const routesSource = routes => `const ServiceLocationPage = lazy(() => import('./x'));\nconst Other = lazy(() => import('./y'));\nexport default function App() { return (<Routes>${routes}<Route path="/other" element={<Other />} /></Routes>); }`;
 
 test('reads records in source order and keeps every rendered field including benefit icons', () => {
   const pages = readServiceLocations('fixture.ts', source(`"it-support-testshire": ${record()}, "it-support-testtown": ${record({ isCounty: 'false', title: "'Other Title'" })}`));
@@ -57,20 +56,4 @@ test('rejects unsafe links in every rich-text field', () => {
   assert.throws(() => readServiceLocations('fixture.ts', source(`alpha: ${record({ content: "'[bad](javascript:alert(1))'" })}`)), /content contains a disallowed inline link/);
   assert.throws(() => readServiceLocations('fixture.ts', source(`alpha: ${record({ faqs: "[{ q: '[bad](//evil.test)', a: 'A' }]" })}`)), /faqs\[0\]\.q contains a disallowed/);
   assert.throws(() => readServiceLocations('fixture.ts', source(`alpha: ${record({ faqs: "[{ q: 'Q', a: '[bad](data:text/plain,x)' }]" })}`)), /faqs\[0\]\.a contains a disallowed/);
-});
-
-test('reads ServiceLocationPage routes from App.tsx in source order and only for that component', () => {
-  const routes = readServiceLocationRoutes('App.tsx', routesSource('<Route path="/it-support-testshire" element={<ServiceLocationPage />} /><Route path="/it-support-testtown" element={<ServiceLocationPage />} />'));
-  assert.deepEqual(routes, ['it-support-testshire', 'it-support-testtown']);
-  assert.throws(() => readServiceLocationRoutes('App.tsx', routesSource('<Route path={`/${slug}`} element={<ServiceLocationPage />} />')), /non-literal path/);
-  assert.throws(() => readServiceLocationRoutes('App.tsx', routesSource('<Route path="/nested/it-support" element={<ServiceLocationPage />} />')), /not a root slug/);
-  assert.throws(() => readServiceLocationRoutes('App.tsx', routesSource('<Route path="/a" element={<ServiceLocationPage />} /><Route path="/a" element={<ServiceLocationPage />} />')), /duplicate/);
-  assert.throws(() => readServiceLocationRoutes('App.tsx', routesSource('')), /declares no ServiceLocationPage routes/);
-});
-
-test('route inventory must equal the record keys exactly', () => {
-  const pages = readServiceLocations('fixture.ts', source(`"it-support-testshire": ${record()}, "it-support-testtown": ${record({ title: "'Other'" })}`));
-  assert.deepEqual(assertRouteInventory(pages, ['it-support-testtown', 'it-support-testshire']), ['it-support-testshire', 'it-support-testtown']);
-  assert.throws(() => assertRouteInventory(pages, ['it-support-testshire']), /Not routed: \[it-support-testtown\]/);
-  assert.throws(() => assertRouteInventory(pages, ['it-support-testshire', 'it-support-testtown', 'it-support-extra']), /Routed without a record: \[it-support-extra\]/);
 });
