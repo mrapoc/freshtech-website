@@ -11,8 +11,8 @@ const replacements = [
 // Unsupported claims corrected in the October 2026 truthful-claims review.
 const claimReview = {
   '/faq': [
-    ["Absolutely. We handle the entire process from gap analysis to certification. We guarantee you'll pass first time.", 'Yes. We handle the process from gap analysis to certification, and fix issues before you submit so you go into the assessment prepared.'],
-    ['Then, we work with our assessment partner who will only submit your application once a pass is guaranteed.', 'Then we work with our assessment partner and only submit your application once those issues are fixed.'],
+    ["Absolutely. We handle the entire process from gap analysis to certification. We guarantee you'll pass first time.", "Yes. We handle the process from gap analysis to certification. We prepare you alongside our certification partner and only submit when you're ready to pass."],
+    ['Then, we work with our assessment partner who will only submit your application once a pass is guaranteed.', "Then we work with our certification partner and only submit your application when they confirm you're ready to pass."],
     ["You won't. Our process is designed so that the final submission only happens after a 'pre-marking' stage. If there are issues, we fix them before the official submission.", "Our process is designed to avoid it. The final submission only happens after a 'pre-marking' stage, and if that finds issues, we fix them before the official submission."],
     ['We have a standard 1-hour response SLA for critical issues, but our average is under 15 minutes.', 'Response targets depend on priority and are the same on every plan: 30 minutes for critical issues and 1 hour for high-priority ones. The full table is on our pricing page.'],
   ],

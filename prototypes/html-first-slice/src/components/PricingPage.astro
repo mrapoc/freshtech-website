@@ -12,8 +12,15 @@ const TIERS = pricing.tiers;
 const UNIVERSAL_INCLUSIONS = pricing.universalInclusions;
 const SLA_ROWS = pricing.slaRows;
 
+// Worked example, not a quote. The salary is the bottom of the range we
+// advertise for our own support engineers (src/lib/recruitment.mjs). Employer
+// NI and minimum auto-enrolment pension use 2026/27 rates.
+const IN_HOUSE = { salary: 30000, niRate: 0.15, niThreshold: 5000, pensionRate: 0.03, pensionLower: 6240 };
+const inHouseYear = Math.round(IN_HOUSE.salary + (IN_HOUSE.salary - IN_HOUSE.niThreshold) * IN_HOUSE.niRate + (IN_HOUSE.salary - IN_HOUSE.pensionLower) * IN_HOUSE.pensionRate);
+const gbp = value => `£${value.toLocaleString('en-GB')}`;
+
 const COMPARISON = [
-  { label: 'In-house IT person', price: '£45k+', unit: 'per year', note: 'Salary, NI, pension, training, sick cover', light: false },
+  { label: 'In-house IT person', price: `£${Math.floor(inHouseYear / 1000)}k+`, unit: 'per year, worked example', note: `${gbp(IN_HOUSE.salary)} salary plus employer NI and minimum pension. Recruitment, training and holiday cover are extra.`, light: false },
   { label: 'Break-fix IT support', price: '£80–150', unit: 'per hour', note: 'Unpredictable. No monitoring. Slow.', light: false },
   { label: 'Fresh Tech managed', price: `£${rates.Standard}–${rates.Premium}`, unit: 'per user/month', note: 'A whole team of engineers. Every protection included.', light: true },
 ];
@@ -22,7 +29,7 @@ const OBJECTIONS = pricing.objections;
 const AGREEMENT_QUESTION = '"We don\'t want to be locked in."';
 
 const exampleUsers = 20;
-const exampleYear = exampleUsers * rates.Plus * 12;
+const exampleYear = exampleUsers * rates.Standard * 12;
 ---
 
 <main id="main-content" tabindex="-1" class="pricing-page">
@@ -134,8 +141,9 @@ const exampleYear = exampleUsers * rates.Plus * 12;
       </div>
       <div class="example-strip">
         <div>
-          <p class="eyebrow">{exampleUsers}-user business example</p>
-          <p>In-house IT: <strong>£45,000+/year</strong> · Fresh Tech Plus ({exampleUsers} users × £{rates.Plus}): <strong class="highlight-yellow">£{exampleYear.toLocaleString('en-GB')}/year</strong> · Saving: <strong class="highlight-green">£{(45000 - exampleYear).toLocaleString('en-GB')}/year</strong></p>
+          <p class="eyebrow">Worked example, not a quote: {exampleUsers} users</p>
+          <p>In-house IT: <strong>{gbp(inHouseYear)}/year</strong> · Fresh Tech Standard ({exampleUsers} users × £{rates.Standard}): <strong class="highlight-yellow">{gbp(exampleYear)}/year</strong> · Difference: <strong class="highlight-green">{gbp(inHouseYear - exampleYear)}/year</strong></p>
+          <p class="example-assumptions">Assumes one in-house person on {gbp(IN_HOUSE.salary)}, the bottom of the range we pay our own support engineers, plus employer NI at {IN_HOUSE.niRate * 100}% above {gbp(IN_HOUSE.niThreshold)} and a {IN_HOUSE.pensionRate * 100}% employer pension on earnings above {gbp(IN_HOUSE.pensionLower)} (2026/27 rates, before any Employment Allowance). Our price is from £{rates.Standard} per user per month; onsite visits are billed separately.</p>
         </div>
         <a class="example-cta" href="/contact">Get your estimate <span aria-hidden="true">→</span></a>
       </div>

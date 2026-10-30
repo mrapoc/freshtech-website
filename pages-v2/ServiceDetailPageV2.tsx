@@ -53,7 +53,7 @@ const FALLBACK: ServiceContent = {
   outcomes: [
     { stat: '24/7',  label: 'Proactive monitoring on every device' },
     { stat: 'Ludlow', label: 'A real person picks up, no call centre' },
-    { stat: '£34k+', label: 'Saved vs equivalent in-house IT (20-user example)' },
+    { stat: 'From £40', label: 'Per user per month, with a worked example on our pricing page' },
     { stat: 'Quarterly', label: 'Strategy reviews, renewals and risks tracked' },
   ],
   faqs: [
@@ -144,7 +144,7 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
       'Pre-assessment to fix any issues before the official audit',
       'All five technical controls covered: firewalls, secure configuration, user access, malware protection, patch management',
       'Policy pack: ready-made password, access and mobile-device policies',
-      'Free cyber insurance on certification (UK businesses, subject to revenue limits)',
+      'Included cyber liability cover through the IASME scheme for eligible UK organisations under £20m turnover that certify the whole organisation',
       'Blockmark digital trust badge for your website + email footer',
       'Cyber Essentials Plus available: hands-on technical audit by external assessor',
       'Annual re-certification managed for you',
@@ -158,7 +158,7 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     outcomes: [
       { stat: '80%',       label: 'Of common attacks blocked by the controls (NCSC figure)' },
       { stat: 'Gaps first', label: 'Issues fixed before we submit for you' },
-      { stat: 'Free',      label: 'Cyber insurance on certification (terms apply)' },
+      { stat: 'Cover',     label: 'Included cyber liability cover for eligible organisations (IASME scheme terms)' },
       { stat: '5',         label: 'Technical controls: we help you nail all of them' },
     ],
     faqs: [
@@ -167,7 +167,7 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
       ['Do we have to write all the policies?',
         "No. We provide ready-made, CE-compliant templates for Password Policies, Access Control and Mobile Device usage. You don't write a thing; we adapt them to your business and you sign them off."],
       ['What if we fail?',
-        'The pre-assessment is there to catch issues before the official audit. If the assessor still flags something, we work with you on the fix.'],
+        "We prepare you alongside our certification partner and only submit when you're ready to pass. If anything is still flagged, we work with you on the fix."],
     ],
   },
 
