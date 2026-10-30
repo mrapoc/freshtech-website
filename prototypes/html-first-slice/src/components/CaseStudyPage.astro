@@ -10,7 +10,7 @@ import { relatedStudies, resultHeading, sectorColour, sectorTextColour, victoryO
 interface CaseStudy {
   id: string; slug: string; client: string; industry: string; title: string;
   challenge: string; solution: string; result: string; outcome: string;
-  testimonial?: string; contactName?: string; image?: string; techStack?: string[];
+  testimonial?: string; contactName?: string; image?: string; disclosure?: string; techStack?: string[];
   shortStats?: { risk: string; strategy: string; victory: string };
 }
 interface Props { study: CaseStudy; studies: CaseStudy[] }
@@ -35,6 +35,7 @@ const metrics = study.shortStats ? [
           </div>
           <h1>{study.title}</h1>
           <p class="cs-outcome"><InlineMarkdown text={study.outcome} /></p>
+          {study.disclosure && <p class="cs-disclosure">{study.disclosure}</p>}
         </div>
         <div class="cs-outcome-box">
           <span class="cs-box-label">Outcome</span>

@@ -223,7 +223,7 @@ Create isolated VLANs (Virtual LANs) for legacy equipment:
 5. Money is gone within hours
 
 **Essential Email Controls:**
-• Multi-Factor Authentication on all accounts (stops 99% of account takeovers)
+• Multi-Factor Authentication on all accounts (one of the strongest defences against account takeover)
 • Email encryption for sensitive correspondence
 • Warning banners on external emails
 • Link scanning (checks URLs in real-time)

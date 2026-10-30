@@ -189,7 +189,7 @@ export const ServicesPageV2: React.FC = () => {
             {[
               { n: '13',    l: 'Services in every plan' },
               { n: '£40',   l: 'Per user/month from' },
-              { n: '14min', l: 'Avg first response' },
+              { n: '24/7', l: 'Device monitoring' },
               { n: '0',     l: 'Setup fees ever' },
             ].map(({ n, l }, i) => (
               <div key={i} style={{

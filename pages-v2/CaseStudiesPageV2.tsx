@@ -256,7 +256,7 @@ export const CaseStudiesPageV2: React.FC = () => {
               textTransform: 'uppercase', letterSpacing: '0.1em',
               color: 'rgba(255,255,255,0.5)',
               display: 'flex', alignItems: 'center',
-            }}>With written consent · No embellishment</div>
+            }}>From the businesses we support</div>
           </div>
           <div style={{
             display: 'grid',
@@ -269,12 +269,12 @@ export const CaseStudiesPageV2: React.FC = () => {
                 fontFamily: "'Bungee', sans-serif", fontSize: isMobile ? 38 : 58,
                 lineHeight: 0.92, color: T.white, margin: 0, marginBottom: 20, letterSpacing: '-0.01em',
                 fontWeight: 400,
-              }}>Real businesses.<br />Real results.</h1>
+              }}>Real jobs.<br />Real fixes.</h1>
               <p style={{
                 fontFamily: "'Archivo', sans-serif", fontSize: 17, lineHeight: 1.65,
                 color: 'rgba(255,255,255,0.65)', margin: '0 0 28px', maxWidth: '44ch',
               }}>
-                Every story here has a named client, a verified outcome, and a number we can stand behind. We don't publish case studies until the client is happy to put their name to them.
+                Stories from jobs we have done. Where a client is named, the story is theirs. Where the client is not named, the story is based on a real job and some details are illustrative.
               </p>
               <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
                 <Link to="/contact" style={{
@@ -299,8 +299,8 @@ export const CaseStudiesPageV2: React.FC = () => {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
               {[
-                { num: `${STUDIES.length}`, label: 'Published case studies', sub: 'With named client consent' },
-                { num: '5yrs+',              label: 'Avg client relationship', sub: 'Not a revolving door' },
+                { num: `${STUDIES.length}`, label: 'Published case studies', sub: 'Based on real jobs' },
+                { num: '2014',               label: 'Supporting businesses since', sub: 'Based in Ludlow' },
                 { num: 'Reviews',            label: 'Customer feedback',       sub: 'Selected client stories' },
                 { num: 'Support',            label: 'Contact our helpdesk',    sub: 'Mon–Fri, 9am–5pm' },
               ].map(({ num, label, sub }) => (

@@ -38,8 +38,10 @@ const sectors = allSectors(studies);
 const slugs = caseStudies.map(study => study.slug);
 // Representative detail: prefer the first record with the full optional set
 // (shortStats, testimonial, techStack) so every conditional block is exercised.
-const representative = caseStudies.find(study => study.shortStats && study.testimonial && study.techStack?.length);
-if (!representative) throw new Error('The case-study browser gate requires a representative with shortStats, testimonial and techStack');
+// Testimonials can all be withheld, so fall back to shortStats and techStack.
+const representative = caseStudies.find(study => study.shortStats && study.testimonial && study.techStack?.length)
+  ?? caseStudies.find(study => study.shortStats && study.techStack?.length);
+if (!representative) throw new Error('The case-study browser gate requires a representative with shortStats and techStack');
 // The sector to exercise the filter with: the first sector that does not match every study.
 const filterSector = sectors.slice(1).find(sector => studies.some(study => study.industry !== sector)) ?? sectors[1];
 if (!filterSector) throw new Error('The generated case-study data contains no sector to filter on');
@@ -136,7 +138,7 @@ try {
     const { context, page, errors } = await openContext(viewport);
     const response = await page.goto(listingUrl, { waitUntil: 'networkidle' });
     check(response?.status() === 200, `${label}: route did not return 200`);
-    check(await page.locator('h1').textContent() === 'Real businesses.Real results.', `${label}: heading missing`);
+    check(await page.locator('h1').textContent() === 'Real jobs.Real fixes.', `${label}: heading missing`);
     check(await page.locator('.cs-featured-card').count() === Math.min(2, studies.length), `${label}: featured pair missing`);
     check(await page.locator('.cs-card').count() === studies.length, `${label}: all-studies grid is incomplete`);
     check(await page.locator('[data-case-study-filters]').isVisible(), `${label}: filter toolbar was not revealed by the enhancement script`);
