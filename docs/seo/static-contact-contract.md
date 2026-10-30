@@ -1,17 +1,10 @@
 # Static hosting contact endpoint contract
 
-Source contract and local implementation record, 15 September 2026. The adapter
-is implemented under `hosting/php`, integrated as `691a49d`, and is not deployed
-or tested on 20i. PHP8.5.10 lint and 64 synthetic tests passed, including concurrent
-rate limiting and offline native cURL setup. Independent review accepted the
-corrected source. No real provider calls or mail were sent.
-
-The portable local runtime was downloaded from the official PHP Windows archive
-and verified against the published SHA256:
-`22ec430195984d233eb9e62c637a945bbcda06efca2f392d9d96d62c6acd34f8`.
-It lives in ignored `.artifacts/runtimes/php-8.5.10/bin`; no system settings were
-changed. The worker has no PHP and was not used for these tests. See
-`hosting/php/README.md` for commands and the remaining deployment contract.
+Source contract and implementation record. The live endpoint is
+`prototypes/html-first-slice/server/api/send-email.php` (see its `server/README.md`).
+An earlier standalone port under `hosting/php` (15 September 2026) was removed on
+30 October 2026 and remains in Git history. The Netlify function and React tests
+named below were retired at the same time.
 
 Use one frontend submission helper and a PHP 8.5 adapter at `/api/send-email`.
 Retain compatibility for `/.netlify/functions/send-email` during migration.
