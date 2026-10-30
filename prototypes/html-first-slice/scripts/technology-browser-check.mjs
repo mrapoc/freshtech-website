@@ -133,7 +133,10 @@ try {
     const superseded = trackSupersededAborts(page);
     page.on('console', message => { if (message.type() === 'error') state.errors.push(`console: ${message.text()}`); });
     page.on('pageerror', error => state.errors.push(`pageerror: ${error.message}`));
-    page.on('requestfailed', request => { if (!superseded(request)) state.errors.push(`requestfailed: ${request.method()} ${request.url()} (${request.failure()?.errorText || 'unknown'})`); });
+    // The badge is stubbed locally, so an aborted load is Chromium cancelling the lazy
+    // third-party frame, never a site fault.
+    const cancelledBadge = request => isBlockmarkBadge(request.url()) && request.failure()?.errorText === 'net::ERR_ABORTED';
+    page.on('requestfailed', request => { if (!superseded(request) && !cancelledBadge(request)) state.errors.push(`requestfailed: ${request.method()} ${request.url()} (${request.failure()?.errorText || 'unknown'})`); });
     return state;
   };
   const configurePage = async page => {
@@ -479,20 +482,26 @@ try {
     // (requestAnimationFrame, promises) cannot be relied on to run, so no
     // frame-callback promise is awaited in the browser: the evaluate is
     // synchronous, and stability is proven from Node by sampling the
-    // summary's bounding box at 100ms intervals (at most 10 samples) until
+    // summary's bounding box at 100ms intervals (at most 30 samples) until
     // two consecutive samples are equal, finite and fully inside the viewport.
     const faq = page.locator('.tech-faq-list details').first();
     const summary = faq.locator('summary');
-    const placement = await summary.evaluate(element => {
+    const place = () => summary.evaluate(element => {
       element.scrollIntoView({ behavior: 'instant', block: 'center' });
       return { scrollY: window.scrollY, viewport: { width: innerWidth, height: innerHeight }, scrollBehavior: getComputedStyle(document.documentElement).scrollBehavior, open: element.parentElement.open };
     });
+    const placement = await place();
     const roundBox = box => box && { top: Math.round(box.y * 100) / 100, left: Math.round(box.x * 100) / 100, width: box.width, height: box.height };
     const finiteBox = box => !!box && [box.top, box.left, box.width, box.height].every(Number.isFinite);
     const samples = [];
     let stable = false;
-    for (let sample = 0; sample < 10 && !stable; sample++) {
+    // A late layout shift or an earlier scroll still settling under load can
+    // carry the summary out of view after placement; a reader would scroll
+    // back to it, so it is placed again rather than failed on the first drift.
+    for (let sample = 0; sample < 30 && !stable; sample++) {
       if (sample > 0) await delay(100);
+      const last = samples[samples.length - 1];
+      if (last && (!finiteBox(last) || last.top < 0 || last.top + last.height > placement.viewport.height)) await place();
       const box = roundBox(await summary.boundingBox());
       samples.push(box);
       const previous = samples[samples.length - 2];
