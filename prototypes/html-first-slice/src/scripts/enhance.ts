@@ -39,6 +39,13 @@ if (calculator) {
   window.addEventListener('pageshow', update);
 }
 
+// Review pool grid (/why-trust-us). The markup already shows a default set;
+// the module only swaps in a random selection, so a failed import leaves the
+// no-JS baseline as delivered.
+if (document.querySelector('[data-review-pool]')) {
+  void import('./review-pool').then(({ enhanceReviewPool }) => { enhanceReviewPool(document); }).catch(() => {});
+}
+
 // Shared testimonials section (SourceTestimonials.astro). The controller is
 // loaded on demand only when the section is present, so routes without it
 // never fetch the module. A failed import is swallowed on purpose: the markup

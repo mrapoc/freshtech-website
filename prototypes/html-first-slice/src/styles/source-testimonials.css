@@ -42,6 +42,9 @@
 .source-testimonials-quote { margin: 0; color: #e5e7eb; font-size: clamp(18px, 2.5vw, 24px); font-style: italic; font-weight: 500; line-height: 1.6; overflow-wrap: anywhere; }
 .source-testimonials-name { margin: 0; color: var(--white, #fff); font-size: 18px; font-weight: 700; line-height: 1.4; }
 .source-testimonials-company { margin: 0; color: #bfdbfe; font-size: 14px; font-weight: 700; letter-spacing: .1em; line-height: 1.4; text-transform: uppercase; }
+.source-testimonials-source { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.source-testimonials-source:hover { color: var(--white, #fff); }
+.source-testimonials-source:focus-visible { outline: 2px solid var(--yellow, #f5c24a); outline-offset: 3px; }
 .source-testimonials-empty { margin: 0; padding: 24px 0; color: rgba(251, 246, 236, .72); }
 
 .source-testimonials-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 16px; margin-top: 24px; }

@@ -43,13 +43,14 @@ test('synthetic data has 8 reviews over the four categories plus all, and 14 saf
   for (const key of FIXTURE_CATEGORY_KEYS) {
     assert.equal(data.testimonials.filter(item => item.category === key).length, 2, key);
   }
-  for (const item of data.testimonials) {
-    assert.deepEqual(Object.keys(item), ['quote', 'name', 'company', 'category']);
+  data.testimonials.forEach((item, index) => {
+    // Alternate reviews omit the optional business so both captions render.
+    assert.deepEqual(Object.keys(item), index % 2 === 0 ? ['quote', 'name', 'business', 'rating', 'reviewed', 'category'] : ['quote', 'name', 'rating', 'reviewed', 'category']);
     assert.match(item.quote, synthetic);
     assert.match(item.name, synthetic);
-    assert.match(item.company, synthetic);
+    if (item.business) assert.match(item.business, synthetic);
     assert.doesNotMatch(item.quote, /—/);
-  }
+  });
   // The first quote is a long synthetic wall of text so layouts are exercised.
   assert.equal(FIXTURE_LONG_QUOTE_MIN_LENGTH, 260);
   assert.ok(data.testimonials[0].quote.length >= FIXTURE_LONG_QUOTE_MIN_LENGTH, `first quote is ${data.testimonials[0].quote.length} chars`);
@@ -91,7 +92,7 @@ test('fixture mode never invokes the source reader', async () => {
 test('source mode invokes the injected reader exactly once and marks the result as not a fixture', async () => {
   let calls = 0;
   const projected = {
-    testimonials: [{ quote: 'Synthetic source quote.', name: 'Synthetic Person', company: 'Synthetic Co', category: 'alpha' }],
+    testimonials: [{ quote: 'Synthetic source quote.', name: 'Synthetic Person', business: 'Synthetic Co', rating: 5, reviewed: '2024', category: 'alpha' }],
     testimonialCategories: { all: 'All', alpha: 'Alpha' },
     partnerLogos: [{ src: '/synthetic/logo.svg', alt: 'Synthetic logo' }],
     extra: 'dropped',
@@ -126,7 +127,7 @@ test('rendered fixture module exports the flag with a prominent banner and impor
 test('rendered source module exports the flag as false without the fixture banner', async () => {
   const data = await buildTestimonialData(SOURCE_MODE, {
     readSource: async () => ({
-      testimonials: [{ quote: 'Synthetic source quote.', name: 'Synthetic Person', company: 'Synthetic Co', category: 'alpha' }],
+      testimonials: [{ quote: 'Synthetic source quote.', name: 'Synthetic Person', business: 'Synthetic Co', rating: 5, reviewed: '2024', category: 'alpha' }],
       testimonialCategories: { all: 'All', alpha: 'Alpha' },
       partnerLogos: [{ src: '/synthetic/logo.svg', alt: 'Synthetic logo' }],
     }),

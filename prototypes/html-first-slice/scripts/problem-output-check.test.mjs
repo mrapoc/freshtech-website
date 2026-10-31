@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parse } from 'ultrahtml';
+import { GOOGLE_REVIEWS_URL } from '../src/lib/testimonial-display.mjs';
 import { checkBodyFamilyMarker, checkRichBlock, checkSourceContact, checkTestimonials, expectedLogoImage, parseCheckerArgs, richTextExpectation } from './problem-output-check.mjs';
 
 // Synthetic RichText blocks, testimonials, logos and contact markup only:
@@ -143,17 +144,17 @@ const CLOUDINARY_2X = 'https://res.cloudinary.com/synthetic-cloud/image/upload/w
 const syntheticReviews = () => ({
   testimonialCategories: { all: 'All synthetic reviews', speed: 'Synthetic speed label', value: 'Synthetic value label' },
   testimonials: [
-    { quote: 'Synthetic quote alpha.', name: 'Synthetic Person Alpha', company: 'Synthetic Company Alpha', category: 'speed' },
-    { quote: 'Synthetic quote beta.', name: 'Synthetic Person Beta', company: 'Synthetic Company Beta', category: 'value' },
-    { quote: 'Synthetic quote alpha.', name: 'Synthetic Person Alpha', company: 'Synthetic Company Alpha', category: 'speed' },
-    { quote: 'Synthetic quote delta.', name: 'Synthetic Person Delta', company: 'Synthetic Company Delta', category: 'speed' },
+    { quote: 'Synthetic quote alpha.', name: 'Synthetic Person Alpha', business: 'Synthetic Company Alpha', rating: 5, reviewed: '2024', category: 'speed' },
+    { quote: 'Synthetic quote beta.', name: 'Synthetic Person Beta', rating: 5, reviewed: '2024', category: 'value' },
+    { quote: 'Synthetic quote alpha.', name: 'Synthetic Person Alpha', business: 'Synthetic Company Alpha', rating: 5, reviewed: '2024', category: 'speed' },
+    { quote: 'Synthetic quote delta.', name: 'Synthetic Person Delta', business: 'Synthetic Company Delta', rating: 5, reviewed: '2024', category: 'speed' },
   ],
   partnerLogos: [
     { src: '/synthetic/logos/logo-one.svg', alt: 'Synthetic logo one' },
     { src: CLOUDINARY_LOGO, alt: 'Synthetic logo two' },
   ],
 });
-const figureHtml = (item, index) => `<figure class="source-testimonials-item" data-testimonials-item data-index="${index}" data-category="${item.category}"><blockquote><p class="source-testimonials-quote">"${esc(item.quote)}"</p></blockquote><figcaption><span class="source-testimonials-name">${esc(item.name)}</span><span class="source-testimonials-company">${esc(item.company)}</span></figcaption></figure>`;
+const figureHtml = (item, index) => `<figure class="source-testimonials-item" data-testimonials-item data-index="${index}" data-category="${item.category}"><blockquote><p class="source-testimonials-quote">"${esc(item.quote)}"</p></blockquote><figcaption><span class="source-testimonials-name">${esc(item.name)}</span><span class="source-testimonials-company">${item.business ? `${esc(item.business)} · ` : ''}<a href="${esc(GOOGLE_REVIEWS_URL)}">Google review</a></span></figcaption></figure>`;
 // A faithful rendering of the block. `data` is what gets rendered; the
 // checker is then handed a possibly different expectation.
 const renderTestimonials =(data, { fixtureAttribute = false, logoImage = expectedLogoImage } = {}) => {
@@ -180,7 +181,7 @@ const reviewsPass = (html, expected, fixtureMode = false) => assert.doesNotThrow
 const reviewsFail = (html, expected, pattern, secrets, fixtureMode = false) => failsPrivately(() => checkReviews(html, expected, fixtureMode), pattern, secrets);
 // Every synthetic value the expectation carries; none may appear in a failure.
 const reviewSecrets = data => [
-  ...data.testimonials.flatMap(item => [item.quote, item.name, item.company]),
+  ...data.testimonials.flatMap(item => [item.quote, item.name, ...(item.business ? [item.business] : [])]),
   ...Object.values(data.testimonialCategories),
   ...data.partnerLogos.flatMap(logo => [logo.src, logo.alt]),
   'res.cloudinary.com',
@@ -203,17 +204,27 @@ test('a faithful testimonials rendering passes the exact comparison in default a
   reviewsFail(renderTestimonials(data), data, /fixture build must mark the testimonials section/, reviewSecrets(data), true);
 });
 
-test('a changed quote, name or company fails on the review index and field without leaking either value', () => {
+test('a changed quote, name or business fails on the review index and field without leaking either value', () => {
   const data = syntheticReviews();
   const secrets = [...reviewSecrets(data), 'Reworded synthetic quote.', 'Reworded Synthetic Person', 'Reworded Synthetic Company'];
   const quoteChanged = syntheticReviews(); quoteChanged.testimonials[2].quote = 'Reworded synthetic quote.';
   reviewsFail(renderTestimonials(quoteChanged), data, /^\/synthetic-route: review 2 quote differs from the projection$/, secrets);
   const nameChanged = syntheticReviews(); nameChanged.testimonials[1].name = 'Reworded Synthetic Person';
   reviewsFail(renderTestimonials(nameChanged), data, /^\/synthetic-route: review 1 name differs from the projection$/, secrets);
-  const companyChanged = syntheticReviews(); companyChanged.testimonials[3].company = 'Reworded Synthetic Company';
-  reviewsFail(renderTestimonials(companyChanged), data, /^\/synthetic-route: review 3 company differs from the projection$/, secrets);
+  const companyChanged = syntheticReviews(); companyChanged.testimonials[3].business = 'Reworded Synthetic Company';
+  reviewsFail(renderTestimonials(companyChanged), data, /^\/synthetic-route: review 3 caption differs from the projection$/, secrets);
+  const businessAdded = syntheticReviews(); businessAdded.testimonials[1].business = 'Reworded Synthetic Company';
+  reviewsFail(renderTestimonials(businessAdded), data, /^\/synthetic-route: review 1 caption differs from the projection$/, secrets);
   // The Testimonials.tsx quote wrapper is part of the rendering.
   reviewsFail(renderTestimonials(data).replace('"Synthetic quote beta."', 'Synthetic quote beta.'), data, /review 1 quote differs/, reviewSecrets(data));
+});
+
+test('every review must link to the Google reviews as its source', () => {
+  const data = syntheticReviews();
+  const faithful = renderTestimonials(data);
+  const href = `href="${esc(GOOGLE_REVIEWS_URL)}"`;
+  reviewsFail(faithful.replace(href, 'href="https://example.test/reviews"'), data, /^\/synthetic-route: review 0 does not link to the Google reviews as its source$/, reviewSecrets(data));
+  reviewsFail(faithful.replace(`<a ${href}>Google review</a>`, 'Google review'), data, /review 0 source link missing/, reviewSecrets(data));
 });
 
 test('reordering reviews within one category fails even though every count and category key still matches', () => {

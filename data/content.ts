@@ -4984,53 +4984,66 @@ export const testimonialCategories: Record<string, string> = {
     value: "SME Value"
 };
 
+// Verbatim 5-star Google reviews from business customers, word for word as
+// published (typos included). `business` appears only where the reviewer
+// states it; `reviewed` is the approximate year from Google's relative date.
+// Every review is real and public: never write, merge or reword one.
 export const testimonials = [
     {
-        quote: "Sam and Matt are amazing. They genuinely care about delivering the best service. We have been using the services of Fresh Tech for a number of years now, on an ad-hoc basis for some services and a recurring basis for others. As our business grows we know that we won't need to look elsewhere for managed IT services - Fresh Tech will be more than capable of servicing our needs, and most likely deliver additional services that we don't currently utilise. Thanks both!",
+        quote: "Sam and Matt are amazing. They genuinely care about delivering the best service. We have been using the services of Fresh Tech for a number of years now, on an ad-hoc basis for some services and a recurring basis for others. As our business grows we know that we won’t need to look elsewhere for managed IT services - Fresh Tech will be more than capable of servicing our needs, and most likely deliver additional services that we don’t currently utilise. Thanks both!",
         name: "Nick Bromley Accountancy",
-        company: "Google review",
+        rating: 5,
+        reviewed: "2026",
         category: "value"
     },
     {
         quote: "We are very pleased with the service offered by Fresh Tech. Having just upgraded all our computers to Windows 11, we are very happy with the efficiency, knowledge and attitude of Sam & Matt, making the whole process very streamlined and pain-free!",
         name: "Helen Graham",
-        company: "Ludlow Nut Co Ltd · Google review",
+        business: "Ludlow Nut Co Ltd",
+        rating: 5,
+        reviewed: "2024",
         category: "proactive"
     },
     {
         quote: "We have been using Fresh PC's for several years now, the service is first class and very fast. They have built and installed our network and server set-up, and offer excellent and prompt support to our team whenever required, Fresh PC's realise that problems need to be solved/fixed quickly to ensure the business runs as smoothly as possible.",
         name: "Stephen Jaques",
-        company: "Google review",
+        rating: 5,
+        reviewed: "2020",
         category: "reliability"
     },
     {
         quote: "These guys solve any computer issue I have both promptly and efficiently. Being an SME this is quality of service that is invaluable to me.",
         name: "Iain Urquhart",
-        company: "Google review",
+        rating: 5,
+        reviewed: "2020",
         category: "value"
     },
     {
         quote: "Great IT company who offer fast and friendly support. Would recommend to businesses small and large.",
         name: "Shropshire Lettings",
-        company: "Google review",
+        rating: 5,
+        reviewed: "2018",
         category: "speed"
     },
     {
         quote: "An excellent company to work with. Sam and the team have strong technical expertise and the reliability to get a job done.",
         name: "Markus Motum",
-        company: "Google review",
+        rating: 5,
+        reviewed: "2026",
         category: "reliability"
     },
     {
         quote: "Sam and his team are very responsive to my cries for help, and always resolve our IT issues quickly and efficiently.",
         name: "Karen Fleming",
-        company: "Google review",
+        rating: 5,
+        reviewed: "2025",
         category: "speed"
     },
     {
         quote: "Really good support - very quick to respond.",
         name: "Andrew Davis",
-        company: "Google review",
+        rating: 5,
+        reviewed: "2025",
         category: "speed"
     }
 ];

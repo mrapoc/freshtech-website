@@ -67,7 +67,9 @@ export function syntheticTestimonialData() {
     testimonials.push({
       quote: `Synthetic fixture review ${number} of ${FIXTURE_REVIEW_COUNT}: ${FIXTURE_TOPICS[category]} text. Not a customer quote.${index === 0 ? FIXTURE_LONG_QUOTE_TAIL : ''}`,
       name: `Synthetic Reviewer ${ORDINALS[index]}`,
-      company: `Fixture Company ${ORDINALS[index]} (synthetic)`,
+      ...(index % 2 === 0 ? { business: `Fixture Company ${ORDINALS[index]} (synthetic)` } : {}),
+      rating: 5,
+      reviewed: '2024',
       category,
     });
   }

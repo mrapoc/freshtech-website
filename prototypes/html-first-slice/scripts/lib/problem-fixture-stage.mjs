@@ -79,6 +79,7 @@ export const SOURCE_DEPENDENCIES = Object.freeze([
   'src/scripts/enhance.ts',
   'src/scripts/live-metrics.ts',
   'src/scripts/problem-view.ts',
+  'src/scripts/review-pool.ts',
   'src/scripts/testimonials.ts',
   'src/styles/comparisons.css',
   'src/styles/contact-form.css',

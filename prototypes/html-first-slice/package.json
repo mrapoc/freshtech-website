@@ -21,7 +21,7 @@
     "test:homepage-enhance": "node --experimental-strip-types --test src/scripts/homepage-enhance.test.ts",
     "test:contact": "node --experimental-strip-types --test src/scripts/contact-form.test.ts",
     "test:guides-enhance": "node --experimental-strip-types --test src/scripts/guide-enhance.test.ts",
-    "test:standalone": "node --experimental-strip-types --test src/scripts/email-checker.test.ts",
+    "test:standalone": "node --experimental-strip-types --test src/scripts/email-checker.test.ts src/scripts/review-pool.test.ts",
     "test:problems": "node --experimental-strip-types --test src/scripts/testimonials.test.ts src/scripts/problem-view.test.ts",
     "verify:contact-browser": "node scripts/contact-browser-check.mjs",
     "verify:consent-browser": "node scripts/consent-browser-check.mjs",

@@ -7,6 +7,8 @@
 // dots and the "Powering Businesses Like" caption are the source's.
 //
 // No-JS baseline: every review in source order and every logo are visible.
+// Once enhanced, the rotation starts at a random review so the pool is
+// shared across visits. Each caption links to the Google reviews as source.
 // The filter tabs, dots and pause button are enhancement-only controls and
 // stay hidden until src/scripts/testimonials.ts marks the section enhanced.
 // That script is not imported here; src/scripts/enhance.ts loads it on demand
@@ -21,10 +23,10 @@
 // Styles are family-local: the stylesheet is read as raw text and emitted as
 // an inline <style> next to the markup instead of a side-effect import, so it
 // cannot hoist onto unrelated dispatcher branches.
-import { categoryTabs, logoImages } from '../lib/testimonial-display.mjs';
+import { GOOGLE_REVIEWS_URL, REVIEW_SOURCE_LABEL, categoryTabs, logoImages, reviewCaptionPrefix } from '../lib/testimonial-display.mjs';
 import css from '../styles/source-testimonials.css?inline';
 
-interface Testimonial { quote: string; name: string; company: string; category: string }
+interface Testimonial { quote: string; name: string; business?: string; rating: number; reviewed: string; category: string }
 interface PartnerLogo { src: string; alt: string }
 interface Props {
   testimonials: Testimonial[];
@@ -42,6 +44,8 @@ const fixtureAttribute = testimonialsFixture ? 'true' : undefined;
 
 for (const item of testimonials) {
   if (!Object.hasOwn(testimonialCategories, item.category)) throw new Error(`Unknown testimonial category "${item.category}"`);
+  // The card shows one shared row of five stars, so every review must be 5 stars.
+  if (item.rating !== 5) throw new Error(`Testimonial from "${item.name}" is rated ${item.rating}; the shared star row only fits 5-star reviews`);
 }
 
 const tabs = categoryTabs(testimonials, testimonialCategories);
@@ -98,7 +102,7 @@ const QUOTE_PATH = '<path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0
             </blockquote>
             <figcaption>
               <p class="source-testimonials-name">{item.name}</p>
-              <p class="source-testimonials-company">{item.company}</p>
+              <p class="source-testimonials-company">{reviewCaptionPrefix(item)}<a class="source-testimonials-source" href={GOOGLE_REVIEWS_URL}>{REVIEW_SOURCE_LABEL}</a></p>
             </figcaption>
           </figure>
         ))}

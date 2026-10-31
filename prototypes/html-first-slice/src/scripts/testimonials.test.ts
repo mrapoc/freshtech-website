@@ -113,6 +113,20 @@ test('first render marks the section enhanced, reveals controls and shows only t
   assert.deepEqual(controller.state(), { category: 'all', index: 0, count: 5, paused: false, rotating: true });
 });
 
+test('the opening review comes from the injected random source and rotation continues from it', () => {
+  const f = fixture(five);
+  const controller = enhanceTestimonials(f.root, { ...f.env, random: () => 0.65 })!;
+  assert.deepEqual(f.activeIndexes(), [3]);
+  assert.equal(f.dots[3].getAttribute('aria-current'), 'true');
+  assert.deepEqual(controller.state(), { category: 'all', index: 3, count: 5, paused: false, rotating: true });
+  f.clock.advance(ROTATION_MS * 2);
+  assert.equal(controller.state().index, 0);
+  const last = fixture(five);
+  assert.equal(enhanceTestimonials(last.root, { ...last.env, random: () => 0.9999999 })!.state().index, 4);
+  const empty = fixture([]);
+  assert.equal(enhanceTestimonials(empty.root, { ...empty.env, random: () => 0.5 })!.state().index, 0);
+});
+
 test('rotation advances every 8 seconds and wraps around the filtered list', () => {
   const f = fixture(five);
   const controller = enhanceTestimonials(f.root, f.env)!;

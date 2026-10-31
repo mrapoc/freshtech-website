@@ -175,6 +175,20 @@ The build validates the three plans, feature lists, universal inclusions, SLA
 rows, objections, calculator rates and monthly minimum in `data/pricing.json`.
 It fails if the plan cards and calculator rates diverge.
 
+## Customer reviews
+
+`testimonials` in `data/content.ts` is the one pool of customer reviews: 5-star
+Google reviews from business customers, word for word, with the business only
+where the reviewer states one, the star rating and the approximate year. The
+evidence for each (where and when it was checked) is kept privately, not here.
+Every review links to the Google reviews as its source, and no `Review` or
+`AggregateRating` structured data is emitted for them.
+
+- Problem and comparison pages (`SourceTestimonials.astro`): every review is in
+  the HTML; once enhanced, the carousel opens on a random review and rotates.
+- `/why-trust-us`: the whole pool is in the HTML and the first four show without
+  JavaScript; `src/scripts/review-pool.ts` shows a random four on each visit.
+
 
 ## Why this shape
 

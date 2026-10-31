@@ -8,6 +8,7 @@ import { decodeEntities, normalise } from './lib/blog-rendered-text.mjs';
 import { PROBLEM_MARKER, inventoryIsClean, mainMarker, problemInventory } from './lib/problem-inventory.mjs';
 import { readProblems } from './lib/problem-reader.mjs';
 import { readTestimonialData } from './lib/testimonial-reader.mjs';
+import { GOOGLE_REVIEWS_URL, REVIEW_SOURCE_LABEL, reviewCaption } from '../src/lib/testimonial-display.mjs';
 import { FIXTURE_MODE, TESTIMONIALS_FIXTURE_ATTRIBUTE, TESTIMONIALS_FIXTURE_ENV, resolveTestimonialsFixtureMode, syntheticTestimonialData } from './lib/testimonial-fixture.mjs';
 import { loadRetainedReactHead } from './lib/retained-react-head.mjs';
 
@@ -275,7 +276,9 @@ export function checkTestimonials(route, document, main, expected, fixtureMode) 
     // Testimonials.tsx wraps the quote in straight double quotes.
     expect(textOf(quote) === normalise(`"${record.quote}"`), `${route}: review ${index} quote differs from the projection`);
     expect(textOf(name) === normalise(record.name), `${route}: review ${index} name differs from the projection`);
-    expect(textOf(company) === normalise(record.company), `${route}: review ${index} company differs from the projection`);
+    expect(textOf(company) === normalise(reviewCaption(record)), `${route}: review ${index} caption differs from the projection`);
+    const source = only(byName(company, 'a'), `${route}: review ${index} source link missing`);
+    expect(decodeEntities(attr(source, 'href') ?? '') === GOOGLE_REVIEWS_URL && textOf(source) === REVIEW_SOURCE_LABEL, `${route}: review ${index} does not link to the Google reviews as its source`);
   });
   const empty = only(byAttr(reviews, 'data-testimonials-empty'), `${route}: empty-state paragraph missing`);
   expect(hasAttr(empty, 'hidden') && textOf(empty) === 'No reviews in this category yet.', `${route}: empty-state copy or hidden state differs`);
