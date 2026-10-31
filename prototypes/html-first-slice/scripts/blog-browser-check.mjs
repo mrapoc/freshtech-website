@@ -238,6 +238,7 @@ try {
       }
       check(state.errors.length === 0, `${label}: browser errors ${state.errors.join('; ')}`);
       if (viewport.name === 'phone') {
+        await page.evaluate(() => document.fonts.ready.then(() => new Promise(resolveFrame => requestAnimationFrame(() => requestAnimationFrame(resolveFrame)))));
         const fonts = await paintedBungee(context, page, '.blog-hero h1');
         check(fonts.some(font => /Bungee/i.test(font.familyName) && font.glyphCount > 0), `${label}: normal-load hero did not paint Bungee ${fonts.map(font => font.familyName).join(',')}`);
         await page.evaluate(() => scrollTo(0, 0));
