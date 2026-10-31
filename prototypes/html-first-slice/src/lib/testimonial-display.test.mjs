@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { categoryIcon, categoryTabs, filterTestimonials, logoImage, logoImages, optimizeCloudinaryUrl, testimonialCount } from './testimonial-display.mjs';
+import { GOOGLE_REVIEWS_URL, categoryIcon, categoryTabs, filterTestimonials, logoImage, logoImages, optimizeCloudinaryUrl, reviewCaption, reviewCaptionPrefix, testimonialCount } from './testimonial-display.mjs';
 
 // Synthetic records only.
 const categories = { all: 'Every Test Review', alpha: 'Alpha Tab', beta: 'Beta Tab', gamma: 'Gamma Tab' };
-const review = (quote, category, name = 'Test Person') => ({ quote, name, company: 'Test Company', category });
+const review = (quote, category, name = 'Test Person') => ({ quote, name, business: 'Test Company', rating: 5, reviewed: '2024', category });
 const testimonials = [
   review('First.', 'alpha'),
   review('Second.', 'beta'),
@@ -23,6 +23,14 @@ test('filtering mirrors the filteredTestimonials memo and preserves order', () =
   assert.deepEqual(filterTestimonials(testimonials, 'beta', categories).map(item => item.quote), ['Second.', 'Fifth.']);
   assert.deepEqual(filterTestimonials(testimonials, 'gamma', categories), []);
   assert.deepEqual(filterTestimonials([], 'all', categories), []);
+});
+
+test('captions name the stated business, if any, then the Google source', () => {
+  assert.equal(reviewCaption({ business: 'Test Company' }), 'Test Company · Google review');
+  assert.equal(reviewCaptionPrefix({ business: 'Test Company' }), 'Test Company · ');
+  assert.equal(reviewCaption({}), 'Google review');
+  assert.equal(reviewCaptionPrefix({}), '');
+  assert.match(GOOGLE_REVIEWS_URL, /^https:\/\/search\.google\.com\/local\/reviews\?placeid=/);
 });
 
 test('unknown or malformed categories throw when the map is supplied', () => {

@@ -6,7 +6,7 @@ import { isSafeLogoSrc, readTestimonialData, validateCategories, validatePartner
 // components/LogoCarousel.tsx, not any real record in data/content.ts.
 const categories = "{ all: 'Every Test Review', alpha: 'Alpha Tab', beta: 'Beta Tab' }";
 const review = (overrides = {}) => {
-  const fields = { quote: "'A synthetic quote.'", name: "'Test Person'", company: "'Test Company'", category: "'alpha'", ...overrides };
+  const fields = { quote: "'A synthetic quote.'", name: "'Test Person'", business: "'Test Company'", rating: '5', reviewed: "'2024'", category: "'alpha'", ...overrides };
   return `{ ${Object.entries(fields).filter(([, value]) => value !== undefined).map(([name, value]) => `${name}: ${value}`).join(', ')} }`;
 };
 const logo = (overrides = {}) => {
@@ -24,8 +24,8 @@ test('reads the three literals with exact fields and source order', () => {
   assert.deepEqual(Object.keys(data), ['testimonials', 'testimonialCategories', 'partnerLogos']);
   assert.deepEqual(data.testimonialCategories, { all: 'Every Test Review', alpha: 'Alpha Tab', beta: 'Beta Tab' });
   assert.deepEqual(data.testimonials.map(item => item.quote), ['First.', 'Second.', 'Third.']);
-  assert.deepEqual(Object.keys(data.testimonials[0]), ['quote', 'name', 'company', 'category']);
-  assert.deepEqual(data.testimonials[1], { quote: 'Second.', name: 'Test Person', company: 'Test Company', category: 'beta' });
+  assert.deepEqual(Object.keys(data.testimonials[0]), ['quote', 'name', 'business', 'rating', 'reviewed', 'category']);
+  assert.deepEqual(data.testimonials[1], { quote: 'Second.', name: 'Test Person', business: 'Test Company', rating: 5, reviewed: '2024', category: 'beta' });
   assert.deepEqual(data.partnerLogos, [
     { src: 'https://res.cloudinary.com/demo/image/upload/v1/test-logo.png', alt: 'One' },
     { src: '/images/logos/two.svg', alt: 'Two' },
@@ -55,10 +55,15 @@ test('fails closed on empty arrays, empty category maps and missing declarations
 
 test('rejects malformed testimonial fields', () => {
   assert.throws(() => readTestimonialData('fixture.ts', source({ reviews: `[${review({ category: undefined })}]` })), /testimonials\[0\] is missing field category/);
-  assert.throws(() => readTestimonialData('fixture.ts', source({ reviews: `[${review({ rating: '5' })}]` })), /testimonials\[0\] has unexpected field rating/);
+  assert.throws(() => readTestimonialData('fixture.ts', source({ reviews: `[${review({ source: "'x'" })}]` })), /testimonials\[0\] has unexpected field source/);
+  assert.equal(readTestimonialData('fixture.ts', source({ reviews: `[${review({ business: undefined })}]` })).testimonials[0].business, undefined);
+  assert.throws(() => readTestimonialData('fixture.ts', source({ reviews: `[${review({ business: "''" })}]` })), /testimonials\[0\]\.business must be a non-empty string/);
+  assert.throws(() => readTestimonialData('fixture.ts', source({ reviews: `[${review({ rating: "'5'" })}]` })), /rating must be a whole number from 1 to 5/);
+  assert.throws(() => readTestimonialData('fixture.ts', source({ reviews: `[${review({ rating: '6' })}]` })), /rating must be a whole number from 1 to 5/);
+  assert.throws(() => readTestimonialData('fixture.ts', source({ reviews: `[${review({ reviewed: "'eight years ago'" })}]` })), /reviewed must be a four-digit year/);
   assert.throws(() => readTestimonialData('fixture.ts', source({ reviews: `[${review()}, ${review({ quote: "''" })}]` })), /testimonials\[1\]\.quote must be a non-empty string/);
   assert.throws(() => readTestimonialData('fixture.ts', source({ reviews: `[${review({ name: "'   '" })}]` })), /testimonials\[0\]\.name must be a non-empty string/);
-  assert.throws(() => readTestimonialData('fixture.ts', source({ reviews: `[${review({ company: '42' })}]` })), /testimonials\[0\]\.company must be a non-empty string/);
+  assert.throws(() => readTestimonialData('fixture.ts', source({ reviews: `[${review({ business: '42' })}]` })), /testimonials\[0\]\.business must be a non-empty string/);
   assert.throws(() => readTestimonialData('fixture.ts', source({ reviews: "['just a string']" })), /testimonials\[0\] must be an object literal/);
   assert.throws(() => readTestimonialData('fixture.ts', source({ reviews: `{ first: ${review()} }` })), /testimonials must be an array/);
 });
@@ -70,7 +75,7 @@ test('rejects categories that are not named, or that are the all tab', () => {
   assert.throws(() => readTestimonialData('fixture.ts', source({ cats: "{ all: 'All', alpha: '' }" })), /testimonialCategories\.alpha must be a non-empty string/);
   assert.throws(() => readTestimonialData('fixture.ts', source({ cats: "{ all: 'All', alpha: 3 }" })), /testimonialCategories\.alpha must be a non-empty string/);
   assert.throws(() => validateCategories(['all']), /must be an object literal/);
-  assert.throws(() => validateTestimonials([{ quote: 'q', name: 'n', company: 'c', category: 'alpha' }], { all: 'All' }), /not a named testimonial category/);
+  assert.throws(() => validateTestimonials([{ quote: 'q', name: 'n', rating: 5, reviewed: '2024', category: 'alpha' }], { all: 'All' }), /not a named testimonial category/);
 });
 
 test('rejects malformed and unsafe logo entries', () => {

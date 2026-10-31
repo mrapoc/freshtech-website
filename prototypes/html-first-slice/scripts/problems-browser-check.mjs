@@ -9,6 +9,7 @@ import { CLARITY_URL, CLOUDINARY_ORIGIN, GA_URL, classifyRequest, describeReques
 import { FIXTURE_CATEGORY_KEYS, FIXTURE_LOGO_COUNT, FIXTURE_REVIEW_COUNT, TESTIMONIALS_FIXTURE_ATTRIBUTE } from './lib/testimonial-fixture.mjs';
 import { CALL_NOW_LABEL, CONTACT_HREF, EMERGENCY_SLUG, HERO_CALL_LABEL, PHONE_HREF, PRICING_HREF, PRICING_LABEL } from '../src/lib/problem-display.mjs';
 import { BLOCKMARK_STUB, isBlockmarkBadge } from './lib/blockmark-stub.mjs';
+import { GOOGLE_REVIEWS_URL } from '../src/lib/testimonial-display.mjs';
 
 // Browser gate for the root-slug Problem family (ProblemPage.astro with the
 // shared SourceTestimonials and SourceContact sections), derived from
@@ -441,15 +442,20 @@ try {
   }
   sections.push('representatives');
 
-  // 5. Real rotation timing on the standard representative: one 8.2 s wait proves
-  // the 8 s advance while unfocused and unhovered; a second proves pause stops it.
+  // 5. Real rotation timing on the standard representative: the carousel opens
+  // on the review Math.random picks (pinned high, so the last one) and links it
+  // to Google; one 8.2 s wait proves the 8 s advance while unfocused and
+  // unhovered; a second proves pause stops it.
   {
     const context = await newContext({ viewport: phone });
     await context.addInitScript(consentInit);
+    await context.addInitScript(() => { Math.random = () => 0.9999; });
     const page = await context.newPage();
     const state = await configurePage(page, { label: 'rotation' });
     await page.goto(standard.url, { waitUntil: 'networkidle' });
     if (await waitEnhanced(page, 'rotation')) {
+      check(await activeIndex(page) === String(FIXTURE_REVIEW_COUNT - 1), 'rotation: did not open on the randomly chosen review');
+      check(await page.locator('[data-testimonials-item].is-active a').getAttribute('href') === GOOGLE_REVIEWS_URL, 'rotation: the active review does not link to the Google reviews');
       await leaveSection(page);
       await page.locator('[data-testimonials-filter]').first().click();
       await leaveSection(page);

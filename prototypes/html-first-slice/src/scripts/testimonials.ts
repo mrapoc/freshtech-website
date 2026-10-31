@@ -7,7 +7,8 @@
 // prefers-reduced-motion (no autoplay at all), plus dot labels that reflect
 // the current filter. The review stack's live region is "off" while automatic
 // rotation runs and "polite" only when paused or manually driven, so screen
-// readers never hear unprompted rotations. Not auto-initialised: the consumer
+// readers never hear unprompted rotations. The opening review is random, so
+// every visit starts somewhere different in the pool. Not auto-initialised: the consumer
 // imports enhanceTestimonials(root) and wires it in later.
 //
 // The DOM surface is deliberately tiny so the controller runs against fake
@@ -41,6 +42,8 @@ export interface TestimonialEnv {
   clearTimeout(handle: unknown): void;
   reducedMotion: { matches: boolean; addEventListener?(type: 'change', listener: (event: { matches: boolean }) => void): void };
   page: { hidden: boolean; addEventListener(type: 'visibilitychange', listener: () => void): void };
+  // Picks the opening review; [0, 1) like Math.random. Omitted means start at 0.
+  random?: () => number;
 }
 
 export interface TestimonialState {
@@ -63,6 +66,7 @@ export function browserEnv(): TestimonialEnv {
     clearTimeout: handle => clearTimeout(handle as number),
     reducedMotion,
     page: document,
+    random: Math.random,
   };
 }
 
@@ -83,7 +87,8 @@ export function enhanceTestimonials(root: TestimonialRoot, env: TestimonialEnv =
   const stack = one('[data-testimonials-stack]');
 
   let category = ALL_CATEGORY;
-  let index = 0;
+  // Open on a random review so visitors see different parts of the pool.
+  let index = items.length ? Math.min(items.length - 1, Math.floor((env.random?.() ?? 0) * items.length)) : 0;
   let userPaused = false;
   let hovered = false;
   let focused = false;

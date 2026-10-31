@@ -3,6 +3,8 @@ import WebsiteProof from '../components/WebsiteProof.astro';
 import CyberEssentialsBadge from '../components/CyberEssentialsBadge.astro';
 // Public evidence uses the reviewed projection contract.
 import StandaloneShell from '../layouts/StandaloneShell.astro';
+import { testimonials as reviewPool } from '../generated/testimonials-data.mjs';
+import { GOOGLE_REVIEWS_URL, REVIEW_SOURCE_LABEL, reviewCaptionPrefix } from '../lib/testimonial-display.mjs';
 
 const seo = {
   path: '/why-trust-us',
@@ -40,12 +42,10 @@ const steps = [
   { day: 'Day 22+', title: 'Go live', desc: 'Your team gets a quick intro: how to reach us, what to expect. From here we handle everything in the background and you get on with running your business.' },
 ];
 
-const testimonials = [
-  { quote: "Sam and Matt are amazing. They genuinely care about delivering the best service. We have been using the services of Fresh Tech for a number of years now, on an ad-hoc basis for some services and a recurring basis for others. As our business grows we know that we won't need to look elsewhere for managed IT services - Fresh Tech will be more than capable of servicing our needs, and most likely deliver additional services that we don't currently utilise. Thanks both!", name: "Nick Bromley Accountancy", company: "Google review" },
-  { quote: "We are very pleased with the service offered by Fresh Tech. Having just upgraded all our computers to Windows 11, we are very happy with the efficiency, knowledge and attitude of Sam & Matt, making the whole process very streamlined and pain-free!", name: "Helen Graham", company: "Ludlow Nut Co Ltd" },
-  { quote: "We have been using Fresh PC's for several years now, the service is first class and very fast. They have built and installed our network and server set-up, and offer excellent and prompt support to our team whenever required, Fresh PC's realise that problems need to be solved/fixed quickly to ensure the business runs as smoothly as possible.", name: "Stephen Jaques", company: "Google review" },
-  { quote: "These guys solve any computer issue I have both promptly and efficiently. Being an SME this is quality of service that is invaluable to me.", name: "Iain Urquhart", company: "Google review" },
-];
+// The whole verbatim Google review pool is rendered; the first REVIEWS_SHOWN
+// are visible without JavaScript and src/scripts/review-pool.ts picks a random
+// set of the same size on each visit.
+const REVIEWS_SHOWN = 4;
 
 const comparison = [
   { label: 'Who answers your call', them: 'Call centre. Ticket queue.', us: 'Sam. Or Matt. By name.' },
@@ -148,9 +148,9 @@ const comparison = [
         <h2 class="sa-h2 sa-h2-light" style="margin-bottom: 8px">From businesses we support</h2>
         <p class="sa-testimonial-note">Selected Google reviews from business customers.</p>
       </div>
-      <div class="sa-grid-2">
-        {testimonials.map(t => (
-          <div class="sa-testimonial"><div class="sa-stars">★★★★★</div><p>"{t.quote}"</p><div class="sa-testimonial-attr"><div class="sa-testimonial-name">{t.name}</div><div class="sa-testimonial-company">{t.company}</div></div></div>
+      <div class="sa-grid-2" data-review-pool data-review-pool-count={REVIEWS_SHOWN}>
+        {reviewPool.map((t, index) => (
+          <div class="sa-testimonial" data-review-pool-item hidden={index >= REVIEWS_SHOWN}><div class="sa-stars">{'★'.repeat(t.rating)}</div><p>"{t.quote}"</p><div class="sa-testimonial-attr"><div class="sa-testimonial-name">{t.name}</div><div class="sa-testimonial-company">{reviewCaptionPrefix(t)}<a class="sa-testimonial-source" href={GOOGLE_REVIEWS_URL}>{REVIEW_SOURCE_LABEL}</a></div></div></div>
         ))}
       </div>
       <div class="sa-center" style="margin-top: 32px"><a class="sa-more-link" href="/case-studies">Read full case studies →</a></div>
@@ -250,6 +250,7 @@ const comparison = [
   .sa-testimonial-attr { border-top: 1px solid var(--hairline); padding-top: 14px; }
   .sa-testimonial-name { font-weight: 700; font-size: 14px; color: var(--ink); }
   .sa-testimonial-company { font-size: 12px; color: #46545f; margin-top: 2px; }
+  .sa-testimonial-source { color: inherit; text-underline-offset: 2px; }
   .sa-more-link { color: var(--primary); font-size: 14px; font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--primary); }
   .sa-compare-note { color: rgba(15,25,35,0.62); font-size: 15px; margin: 0 0 32px; }
   .sa-compare-table { border: 1px solid var(--hairline); }

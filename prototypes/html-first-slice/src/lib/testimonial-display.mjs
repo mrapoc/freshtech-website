@@ -6,6 +6,16 @@
 
 export const ALL_CATEGORY = 'all';
 
+// Every testimonial is a public Google review; each one links here, to
+// Fresh Tech's Google reviews, as its source.
+export const GOOGLE_REVIEWS_URL = 'https://search.google.com/local/reviews?placeid=ChIJ6a1VcjVqcEgR2_jkYe5Em5A';
+export const REVIEW_SOURCE_LABEL = 'Google review';
+
+// The caption under a reviewer's name: the business they stated, if any,
+// then the source. The source label is rendered as the link.
+export const reviewCaptionPrefix = item => (item.business ? `${item.business} · ` : '');
+export const reviewCaption = item => `${reviewCaptionPrefix(item)}${REVIEW_SOURCE_LABEL}`;
+
 // categoryIcons in Testimonials.tsx, as lucide icon names. Unknown keys fall
 // back to the star used by the "all" tab.
 export const CATEGORY_ICONS = { all: 'star', speed: 'clock', reliability: 'shield', proactive: 'zap', value: 'trending-up' };
