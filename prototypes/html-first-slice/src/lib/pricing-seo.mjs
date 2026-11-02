@@ -2,7 +2,7 @@ import { areaServed, sharedSchemas, siteTitle } from './service-seo.mjs';
 
 const SITE = 'https://fresh-tech.uk';
 export const PRICING_RAW_TITLE = 'Pricing: Simple per-user IT support';
-export const PRICING_DESCRIPTION = "Indicative per-user pricing for managed IT support. Standard from £40/user/month. No setup fees, no time-and-materials creep. Onsite visits billed separately.";
+export const PRICING_DESCRIPTION = "Indicative per-user pricing for managed IT support. Standard from £40/user/month. No setup fee for a standard switch. Onsite visits billed separately.";
 export const PRICING_CANONICAL = `${SITE}/pricing`;
 // The pricing H1. Held here because the page, the two output checks and the two
 // browser gates all assert it; when it was a literal in each, the October 2026
