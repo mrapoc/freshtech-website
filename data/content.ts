@@ -5045,6 +5045,20 @@ export const testimonials = [
         rating: 5,
         reviewed: "2025",
         category: "speed"
+    },
+    {
+        quote: "We can trust Fresh PCs Consultancy to quickly answer our queries and solve our technical issues with hardware or Software. They offer a great service.",
+        name: "Eric Dauleu",
+        rating: 5,
+        reviewed: "2019",
+        category: "speed"
+    },
+    {
+        quote: "EXCELLENT SERVICE Friendly knowledgeable and professional service from start to finish. Highly recommended for all your business and personal computing needs.",
+        name: "Heather Dickin",
+        rating: 5,
+        reviewed: "2018",
+        category: "reliability"
     }
 ];
 

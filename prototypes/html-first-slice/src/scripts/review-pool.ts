@@ -1,38 +1,38 @@
-// Enhancement for a server-rendered review pool ([data-review-pool]). The HTML
-// renders every review and shows the first data-review-pool-count of them, so
-// the no-JS page has a fixed, sensible set. This picks a fresh random
-// selection of the same size on each visit, keeping source order. Nothing is
-// fetched and no review text is touched; only the hidden flags change.
+// Enhancement for a server-rendered review pool ([data-review-pool]). The pool
+// is split into slots ([data-review-pool-slot]); every review in a slot sits in
+// the same grid cell, so the cell is always as tall as its tallest review and
+// swapping which one shows can never shift the layout. The HTML shows the
+// first review in each slot (the no-JS default) and marks the rest inert and
+// aria-hidden; this picks a random review per slot on each visit. Nothing is
+// fetched and no review text is touched.
 
-export interface PoolItem { hidden: boolean }
-
-export interface PoolSection {
-  getAttribute(name: string): string | null;
-  querySelectorAll(selector: string): Iterable<unknown>;
+export interface PoolItem {
+  inert: boolean;
+  setAttribute(name: string, value: string): void;
+  removeAttribute(name: string): void;
 }
+
+export interface PoolSlot { querySelectorAll(selector: string): Iterable<unknown> }
 
 export interface PoolRoot { querySelector(selector: string): unknown }
 
-// Indexes of `count` distinct items out of `total`, in ascending order, from a
-// partial Fisher-Yates shuffle. `random` returns [0, 1) like Math.random.
-export function pickReviews(total: number, count: number, random: () => number = Math.random): number[] {
-  const indexes = Array.from({ length: total }, (_, index) => index);
-  const size = Math.max(0, Math.min(count, total));
-  for (let position = 0; position < size; position += 1) {
-    const swap = position + Math.floor(random() * (total - position));
-    [indexes[position], indexes[swap]] = [indexes[swap], indexes[position]];
-  }
-  return indexes.slice(0, size).sort((a, b) => a - b);
-}
+// Index of the review to show in a slot of `size`; `random` returns [0, 1).
+export const pickReview = (size: number, random: () => number = Math.random) => Math.min(size - 1, Math.floor(random() * size));
 
-// Returns the indexes now shown, or null when there is no usable pool.
+// Returns the index shown in each slot, or null when there is no pool.
 export function enhanceReviewPool(root: PoolRoot, random: () => number = Math.random): number[] | null {
-  const section = root.querySelector('[data-review-pool]') as PoolSection | null;
+  const section = root.querySelector('[data-review-pool]') as PoolSlot | null;
   if (!section) return null;
-  const count = Number(section.getAttribute('data-review-pool-count'));
-  const items = Array.from(section.querySelectorAll('[data-review-pool-item]')) as PoolItem[];
-  if (!Number.isInteger(count) || count < 1 || items.length <= count) return null;
-  const shown = new Set(pickReviews(items.length, count, random));
-  items.forEach((item, index) => { item.hidden = !shown.has(index); });
-  return [...shown];
+  const slots = Array.from(section.querySelectorAll('[data-review-pool-slot]')) as PoolSlot[];
+  return slots.map(slot => {
+    const items = Array.from(slot.querySelectorAll('[data-review-pool-item]')) as PoolItem[];
+    if (!items.length) return -1;
+    const chosen = pickReview(items.length, random);
+    items.forEach((item, index) => {
+      item.inert = index !== chosen;
+      if (index === chosen) item.removeAttribute('aria-hidden');
+      else item.setAttribute('aria-hidden', 'true');
+    });
+    return chosen;
+  });
 }

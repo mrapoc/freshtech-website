@@ -186,8 +186,11 @@ Every review links to the Google reviews as its source, and no `Review` or
 
 - Problem and comparison pages (`SourceTestimonials.astro`): every review is in
   the HTML; once enhanced, the carousel opens on a random review and rotates.
-- `/why-trust-us`: the whole pool is in the HTML and the first four show without
-  JavaScript; `src/scripts/review-pool.ts` shows a random four on each visit.
+- `/why-trust-us`: the whole pool is in the HTML, dealt into four slots. Each
+  slot stacks its reviews in one grid cell, so it is always as tall as its
+  tallest review and the swap cannot shift the layout. The first review in each
+  slot shows without JavaScript; `src/scripts/review-pool.ts` shows a random one
+  per slot on each visit.
 
 
 ## Why this shape

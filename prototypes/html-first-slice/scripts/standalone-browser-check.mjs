@@ -20,10 +20,11 @@ import { assessNoJsForms } from './lib/standalone-forms.mjs';
 //   - keyboard: the first disclosure has visible focus and toggles with Enter;
 //   - delayed fonts at 390px and 320px/200%: H1 and main must not move;
 //   - review pools ([data-review-pool], at least one route): without JavaScript
-//     the first data-review-pool-count reviews show; with it a random set of
-//     that size shows (Math.random pinned per run), every visible review links
-//     to the Google reviews with visible keyboard focus, and the grid fits at
-//     320px, 390px and 1440px.
+//     the first review in each slot shows; with it a random one per slot shows
+//     (Math.random pinned per run) and the pool height matches the no-JS height
+//     at 320px, 390px and 1440px, so the swap cannot shift the layout; every
+//     visible review links to the Google reviews with visible keyboard focus,
+//     hidden ones cannot take focus, and no card overflows.
 // Owned 127.0.0.1 server, sandboxed Chromium, the shared network policy (served
 // origin only; Cloudinary images stubbed; everything else aborted and recorded).
 const require = createRequire(import.meta.url);
@@ -246,39 +247,49 @@ try {
   }
   sections.push('delayed-font');
 
-  // 5. Review pools: no-JS default, random selection, source links, layout.
+  // 5. Review pools: no-JS default, random pick per slot, no layout shift,
+  // source links, layout.
   {
     const poolState = page => page.evaluate(() => {
       const pool = document.querySelector('[data-review-pool]');
       if (!pool) return null;
-      const items = [...pool.querySelectorAll('[data-review-pool-item]')];
-      const shown = items.flatMap((item, index) => (item.getClientRects().length ? [index] : []));
-      const links = items.filter(item => item.getClientRects().length).map(item => [...item.querySelectorAll('a')].map(link => link.href));
       const poolRect = pool.getBoundingClientRect();
-      const fits = items.every(item => !item.getClientRects().length || (item.getBoundingClientRect().right <= poolRect.right + 1 && item.scrollWidth <= item.clientWidth + 1));
-      return { count: Number(pool.getAttribute('data-review-pool-count')), total: items.length, shown, links, fits };
+      const slots = [...pool.querySelectorAll('[data-review-pool-slot]')].map(slot => {
+        const items = [...slot.querySelectorAll('[data-review-pool-item]')];
+        const visible = item => !item.inert && item.getAttribute('aria-hidden') !== 'true' && getComputedStyle(item).visibility === 'visible';
+        const hiddenOk = items.every(item => visible(item) || (item.inert && item.getAttribute('aria-hidden') === 'true' && getComputedStyle(item).visibility === 'hidden'));
+        return { total: items.length, shown: items.flatMap((item, index) => (visible(item) ? [index] : [])), links: items.filter(visible).map(item => [...item.querySelectorAll('a')].map(link => link.href)), hiddenOk };
+      });
+      const fits = [...pool.querySelectorAll('[data-review-pool-item]')].every(item => item.getBoundingClientRect().right <= poolRect.right + 1 && item.scrollWidth <= item.clientWidth + 1 && item.scrollHeight <= item.clientHeight + 1);
+      return { slots, fits, height: poolRect.height };
     });
-    const sameSet = (a, b) => a.length === b.length && a.every((value, index) => value === b[index]);
+    const linksOk = pool => pool.slots.every(slot => slot.links.every(links => links.length === 1 && links[0] === GOOGLE_REVIEWS_URL));
     const poolRoutes = [];
+    const baselineHeights = new Map();
     for (const route of routes) {
-      const context = await browser.newContext({ viewport: phone, javaScriptEnabled: false });
-      const page = await context.newPage();
-      const label = `review-pool/no-js/${route}`;
-      const state = await configure(page, label);
-      await page.goto(`${baseUrl}/${route}/`, { waitUntil: 'domcontentloaded' });
-      const pool = await poolState(page);
-      if (pool) {
-        poolRoutes.push(route);
-        check(pool.count >= 1 && pool.total > pool.count, `${label}: pool must hold more reviews than it shows`);
-        check(sameSet(pool.shown, Array.from({ length: pool.count }, (_, index) => index)), `${label}: default set is not the first ${pool.count} reviews (${pool.shown.join(',')})`);
-        check(pool.links.every(links => links.length === 1 && links[0] === GOOGLE_REVIEWS_URL), `${label}: a visible review does not link to the Google reviews`);
+      for (const viewport of [narrow, phone, desktop]) {
+        const context = await browser.newContext({ viewport, javaScriptEnabled: false });
+        const page = await context.newPage();
+        const label = `review-pool/no-js/${viewport.name}/${route}`;
+        const state = await configure(page, label);
+        await page.goto(`${baseUrl}/${route}/`, { waitUntil: 'networkidle' });
+        await page.evaluate(() => document.fonts.ready);
+        const pool = await poolState(page);
+        if (pool) {
+          if (!poolRoutes.includes(route)) poolRoutes.push(route);
+          baselineHeights.set(`${route}/${viewport.name}`, pool.height);
+          check(pool.slots.length >= 1 && pool.slots.some(slot => slot.total > 1), `${label}: pool must have a slot with more than one review`);
+          check(pool.slots.every(slot => slot.shown.length === 1 && slot.shown[0] === 0 && slot.hiddenOk), `${label}: default must show the first review in every slot and hide the rest`);
+          check(linksOk(pool), `${label}: a visible review does not link to the Google reviews`);
+          check(pool.fits, `${label}: a review card overflows`);
+        }
+        clean(state, label);
+        await close(context, page, label);
       }
-      clean(state, label);
-      await close(context, page, label);
     }
     check(poolRoutes.length > 0, 'review-pool: no route renders a review pool');
     for (const route of poolRoutes) {
-      // Math.random pinned high picks [0, 1, 2, last]: different from the default.
+      // Math.random pinned high picks the last review in every slot.
       for (const viewport of [narrow, phone, desktop]) {
         const context = await browser.newContext({ viewport });
         await context.addInitScript(consentInit);
@@ -287,20 +298,22 @@ try {
         const label = `review-pool/${viewport.name}/${route}`;
         const state = await configure(page, label);
         await page.goto(`${baseUrl}/${route}/`, { waitUntil: 'networkidle' });
-        await page.waitForFunction(() => { const items = document.querySelectorAll('[data-review-pool-item]'); return !items[items.length - 1].hidden; }, null, { timeout: 5000 }).catch(() => {});
+        await page.evaluate(() => document.fonts.ready);
+        await page.waitForFunction(() => [...document.querySelectorAll('[data-review-pool-slot]')].every(slot => { const items = slot.querySelectorAll('[data-review-pool-item]'); return !items[items.length - 1].inert; }), null, { timeout: 5000 }).catch(() => {});
         const pool = await poolState(page);
-        const expected = [0, 1, 2, pool.total - 1];
-        check(pool.count === 4 ? sameSet(pool.shown, expected) : pool.shown.length === pool.count, `${label}: JavaScript did not swap in the random selection (${pool.shown.join(',')})`);
-        check(pool.links.every(links => links.length === 1 && links[0] === GOOGLE_REVIEWS_URL), `${label}: a visible review does not link to the Google reviews`);
-        check(pool.fits, `${label}: a review card overflows the grid`);
+        check(pool.slots.every(slot => slot.shown.length === 1 && slot.shown[0] === slot.total - 1 && slot.hiddenOk), `${label}: JavaScript did not swap in the random review per slot`);
+        check(Math.abs(pool.height - baselineHeights.get(`${route}/${viewport.name}`)) <= .5, `${label}: the swap changed the pool height (${pool.height} vs ${baselineHeights.get(`${route}/${viewport.name}`)} without JavaScript)`);
+        check(linksOk(pool), `${label}: a visible review does not link to the Google reviews`);
+        check(pool.fits, `${label}: a review card overflows`);
         check(await noOverflow(page), `${label}: page overflow`);
         if (viewport === desktop) {
-          const link = page.locator('[data-review-pool-item]:not([hidden]) a').first();
+          const link = page.locator('[data-review-pool-item]:not([inert]) a').first();
           await link.focus();
-          check(await link.evaluate(element => element.matches(':focus-visible') || document.activeElement === element), `${label}: source link not focusable`);
           await page.keyboard.press('Shift+Tab');
           await page.keyboard.press('Tab');
           check(await link.evaluate(element => element.matches(':focus-visible') && getComputedStyle(element).outlineStyle !== 'none'), `${label}: source link focus not visible`);
+          const reachable = await page.evaluate(() => [...document.querySelectorAll('[data-review-pool-item][inert] a')].filter(link => { link.focus(); return document.activeElement === link; }).length);
+          check(reachable === 0, `${label}: ${reachable} hidden review links can take focus`);
         }
         await page.locator('[data-review-pool]').screenshot({ path: resolve(evidenceDir, `${route}-review-pool-${viewport.name}.png`) });
         clean(state, label);
