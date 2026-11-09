@@ -17,7 +17,7 @@ const badges = ['Cyber Essentials Certified', 'Microsoft Partner', 'Dell Premier
 
 const guarantees = [
   { icon: '🛡️', sticker: 'In writing', title: '30-day money-back guarantee', body: "If we're not the right fit in your first 30 days, you pay nothing. No questions, no argument. We'll even help you transition away if needed." },
-  { icon: '🔄', title: 'Zero downtime switching', body: 'We run both IT systems in parallel during handover. Your team keeps working. Most clients never notice the change happened. They just start getting faster responses.' },
+  { icon: '🔄', title: 'Zero downtime switching', body: 'Once we have full access, we switch everything over in one go, in the background, while your team keeps working. One provider in charge from day one: no clashing settings, no finger-pointing.' },
   { icon: '⚡', title: 'Measured response times', body: 'When available, the figures show historic support queue wait and answer rates. Contact us to discuss the response commitments for your business.' },
   { icon: '📋', title: 'No lock-in tricks', body: "12-month terms so we can invest in setting you up properly. But if it's not working, we'll part ways fairly. We keep clients by being good at the job, not by trapping them." },
 ];
@@ -37,9 +37,9 @@ const steps = [
   { day: 'Day 1', title: 'Discovery call', desc: '30 minutes. We listen to your situation, ask about your pain points, and tell you honestly whether we can help. No sales script.' },
   { day: 'Days 2–5', title: 'Technical audit', desc: 'We scan your network, devices, security posture, and licences. You get a plain-English report of every risk we find, yours to keep regardless of whether you proceed.' },
   { day: 'Days 6–7', title: 'Proposal & agreement', desc: 'Clear, itemised quote with fixed monthly pricing. You know exactly what you get before you sign. No hidden costs, no surprises on the first invoice.' },
-  { day: 'Days 8–14', title: 'Credential handover', desc: "We liaise with your current provider to transfer admin access and licences. If they're awkward about it, we've dealt with that before, and we can work around them." },
-  { day: 'Days 15–21', title: 'Setup & parallel running', desc: 'Monitoring, backups, security tools deployed to every device. Both systems run side-by-side so your team experiences zero downtime during the switch.' },
-  { day: 'Day 22+', title: 'Go live', desc: 'Your team gets a quick intro: how to reach us, what to expect. From here we handle everything in the background and you get on with running your business.' },
+  { day: 'Your notice period', title: 'You give notice', desc: "You tell your current provider you're leaving, and we agree a switch date with you. We'll help with the letter if you want. Nothing changes for your team yet." },
+  { day: 'Switch day', title: 'Full access, one clean switch', desc: 'Once your old provider hands over admin access, we check it all works, install our monitoring, security and backups, then remove their tools and access. One provider responsible, no clashing settings.' },
+  { day: 'Same week', title: 'Go live', desc: 'Your team gets a quick intro: how to reach us, what to expect. From here we handle everything in the background and you get on with running your business.' },
 ];
 
 // The whole verbatim Google review pool is rendered, dealt round-robin into
@@ -53,7 +53,7 @@ const reviewSlots = Array.from({ length: REVIEW_SLOTS }, (_, slot) => reviewPool
 const comparison = [
   { label: 'Who answers your call', them: 'Call centre. Ticket queue.', us: 'Sam. Or Matt. By name.' },
   { label: 'Pricing model', them: 'Hours + callouts + extras', us: 'Flat per-user fee (onsite billed separately)' },
-  { label: 'Onboarding cost', them: '£1,500–5,000 setup fee', us: 'No setup fee' },
+  { label: 'Onboarding cost', them: '£1,500–5,000 setup fee', us: 'No fee for a standard switch; migrations quoted upfront' },
   { label: 'New user setup', them: '£150–300 per user', us: 'Included' },
   { label: 'Security training', them: '£500+/year extra', us: 'Included' },
   { label: 'Leaving', them: 'Export fee, awkward handover', us: '30-day notice, clean exit' },
@@ -126,7 +126,7 @@ const comparison = [
       <div>
         <p class="sa-eyebrow">Onboarding</p>
         <h2 class="sa-h2">Your first 30 days</h2>
-        <p class="sa-sub2">Switching IT providers feels risky. We've done it dozens of times for businesses just like yours. Here's exactly what happens, step by step, no surprises.</p>
+        <p class="sa-sub2">Switching IT providers feels risky. We handle the awkward parts for you. Here's exactly what happens, step by step, no surprises.</p>
         <div class="sa-difficult-box">
           <p class="sa-difficult-title">The "difficult previous IT" problem</p>
           <p>If your current provider is being awkward about handing over admin credentials or licences, we've handled that before. We can work around uncooperative providers. It's never stopped an onboarding yet.</p>

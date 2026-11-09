@@ -15,26 +15,26 @@ const seo = {
 };
 
 const STATS = [
-  { n: 'Zero', l: 'Unplanned outages during any client migration' },
-  { n: '30 days', l: 'Typical time from first call to fully switched' },
-  { n: '100%', l: 'Success rate on credential handovers (inc. difficult providers)' },
+  { n: '20 min', l: 'First call, no commitment' },
+  { n: 'Fixed', l: 'Any migration work quoted before you commit' },
+  { n: 'One', l: 'Provider in charge from switch day' },
 ];
 
 const FEARS = [
   { icon: '🔒', fear: "We're locked into a contract", reality: "Most IT contracts have a notice period, often 30–90 days. We can help you review yours and plan the switch for when the timing is right. We've never advised someone to break a contract." },
-  { icon: '⏱️', fear: 'Switching will cause downtime', reality: 'We run both systems in parallel. Your team keeps working during the entire transition. Most clients say the changeover was invisible: they just noticed support got faster.' },
+  { icon: '⏱️', fear: 'Switching will cause downtime', reality: "We don't run two providers side by side. Once we have full access, we switch everything over in one go, in the background, while your team keeps working. One provider in charge from day one means no clashing settings and no arguments over whose fault a problem is." },
   { icon: '📁', fear: 'Getting our data and licences back', reality: "Your data, passwords, and licences belong to you, not your IT company. If they're reluctant to hand over credentials, we know how to navigate that. We've dealt with uncooperative providers many times." },
   { icon: '🤷', fear: 'Our staff will struggle with the change', reality: 'We introduce ourselves to your team in the first week. One number, one email, same support. Most staff notice nothing except the calls get answered faster.' },
-  { icon: '💸', fear: "There'll be hidden setup costs", reality: 'No setup fee. No migration charge. No "discovery phase" invoice. We price on a per-user per-month basis from day one. That\'s it.' },
+  { icon: '💸', fear: "There'll be hidden setup costs", reality: 'No setup fee for a standard switch. If you need a migration, such as Google Workspace to Microsoft 365, or your setup is complex, we quote a fixed price before you commit. No surprise "discovery phase" invoice. Ongoing support is priced per user, per month.' },
 ];
 
 const STEPS = [
-  { day: 'Week 1', title: 'We audit what you have', desc: 'Remote scan of your devices, licences, and security posture. You get a plain-English report, yours to keep regardless.' },
-  { day: 'Week 2', title: 'Notice served (by you)', desc: 'You serve notice to your existing provider. We help you draft the letter if needed and check what notice period applies.' },
-  { day: 'Weeks 2–4', title: 'Credential handover', desc: 'We request admin credentials, licence keys, and domain access from your outgoing provider. If they stall, we have workarounds.' },
-  { day: 'Weeks 3–5', title: 'Parallel running', desc: 'Our monitoring, backups, and security tools go onto every device while your old provider is still technically in place. No gap in coverage.' },
-  { day: 'Final week', title: 'Cutover', desc: "On the agreed date we take full control. Your team gets a 5-minute briefing: here's who to call, here's the new email, here's what changes. That's it." },
-  { day: 'Month 2+', title: 'Business as usual', desc: "You call us by name. We pick up. You stop thinking about IT. That's the goal." },
+  { day: 'Week 1', title: 'Call and audit', desc: 'A 20-minute call, then a remote scan of your devices, licences and security. You get a plain-English report, yours to keep whether or not you switch.' },
+  { day: 'Your notice period', title: 'You give notice', desc: "You tell your current provider you're leaving. We check your notice period, help with the letter if you want, and agree a switch date with you. Nothing changes for your team yet." },
+  { day: 'Handover', title: 'We get full access', desc: "Your outgoing provider hands over admin logins, licences and domain access. We check every one works before we change anything. If they're slow, we chase it so you don't have to." },
+  { day: 'Switch day', title: 'One clean changeover', desc: "We install our monitoring, security and backups, check the backups are working, then remove the old provider's tools and access. From then on there's one provider responsible." },
+  { day: 'Same week', title: 'Team briefing', desc: "A five-minute intro for your staff: who to call, how to ask for help, what changes. That's all most of them need." },
+  { day: 'Month 2 onwards', title: 'Business as usual', desc: "You call us by name. We pick up. You stop thinking about IT. That's the goal." },
 ];
 
 const FAQS = [
@@ -51,12 +51,12 @@ const FAQS = [
       <div>
         <p class="sa-eyebrow sa-eyebrow-light">Switching IT provider</p>
         <h1 class="sa-display sa-display-light" style="--sa-size: 46px; --sa-size-mobile: 36px; margin-bottom: 20px">Thinking about switching? Here's the honest guide.</h1>
-        <p class="sa-lead" style="max-width: 48ch">Most businesses stay with a bad IT provider far longer than they should, because switching sounds complicated. It isn't. We've done it dozens of times.</p>
+        <p class="sa-lead" style="max-width: 48ch">Most businesses stay with a bad IT provider far longer than they should, because switching sounds complicated. It needn't be, and we handle the awkward parts for you.</p>
         <p class="ob-sub" style="max-width: 46ch">This page explains how it actually works, what happens with your data and contracts, and what you can expect from us if you decide to make the move.</p>
         <a class="sa-button" href="/contact">Book a 20-min call →</a>
       </div>
       <div class="ob-stats">
-        <p class="ob-stats-label">Our switching record</p>
+        <p class="ob-stats-label">What to expect</p>
         {STATS.map(({ n, l }) => (
           <div class="ob-stat">
             <div class="ob-stat-n">{n}</div>
@@ -94,7 +94,7 @@ const FAQS = [
       <div>
         <p class="sa-eyebrow">The process</p>
         <h2 class="sa-display" style="--sa-size: 36px; margin-bottom: 16px">Step by step. No surprises.</h2>
-        <p class="ob-intro" style="margin-bottom: 24px; max-width: 42ch">This is exactly what a standard switch looks like. Most are complete within 30 days of the first call.</p>
+        <p class="ob-intro" style="margin-bottom: 24px; max-width: 42ch">This is what a standard switch looks like. How long it takes mostly depends on your current notice period. The changeover itself happens as soon as we have full access, not weeks later.</p>
         <div class="ob-midcontract">
           <div class="ob-midcontract-h">What if we're mid-contract?</div>
           <p>We can start the process now and time the cutover to coincide with your contract end date. We'll help you review notice period requirements and plan accordingly. No reason to wait until you're miserable.</p>
