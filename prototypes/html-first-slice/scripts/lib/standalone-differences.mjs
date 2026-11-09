@@ -33,6 +33,37 @@ const withSourceContact = entry => ({
 // updated"; the native pages show the fixed date the wording last changed.
 const BASELINE_UPDATED = 'Last updated: September 2026';
 
+import { blogPosts } from '../../src/generated/blog-data.mjs';
+
+// /resources shows the blog post count and the two newest posts, so those parts
+// follow the current blog data instead of the frozen snapshot. Without this, every
+// new blog post failed the gate (and so could never deploy) until the baseline was
+// edited by hand. The snapshot strings below are checked against the baseline, and
+// everything else on the page must still match production exactly.
+const RESOURCES_SNAPSHOT = {
+  count: 49,
+  posts: [
+    { slug: 'qr-code-scams-quishing-business', date: 'Sep 14, 2026', title: 'QR Code Phishing: What to Tell Your Team', excerpt: 'QR code scams turn up in emails and on car park machines. What the preview on your phone does and does not tell you, and what to switch on in Microsoft 365.' },
+    { slug: 'leavers-offboarding-it-checklist', date: 'Sep 8, 2026', title: 'The Leaver You Forgot to Remove', excerpt: 'Somebody left last year and their account is still live. It is the most common gap we find, the cheapest to fix, and the one that fails you at renewal.' },
+  ],
+};
+// Same order as src/pages/resources.astro.
+const latestPosts = [...blogPosts].sort((a, b) => new Date(b.isoDate).getTime() - new Date(a.isoDate).getTime()).slice(0, 2);
+const postCard = post => `${post.date} ${post.title} ${post.excerpt}`;
+const swapLatestPosts = (list, matches, replace) => {
+  let next = 0;
+  return list.map(item => {
+    const old = RESOURCES_SNAPSHOT.posts[next];
+    if (!old || !matches(item, old)) return item;
+    return replace(latestPosts[next++]);
+  });
+};
+const RESOURCES_BLOG_TEXT = [
+  [`${RESOURCES_SNAPSHOT.count}+ Blog Articles`, `${blogPosts.length}+ Blog Articles`],
+  [`Latest News ${RESOURCES_SNAPSHOT.count}+ articles`, `Latest News ${blogPosts.length}+ articles`],
+  [RESOURCES_SNAPSHOT.posts.map(postCard).join(' '), latestPosts.map(postCard).join(' ')],
+];
+
 export const STANDALONE_DIFFERENCES = Object.freeze({
   // Section 4 names the processors that handle website enquiries (SMTP2GO,
   // 20i), added on 29 October 2026 at Sam's request; later sections renumber.
@@ -336,6 +367,7 @@ export const STANDALONE_DIFFERENCES = Object.freeze({
   // label), so Astro's compiler drops the space entirely.
   '/resources': {
     text: [
+      ...RESOURCES_BLOG_TEXT,
       ['Download PDF Now Ship Me a Free Copy', 'Ship Me a Free Copy'],
       ['✓ Trusted by local businesses for over 10 years', 'Trusted by local businesses for over 10 years'],
       ['Call The Batphone 01584 517 234', 'Call The Batphone01584 517 234'],
@@ -349,7 +381,7 @@ export const STANDALONE_DIFFERENCES = Object.freeze({
     // native h3 (not h4 as in production) because they sit directly under
     // their section's h2 with no h3 in between, and skipping a heading level
     // fails the accessibility audit.
-    headings: headings => headings.flatMap(h => (
+    headings: headings => swapLatestPosts(headings, (h, old) => h[0] === 4 && h[1] === old.title, post => [4, post.title]).flatMap(h => (
       h[0] === 3 && h[1] === 'Send a Signal'
         ? [[2, 'Tell us what you need help with'], [3, 'Online messages are disabled in this preview']]
         : h[0] === 4 ? [[3, h[1]]] : [h]
@@ -360,7 +392,8 @@ export const STANDALONE_DIFFERENCES = Object.freeze({
     // page omits that broken button. "Ship Me a Free Copy" opens a lead-capture
     // modal in production, which cannot work statically, so it becomes a
     // /contact link with the same label, inserted before the Contact section.
-    links: (links) => {
+    links: (baselineLinks) => {
+      const links = swapLatestPosts(baselineLinks, ([href], old) => href === `/blog/${old.slug}`, post => [`/blog/${post.slug}`, postCard(post)]);
       const idx = links.findIndex(([href, text]) => href === '/onboarding' && text.startsWith('Thinking of switching'));
       if (idx === -1) return links;
       return [
@@ -373,6 +406,7 @@ export const STANDALONE_DIFFERENCES = Object.freeze({
         ['mailto:hello@fresh-tech.uk', 'hello@fresh-tech.uk'],
       ];
     },
+    images: images => swapLatestPosts(images, ([, alt], old) => alt === old.title, post => [post.image, post.title]),
   },
   // The health-check request form only fakes a "SENT!" success message
   // (FORM-01), so it is replaced with a short truthful fallback (call, email

@@ -65,6 +65,19 @@ Releases deploy automatically from the site owner's Mac once merged to `main`
 - **Analytics gated behind cookie consent**: never re-add auto-loading GA4/Clarity.
 - **Public service figures and feedback** come only from the nightly snapshots the reporting system writes to the site's private folder (`private/website-proof/published/`), served by the native same-origin handlers. The website never calls the reporting system. No ReportData fallback, figures in source or unapproved ticket definition. See the private public-proof contract (above).
 
+## Publishing a blog post
+1. Draft and agree the copy outside this repository (in chat or `~/Context/FreshTech/Website/`),
+   with the independent review the content rules require. Nothing goes into Git until it is approved.
+2. Add the approved post as one record at the top of `blogPosts` in `data/content.ts`, dated the
+   day it should appear. Posts dated after today (UK) are held back from the build.
+3. In `prototypes/html-first-slice/`, run `npm test` and `npm run build`. Browser checks read `dist`,
+   so run `npm run verify:blog-browser` after that build, not after the production build.
+   `/resources` follows the post count and newest two posts automatically.
+4. Open one PR and merge it once "Static site quality" is green. The site owner's Mac picks up
+   `main` within about 15 minutes while it is awake, runs its own gate (about 20 minutes), then
+   deploys. Allow about 45 minutes after merging.
+5. Open the live URL before sharing it on LinkedIn or anywhere else.
+
 ## Public repository
 This repository is public. Commit only what is fine on the live site or is
 ordinary source. Keep these in `~/Context/FreshTech/Website/`, never here:
