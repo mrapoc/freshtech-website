@@ -1,11 +1,14 @@
 name: Static site quality
 
-# Manual only (Actions tab > Static site quality > Run workflow) since
-# 18 October 2026, to stay within the Actions budget. The same steps run on the
-# site owner's Mac before every deploy (scripts/quality-gate.mjs, called by
-# scripts/deploy-20i-local.mjs), so they still gate what goes live; keep the two
-# step lists in sync.
+# Runs on every pull request into main, and by hand from the Actions tab.
+# Standard GitHub-hosted runners are free for public repositories, so the
+# manual-only setting used while the repository was private is no longer needed.
+# The same steps also run on the site owner's Mac before every deploy
+# (scripts/quality-gate.mjs, called by scripts/deploy-20i-local.mjs), which
+# gates what goes live; keep the two step lists in sync.
 on:
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
