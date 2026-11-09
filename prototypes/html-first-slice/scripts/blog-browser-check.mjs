@@ -11,8 +11,9 @@ import { BLOCKMARK_STUB, isBlockmarkBadge } from './lib/blockmark-stub.mjs';
 // Economical blog gate derived from industries-browser-check.mjs:
 // - every generated route (listing + articles) swept at phone and desktop;
 // - every route at 320px for document overflow, listing heading words intact;
-// - the representative article (longest body that carries a table and a list)
-//   and the listing at 320px/200% text, keyboard filtering, contrast, painted
+// - the representative article (longest body that carries a table and a list,
+//   else the longest that carries a list; table assertions run only when it has
+//   a table) and the listing at 320px/200% text, keyboard filtering, contrast, painted
 //   Bungee, slow-font same-document geometry and no-JS;
 // - the first image article and first video article with late, non-matching
 //   synthetic hero media to prove the reserved media box does not move.
@@ -53,7 +54,11 @@ const listingRoute = { name: 'listing', url: `${baseUrl}/blog/`, h1: 'The IT blo
 const articleRoutes = blogPosts.map(post => ({ name: post.slug, url: `${baseUrl}/blog/${post.slug}/`, h1: post.title, marker: `[data-blog-post="${post.slug}"]`, post }));
 const routes = [listingRoute, ...articleRoutes];
 const richest = articleRoutes.filter(route => hasTable(route.post.content) && hasList(route.post.content));
-const representative = (richest.length ? richest : articleRoutes).reduce((longest, route) => route.post.content.length > longest.post.content.length ? route : longest);
+const listed = articleRoutes.filter(route => hasList(route.post.content));
+const representative = (richest.length ? richest : listed.length ? listed : articleRoutes).reduce((longest, route) => route.post.content.length > longest.post.content.length ? route : longest);
+// Current content may have no table at all; table-region assertions then have nothing to test.
+const representativeHasTable = hasTable(representative.post.content);
+const tableCount = page => page.locator('.blog-article table').count();
 // Top frame only: init scripts also run in the sandboxed Cyber Essentials badge frame, which has no storage.
 const consentInit = () => window === window.top && localStorage.setItem('ft-cookie-consent-v1', JSON.stringify({ analytics: false, ts: Date.now() }));
 const stubImage = { status: 200, contentType: 'image/svg+xml', body: '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" />' };
@@ -199,10 +204,15 @@ try {
       check(response?.status() === 200, `${label}: status`);
       check(await page.locator('a[href="/contact"]').count() >= 1, `${label}: contact link`);
       if (route.post) {
-        check(await page.locator('.blog-article table').count() >= 1 && await page.locator('.blog-article li').count() >= 1, `${label}: representative table and list present`);
-        const wrap = page.locator('.blog-table-wrap').first();
-        await wrap.focus();
-        check(await wrap.evaluate(element => element === document.activeElement), `${label}: table region is keyboard focusable`);
+        check(await page.locator('.blog-article li').count() >= 1, `${label}: representative list present`);
+        if (representativeHasTable) {
+          check(await tableCount(page) >= 1, `${label}: representative table present`);
+          const wrap = page.locator('.blog-table-wrap').first();
+          await wrap.focus();
+          check(await wrap.evaluate(element => element === document.activeElement), `${label}: table region is keyboard focusable`);
+        } else {
+          check(await tableCount(page) === 0, `${label}: table rendered although the source has none`);
+        }
         const ratios = await contrast(page, '.blog-back a, .blog-badge, .blog-author-chip-light .blog-meta, .blog-excerpt, .blog-article p, .blog-article li, .blog-article td, .blog-article th, .blog-article a, .blog-article h2, .blog-eyebrow, .blog-related-card p, .blog-cta p, .blog-button-accent');
         check(ratios.length >= 10 && ratios.every(ratio => ratio >= 4.5), `${label}: contrast ${ratios.map(ratio => ratio.toFixed(2)).join(',')}`);
       } else {
@@ -253,7 +263,7 @@ try {
     }
   }
 
-  // 3b. Representative article at 320px and 200% text: the table scrolls inside its region, the document does not.
+  // 3b. Representative article at 320px and 200% text: the document does not overflow, and any table scrolls inside its region.
   {
     const context = await browser.newContext({ viewport: { width: 320, height: 844 } });
     await context.addInitScript(consentInit);
@@ -263,10 +273,14 @@ try {
     checkDoubled(await doubleText(page), `320px/${representative.name}`);
     await settle(page);
     check(await noOverflow(page), `320px/${representative.name}: overflow at 200% text`);
-    const wrapScrolls = await page.locator('.blog-table-wrap').first().evaluate(element => getComputedStyle(element).overflowX === 'auto');
-    check(wrapScrolls, `320px/${representative.name}: table wrapper is not horizontally scrollable`);
-    await page.evaluate(() => document.querySelector('.blog-table-wrap').scrollIntoView());
-    await page.screenshot({ path: resolve(evidenceDir, `${representative.name}-320-200-table.png`), fullPage: false });
+    if (representativeHasTable) {
+      const wrapScrolls = await page.locator('.blog-table-wrap').first().evaluate(element => getComputedStyle(element).overflowX === 'auto');
+      check(wrapScrolls, `320px/${representative.name}: table wrapper is not horizontally scrollable`);
+      await page.evaluate(() => document.querySelector('.blog-table-wrap').scrollIntoView());
+      await page.screenshot({ path: resolve(evidenceDir, `${representative.name}-320-200-table.png`), fullPage: false });
+    } else {
+      await page.screenshot({ path: resolve(evidenceDir, `${representative.name}-320-200.png`), fullPage: false });
+    }
     await context.close();
   }
 
@@ -396,14 +410,15 @@ try {
   check(await noOverflow(noJsPage), 'no-JS listing: phone overflow');
   const articleResponse = await noJsPage.goto(representative.url, { waitUntil: 'domcontentloaded' });
   check(articleResponse?.status() === 200, 'no-JS article: status');
-  check(await noJsPage.locator('.blog-article table').count() >= 1 && await noJsPage.locator('.blog-article li').count() >= 1, 'no-JS article: table and list remain present');
+  check(await noJsPage.locator('.blog-article li').count() >= 1, 'no-JS article: list remains present');
+  check(representativeHasTable ? await tableCount(noJsPage) >= 1 : await tableCount(noJsPage) === 0, `no-JS article: table count does not match the source (expected ${representativeHasTable ? 'at least one' : 'none'})`);
   check(await noJsPage.locator('.blog-related-card').count() === relatedPosts(blogPosts, representative.post.slug).length, 'no-JS article: related cards present');
   check(await noOverflow(noJsPage), 'no-JS article: phone overflow');
   check(noJsState.errors.length === 0, `no-JS: browser errors ${noJsState.errors.join('; ')}`);
   await noJsContext.close();
 
   if (failures.length) throw new Error(`${failures.length} blog browser failures across ${assertions} assertions:\n${failures.join('\n')}`);
-  console.log(`${assertions} blog browser assertions passed across ${routes.length} routes (390px/1440px sweeps, 320px overflow, representative ${representative.name} + listing at 200% text, keyboard filters, painted Bungee, 320px/390px delayed fonts, late synthetic hero media on ${mediaRoutes.length} route(s) and phone no-JS)`);
+  console.log(`${assertions} blog browser assertions passed across ${routes.length} routes (390px/1440px sweeps, 320px overflow, representative ${representative.name} (${representativeHasTable ? 'with' : 'no'} table) + listing at 200% text, keyboard filters, painted Bungee, 320px/390px delayed fonts, late synthetic hero media on ${mediaRoutes.length} route(s) and phone no-JS)`);
 } finally {
   // Close the browser first so no page connections keep the server alive.
   if (browser) {
