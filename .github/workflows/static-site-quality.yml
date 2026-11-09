@@ -3,9 +3,9 @@ name: Static site quality
 # Runs on every pull request into main, and by hand from the Actions tab.
 # Standard GitHub-hosted runners are free for public repositories, so the
 # manual-only setting used while the repository was private is no longer needed.
-# The same steps also run on the site owner's Mac before every deploy
-# (scripts/quality-gate.mjs, called by scripts/deploy-20i-local.mjs), which
-# gates what goes live; keep the two step lists in sync.
+# "Deploy to 20i" relies on this check passing on a pull request's head to run
+# only the quick gate after merging. The same steps live in
+# scripts/quality-gate.mjs; keep the two step lists in sync.
 on:
   pull_request:
     branches: [main]

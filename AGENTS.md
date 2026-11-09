@@ -41,9 +41,11 @@ get a green check. A passed build is not a Google score or a production deployme
 Use the public proof integration and update workflow, kept privately at
 `~/Context/FreshTech/Website/internal-docs/docs/seo/public-website-proof.md`, for this feature. Updating an existing site must preserve its live email handler,
 private configuration and logs; the initial DNS cutover runbook is historical.
-Releases deploy automatically from the site owner's Mac once merged to `main`
-(`scripts/deploy-20i-local.mjs`, described in that workflow doc). Never upload to
-20i by hand: the next deploy stops on the unrecorded change until it is on `main`.
+Releases deploy automatically from GitHub Actions once merged to `main`
+(`.github/workflows/deploy-20i.yml`; one-off setup in `scripts/setup-20i-deploy-github.sh`).
+The Mac deploy (`scripts/deploy-20i-local.mjs`) remains a manual fallback only; keep its
+schedule off so the two never race. Never upload to 20i by hand: the next deploy stops on
+the unrecorded change until it is on `main`.
 
 ## SEO & GSC
 - Per-page SEO via the `SEO` component (title, meta description, canonical, JSON-LD). Keep titles ≤ ~60 chars, descriptions ~150–160.
@@ -64,6 +66,19 @@ Releases deploy automatically from the site owner's Mac once merged to `main`
 - **Competitors: data-led, never named.** Imply gaps via evidence; never disparage a named provider (UK malicious-falsehood risk).
 - **Analytics gated behind cookie consent**: never re-add auto-loading GA4/Clarity.
 - **Public service figures and feedback** come only from the nightly snapshots the reporting system writes to the site's private folder (`private/website-proof/published/`), served by the native same-origin handlers. The website never calls the reporting system. No ReportData fallback, figures in source or unapproved ticket definition. See the private public-proof contract (above).
+
+## Publishing a blog post
+1. Draft and agree the copy outside this repository (in chat or `~/Context/FreshTech/Website/`),
+   with the independent review the content rules require. Nothing goes into Git until it is approved.
+2. Add the approved post as one record at the top of `blogPosts` in `data/content.ts`, dated the
+   day it should appear. Posts dated after today (UK) are held back from the build.
+3. In `prototypes/html-first-slice/`, run `npm test` and `npm run build`. Browser checks read `dist`,
+   so run `npm run verify:blog-browser` after that build, not after the production build.
+   `/resources` follows the post count and newest two posts automatically.
+4. Open one PR and merge it once "Static site quality" is green (about 20 minutes; it can be
+   merged from the GitHub mobile app). "Deploy to 20i" then runs the quick gate on the merged
+   commit and uploads, so the post is live a few minutes after merging.
+5. Open the live URL before sharing it on LinkedIn or anywhere else.
 
 ## Public repository
 This repository is public. Commit only what is fine on the live site or is

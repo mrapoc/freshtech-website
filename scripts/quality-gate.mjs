@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// Runs the "Static site quality" checks locally, step for step, so a deploy
-// from a Mac is gated exactly as GitHub Actions gated it. Keep the step lists
-// in sync with .github/workflows/static-site-quality.yml.
+// Runs the "Static site quality" checks step for step. Used by the "Deploy to
+// 20i" workflow and the Mac fallback deploy, and handy locally. Keep the step
+// lists in sync with .github/workflows/static-site-quality.yml.
 //
 // Usage: node scripts/quality-gate.mjs [--root <checkout>] [--quick]
 //   --root   checkout to test (default: this repository); dependencies must be installed

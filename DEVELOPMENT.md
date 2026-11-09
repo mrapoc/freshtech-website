@@ -21,8 +21,9 @@ New worktrees need dependency installation and explicit local service configurat
 `node scripts/quality-gate.mjs` (or `npm run quality-gate`) runs every check below in
 order: unit and output contracts, the full build, the browser suite and the isolated
 contact and synthetic fixture journeys. It takes about 25 minutes; `--quick` stops after
-the build. The Mac deploy runs it before every release, and the manual `Static site
-quality` workflow runs the same steps on GitHub. Keep the two step lists in sync.
+the build. The `Static site quality` workflow runs the same steps on every pull request,
+and the `Deploy to 20i` workflow runs the quick gate (or the full one for a commit that did
+not come through a passing pull request) before every release. Keep the step lists in sync.
 
 ## Astro checks
 

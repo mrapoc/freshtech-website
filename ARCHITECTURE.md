@@ -77,11 +77,12 @@ catch-all, so unknown paths return 404.
 
 ## Release
 
-A scheduled job on the site owner's Mac (`scripts/deploy-20i-local.mjs`) deploys each new
+The "Deploy to 20i" GitHub workflow (`.github/workflows/deploy-20i.yml`) deploys each new
 `main` commit: it checks out the commit, installs locked dependencies, runs
-`scripts/quality-gate.mjs` (unit and output contracts, the full build and the browser
-suite), builds the production output, packages it and uploads it over SFTP with
-`scripts/deploy-20i.mjs`. The upload refuses to overwrite files changed on the server
+`scripts/quality-gate.mjs` (quick when the merged pull request's head already passed the full
+"Static site quality" suite, full otherwise), builds the production output, packages it and
+uploads it over SFTP with `scripts/deploy-20i.mjs`. `scripts/deploy-20i-local.mjs` does the
+same from the site owner's Mac and is kept as a manual fallback. The upload refuses to overwrite files changed on the server
 outside a recorded release. The root `package.json` exists for the gate's Playwright
 browser; the site itself depends only on the Astro project's lockfile.
 

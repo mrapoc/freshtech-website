@@ -1,0 +1,223 @@
+name: Deploy to 20i
+
+# Ships main to the live 20i site from GitHub, so publishing needs nothing more
+# than a merged pull request (from a phone if need be). Restored from the
+# October 2026 workflow, which moved to the site owner's Mac only to save
+# Actions minutes while the repository was private; standard runners are free
+# now that it is public.
+#
+# Gate: a commit merged from a pull request whose head passed "Static site
+# quality" (the full ~20 minute browser suite) gets the quick gate here (unit,
+# contract and output checks plus the build, a few minutes) on the merged
+# commit itself. Anything else (a direct push, or a manual run with full_gate)
+# gets the full gate first.
+#
+# scripts/deploy-20i.mjs writes over public_html and never deletes (the live
+# email handler and private configuration are never touched). It backs up
+# every replaced file first, verifies the changed files on https://fresh-tech.uk,
+# and restores the backup if the upload or verification fails. It stops before
+# uploading if the live site has changes made outside a recorded deploy, unless
+# a manual run ticks "allow overwrite". Until the production environment's
+# secrets exist the job reports "not configured" and stops, green.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: Commit on main to deploy. Leave blank for the latest; paste an earlier one to roll back.
+        required: false
+        default: ''
+      full_gate:
+        description: Run the full browser suite before deploying, even if the pull request already passed it.
+        type: boolean
+        required: false
+        default: false
+      allow_overwrite:
+        description: Overwrite live files that were changed outside a recorded deploy (only after committing anything worth keeping to main).
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+  checks: read
+  pull-requests: read
+
+concurrency:
+  group: deploy-20i
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    # Only main, and only this repository, can publish.
+    if: github.ref == 'refs/heads/main' && github.repository == 'mrapoc/freshtech-website'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    environment: production
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+      PUBLIC_CONTACT_SUBMISSION_MODE: disabled
+      DEPLOY_HOST: ${{ secrets.TWENTYI_SFTP_HOST }}
+      DEPLOY_PORT: ${{ secrets.TWENTYI_SFTP_PORT }}
+      DEPLOY_USER: ${{ secrets.TWENTYI_SFTP_USER }}
+      DEPLOY_ROOT: ${{ secrets.TWENTYI_REMOTE_ROOT }}
+      TAG: gh${{ github.run_id }}
+    steps:
+      - name: Check the deployment is configured
+        id: configured
+        env:
+          KEY: ${{ secrets.TWENTYI_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.TWENTYI_KNOWN_HOSTS }}
+        run: |
+          if [ -z "$DEPLOY_HOST" ] || [ -z "$DEPLOY_USER" ] || [ -z "$DEPLOY_PORT" ] || [ -z "$DEPLOY_ROOT" ] || [ -z "$KEY" ] || [ -z "$KNOWN_HOSTS" ]; then
+            echo "::notice::20i deployment is not configured yet (production environment secrets missing); nothing deployed."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          DEPLOY_KEY_FILE="$RUNNER_TEMP/deploy_key"; DEPLOY_KNOWN_HOSTS_FILE="$RUNNER_TEMP/known_hosts"
+          echo "DEPLOY_KEY_FILE=$DEPLOY_KEY_FILE" >> "$GITHUB_ENV"
+          echo "DEPLOY_KNOWN_HOSTS_FILE=$DEPLOY_KNOWN_HOSTS_FILE" >> "$GITHUB_ENV"
+          umask 077
+          printf '%s\n' "$KEY" > "$DEPLOY_KEY_FILE"
+          printf '%s\n' "$KNOWN_HOSTS" > "$DEPLOY_KNOWN_HOSTS_FILE"
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: steps.configured.outputs.ready == 'true'
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Choose the commit and the gate
+        id: target
+        if: steps.configured.outputs.ready == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PUSHED: ${{ github.sha }}
+          REQUESTED: ${{ inputs.commit }}
+          FULL: ${{ inputs.full_gate }}
+        run: |
+          set -euo pipefail
+          tip=$(git rev-parse origin/main)
+          if [ "$GITHUB_EVENT_NAME" = push ]; then
+            # A queued run for an older commit must never overwrite a newer one.
+            if [ "$PUSHED" != "$tip" ]; then
+              echo "::notice::Skipped: main has moved on to $tip, which deploys in its own run."
+              exit 0
+            fi
+            sha=$PUSHED
+          else
+            sha=$(git rev-parse --verify "${REQUESTED:-$tip}^{commit}")
+            git merge-base --is-ancestor "$sha" "$tip" || { echo "::error::$sha is not on main."; exit 1; }
+          fi
+          # Did this commit arrive through a merged pull request whose head passed the full suite?
+          head=$(gh api "repos/$GITHUB_REPOSITORY/commits/$sha/pulls" --jq '[.[] | select(.merged_at != null and .base.ref == "main")][0].head.sha // empty')
+          passed=0
+          if [ -n "$head" ]; then
+            passed=$(gh api "repos/$GITHUB_REPOSITORY/commits/$head/check-runs?check_name=quality" \
+              --jq '[.check_runs[] | select(.conclusion == "success")] | length')
+          fi
+          gate=full
+          if [ "$passed" -ge 1 ] && [ "$FULL" != true ]; then gate=quick; fi
+          git checkout --quiet --detach "$sha"
+          echo "Deploying $sha with the $gate gate"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "gate=$gate" >> "$GITHUB_OUTPUT"
+          echo "go=true" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        if: steps.target.outputs.go == 'true'
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            prototypes/html-first-slice/package-lock.json
+      - name: Install locked dependencies
+        if: steps.target.outputs.go == 'true'
+        run: |
+          npm ci --ignore-scripts
+          npm ci --ignore-scripts --prefix prototypes/html-first-slice
+      - name: Install sandboxed browser (full gate only)
+        if: steps.target.outputs.go == 'true' && steps.target.outputs.gate == 'full'
+        run: |
+          npx playwright install --with-deps chromium
+          node --input-type=module -e 'import { chromium } from "playwright"; import { appendFileSync } from "node:fs"; appendFileSync(process.env.GITHUB_ENV, `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=${chromium.executablePath()}\n`);'
+          node -e 'require("node:fs").appendFileSync(process.env.GITHUB_ENV, `PLAYWRIGHT_MODULE=${require.resolve("playwright")}\n`);'
+      - name: Quality gate
+        if: steps.target.outputs.go == 'true'
+        env:
+          GATE: ${{ steps.target.outputs.gate }}
+        run: node scripts/quality-gate.mjs $([ "$GATE" = quick ] && echo --quick)
+      - name: Build and package the production update
+        if: steps.target.outputs.go == 'true'
+        env:
+          PYTHON: python3
+        run: |
+          (cd prototypes/html-first-slice && PUBLIC_SITE_MODE=production npm run build)
+          node scripts/package-static-production.mjs --preserve-existing-endpoints --tag "$TAG"
+          echo "SITE=$(ls -d .artifacts/20i-production/*-update-"$TAG"-site)" >> "$GITHUB_ENV"
+          echo "MANIFEST=$(ls .artifacts/20i-production/*-"$TAG"-manifest.json)" >> "$GITHUB_ENV"
+      - name: Back up the files about to be replaced
+        if: steps.target.outputs.go == 'true'
+        # Exits 4 without uploading when live files were changed outside a recorded deploy.
+        env:
+          DEPLOY_ALLOW_OVERWRITE: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_overwrite }}
+        run: node scripts/deploy-20i.mjs backup --site "$SITE" --manifest "$MANIFEST" --out "$RUNNER_TEMP/rollback"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: steps.target.outputs.go == 'true'
+        with:
+          name: rollback-${{ env.TAG }}
+          path: ${{ runner.temp }}/rollback
+          include-hidden-files: true
+          retention-days: 30
+      - name: Upload over public_html (never deletes)
+        id: upload
+        if: steps.target.outputs.go == 'true'
+        run: node scripts/deploy-20i.mjs upload --site "$SITE" --manifest "$MANIFEST"
+      - name: Record what was deployed, for the manual-change guard
+        if: steps.target.outputs.go == 'true'
+        env:
+          SHA: ${{ steps.target.outputs.sha }}
+        run: node scripts/deploy-20i.mjs record --manifest "$MANIFEST" --commit "$SHA"
+      - name: Verify the live site
+        id: verify
+        if: steps.target.outputs.go == 'true'
+        # Exit 1 = live content differs (restore); exit 3 = rate-limited, inconclusive (never restore).
+        run: |
+          set +e
+          node scripts/deploy-20i.mjs verify --site "$SITE" --manifest "$MANIFEST" --backup "$RUNNER_TEMP/rollback" --tag "$TAG"; code=$?
+          if [ "$code" -ne 0 ]; then
+            sleep 60
+            node scripts/deploy-20i.mjs verify --site "$SITE" --manifest "$MANIFEST" --backup "$RUNNER_TEMP/rollback" --tag "$TAG-retry"; retry=$?
+            # A mismatch the retry could neither confirm nor clear is treated as real: restoring is the safe side.
+            if [ "$code" -eq 1 ] && [ "$retry" -eq 3 ]; then code=1; else code=$retry; fi
+          fi
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          [ "$code" -eq 3 ] && echo "::warning::Live verification was rate-limited by 20i; the deploy was NOT verified and NOT rolled back. Check the site."
+          [ "$code" -eq 3 ] && exit 0
+          exit "$code"
+      - name: Check the email handler still has its private configuration
+        if: steps.target.outputs.go == 'true'
+        # A plain GET answers 403 only while private/send-email-config.php is
+        # readable (503 if it is missing); direct /server/ requests stay 404.
+        # Nothing is submitted.
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' https://fresh-tech.uk/api/send-email)
+          [ "$code" = 403 ] || { echo "::error::/api/send-email answered $code, expected 403. Check private/send-email-config.php on 20i."; exit 1; }
+          code=$(curl -s -o /dev/null -w '%{http_code}' https://fresh-tech.uk/server/api/send-email.php)
+          [ "$code" = 404 ] || { echo "::error::Direct PHP answered $code, expected 404."; exit 1; }
+      - name: Restore the backup after a failed upload or verification
+        if: failure() && (steps.upload.outcome == 'failure' || steps.verify.outputs.code == '1')
+        run: |
+          node scripts/deploy-20i.mjs restore --out "$RUNNER_TEMP/rollback"
+          echo "::error::The upload or live verification failed; the previous files were restored."
+      - name: Summary
+        if: steps.target.outputs.go == 'true' && success()
+        env:
+          SHA: ${{ steps.target.outputs.sha }}
+          GATE: ${{ steps.target.outputs.gate }}
+        run: |
+          echo "Live on https://fresh-tech.uk - ${SHA:0:7} ($(git log -1 --format=%s "$SHA")), $GATE gate." >> "$GITHUB_STEP_SUMMARY"
+      - name: Remove the deploy key
+        if: always()
+        run: rm -f "$DEPLOY_KEY_FILE" "$DEPLOY_KNOWN_HOSTS_FILE"

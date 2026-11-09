@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-// Deploys main to the live 20i site from this Mac, replacing the GitHub Actions
-// deploy. Installed and scheduled by scripts/setup-20i-deploy-mac.sh; it runs
+// Deploys main to the live 20i site from this Mac. The "Deploy to 20i" GitHub
+// workflow is the normal route; this is the manual fallback (keep its schedule
+// off so the two never race). Installed by scripts/setup-20i-deploy-mac.sh; it runs
 // from a "tools" worktree that the launcher keeps on the tip of origin/main.
 //
 // Usage (via the launcher, or `npm run deploy:20i -- <flags>` in the repo):
