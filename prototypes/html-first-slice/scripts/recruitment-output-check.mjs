@@ -50,14 +50,14 @@ assert.ok(!notice.includes('verified LinkedIn') && !notice.includes('checked its
 
 // Application state: a route only once the source declares a validated listing.
 if (!applyOpen) {
-  assert.ok(copy.includes('Applications have closed') && copy.includes('Thank you to everyone who took the time to apply'), 'Closed advert must say applications have closed and thank applicants');
+  assert.ok(copy.includes('This role has been filled') && copy.includes('Thank you to everyone who took the time to apply'), 'Closed advert must say the role has been filled and thank applicants');
   for (const hidden of ['£', RECRUITMENT.salary, '37.5 hours', '3% of qualifying earnings', 'Email your application']) assert.ok(!copy.includes(hidden), `Closed advert must not show: ${hidden}`);
   assert.ok(!career.includes('Apply on LinkedIn →'), 'No apply button while closed');
   assert.ok(!/href="https?:\/\/(?:[a-z]+\.)?linkedin\.com\/jobs/.test(main(career)), 'No LinkedIn job link while closed');
   assert.deepEqual(advertMailtos, [], 'No email route for CVs while applications are closed');
 } else {
   assert.ok(career.includes(RECRUITMENT.applications.listingUrl), 'Open advert must link the validated listing');
-  assert.ok(!copy.includes('Applications have closed'), 'Open advert must not say applications have closed');
+  assert.ok(!copy.includes('This role has been filled'), 'Open advert must not say the role has been filled');
   assert.deepEqual(advertMailtos, [RECRUITMENT.applications.listingUrl], "The advert's only CV route is the configured recruitment mailbox");
 }
 console.log(`Recruitment output contract passed: advert ${applyOpen ? 'open' : 'closed'}, final privacy notice, ${applyOpen ? 'agreed terms, one mailbox CV route' : 'pay and terms withheld, no collection route'}.`);
