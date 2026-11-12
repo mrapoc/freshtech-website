@@ -75,12 +75,6 @@ jobs:
             echo "ready=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          DEPLOY_KEY_FILE="$RUNNER_TEMP/deploy_key"; DEPLOY_KNOWN_HOSTS_FILE="$RUNNER_TEMP/known_hosts"
-          echo "DEPLOY_KEY_FILE=$DEPLOY_KEY_FILE" >> "$GITHUB_ENV"
-          echo "DEPLOY_KNOWN_HOSTS_FILE=$DEPLOY_KNOWN_HOSTS_FILE" >> "$GITHUB_ENV"
-          umask 077
-          printf '%s\n' "$KEY" > "$DEPLOY_KEY_FILE"
-          printf '%s\n' "$KNOWN_HOSTS" > "$DEPLOY_KNOWN_HOSTS_FILE"
           echo "ready=true" >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         if: steps.configured.outputs.ready == 'true'
@@ -157,6 +151,20 @@ jobs:
           node scripts/package-static-production.mjs --preserve-existing-endpoints --tag "$TAG"
           echo "SITE=$(ls -d .artifacts/20i-production/*-update-"$TAG"-site)" >> "$GITHUB_ENV"
           echo "MANIFEST=$(ls .artifacts/20i-production/*-"$TAG"-manifest.json)" >> "$GITHUB_ENV"
+      - name: Load the deploy key
+        # Written only after the tests and build, so repository and dependency
+        # code run by those steps never has the key on disk.
+        if: steps.target.outputs.go == 'true'
+        env:
+          KEY: ${{ secrets.TWENTYI_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.TWENTYI_KNOWN_HOSTS }}
+        run: |
+          DEPLOY_KEY_FILE="$RUNNER_TEMP/deploy_key"; DEPLOY_KNOWN_HOSTS_FILE="$RUNNER_TEMP/known_hosts"
+          echo "DEPLOY_KEY_FILE=$DEPLOY_KEY_FILE" >> "$GITHUB_ENV"
+          echo "DEPLOY_KNOWN_HOSTS_FILE=$DEPLOY_KNOWN_HOSTS_FILE" >> "$GITHUB_ENV"
+          umask 077
+          printf '%s\n' "$KEY" > "$DEPLOY_KEY_FILE"
+          printf '%s\n' "$KNOWN_HOSTS" > "$DEPLOY_KNOWN_HOSTS_FILE"
       - name: Back up the files about to be replaced
         if: steps.target.outputs.go == 'true'
         # Exits 4 without uploading when live files were changed outside a recorded deploy.
@@ -220,4 +228,4 @@ jobs:
           echo "Live on https://fresh-tech.uk - ${SHA:0:7} ($(git log -1 --format=%s "$SHA")), $GATE gate." >> "$GITHUB_STEP_SUMMARY"
       - name: Remove the deploy key
         if: always()
-        run: rm -f "$DEPLOY_KEY_FILE" "$DEPLOY_KNOWN_HOSTS_FILE"
+        run: rm -f "$RUNNER_TEMP/deploy_key" "$RUNNER_TEMP/known_hosts"
