@@ -65,6 +65,16 @@ const RESOURCES_BLOG_TEXT = [
 ];
 
 export const STANDALONE_DIFFERENCES = Object.freeze({
+  // The sub-processor list was updated with Terms of Business 1.1 on
+  // 16 November 2026: Dropsuite added and the Huntress entry widened.
+  '/sub-processors': {
+    text: [
+      ['Last updated 14 September 2026 Last updated 14 September 2026.', 'Last updated 16 November 2026 Last updated 16 November 2026.'],
+      ['Managed endpoint detection and identity threat detection', 'Managed endpoint detection, identity threat detection and security awareness training'],
+      ['for any transfers to the United States Keeper', "for any transfers to the United States Dropsuite (a NinjaOne company) Backup of Microsoft 365 email, files and Teams United Kingdom Not applicable: stored in the United Kingdom under Dropsuite's data processing agreement Keeper"],
+      ['14 September 2026 First published list.', '14 September 2026 First published list. 16 November 2026 Published with Terms of Business 1.1. Dropsuite added (Microsoft 365 backup). Huntress entry now names security awareness training.'],
+    ],
+  },
   // Section 4 names the processors that handle website enquiries (SMTP2GO,
   // 20i), added on 29 October 2026 at Sam's request; later sections renumber.
   '/privacy-policy': {

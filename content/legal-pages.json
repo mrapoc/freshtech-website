@@ -1,7 +1,7 @@
 {
   "current": {
-    "terms-of-business": "terms-of-business.md",
-    "dpa": "data-processing-terms.md",
+    "terms-of-business": "terms-of-business-v1-1.md",
+    "dpa": "data-processing-terms-v1-1.md",
     "sub-processors": "sub-processors.md"
   }
 }

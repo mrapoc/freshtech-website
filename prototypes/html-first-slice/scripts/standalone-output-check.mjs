@@ -6,6 +6,7 @@ import { STANDALONE_DIFFERENCES } from './lib/standalone-differences.mjs';
 import { STANDALONE_ROUTES } from './lib/standalone-routes.mjs';
 import { applyPublicProofReview } from './lib/public-proof-review.mjs';
 import { substituteRetainedHead } from './lib/retained-react-head.mjs';
+import { legalRoutes } from '../src/generated/legal-data.mjs';
 
 // Parity gate for native standalone pages. Each ported route (a dist page whose
 // single <main> carries data-standalone-page) is compared with the production
@@ -34,6 +35,12 @@ const textDifference = (a, b) => {
   return `at char ${i}: native "${a.slice(Math.max(0, i - 40), i + 60)}" vs baseline "${b.slice(Math.max(0, i - 40), i + 60)}"`;
 };
 
+// Legal baselines were captured at version 1.0. Once a newer version is current
+// (content/legal-pages.json), its current route must render exactly what its own
+// versioned route renders; /<slug>/v1-0 keeps parity with production for the
+// shared legal template, and the head is still checked against production.
+const currentLegalVersion = Object.fromEntries(legalRoutes.filter(r => !r.versionPath && r.version).map(r => [`/${r.slug}`, r.version]));
+
 const ported = [];
 const pending = [];
 for (const entry of STANDALONE_ROUTES) {
@@ -49,6 +56,12 @@ for (const entry of STANDALONE_ROUTES) {
   const native = extractPage(html);
   const differences = STANDALONE_DIFFERENCES[route] ?? {};
   const baseline = structuredClone(fixture);
+  const currentVersion = currentLegalVersion[route];
+  const baselineVersion = fixture.content.text.match(/Version (\d+\.\d+)/)?.[1];
+  if (currentVersion && baselineVersion && currentVersion !== baselineVersion) {
+    const versioned = resolve(distDir, route.slice(1), `v${currentVersion.replace(/\./g, '-')}`, 'index.html');
+    baseline.content = extractPage(await readFile(versioned, 'utf8')).content;
+  }
   for (const [from, to] of differences.text ?? []) {
     expect(baseline.content.text.includes(from), `${route}: documented text difference no longer matches the baseline: "${from.slice(0, 60)}"`);
     baseline.content.text = baseline.content.text.replace(from, to);
