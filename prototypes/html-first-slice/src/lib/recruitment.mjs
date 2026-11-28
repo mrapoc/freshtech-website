@@ -1,7 +1,8 @@
 // Recruitment facts shared by /careers and /recruitment-privacy. Sam locked the
 // copy facts on 16 October 2026 and adopted the recruitment privacy policy the
-// same day. Applications closed on 30 October 2026; /careers now thanks
-// applicants and keeps the role description without pay or terms. To reopen,
+// same day. Applications closed on 30 October 2026 and the role was filled
+// by 11 November 2026; /careers says so, thanks applicants and keeps the role
+// description without pay or terms. To reopen,
 // set `open: true` again.
 export const RECRUITMENT = Object.freeze({
   roleTitle: 'IT Support Engineer (2nd Line)',
